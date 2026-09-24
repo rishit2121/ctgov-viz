@@ -1,0 +1,28 @@
+{
+ "status": "unsupported",
+ "query": "Which melanoma drug has the best overall survival?",
+ "message": "Overall survival and other efficacy/outcome results are not available in this analysis, which only covers ClinicalTrials.gov registration data (conditions, interventions, phases, sponsors, dates, locations, enrollment). A related answerable question: 'Which drugs are most studied in Phase 3 melanoma trials?' or 'Which drugs are most frequently combined in melanoma trial arms?'",
+ "meta": {
+  "source": "ClinicalTrials.gov API v2",
+  "unit": "distinct studies (NCT IDs)",
+  "definitions": {},
+  "api_queries": [],
+  "completeness": {
+   "complete": true
+  },
+  "studies_analyzed": 0,
+  "filters": {},
+  "request_fields": {},
+  "cohort_overlap": {},
+  "excluded": {},
+  "assumptions": [],
+  "warnings": [],
+  "llm": {
+   "model": "claude-opus-5",
+   "tool_calls": [],
+   "repaired": false,
+   "cached": false
+  },
+  "timings_ms": {}
+ }
+}

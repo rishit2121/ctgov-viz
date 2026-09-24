@@ -1,6 +1,6 @@
 {
  "status": "ok",
- "query_id": "q_216290d6cc210b8f",
+ "query_id": "q_4d5d03694172e36d",
  "query": "Which drugs are combined in the same arm in melanoma trials?",
  "plan": {
   "version": "1",
@@ -27,11 +27,11 @@
    },
    "top_k": 30,
    "sort": {
-    "by": "domain"
+    "by": "count_desc"
    }
   },
   "assumptions": [
-   "'Combined in the same arm' = drugs assigned together within the same arm group of a study.",
+   "'Combined' = two drugs assigned together in the same arm group of a study.",
    "Placebo and non-drug/ancillary interventions (imaging, questionnaires, biospecimens) are excluded."
   ]
  },
@@ -64,7 +64,9 @@
   "hints": {
    "layout": "force",
    "legend": true,
-   "value_labels": false
+   "value_labels": false,
+   "stacked": false,
+   "show_totals": false
   },
   "palette": {
    "Drug": "#2a78d6",
@@ -87,7 +89,7 @@
       "NCT02009449"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n0"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n0"
     },
     "citations": [
      {
@@ -202,7 +204,7 @@
       "NCT01176474"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n1"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n1"
     },
     "citations": [
      {
@@ -327,7 +329,7 @@
       "NCT00058279"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n2"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n2"
     },
     "citations": [
      {
@@ -442,7 +444,7 @@
       "NCT00003552"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n3"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n3"
     },
     "citations": [
      {
@@ -556,7 +558,7 @@
       "NCT00002845"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n4"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n4"
     },
     "citations": [
      {
@@ -671,7 +673,7 @@
       "NCT00006233"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n5"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n5"
     },
     "citations": [
      {
@@ -786,7 +788,7 @@
       "NCT01378975"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n6"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n6"
     },
     "citations": [
      {
@@ -901,7 +903,7 @@
       "NCT01701037"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n7"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n7"
     },
     "citations": [
      {
@@ -1016,7 +1018,7 @@
       "NCT00020839"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n8"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n8"
     },
     "citations": [
      {
@@ -1131,7 +1133,7 @@
       "NCT01721603"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n9"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n9"
     },
     "citations": [
      {
@@ -1246,7 +1248,7 @@
       "NCT00004141"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n10"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n10"
     },
     "citations": [
      {
@@ -1361,7 +1363,7 @@
       "NCT00308607"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n11"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n11"
     },
     "citations": [
      {
@@ -1476,7 +1478,7 @@
       "NCT00255762"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n12"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n12"
     },
     "citations": [
      {
@@ -1590,7 +1592,7 @@
       "NCT00003362"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n13"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n13"
     },
     "citations": [
      {
@@ -1705,7 +1707,7 @@
       "NCT00003568"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n14"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n14"
     },
     "citations": [
      {
@@ -1820,7 +1822,7 @@
       "NCT00059475"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n15"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n15"
     },
     "citations": [
      {
@@ -1935,7 +1937,7 @@
       "NCT00110019"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n16"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n16"
     },
     "citations": [
      {
@@ -2048,7 +2050,7 @@
       "NCT01813214"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n17"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n17"
     },
     "citations": [
      {
@@ -2163,7 +2165,7 @@
       "NCT03050060"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n18"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n18"
     },
     "citations": [
      {
@@ -2278,7 +2280,7 @@
       "NCT00003690"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n19"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n19"
     },
     "citations": [
      {
@@ -2392,7 +2394,7 @@
       "NCT03543969"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n20"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n20"
     },
     "citations": [
      {
@@ -2507,7 +2509,7 @@
       "NCT00003362"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n21"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n21"
     },
     "citations": [
      {
@@ -2622,7 +2624,7 @@
       "NCT03563729"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n22"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n22"
     },
     "citations": [
      {
@@ -2737,7 +2739,7 @@
       "NCT03313206"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/n23"
+     "ref": "/query/q_4d5d03694172e36d/evidence/n23"
     },
     "citations": [
      {
@@ -2862,7 +2864,7 @@
       "NCT01783938"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e0"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e0"
     },
     "citations": [
      {
@@ -3001,7 +3003,7 @@
       "NCT00303836"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e1"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e1"
     },
     "citations": [
      {
@@ -3140,7 +3142,7 @@
       "NCT01721603"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e2"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e2"
     },
     "citations": [
      {
@@ -3279,7 +3281,7 @@
       "NCT00509288"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e3"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e3"
     },
     "citations": [
      {
@@ -3418,7 +3420,7 @@
       "NCT00509496"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e4"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e4"
     },
     "citations": [
      {
@@ -3557,7 +3559,7 @@
       "NCT03633110"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e5"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e5"
     },
     "citations": [
      {
@@ -3696,7 +3698,7 @@
       "NCT01813214"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e6"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e6"
     },
     "citations": [
      {
@@ -3835,7 +3837,7 @@
       "NCT00329641"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e7"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e7"
     },
     "citations": [
      {
@@ -3973,7 +3975,7 @@
       "NCT03864042"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e8"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e8"
     },
     "citations": [
      {
@@ -4112,7 +4114,7 @@
       "NCT02379195"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e9"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e9"
     },
     "citations": [
      {
@@ -4251,7 +4253,7 @@
       "NCT02379195"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e10"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e10"
     },
     "citations": [
      {
@@ -4390,7 +4392,7 @@
       "NCT04207086"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e11"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e11"
     },
     "citations": [
      {
@@ -4528,7 +4530,7 @@
       "NCT03092453"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e12"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e12"
     },
     "citations": [
      {
@@ -4677,7 +4679,7 @@
       "NCT03175432"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e13"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e13"
     },
     "citations": [
      {
@@ -4816,7 +4818,7 @@
       "NCT03873818"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e14"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e14"
     },
     "citations": [
      {
@@ -4955,7 +4957,7 @@
       "NCT03554083"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e15"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e15"
     },
     "citations": [
      {
@@ -5094,7 +5096,7 @@
       "NCT02023710"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e16"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e16"
     },
     "citations": [
      {
@@ -5233,7 +5235,7 @@
       "NCT05039801"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e17"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e17"
     },
     "citations": [
      {
@@ -5372,7 +5374,7 @@
       "NCT04452214"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e18"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e18"
     },
     "citations": [
      {
@@ -5511,7 +5513,7 @@
       "NCT01835145"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e19"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e19"
     },
     "citations": [
      {
@@ -5650,7 +5652,7 @@
       "NCT04904185"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e20"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e20"
     },
     "citations": [
      {
@@ -5794,7 +5796,7 @@
       "NCT04198766"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e21"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e21"
     },
     "citations": [
      {
@@ -5938,7 +5940,7 @@
       "NCT04511013"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e22"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e22"
     },
     "citations": [
      {
@@ -6077,7 +6079,7 @@
       "NCT03841110"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e23"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e23"
     },
     "citations": [
      {
@@ -6216,7 +6218,7 @@
       "NCT05987332"
      ],
      "complete_inline": false,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e24"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e24"
     },
     "citations": [
      {
@@ -6355,7 +6357,7 @@
       "NCT05155033"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e25"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e25"
     },
     "citations": [
      {
@@ -6494,7 +6496,7 @@
       "NCT05581004"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e26"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e26"
     },
     "citations": [
      {
@@ -6633,7 +6635,7 @@
       "NCT07671495"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e27"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e27"
     },
     "citations": [
      {
@@ -6772,7 +6774,7 @@
       "NCT01409174"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e28"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e28"
     },
     "citations": [
      {
@@ -6911,7 +6913,7 @@
       "NCT03166397"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e29"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e29"
     },
     "citations": [
      {
@@ -7050,7 +7052,7 @@
       "NCT04655157"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e30"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e30"
     },
     "citations": [
      {
@@ -7189,7 +7191,7 @@
       "NCT00303836"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e31"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e31"
     },
     "citations": [
      {
@@ -7328,7 +7330,7 @@
       "NCT00089063"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e32"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e32"
     },
     "citations": [
      {
@@ -7466,7 +7468,7 @@
       "NCT03068624"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e33"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e33"
     },
     "citations": [
      {
@@ -7580,7 +7582,7 @@
       "NCT04356729"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e34"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e34"
     },
     "citations": [
      {
@@ -7694,7 +7696,7 @@
       "NCT04902040"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e35"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e35"
     },
     "citations": [
      {
@@ -7808,7 +7810,7 @@
       "NCT06163820"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e36"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e36"
     },
     "citations": [
      {
@@ -7922,7 +7924,7 @@
       "NCT02065466"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e37"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e37"
     },
     "citations": [
      {
@@ -8036,7 +8038,7 @@
       "NCT05926960"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e38"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e38"
     },
     "citations": [
      {
@@ -8155,7 +8157,7 @@
       "NCT01409174"
      ],
      "complete_inline": true,
-     "ref": "/query/q_216290d6cc210b8f/evidence/e39"
+     "ref": "/query/q_4d5d03694172e36d/evidence/e39"
     },
     "citations": [
      {
@@ -8262,7 +8264,7 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T05:33:08+00:00",
+  "retrieved_at": "2026-09-24T09:16:48+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
@@ -8295,7 +8297,7 @@
    "studies_without_a_pair": 2631
   },
   "assumptions": [
-   "'Combined in the same arm' = drugs assigned together within the same arm group of a study.",
+   "'Combined' = two drugs assigned together in the same arm group of a study.",
    "Placebo and non-drug/ancillary interventions (imaging, questionnaires, biospecimens) are excluded.",
    "Intervention names are merged only by deterministic rules (case, trademark symbols, doses, formulation words, a fixed brand/code alias table); combination products registered under one name stay one node.",
    "Placebo, sham, usual-care and observation comparators are excluded.",
@@ -8310,14 +8312,15 @@
    "tool_calls": [
     "validate_plan"
    ],
-   "repaired": false
+   "repaired": false,
+   "cached": false
   },
   "timings_ms": {
-   "preflight": 210,
-   "fetch": 3366,
-   "analyze": 339,
+   "preflight": 214,
+   "fetch": 3270,
+   "analyze": 349,
    "verify": 5,
-   "total": 3935
+   "total": 3854
   }
  }
 }

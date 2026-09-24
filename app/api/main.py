@@ -23,6 +23,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 
+from app.api.limits import LLMRateLimiter, PlanCache, RateLimited
 from app.contracts.plan import Measure, QueryPlan
 from app.contracts.request import QueryRequest
 from app.contracts.response import ErrorResponse, EvidencePage, Meta, QueryResponse
@@ -57,6 +58,9 @@ def create_app(
                                    max_retries=settings.ctgov_max_retries)
         app.state.pipeline = Pipeline(ct, settings, ResultCache(settings.response_cache_size))
         app.state.planner = planner or build_planner(settings, ct)
+        app.state.plan_cache = PlanCache(settings.plan_cache_size)
+        app.state.limiter = LLMRateLimiter(settings.llm_requests_per_client_per_hour,
+                                           settings.llm_requests_per_day)
         try:
             yield
         finally:
@@ -76,6 +80,12 @@ def create_app(
     async def _planner_error(_: Request, e: PlannerError) -> JSONResponse:
         status = 503 if e.code == "llm_unavailable" else 422
         return _error(status, e.code, e.message, e.detail)
+
+    @app.exception_handler(RateLimited)
+    async def _rate_limited(_: Request, e: RateLimited) -> JSONResponse:
+        response = _error(429, "rate_limited", e.message)
+        response.headers["Retry-After"] = str(e.retry_after_s)
+        return response
 
     @app.exception_handler(RequestFieldConflict)
     async def _field_conflict(_: Request, e: RequestFieldConflict) -> JSONResponse:
@@ -104,11 +114,7 @@ def create_app(
         if req.plan is not None:  # advanced: skip interpretation
             planned = PlannerResult(kind="plan", llm=None, plan=req.plan)
         else:
-            planner: QuestionPlanner | None = request.app.state.planner
-            if planner is None:
-                raise PlannerError("llm_unavailable", "No LLM is configured; set "
-                                   "ANTHROPIC_API_KEY (or LLM_MODE), or submit a `plan`.")
-            planned = await planner.plan(req.query, constraints_text(req))
+            planned = await _plan(request, req)
 
         if planned.kind == "plan":
             assert planned.plan is not None
@@ -126,6 +132,23 @@ def create_app(
                 meta=Meta(llm=planned.llm))
         response.meta.request_fields = req.structured_fields()
         return response
+
+    async def _plan(request: Request, req: QueryRequest) -> PlannerResult:
+        """Plan a question, reusing the plan of an identical earlier question when possible."""
+        cache: PlanCache = request.app.state.plan_cache
+        key = cache.key(req.query, req.structured_fields())
+        if (hit := cache.get(key)) is not None:
+            llm = hit.llm.model_copy(update={"cached": True}) if hit.llm else None
+            return PlannerResult(kind=hit.kind, llm=llm, plan=hit.plan,
+                                 clarification=hit.clarification, message=hit.message)
+        planner: QuestionPlanner | None = request.app.state.planner
+        if planner is None:
+            raise PlannerError("llm_unavailable", "No LLM is configured; set "
+                               "ANTHROPIC_API_KEY (or LLM_MODE), or submit a `plan`.")
+        request.app.state.limiter.acquire(request.client.host if request.client else "unknown")
+        planned = await planner.plan(req.query, constraints_text(req))
+        cache.put(key, planned)
+        return planned
 
     @app.get("/query/{query_id}", response_model=QueryResponse,
              response_model_exclude_none=True, responses={404: {"model": ErrorResponse}})

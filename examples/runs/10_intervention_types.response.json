@@ -1,0 +1,1470 @@
+{
+ "status": "ok",
+ "query_id": "q_0e50ccc3ef858392",
+ "query": "What are the most common intervention types for lung cancer trials?",
+ "plan": {
+  "version": "1",
+  "cohorts": [
+   {
+    "label": "Lung cancer",
+    "condition": "lung cancer",
+    "filters": {
+     "overall_status": [],
+     "phase": []
+    }
+   }
+  ],
+  "analysis": {
+   "kind": "aggregate",
+   "dimension": "intervention_type",
+   "top_k": 10,
+   "sort": {
+    "by": "count_desc"
+   }
+  },
+  "assumptions": [
+   "Lung cancer is matched as a condition (all lung cancer types, all phases and statuses).",
+   "Intervention type = the registered intervention category (Drug, Biological, Device, Procedure, Behavioral, etc.); a study with several types counts once in each."
+  ]
+ },
+ "visualization": {
+  "schema_version": "1.0",
+  "type": "bar",
+  "title": "Lung cancer studies by intervention type",
+  "subtitle": "distinct studies (NCT IDs)",
+  "encoding": {
+   "x": {
+    "field": "study_count",
+    "type": "quantitative",
+    "title": "Studies"
+   },
+   "y": {
+    "field": "intervention_type",
+    "type": "nominal",
+    "title": "Intervention type",
+    "sort": [
+     "Drug",
+     "Other",
+     "Procedure",
+     "Biological",
+     "Radiation",
+     "Device",
+     "Behavioral",
+     "Diagnostic test",
+     "Genetic",
+     "Combination product"
+    ]
+   },
+   "tooltip": [
+    "intervention_type",
+    "study_count"
+   ]
+  },
+  "hints": {
+   "orientation": "horizontal",
+   "legend": false,
+   "value_labels": true,
+   "stacked": false,
+   "show_totals": false
+  },
+  "palette": {
+   "Lung cancer": "#2a78d6"
+  },
+  "data": [
+   {
+    "intervention_type": "Drug",
+    "study_count": 8396,
+    "evidence": {
+     "total": 8396,
+     "sample": [
+      "NCT00001450",
+      "NCT00001499",
+      "NCT00001805",
+      "NCT00001877",
+      "NCT00001893"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r0"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00001450",
+      "title": "Phase II Trial of a 96-Hour Continuous Infusion of Paclitaxel Followed by Cisplatin for Patients With Stage III/IV and Relapsed NSCLC",
+      "url": "https://clinicaltrials.gov/study/NCT00001450",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001450",
+      "excerpt": "DRUG",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DRUG",
+        "supports": "intervention type: Drug"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00001499",
+      "title": "Phase II Neoadjuvant Trial of a Continuous Infusion of Paclitaxel Plus Cisplatin Followed by Chest Radiotherapy for Patients With Stage III Non-Small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00001499",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001499",
+      "excerpt": "DRUG",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DRUG",
+        "supports": "intervention type: Drug"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Phase II Neoadjuvant Trial of a Continuous Infusion of Paclitaxel Plus Cisplatin Followed by Chest Radiotherapy for Patients With Stage III Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00001805",
+      "title": "A Phase II Clinical Trial of Suppression of Human Antimouse Antibody and Human Antitoxin Response to Immunotoxin LMB-1 by Rituximab",
+      "url": "https://clinicaltrials.gov/study/NCT00001805",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001805",
+      "excerpt": "DRUG",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DRUG",
+        "supports": "intervention type: Drug"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00001877",
+      "title": "Treatment of Pulmonary Sarcoidosis With Pentoxifylline",
+      "url": "https://clinicaltrials.gov/study/NCT00001877",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001877",
+      "excerpt": "DRUG",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DRUG",
+        "supports": "intervention type: Drug"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00001893",
+      "title": "Study of TNFR:Fc (Enbrel) in the Treatment of Asthma",
+      "url": "https://clinicaltrials.gov/study/NCT00001893",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001893",
+      "excerpt": "DRUG",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DRUG",
+        "supports": "intervention type: Drug"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "intervention_type": "Other",
+    "study_count": 2066,
+    "evidence": {
+     "total": 2066,
+     "sample": [
+      "NCT00002540",
+      "NCT00002667",
+      "NCT00003006",
+      "NCT00003600",
+      "NCT00003869"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r1"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00002540",
+      "title": "Screening for Prostate Cancer in Older Patients (PLCO Screening Trial)",
+      "url": "https://clinicaltrials.gov/study/NCT00002540",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002540",
+      "excerpt": "OTHER",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "OTHER",
+        "supports": "intervention type: Other"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002667",
+      "title": "Early Detection of Second Lung Cancer in Patients With Stage I Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002667",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002667",
+      "excerpt": "OTHER",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "OTHER",
+        "supports": "intervention type: Other"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00003006",
+      "title": "Detection of Early Metastases in Patients With Stage I Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00003006",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003006",
+      "excerpt": "OTHER",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+        "text": "OTHER",
+        "supports": "intervention type: Other"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00003600",
+      "title": "Epoetin Alfa in Treating Anemia in Patients Who Are Receiving Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT00003600",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003600",
+      "excerpt": "OTHER",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+        "text": "OTHER",
+        "supports": "intervention type: Other"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[5]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00003869",
+      "title": "Carboxyamidotriazole in Treating Patients With Stage III or Stage IV Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00003869",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003869",
+      "excerpt": "OTHER",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+        "text": "OTHER",
+        "supports": "intervention type: Other"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Stage IIIA Non-small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "intervention_type": "Procedure",
+    "study_count": 1412,
+    "evidence": {
+     "total": 1412,
+     "sample": [
+      "NCT00001499",
+      "NCT00002540",
+      "NCT00002550",
+      "NCT00002608",
+      "NCT00002623"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r2"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00001499",
+      "title": "Phase II Neoadjuvant Trial of a Continuous Infusion of Paclitaxel Plus Cisplatin Followed by Chest Radiotherapy for Patients With Stage III Non-Small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00001499",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001499",
+      "excerpt": "PROCEDURE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+        "text": "PROCEDURE",
+        "supports": "intervention type: Procedure"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Phase II Neoadjuvant Trial of a Continuous Infusion of Paclitaxel Plus Cisplatin Followed by Chest Radiotherapy for Patients With Stage III Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002540",
+      "title": "Screening for Prostate Cancer in Older Patients (PLCO Screening Trial)",
+      "url": "https://clinicaltrials.gov/study/NCT00002540",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002540",
+      "excerpt": "PROCEDURE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+        "text": "PROCEDURE",
+        "supports": "intervention type: Procedure"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002550",
+      "title": "Chemotherapy Plus Radiation Therapy With or Without Surgery in Treating Patients With Stage IIIA Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002550",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002550",
+      "excerpt": "PROCEDURE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+        "text": "PROCEDURE",
+        "supports": "intervention type: Procedure"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002608",
+      "title": "Combination Chemotherapy and Tamoxifen in Treating Patients With Solid Tumors",
+      "url": "https://clinicaltrials.gov/study/NCT00002608",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002608",
+      "excerpt": "PROCEDURE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].type",
+        "text": "PROCEDURE",
+        "supports": "intervention type: Procedure"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002623",
+      "title": "Chemotherapy Followed by Surgery or Radiation Therapy in Treating Patients With Stage III Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002623",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002623",
+      "excerpt": "PROCEDURE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+        "text": "PROCEDURE",
+        "supports": "intervention type: Procedure"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "intervention_type": "Biological",
+    "study_count": 1274,
+    "evidence": {
+     "total": 1274,
+     "sample": [
+      "NCT00002454",
+      "NCT00002470",
+      "NCT00002475",
+      "NCT00002506",
+      "NCT00002764"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r3"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00002454",
+      "title": "Papilloma Virus Vaccine Therapy in Treating Young Patients With Recurrent Papilloma of the Larynx",
+      "url": "https://clinicaltrials.gov/study/NCT00002454",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002454",
+      "excerpt": "BIOLOGICAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "BIOLOGICAL",
+        "supports": "intervention type: Biological"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002470",
+      "title": "Fluorouracil Plus Interferon Alfa in Treating Patients With Advanced Metastatic Carcinoid Tumors",
+      "url": "https://clinicaltrials.gov/study/NCT00002470",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002470",
+      "excerpt": "BIOLOGICAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "BIOLOGICAL",
+        "supports": "intervention type: Biological"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002475",
+      "title": "Cyclophosphamide Plus Vaccine Therapy in Treating Patients With Advanced Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002475",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002475",
+      "excerpt": "BIOLOGICAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "BIOLOGICAL",
+        "supports": "intervention type: Biological"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[3]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002506",
+      "title": "Isotretinoin Plus Interferon in Treating Patients With Recurrent Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002506",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002506",
+      "excerpt": "BIOLOGICAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "BIOLOGICAL",
+        "supports": "intervention type: Biological"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[3]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002764",
+      "title": "Surgery With or Without Combination Chemotherapy in Treating Patients With Lung Metastases From Soft Tissue Sarcoma",
+      "url": "https://clinicaltrials.gov/study/NCT00002764",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002764",
+      "excerpt": "BIOLOGICAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "BIOLOGICAL",
+        "supports": "intervention type: Biological"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "intervention_type": "Radiation",
+    "study_count": 1210,
+    "evidence": {
+     "total": 1210,
+     "sample": [
+      "NCT00002484",
+      "NCT00002519",
+      "NCT00002537",
+      "NCT00002550",
+      "NCT00002577"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r4"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00002484",
+      "title": "Radiation Therapy Using 3-Dimensional Treatment Planning in Patients With Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002484",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002484",
+      "excerpt": "RADIATION",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "RADIATION",
+        "supports": "intervention type: Radiation"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002519",
+      "title": "Paclitaxel Plus Radiation Therapy in Treating Patients With Untreated Stage III Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002519",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002519",
+      "excerpt": "RADIATION",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+        "text": "RADIATION",
+        "supports": "intervention type: Radiation"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002537",
+      "title": "Radiation Therapy Plus Topotecan in Treating Patients With Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002537",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002537",
+      "excerpt": "RADIATION",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+        "text": "RADIATION",
+        "supports": "intervention type: Radiation"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002550",
+      "title": "Chemotherapy Plus Radiation Therapy With or Without Surgery in Treating Patients With Stage IIIA Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002550",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002550",
+      "excerpt": "RADIATION",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].type",
+        "text": "RADIATION",
+        "supports": "intervention type: Radiation"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002577",
+      "title": "Radiation Therapy in Treating Patients With Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002577",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002577",
+      "excerpt": "RADIATION",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "RADIATION",
+        "supports": "intervention type: Radiation"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "intervention_type": "Device",
+    "study_count": 651,
+    "evidence": {
+     "total": 651,
+     "sample": [
+      "NCT00001465",
+      "NCT00001515",
+      "NCT00047385",
+      "NCT00188162",
+      "NCT00188526"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r5"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00001465",
+      "title": "Study of the Disease Process of Lymphangioleiomyomatosis",
+      "url": "https://clinicaltrials.gov/study/NCT00001465",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001465",
+      "excerpt": "DEVICE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DEVICE",
+        "supports": "intervention type: Device"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00001515",
+      "title": "Diagnostic Effectiveness of Virtual Bronchoscopy",
+      "url": "https://clinicaltrials.gov/study/NCT00001515",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001515",
+      "excerpt": "DEVICE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DEVICE",
+        "supports": "intervention type: Device"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00047385",
+      "title": "National Lung Screening Trial (NLST) Screening",
+      "url": "https://clinicaltrials.gov/study/NCT00047385",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00047385",
+      "excerpt": "DEVICE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DEVICE",
+        "supports": "intervention type: Device"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00188162",
+      "title": "Minimum Dose CT Post Lung Biopsy",
+      "url": "https://clinicaltrials.gov/study/NCT00188162",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00188162",
+      "excerpt": "DEVICE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DEVICE",
+        "supports": "intervention type: Device"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00188526",
+      "title": "Computed Tomography (CT) Guided Lung Biopsy: Core or Fine Needle Aspiration",
+      "url": "https://clinicaltrials.gov/study/NCT00188526",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00188526",
+      "excerpt": "DEVICE",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DEVICE",
+        "supports": "intervention type: Device"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "intervention_type": "Behavioral",
+    "study_count": 594,
+    "evidence": {
+     "total": 594,
+     "sample": [
+      "NCT00002520",
+      "NCT00021138",
+      "NCT00032084",
+      "NCT00173524",
+      "NCT00280189"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r6"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00002520",
+      "title": "Physician-Initiated Stop-Smoking Program for Patients Receiving Treatment for Early-Stage Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002520",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002520",
+      "excerpt": "BEHAVIORAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+        "text": "BEHAVIORAL",
+        "supports": "intervention type: Behavioral"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[4]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00021138",
+      "title": "Computer-Assisted Scheduling of Nicotine Inhaler Use in Participants Who Plan to Stop Smoking",
+      "url": "https://clinicaltrials.gov/study/NCT00021138",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00021138",
+      "excerpt": "BEHAVIORAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "BEHAVIORAL",
+        "supports": "intervention type: Behavioral"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[2]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00032084",
+      "title": "S0002 - A Program to Quit Smoking With or Without Bupropion in Treating Patients With Stage I or II Non-Small Cell Lung Cancer Who Have Undergone Surgery",
+      "url": "https://clinicaltrials.gov/study/NCT00032084",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00032084",
+      "excerpt": "BEHAVIORAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "BEHAVIORAL",
+        "supports": "intervention type: Behavioral"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00173524",
+      "title": "PharmacoEconomic Assessment IRESSA® in the Treatment of Non-Small-Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT00173524",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00173524",
+      "excerpt": "BEHAVIORAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "BEHAVIORAL",
+        "supports": "intervention type: Behavioral"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00280189",
+      "title": "Study of Outcomes of Radiofrequency Ablation of Lung Tumors",
+      "url": "https://clinicaltrials.gov/study/NCT00280189",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00280189",
+      "excerpt": "BEHAVIORAL",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+        "text": "BEHAVIORAL",
+        "supports": "intervention type: Behavioral"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "intervention_type": "Diagnostic test",
+    "study_count": 503,
+    "evidence": {
+     "total": 503,
+     "sample": [
+      "NCT01479348",
+      "NCT01982123",
+      "NCT02130427",
+      "NCT02769962",
+      "NCT02871856"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r7"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01479348",
+      "title": "Imaging Study for FdCyd and THU Cancer Treatment",
+      "url": "https://clinicaltrials.gov/study/NCT01479348",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01479348",
+      "excerpt": "DIAGNOSTIC_TEST",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].type",
+        "text": "DIAGNOSTIC_TEST",
+        "supports": "intervention type: Diagnostic test"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01982123",
+      "title": "SPECT/CT in Measuring Lung Function in Patients With Cancer Undergoing Radiation Therapy",
+      "url": "https://clinicaltrials.gov/study/NCT01982123",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01982123",
+      "excerpt": "DIAGNOSTIC_TEST",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DIAGNOSTIC_TEST",
+        "supports": "intervention type: Diagnostic test"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02130427",
+      "title": "A Volume, Motion, and Anatomically Adaptive Approach to Photon and Proton Beam Radiotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT02130427",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02130427",
+      "excerpt": "DIAGNOSTIC_TEST",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DIAGNOSTIC_TEST",
+        "supports": "intervention type: Diagnostic test"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Biopsy Proven Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02769962",
+      "title": "Trial of EP0057, a Nanoparticle Camptothecin With Olaparib in People With Relapsed/Refractory Small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02769962",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02769962",
+      "excerpt": "DIAGNOSTIC_TEST",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+        "text": "DIAGNOSTIC_TEST",
+        "supports": "intervention type: Diagnostic test"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[3]",
+        "text": "Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02871856",
+      "title": "International Lung Screen Trial (ILST)",
+      "url": "https://clinicaltrials.gov/study/NCT02871856",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02871856",
+      "excerpt": "DIAGNOSTIC_TEST",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "DIAGNOSTIC_TEST",
+        "supports": "intervention type: Diagnostic test"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "intervention_type": "Genetic",
+    "study_count": 123,
+    "evidence": {
+     "total": 123,
+     "sample": [
+      "NCT00003006",
+      "NCT00003329",
+      "NCT00057798",
+      "NCT00059605",
+      "NCT00077324"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r8"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00003006",
+      "title": "Detection of Early Metastases in Patients With Stage I Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00003006",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003006",
+      "excerpt": "GENETIC",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "GENETIC",
+        "supports": "intervention type: Genetic"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00003329",
+      "title": "Identification of Genes Associated With Cancer in Patients and Siblings Who Have Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00003329",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003329",
+      "excerpt": "GENETIC",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "GENETIC",
+        "supports": "intervention type: Genetic"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[2]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00057798",
+      "title": "Genetic Changes in Patients With Non-Small Cell Lung Cancer Who Are Receiving Vinorelbine and Gemcitabine Before Surgery",
+      "url": "https://clinicaltrials.gov/study/NCT00057798",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00057798",
+      "excerpt": "GENETIC",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+        "text": "GENETIC",
+        "supports": "intervention type: Genetic"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00059605",
+      "title": "Phase I Study of IV DOTAP: Cholesterol-Fus1 in Non-Small-Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00059605",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00059605",
+      "excerpt": "GENETIC",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "GENETIC",
+        "supports": "intervention type: Genetic"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00077324",
+      "title": "Proteomic Profiling in Diagnosing Non-Small Cell Lung Cancer in Patients Who Are Undergoing Lung Resection for Suspicious Stage I Lung Lesions",
+      "url": "https://clinicaltrials.gov/study/NCT00077324",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00077324",
+      "excerpt": "GENETIC",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "GENETIC",
+        "supports": "intervention type: Genetic"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "intervention_type": "Combination product",
+    "study_count": 110,
+    "evidence": {
+     "total": 110,
+     "sample": [
+      "NCT01302808",
+      "NCT01644994",
+      "NCT01781741",
+      "NCT03069924",
+      "NCT03167281"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_0e50ccc3ef858392/evidence/r9"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01302808",
+      "title": "Romidepsin and Erlotinib Hydrochloride in Treating Patients With Stage III or Stage IV Non-Small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01302808",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01302808",
+      "excerpt": "COMBINATION_PRODUCT",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "COMBINATION_PRODUCT",
+        "supports": "intervention type: Combination product"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01644994",
+      "title": "Intracavitary Cisplatin-Fibrin Localized Chemotherapy After P/D or EPP for Malignant Pleural Mesothelioma",
+      "url": "https://clinicaltrials.gov/study/NCT01644994",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01644994",
+      "excerpt": "COMBINATION_PRODUCT",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "COMBINATION_PRODUCT",
+        "supports": "intervention type: Combination product"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01781741",
+      "title": "Stereotactic Body Radiation Therapy After Surgery in Treating Patients With Stage III-IV Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01781741",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01781741",
+      "excerpt": "COMBINATION_PRODUCT",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "COMBINATION_PRODUCT",
+        "supports": "intervention type: Combination product"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Recurrent Non-small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03069924",
+      "title": "Gain-framed Messages and NRT for Lung Cancer Screening Patients",
+      "url": "https://clinicaltrials.gov/study/NCT03069924",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03069924",
+      "excerpt": "COMBINATION_PRODUCT",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+        "text": "COMBINATION_PRODUCT",
+        "supports": "intervention type: Combination product"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer Screening",
+        "supports": "cohort 'Lung cancer' (condition search 'lung cancer')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03167281",
+      "title": "Early Intrapleural TPA Instillation Versus Late",
+      "url": "https://clinicaltrials.gov/study/NCT03167281",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03167281",
+      "excerpt": "COMBINATION_PRODUCT",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+        "text": "COMBINATION_PRODUCT",
+        "supports": "intervention type: Combination product"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "vega_lite": {
+   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+   "title": {
+    "text": "Lung cancer studies by intervention type",
+    "subtitle": "distinct studies (NCT IDs)"
+   },
+   "width": "container",
+   "height": {
+    "step": 26
+   },
+   "data": {
+    "values": [
+     {
+      "intervention_type": "Drug",
+      "study_count": 8396,
+      "_row": 0
+     },
+     {
+      "intervention_type": "Other",
+      "study_count": 2066,
+      "_row": 1
+     },
+     {
+      "intervention_type": "Procedure",
+      "study_count": 1412,
+      "_row": 2
+     },
+     {
+      "intervention_type": "Biological",
+      "study_count": 1274,
+      "_row": 3
+     },
+     {
+      "intervention_type": "Radiation",
+      "study_count": 1210,
+      "_row": 4
+     },
+     {
+      "intervention_type": "Device",
+      "study_count": 651,
+      "_row": 5
+     },
+     {
+      "intervention_type": "Behavioral",
+      "study_count": 594,
+      "_row": 6
+     },
+     {
+      "intervention_type": "Diagnostic test",
+      "study_count": 503,
+      "_row": 7
+     },
+     {
+      "intervention_type": "Genetic",
+      "study_count": 123,
+      "_row": 8
+     },
+     {
+      "intervention_type": "Combination product",
+      "study_count": 110,
+      "_row": 9
+     }
+    ]
+   },
+   "layer": [
+    {
+     "mark": {
+      "type": "bar",
+      "cornerRadiusEnd": 4,
+      "color": "#2a78d6",
+      "size": 20
+     },
+     "encoding": {
+      "x": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "y": {
+       "field": "intervention_type",
+       "type": "nominal",
+       "title": "Intervention type",
+       "sort": [
+        "Drug",
+        "Other",
+        "Procedure",
+        "Biological",
+        "Radiation",
+        "Device",
+        "Behavioral",
+        "Diagnostic test",
+        "Genetic",
+        "Combination product"
+       ]
+      },
+      "tooltip": [
+       {
+        "field": "intervention_type",
+        "title": "Intervention type"
+       },
+       {
+        "field": "study_count",
+        "title": "Studies",
+        "format": ","
+       }
+      ]
+     }
+    },
+    {
+     "mark": {
+      "type": "text",
+      "align": "left",
+      "baseline": "middle",
+      "dx": 4,
+      "dy": 0,
+      "color": "#52514e",
+      "fontSize": 11
+     },
+     "encoding": {
+      "x": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "y": {
+       "field": "intervention_type",
+       "type": "nominal",
+       "title": "Intervention type",
+       "sort": [
+        "Drug",
+        "Other",
+        "Procedure",
+        "Biological",
+        "Radiation",
+        "Device",
+        "Behavioral",
+        "Diagnostic test",
+        "Genetic",
+        "Combination product"
+       ]
+      },
+      "text": {
+       "field": "study_count",
+       "type": "quantitative",
+       "format": ","
+      }
+     }
+    }
+   ],
+   "config": {
+    "background": "#fcfcfb",
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "view": {
+     "stroke": null
+    },
+    "title": {
+     "color": "#0b0b0b",
+     "subtitleColor": "#52514e",
+     "anchor": "start",
+     "fontSize": 15,
+     "subtitleFontSize": 12
+    },
+    "axis": {
+     "gridColor": "#e1e0d9",
+     "gridWidth": 1,
+     "domainColor": "#c3c2b7",
+     "tickColor": "#c3c2b7",
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "labelFontSize": 11,
+     "titleFontWeight": "normal",
+     "labelLimit": 220
+    },
+    "legend": {
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "orient": "top",
+     "labelLimit": 320
+    },
+    "range": {
+     "category": [
+      "#2a78d6",
+      "#eb6834",
+      "#1baf7a",
+      "#eda100",
+      "#e87ba4",
+      "#008300",
+      "#4a3aa7",
+      "#e34948"
+     ]
+    },
+    "line": {
+     "strokeWidth": 2,
+     "strokeCap": "round",
+     "strokeJoin": "round"
+    }
+   }
+  }
+ },
+ "meta": {
+  "source": "ClinicalTrials.gov API v2",
+  "api_version": "2.0.5",
+  "data_timestamp": "2026-09-23T09:00:05",
+  "retrieved_at": "2026-09-24T09:11:46+00:00",
+  "unit": "distinct studies (NCT IDs)",
+  "definitions": {
+   "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
+   "unit": "Each bar/point/edge counts distinct studies (NCT IDs), never sites or arms.",
+   "multi_valued": "A study listing several intervention type values counts once in each, so counts can sum to more than the number of studies."
+  },
+  "api_queries": [
+   {
+    "cohort": "Lung cancer",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=lung+cancer&fields=NCTId%2CBriefTitle%2CInterventionName%2CInterventionType%2CCondition",
+    "total": 14566,
+    "fetched": 14566,
+    "pages": 15,
+    "complete": true
+   }
+  ],
+  "completeness": {
+   "complete": true
+  },
+  "studies_analyzed": 14566,
+  "filters": {
+   "Lung cancer": {
+    "condition": "lung cancer"
+   }
+  },
+  "request_fields": {},
+  "cohort_overlap": {},
+  "excluded": {
+   "no_intervention_type_reported": 1344
+  },
+  "assumptions": [
+   "Lung cancer is matched as a condition (all lung cancer types, all phases and statuses).",
+   "Intervention type = the registered intervention category (Drug, Biological, Device, Procedure, Behavioral, etc.); a study with several types counts once in each."
+  ],
+  "warnings": [
+   "Showing the top 10 of 11 intervention type values by study count."
+  ],
+  "llm": {
+   "model": "claude-opus-5",
+   "tool_calls": [
+    "validate_plan"
+   ],
+   "repaired": false,
+   "cached": false
+  },
+  "timings_ms": {
+   "preflight": 243,
+   "fetch": 10942,
+   "analyze": 863,
+   "verify": 21,
+   "total": 12079
+  }
+ }
+}

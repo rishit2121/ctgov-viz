@@ -1,0 +1,21 @@
+# Render Blueprint: New > Blueprint > pick this repo. Render builds the Dockerfile and asks for
+# the secret values below (they are never stored in the repo).
+services:
+  - type: web
+    name: ctgov-viz
+    runtime: docker
+    plan: free            # free instances sleep after ~15 idle minutes; "starter" stays warm
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false       # prompted at setup; stored as a secret
+      - key: ANTHROPIC_WORKSPACE_ID
+        sync: false       # only needed for keys not scoped to a workspace
+      # Public-demo protections: every *new* question is one planner (LLM) call.
+      - key: LLM_REQUESTS_PER_CLIENT_PER_HOUR
+        value: "15"
+      - key: LLM_REQUESTS_PER_DAY
+        value: "200"
+      - key: RESPONSE_CACHE_SIZE
+        value: "48"

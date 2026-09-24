@@ -271,3 +271,39 @@ def test_demo_page_is_served(api: TestClient) -> None:
     r = api.get("/")
     assert r.status_code == 200 and "text/html" in r.headers["content-type"]
     assert "vega-embed" in r.text and "d3" in r.text
+
+
+# ------------------------------------------------------------------ public-deployment protections
+
+
+def test_identical_questions_reuse_the_plan(fake: FakeCTGov) -> None:
+    planner = ScriptedPlanner(PlannerResult(kind="plan", llm=LLMInfo(model="scripted"),
+                                            plan=QueryPlan.model_validate(phase_plan())))
+    with make_client(fake, planner=planner) as api:
+        first = api.post("/query", json={"query": "Melanoma trials by phase?"}).json()
+        again = api.post("/query", json={"query": "  melanoma TRIALS by phase?"}).json()
+        other = api.post("/query", json={"query": "Melanoma trials by phase?",
+                                         "status": "recruiting"}).json()
+    assert len(planner.questions) == 2  # the repeat was served from the plan cache
+    assert first["meta"]["llm"]["cached"] is False and again["meta"]["llm"]["cached"] is True
+    assert again["visualization"]["data"] == first["visualization"]["data"]
+    assert other["meta"]["llm"]["cached"] is False  # different fields -> new plan
+
+
+def test_new_questions_are_rate_limited_but_repeats_are_not(fake: FakeCTGov) -> None:
+    planner = ScriptedPlanner(PlannerResult(kind="plan", llm=LLMInfo(model="scripted"),
+                                            plan=QueryPlan.model_validate(phase_plan())))
+    with make_client(fake, planner=planner, llm_requests_per_client_per_hour=1) as api:
+        assert api.post("/query", json={"query": "q1"}).status_code == 200
+        limited = api.post("/query", json={"query": "q2"})
+        assert limited.status_code == 429 and limited.json()["code"] == "rate_limited"
+        assert int(limited.headers["Retry-After"]) > 0
+        assert api.post("/query", json={"query": "q1"}).status_code == 200  # cached plan
+
+
+def test_daily_cap(fake: FakeCTGov) -> None:
+    planner = ScriptedPlanner(PlannerResult(kind="plan", llm=LLMInfo(model="scripted"),
+                                            plan=QueryPlan.model_validate(phase_plan())))
+    with make_client(fake, planner=planner, llm_requests_per_day=2) as api:
+        codes = [api.post("/query", json={"query": f"q{i}"}).status_code for i in range(3)]
+    assert codes == [200, 200, 429]

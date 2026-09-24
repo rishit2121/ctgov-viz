@@ -24,8 +24,9 @@
    }
   },
   "assumptions": [
-   "Enrollment = registered enrollment (actual, or anticipated for ongoing studies), shown as a histogram of fixed size bins; studies without enrollment are excluded.",
-   "Phase filter = studies registered with Phase 3 (including Phase 2/3 combinations)."
+   "'Enrollment size' = registered enrollment (actual, or anticipated for ongoing studies), shown as a histogram over fixed bins.",
+   "Studies without a registered enrollment are excluded.",
+   "Phase 3 = studies registered with phase Phase 3 (including Phase 2/3 combined buckets only if registered as such is excluded; strictly the Phase 3 filter)."
   ]
  },
  "visualization": {
@@ -63,7 +64,9 @@
   "hints": {
    "orientation": "vertical",
    "legend": false,
-   "value_labels": true
+   "value_labels": true,
+   "stacked": false,
+   "show_totals": false
   },
   "palette": {
    "Phase 3 breast cancer": "#2a78d6"
@@ -1522,7 +1525,7 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T05:33:36+00:00",
+  "retrieved_at": "2026-09-24T09:17:19+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
@@ -1557,8 +1560,9 @@
    "no_enrollment_size_reported": 33
   },
   "assumptions": [
-   "Enrollment = registered enrollment (actual, or anticipated for ongoing studies), shown as a histogram of fixed size bins; studies without enrollment are excluded.",
-   "Phase filter = studies registered with Phase 3 (including Phase 2/3 combinations).",
+   "'Enrollment size' = registered enrollment (actual, or anticipated for ongoing studies), shown as a histogram over fixed bins.",
+   "Studies without a registered enrollment are excluded.",
+   "Phase 3 = studies registered with phase Phase 3 (including Phase 2/3 combined buckets only if registered as such is excluded; strictly the Phase 3 filter).",
    "A phase filter keeps studies whose registered phases include that phase, so multi-phase studies (e.g. Phase 2/3) are included in a Phase 3 filter."
   ],
   "warnings": [],
@@ -1567,14 +1571,15 @@
    "tool_calls": [
     "validate_plan"
    ],
-   "repaired": false
+   "repaired": false,
+   "cached": false
   },
   "timings_ms": {
-   "preflight": 249,
-   "fetch": 1584,
-   "analyze": 33,
-   "verify": 2,
-   "total": 1871
+   "preflight": 233,
+   "fetch": 1304,
+   "analyze": 29,
+   "verify": 1,
+   "total": 1570
   }
  }
 }

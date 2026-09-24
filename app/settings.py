@@ -29,6 +29,12 @@ class Settings(BaseSettings):
     openai_reasoning_effort: str | None = "low"
     planner_max_tool_calls: int = 4
 
+    # Public-deployment protections (0 = unlimited). Only *new* questions reach the LLM:
+    # identical questions reuse the cached plan.
+    llm_requests_per_client_per_hour: int = 0
+    llm_requests_per_day: int = 0
+    plan_cache_size: int = 256
+
     evidence_sample_size: int = 5
     response_cache_size: int = 128
 

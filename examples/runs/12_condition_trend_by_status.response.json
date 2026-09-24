@@ -1,0 +1,3695 @@
+{
+ "status": "ok",
+ "query_id": "q_d1b47db9281b3aaf",
+ "query": "For interventional breast cancer studies, how many distinct trials started in each year from 2015 through 2024, split into recruiting and completed studies based on their current status?",
+ "plan": {
+  "version": "1",
+  "cohorts": [
+   {
+    "label": "Recruiting",
+    "condition": "breast cancer",
+    "filters": {
+     "overall_status": [
+      "RECRUITING"
+     ],
+     "phase": [],
+     "study_type": "INTERVENTIONAL",
+     "start_date_from": "2015-01-01",
+     "start_date_to": "2024-12-31"
+    }
+   },
+   {
+    "label": "Completed",
+    "condition": "breast cancer",
+    "filters": {
+     "overall_status": [
+      "COMPLETED"
+     ],
+     "phase": [],
+     "study_type": "INTERVENTIONAL",
+     "start_date_from": "2015-01-01",
+     "start_date_to": "2024-12-31"
+    }
+   }
+  ],
+  "analysis": {
+   "kind": "aggregate",
+   "time": {
+    "field": "start_date",
+    "granularity": "year",
+    "from_year": 2015,
+    "to_year": 2024
+   },
+   "series_by": "cohort",
+   "sort": {
+    "by": "chronological"
+   }
+  },
+  "assumptions": [
+   "'Started in each year' = registered study start date, restricted to 2015-2024.",
+   "Only interventional studies are included.",
+   "Status is the current overall status in the registry; studies with other statuses (e.g. active not recruiting, terminated, unknown) are not shown."
+  ]
+ },
+ "visualization": {
+  "schema_version": "1.0",
+  "type": "line",
+  "title": "Recruiting vs Completed studies by start year",
+  "subtitle": "Recruiting: Recruiting, Interventional, start 2015-01-01 to 2024-12-31 · Completed: Completed, Interventional, start 2015-01-01 to 2024-12-31 · started 2015–2024 · distinct studies (NCT IDs)",
+  "encoding": {
+   "x": {
+    "field": "start_year",
+    "type": "ordinal",
+    "title": "Start year",
+    "sort": [
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024
+    ]
+   },
+   "y": {
+    "field": "study_count",
+    "type": "quantitative",
+    "title": "Studies"
+   },
+   "color": {
+    "field": "cohort",
+    "type": "nominal",
+    "title": "Cohort",
+    "sort": [
+     "Recruiting",
+     "Completed"
+    ]
+   },
+   "tooltip": [
+    "start_year",
+    "cohort",
+    "study_count"
+   ]
+  },
+  "hints": {
+   "legend": true,
+   "value_labels": false,
+   "stacked": false,
+   "show_totals": false
+  },
+  "palette": {
+   "Recruiting": "#2a78d6",
+   "Completed": "#eb6834"
+  },
+  "data": [
+   {
+    "start_year": 2015,
+    "cohort": "Recruiting",
+    "study_count": 3,
+    "evidence": {
+     "total": 3,
+     "sample": [
+      "NCT02290834",
+      "NCT02422641",
+      "NCT02535221"
+     ],
+     "complete_inline": true,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r0"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02290834",
+      "title": "Chemotherapy-induced Cognitive and Brain Changes in Older Adults With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02290834",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02290834",
+      "excerpt": "2015-03",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-03",
+        "supports": "start year: 2015; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[2]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02422641",
+      "title": "Prospective Evaluation Of High-Dose Systemic Methotrexate In Patients With Breast Cancer And Leptomeningeal Metastasis",
+      "url": "https://clinicaltrials.gov/study/NCT02422641",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02422641",
+      "excerpt": "2015-05",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-05",
+        "supports": "start year: 2015; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02535221",
+      "title": "Neoadjuvant Endocrine Therapy Versus Chemotherapy in Premenopausal Patients With ER+ & HER2- Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02535221",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02535221",
+      "excerpt": "2015-07-29",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-07-29",
+        "supports": "start year: 2015; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2016,
+    "cohort": "Recruiting",
+    "study_count": 6,
+    "evidence": {
+     "total": 6,
+     "sample": [
+      "NCT02620852",
+      "NCT02732171",
+      "NCT02992574",
+      "NCT03011684",
+      "NCT03150576"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r1"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02620852",
+      "title": "Women Informed to Screen Depending on Measures of Risk (Wisdom Study)",
+      "url": "https://clinicaltrials.gov/study/NCT02620852",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02620852",
+      "excerpt": "2016-08-31",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-08-31",
+        "supports": "start year: 2016; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer Screening",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02732171",
+      "title": "PENN-Surveillance Markers of Utility for Recurrence After (Neo)Adjuvant Therapy for Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02732171",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02732171",
+      "excerpt": "2016-04",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-04",
+        "supports": "start year: 2016; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02992574",
+      "title": "Trial Evaluating Role of Post Mastectomy Radiotherapy in Women With Node Negative Early Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02992574",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02992574",
+      "excerpt": "2016-05-27",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-05-27",
+        "supports": "start year: 2016; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Trial Evaluating Role of Post Mastectomy Radiotherapy in Women With Node Negative Early Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03011684",
+      "title": "Fertility Preservation Using Tamoxifen and Letrozole in Estrogen Sensitive Tumors Trial",
+      "url": "https://clinicaltrials.gov/study/NCT03011684",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03011684",
+      "excerpt": "2016-07-21",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-07-21",
+        "supports": "start year: 2016; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Recruiting': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03150576",
+      "title": "Platinum and Polyadenosine 5'Diphosphoribose Polymerisation Inhibitor for Neoadjuvant Treatment of Triple Negative Breast Cancer and/or Germline BRCA Positive Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03150576",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03150576",
+      "excerpt": "2016-05",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-05",
+        "supports": "start year: 2016; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2017,
+    "cohort": "Recruiting",
+    "study_count": 13,
+    "evidence": {
+     "total": 13,
+     "sample": [
+      "NCT02476786",
+      "NCT02830724",
+      "NCT02896335",
+      "NCT02918474",
+      "NCT02926690"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r2"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02476786",
+      "title": "Endocrine Treatment Alone for Elderly Patients With Estrogen Receptor Positive Operable Breast Cancer and Low Recurrence Score",
+      "url": "https://clinicaltrials.gov/study/NCT02476786",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02476786",
+      "excerpt": "2017-01-17",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-01-17",
+        "supports": "start year: 2017; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02830724",
+      "title": "Administering Peripheral Blood Lymphocytes Transduced With a CD70-Binding Chimeric Antigen Receptor to People With CD70 Expressing Cancers",
+      "url": "https://clinicaltrials.gov/study/NCT02830724",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02830724",
+      "excerpt": "2017-04-06",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-04-06",
+        "supports": "start year: 2017; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[2]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02896335",
+      "title": "Palbociclib and Pembrolizumab In Central Nervous System Metastases",
+      "url": "https://clinicaltrials.gov/study/NCT02896335",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02896335",
+      "excerpt": "2017-02-02",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-02-02",
+        "supports": "start year: 2017; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Recruiting': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02918474",
+      "title": "Decision Making Tool in Supporting Decision Making in Contralateral Prophylactic Mastectomy in Patients With Newly Diagnosed Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02918474",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02918474",
+      "excerpt": "2017-04-28",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-04-28",
+        "supports": "start year: 2017; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Anatomic Stage I Breast Cancer AJCC v8",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02926690",
+      "title": "Safety Study of MELK Inhibitor to Treat Patients With Advanced Breast Cancer and Triple Negative Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02926690",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02926690",
+      "excerpt": "2017-05-29",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-05-29",
+        "supports": "start year: 2017; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Relapsed/Refractory Locally Advanced or Metastatic Breast Cancer and Triple Negative Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2018,
+    "cohort": "Recruiting",
+    "study_count": 20,
+    "evidence": {
+     "total": 20,
+     "sample": [
+      "NCT03342625",
+      "NCT03412877",
+      "NCT03424005",
+      "NCT03449238",
+      "NCT03561740"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r3"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT03342625",
+      "title": "High Intensity Focused Ultrasound Treatment of Breast Tumors. BRIFU Study",
+      "url": "https://clinicaltrials.gov/study/NCT03342625",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03342625",
+      "excerpt": "2018-06-07",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-06-07",
+        "supports": "start year: 2018; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer Female",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03412877",
+      "title": "Administration of Autologous T-Cells Genetically Engineered to Express T-Cell Receptors Reactive Against Neoantigens in People With Metastatic Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03412877",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03412877",
+      "excerpt": "2018-09-06",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-09-06",
+        "supports": "start year: 2018; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[3]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03424005",
+      "title": "A Study Evaluating the Efficacy and Safety of Multiple Treatment Combinations in Patients With Metastatic or Locally Advanced Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03424005",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03424005",
+      "excerpt": "2018-03-30",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-03-30",
+        "supports": "start year: 2018; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03449238",
+      "title": "Pembrolizumab And Stereotactic Radiosurgery (Srs) Of Selected Brain Metastases In Breast Cancer Patients",
+      "url": "https://clinicaltrials.gov/study/NCT03449238",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03449238",
+      "excerpt": "2018-11-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-11-15",
+        "supports": "start year: 2018; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03561740",
+      "title": "A Study of the Addition of Metronomic Capecitabine to Standard Adjuvant Therapy in High Risk HER2+ BC paTients",
+      "url": "https://clinicaltrials.gov/study/NCT03561740",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03561740",
+      "excerpt": "2018-07-25",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-07-25",
+        "supports": "start year: 2018; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2019,
+    "cohort": "Recruiting",
+    "study_count": 33,
+    "evidence": {
+     "total": 33,
+     "sample": [
+      "NCT03572374",
+      "NCT03591276",
+      "NCT03643861",
+      "NCT03711110",
+      "NCT03713203"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r4"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT03572374",
+      "title": "Talking to Employers and Medical Staff About Breast Cancer Treatment and Your Job",
+      "url": "https://clinicaltrials.gov/study/NCT03572374",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03572374",
+      "excerpt": "2019-08-30",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-08-30",
+        "supports": "start year: 2019; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03591276",
+      "title": "Phase 1b Study of Pegylated Liposomal Doxorubicin and Pembrolizumab in Endocrine-resistant Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03591276",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03591276",
+      "excerpt": "2019-04-18",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-04-18",
+        "supports": "start year: 2019; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03643861",
+      "title": "RAD 1802: Pilot Trial of Five Fraction Stereotactic Body Radiotherapy for Early Stage Breast Cancer Patients Eligible for Post-Operative Accelerated Partial Breast Irradiation (APBI)",
+      "url": "https://clinicaltrials.gov/study/NCT03643861",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03643861",
+      "excerpt": "2019-08-20",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-08-20",
+        "supports": "start year: 2019; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03711110",
+      "title": "Cardiovascular Prevention Strategies in Elderly Patients With Cancer (CARTIER Clinical Trial)",
+      "url": "https://clinicaltrials.gov/study/NCT03711110",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03711110",
+      "excerpt": "2019-08-02",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-08-02",
+        "supports": "start year: 2019; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Cancer (Colon Cancer, Breast Cancer, Lymphoma, Chronic Lymphoma Leukemia, Multiple Myeloma)",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03713203",
+      "title": "PAGETEX® Photodynamic Therapy Device for the Treatment of Extra Mammary Paget's Disease of the Vulva (EMPV).",
+      "url": "https://clinicaltrials.gov/study/NCT03713203",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03713203",
+      "excerpt": "2019-08-27",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-08-27",
+        "supports": "start year: 2019; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Recruiting': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2020,
+    "cohort": "Recruiting",
+    "study_count": 65,
+    "evidence": {
+     "total": 65,
+     "sample": [
+      "NCT03730922",
+      "NCT03740256",
+      "NCT03804944",
+      "NCT03971045",
+      "NCT04020575"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r5"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT03730922",
+      "title": "Delayed-immediate Versus Delayed Breast Reconstruction in Breast Cancer Patients With Mastectomy and Radiation Therapy",
+      "url": "https://clinicaltrials.gov/study/NCT03730922",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03730922",
+      "excerpt": "2020-01-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-01-01",
+        "supports": "start year: 2020; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Delayed-immediate Versus Delayed Breast Reconstruction in Breast Cancer Patients With Mastectomy and Radiation Therapy",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03740256",
+      "title": "Binary Oncolytic Adenovirus in Combination With HER2-Specific Autologous CAR VST, Advanced HER2 Positive Solid Tumors",
+      "url": "https://clinicaltrials.gov/study/NCT03740256",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03740256",
+      "excerpt": "2020-12-14",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-12-14",
+        "supports": "start year: 2020; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[4]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03804944",
+      "title": "Converting HR+ Breast Cancer Into an Individualized Vaccine",
+      "url": "https://clinicaltrials.gov/study/NCT03804944",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03804944",
+      "excerpt": "2020-03-17",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-03-17",
+        "supports": "start year: 2020; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03971045",
+      "title": "Pembrolizumab and Oral Metronomic Cyclophosphamide in Patients With Chest Wall Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03971045",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03971045",
+      "excerpt": "2020-05-20",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-05-20",
+        "supports": "start year: 2020; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04020575",
+      "title": "Autologous huMNC2-CAR44 or huMNC2-CAR22 T Cells for Breast Cancer Targeting Cleaved Form of MUC1 (MUC1*)",
+      "url": "https://clinicaltrials.gov/study/NCT04020575",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04020575",
+      "excerpt": "2020-01-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-01-15",
+        "supports": "start year: 2020; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2021,
+    "cohort": "Recruiting",
+    "study_count": 125,
+    "evidence": {
+     "total": 125,
+     "sample": [
+      "NCT03606967",
+      "NCT03990896",
+      "NCT04038619",
+      "NCT04109079",
+      "NCT04133077"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r6"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT03606967",
+      "title": "Testing the Addition of an Individualized Vaccine to Durvalumab and Tremelimumab and Chemotherapy in Patients With Metastatic Triple Negative Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03606967",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03606967",
+      "excerpt": "2021-04-13",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-04-13",
+        "supports": "start year: 2021; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Anatomic Stage IV Breast Cancer AJCC v8",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03990896",
+      "title": "Evaluation of Talazoparib, a PARP Inhibitor, in Patients With Somatic BRCA Mutant Metastatic Breast Cancer: Genotyping Based Clinical Trial",
+      "url": "https://clinicaltrials.gov/study/NCT03990896",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03990896",
+      "excerpt": "2021-11-18",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-11-18",
+        "supports": "start year: 2021; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04038619",
+      "title": "Fecal Microbiota Transplantation in Treating Immune-Checkpoint Inhibitor Induced-Diarrhea or Colitis in Genitourinary Cancer Patients",
+      "url": "https://clinicaltrials.gov/study/NCT04038619",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04038619",
+      "excerpt": "2021-02-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-02-01",
+        "supports": "start year: 2021; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[7]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04109079",
+      "title": "Axillary Management in Breast Cancer Patients With Needle Biopsy Proven Nodal Metastases After Neoadjuvant Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT04109079",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04109079",
+      "excerpt": "2021-02-26",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-02-26",
+        "supports": "start year: 2021; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04133077",
+      "title": "Xenografts Development From Surgical Tumor Samples of Patients With Triple Negative or Luminal B Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04133077",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04133077",
+      "excerpt": "2021-11-19",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-11-19",
+        "supports": "start year: 2021; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer Female",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2022,
+    "cohort": "Recruiting",
+    "study_count": 148,
+    "evidence": {
+     "total": 148,
+     "sample": [
+      "NCT03824145",
+      "NCT03934905",
+      "NCT03936478",
+      "NCT04329065",
+      "NCT04332588"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r7"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT03824145",
+      "title": "Every Day Counts: A Lifestyle Program for Women With Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03824145",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03824145",
+      "excerpt": "2022-11-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-11-01",
+        "supports": "start year: 2022; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03934905",
+      "title": "Protective Effects of the Nutritional Supplement Sulforaphane on Doxorubicin-Associated Cardiac Dysfunction",
+      "url": "https://clinicaltrials.gov/study/NCT03934905",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03934905",
+      "excerpt": "2022-06-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-06-01",
+        "supports": "start year: 2022; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Anthracycline Related Cardiotoxicity in Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03936478",
+      "title": "Real-Time MRI-Guided 3-Fraction Accelerated Partial Breast Irradiation in Early Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03936478",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03936478",
+      "excerpt": "2022-05-16",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-05-16",
+        "supports": "start year: 2022; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04329065",
+      "title": "Concurrent WOKVAC Vaccination, Chemotherapy, and HER2-Targeted Monoclonal Antibody Therapy Before Surgery for the Treatment of Patients With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04329065",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04329065",
+      "excerpt": "2022-04-20",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-04-20",
+        "supports": "start year: 2022; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Anatomic Stage I Breast Cancer AJCC v8",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04332588",
+      "title": "Monitoring HER2+ Breast Cancer Neoadjuvant Treatment With Advanced PET/MRI",
+      "url": "https://clinicaltrials.gov/study/NCT04332588",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04332588",
+      "excerpt": "2022-03-25",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-03-25",
+        "supports": "start year: 2022; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "HER2-positive Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2023,
+    "cohort": "Recruiting",
+    "study_count": 256,
+    "evidence": {
+     "total": 256,
+     "sample": [
+      "NCT03463954",
+      "NCT04954599",
+      "NCT04960839",
+      "NCT04997993",
+      "NCT05020860"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r8"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT03463954",
+      "title": "Confirmatory Clinical Evaluation of Novilase® Laser Therapy for Focal Destruction of Malignant Breast Tumors",
+      "url": "https://clinicaltrials.gov/study/NCT03463954",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03463954",
+      "excerpt": "2023-08-09",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-08-09",
+        "supports": "start year: 2023; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Recruiting': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04954599",
+      "title": "Phase 1/2 Clinical Trial of CP-506 (HAP) in Monotherapy or With Carboplatin or ICI",
+      "url": "https://clinicaltrials.gov/study/NCT04954599",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04954599",
+      "excerpt": "2023-05-30",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-05-30",
+        "supports": "start year: 2023; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Recruiting': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04960839",
+      "title": "Prophylactic Irradiation to the Contralateral Breast for BCAs Patients",
+      "url": "https://clinicaltrials.gov/study/NCT04960839",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04960839",
+      "excerpt": "2023-01-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-01-01",
+        "supports": "start year: 2023; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04997993",
+      "title": "Leflunomide in Patients With PTEN-Altered Advanced Solid Malignancies and HER2 Negative Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04997993",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04997993",
+      "excerpt": "2023-12-13",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-12-13",
+        "supports": "start year: 2023; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "PTEN-Altered Advanced Solid Tumors and HER2 Negative Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05020860",
+      "title": "Correlation of Clinical Response to Pathologic Response in Patients With Early Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT05020860",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05020860",
+      "excerpt": "2023-04-18",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-04-18",
+        "supports": "start year: 2023; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2024,
+    "cohort": "Recruiting",
+    "study_count": 386,
+    "evidence": {
+     "total": 386,
+     "sample": [
+      "NCT04261244",
+      "NCT04744506",
+      "NCT04816006",
+      "NCT04914663",
+      "NCT04933266"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r9"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT04261244",
+      "title": "NeoRad Breast Cancer Study",
+      "url": "https://clinicaltrials.gov/study/NCT04261244",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04261244",
+      "excerpt": "2024-02-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-02-01",
+        "supports": "start year: 2024; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04744506",
+      "title": "Targeted Resection of Axillary Metastatic Lymph Nodes After Breast Cancer Neoadjuvant Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT04744506",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04744506",
+      "excerpt": "2024-11-30",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-11-30",
+        "supports": "start year: 2024; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04816006",
+      "title": "Breast Cancer, Reasoning, and Activity Intervention",
+      "url": "https://clinicaltrials.gov/study/NCT04816006",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04816006",
+      "excerpt": "2024-02-22",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-02-22",
+        "supports": "start year: 2024; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04914663",
+      "title": "All-extremity Exercise During Breast Cancer Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT04914663",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04914663",
+      "excerpt": "2024-04-05",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-04-05",
+        "supports": "start year: 2024; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04933266",
+      "title": "Subpectoral Plexus Block With Multi-level TPVB for Surgical Anesthesia During Primary Breast Cancer Surgery",
+      "url": "https://clinicaltrials.gov/study/NCT04933266",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04933266",
+      "excerpt": "2024-03-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-03-15",
+        "supports": "start year: 2024; cohort 'Recruiting' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Recruiting' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Recruiting' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Recruiting' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2015,
+    "cohort": "Completed",
+    "study_count": 328,
+    "evidence": {
+     "total": 328,
+     "sample": [
+      "NCT01740323",
+      "NCT01799031",
+      "NCT01881022",
+      "NCT01894451",
+      "NCT02077998"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r10"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01740323",
+      "title": "Phase II Study of Curcumin vs Placebo for Chemotherapy-Treated Breast Cancer Patients Undergoing Radiotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT01740323",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01740323",
+      "excerpt": "2015-05",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-05",
+        "supports": "start year: 2015; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01799031",
+      "title": "Educational Intervention for Reducing Work Disability in Breast Cancer Survivors",
+      "url": "https://clinicaltrials.gov/study/NCT01799031",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01799031",
+      "excerpt": "2015-07",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-07",
+        "supports": "start year: 2015; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01881022",
+      "title": "An Internet-based Psychosexual Intervention for Couples Following Treatment for Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01881022",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01881022",
+      "excerpt": "2015-06",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-06",
+        "supports": "start year: 2015; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01894451",
+      "title": "Pilot Study of Zirconium-89 Bevacizumab Positron Emission Tomography for Imaging Angiogenesis in Patients With Inflammatory Breast Carcinoma Receiving Preoperative Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT01894451",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01894451",
+      "excerpt": "2015-06",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-06",
+        "supports": "start year: 2015; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Completed': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02077998",
+      "title": "Oxaliplatin in Treating Patients With Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02077998",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02077998",
+      "excerpt": "2015-05",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-05",
+        "supports": "start year: 2015; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Stage IV Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2016,
+    "cohort": "Completed",
+    "study_count": 339,
+    "evidence": {
+     "total": 339,
+     "sample": [
+      "NCT00194714",
+      "NCT01676753",
+      "NCT01821833",
+      "NCT02006979",
+      "NCT02186470"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r11"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00194714",
+      "title": "Vaccine Therapy in Treating Patients With Stage IV HLA-A2 and HER2 Positive Breast or Ovarian Cancer Receiving Trastuzumab",
+      "url": "https://clinicaltrials.gov/study/NCT00194714",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00194714",
+      "excerpt": "2016-05",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-05",
+        "supports": "start year: 2016; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[2]",
+        "text": "Stage IV Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01676753",
+      "title": "Phase 1b Trial of Dinaciclib With Pembrolizumab for Advanced Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01676753",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01676753",
+      "excerpt": "2016-12-28",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-12-28",
+        "supports": "start year: 2016; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced or Metastatic Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01821833",
+      "title": "Omega-3 Fatty Acid in Treating Pain in Patients With Breast or Ovarian Cancer Receiving Paclitaxel",
+      "url": "https://clinicaltrials.gov/study/NCT01821833",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01821833",
+      "excerpt": "2016-05-24",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-05-24",
+        "supports": "start year: 2016; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02006979",
+      "title": "Acute Exercise Cardioprotection From Doxorubicin",
+      "url": "https://clinicaltrials.gov/study/NCT02006979",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02006979",
+      "excerpt": "2016-01-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-01-15",
+        "supports": "start year: 2016; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02186470",
+      "title": "Intensity Modulated Accelerated Partial Breast Irradiation Before Surgery in Treating Older Patients With Hormone Responsive Stage 0-I Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02186470",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02186470",
+      "excerpt": "2016-04-29",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-04-29",
+        "supports": "start year: 2016; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Estrogen Receptor-positive Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2017,
+    "cohort": "Completed",
+    "study_count": 345,
+    "evidence": {
+     "total": 345,
+     "sample": [
+      "NCT02574455",
+      "NCT02668666",
+      "NCT02682693",
+      "NCT02687490",
+      "NCT02694809"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r12"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02574455",
+      "title": "Trial of Sacituzumab Govitecan in Participants With Refractory/Relapsed Metastatic Triple-Negative Breast Cancer (TNBC)",
+      "url": "https://clinicaltrials.gov/study/NCT02574455",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02574455",
+      "excerpt": "2017-11-07",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-11-07",
+        "supports": "start year: 2017; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02668666",
+      "title": "Palbociclib in Combination With Tamoxifen as First Line Therapy for Metastatic Hormone Receptor Positive Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02668666",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02668666",
+      "excerpt": "2017-02-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-02-01",
+        "supports": "start year: 2017; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[2]",
+        "text": "Estrogen Receptor Positive Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02682693",
+      "title": "Denosumab as an add-on Neoadjuvant Treatment (GeparX)",
+      "url": "https://clinicaltrials.gov/study/NCT02682693",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02682693",
+      "excerpt": "2017-02-13",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-02-13",
+        "supports": "start year: 2017; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer Female NOS",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02687490",
+      "title": "Abraxane in Patients With Visceral Metastases Dominant Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02687490",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02687490",
+      "excerpt": "2017-02-24",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-02-24",
+        "supports": "start year: 2017; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02694809",
+      "title": "The PROMISE Study: Duavee in Women With DCIS",
+      "url": "https://clinicaltrials.gov/study/NCT02694809",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02694809",
+      "excerpt": "2017-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-01",
+        "supports": "start year: 2017; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Completed': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2018,
+    "cohort": "Completed",
+    "study_count": 301,
+    "evidence": {
+     "total": 301,
+     "sample": [
+      "NCT02744079",
+      "NCT02776917",
+      "NCT02876302",
+      "NCT02881203",
+      "NCT02913430"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r13"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02744079",
+      "title": "Comparison of Healthy Diets on Breast Cancer Markers",
+      "url": "https://clinicaltrials.gov/study/NCT02744079",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02744079",
+      "excerpt": "2018-06-22",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-06-22",
+        "supports": "start year: 2018; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Comparison of Healthy Diets on Breast Cancer Markers",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02776917",
+      "title": "Study of Cirmtuzumab and Paclitaxel for Metastatic or Locally Advanced, Unresectable Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02776917",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02776917",
+      "excerpt": "2018-08-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-08-15",
+        "supports": "start year: 2018; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Study of Cirmtuzumab and Paclitaxel for Metastatic or Locally Advanced, Unresectable Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02876302",
+      "title": "Study Of Ruxolitinib (INCB018424) With Preoperative Chemotherapy For Triple Negative Inflammatory Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02876302",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02876302",
+      "excerpt": "2018-01-24",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-01-24",
+        "supports": "start year: 2018; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Inflammatory Breast Cancer (IBC)",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02881203",
+      "title": "Breast Radiotherapy Audio Visual Enhancement for Sparing the Heart",
+      "url": "https://clinicaltrials.gov/study/NCT02881203",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02881203",
+      "excerpt": "2018-09-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-09-15",
+        "supports": "start year: 2018; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02913430",
+      "title": "Treatment of Metastatic Breast Cancer With Fulvestrant Plus Palbociclib or Tamoxifen Plus Palbociclib",
+      "url": "https://clinicaltrials.gov/study/NCT02913430",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02913430",
+      "excerpt": "2018-04-24",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2018-04-24",
+        "supports": "start year: 2018; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2019,
+    "cohort": "Completed",
+    "study_count": 257,
+    "evidence": {
+     "total": 257,
+     "sample": [
+      "NCT02790021",
+      "NCT02938442",
+      "NCT03122444",
+      "NCT03200704",
+      "NCT03207529"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r14"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02790021",
+      "title": "Microsurgical Treatment of Breast Cancer-related Lymphedema by Lymphaticovenous Anastomosis",
+      "url": "https://clinicaltrials.gov/study/NCT02790021",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02790021",
+      "excerpt": "2019-01-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-01-01",
+        "supports": "start year: 2019; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Microsurgical Treatment of Breast Cancer-related Lymphedema by Lymphaticovenous Anastomosis",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02938442",
+      "title": "Vaccination of Triple Negative Breast Cancer Patients",
+      "url": "https://clinicaltrials.gov/study/NCT02938442",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02938442",
+      "excerpt": "2019-01-25",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-01-25",
+        "supports": "start year: 2019; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Triple Negative Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03122444",
+      "title": "Imipramine on ER+ve and Triple Negative Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03122444",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03122444",
+      "excerpt": "2019-07-05",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-07-05",
+        "supports": "start year: 2019; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03200704",
+      "title": "A Study Assessing the Safety and Effectiveness of IC2000 and SPY Fluorescence Imaging Systems (SPY-PHI) in the Visualization of Lymphatic Vessels and Identification of Lymph Nodes During Sentinel Lymph Node Biopsy in Subjects With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03200704",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03200704",
+      "excerpt": "2019-01-04",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-01-04",
+        "supports": "start year: 2019; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03207529",
+      "title": "Alpelisib and Enzalutamide in Treating Patients With Androgen Receptor and PTEN Positive Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03207529",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03207529",
+      "excerpt": "2019-06-07",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-06-07",
+        "supports": "start year: 2019; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Anatomic Stage III Breast Cancer AJCC v8",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2020,
+    "cohort": "Completed",
+    "study_count": 234,
+    "evidence": {
+     "total": 234,
+     "sample": [
+      "NCT03554044",
+      "NCT03651973",
+      "NCT03685331",
+      "NCT03702556",
+      "NCT03715959"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r15"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT03554044",
+      "title": "T-VEC With Chemotherapy or Endocrine Therapy in Treating Participants With HER2- Negative Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03554044",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03554044",
+      "excerpt": "2020-02-05",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-02-05",
+        "supports": "start year: 2020; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Anatomic Stage III Breast Cancer AJCC v8",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03651973",
+      "title": "Prevention of Sequelae Pain After Breast Cancer Surgery by Self-massages and Self Stretching. Impact of Learning Workshops.",
+      "url": "https://clinicaltrials.gov/study/NCT03651973",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03651973",
+      "excerpt": "2020-01-13",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-01-13",
+        "supports": "start year: 2020; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03685331",
+      "title": "HOPE: Olaparib, Palbociclib and Fulvestrant in Patients With BRCA Mutation-associated, HR+, HER2-metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03685331",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03685331",
+      "excerpt": "2020-10-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-10-15",
+        "supports": "start year: 2020; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03702556",
+      "title": "Functional MRI Study Reconstructed Breasts",
+      "url": "https://clinicaltrials.gov/study/NCT03702556",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03702556",
+      "excerpt": "2020-02-11",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-02-11",
+        "supports": "start year: 2020; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03715959",
+      "title": "Nipple Aspirate Fluid in Detecting Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03715959",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03715959",
+      "excerpt": "2020-12-10",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-12-10",
+        "supports": "start year: 2020; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Anatomic Stage IA Breast Cancer AJCC v8",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2021,
+    "cohort": "Completed",
+    "study_count": 255,
+    "evidence": {
+     "total": 255,
+     "sample": [
+      "NCT02850939",
+      "NCT03542695",
+      "NCT03775213",
+      "NCT03847311",
+      "NCT03903224"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r16"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02850939",
+      "title": "Improving Adherence to EHT Among Breast Cancer Patients",
+      "url": "https://clinicaltrials.gov/study/NCT02850939",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02850939",
+      "excerpt": "2021-05-03",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-05-03",
+        "supports": "start year: 2021; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03542695",
+      "title": "64 Cu-DOTA-alendronate PET Imaging in Localizing and Characterizing Breast Calcifications in Participants Before Undergoing Mastectomy",
+      "url": "https://clinicaltrials.gov/study/NCT03542695",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03542695",
+      "excerpt": "2021-11-03",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-11-03",
+        "supports": "start year: 2021; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Completed': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03775213",
+      "title": "Acceptability of Active Monitoring (AM) as a Treatment Option for Ductal Carcinoma in Situ (DCIS)",
+      "url": "https://clinicaltrials.gov/study/NCT03775213",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03775213",
+      "excerpt": "2021-10-12",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-10-12",
+        "supports": "start year: 2021; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Completed': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03847311",
+      "title": "Sulfasalazine in Decreasing Opioids Requirements in Breast Cancer Patients",
+      "url": "https://clinicaltrials.gov/study/NCT03847311",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03847311",
+      "excerpt": "2021-05-03",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-05-03",
+        "supports": "start year: 2021; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03903224",
+      "title": "Combined PECS II and Transversus Plane Blocks Versus Erector Spinae Block in Modified Radical Mastectomy",
+      "url": "https://clinicaltrials.gov/study/NCT03903224",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03903224",
+      "excerpt": "2021-02-08",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-02-08",
+        "supports": "start year: 2021; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2022,
+    "cohort": "Completed",
+    "study_count": 196,
+    "evidence": {
+     "total": 196,
+     "sample": [
+      "NCT04116151",
+      "NCT04214210",
+      "NCT04239716",
+      "NCT04348123",
+      "NCT04593277"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r17"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT04116151",
+      "title": "Effectiveness of a Cream for Treatment of Dermatitis in Patients Whith Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04116151",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04116151",
+      "excerpt": "2022-07-19",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-07-19",
+        "supports": "start year: 2022; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "DERMATITIS INDUCED BY RADIOTHERAPY IN PATIENTS WHITH BREAST CANCER",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04214210",
+      "title": "The DIALOGUE Study: Swiss-Korean Billateral Collaboration",
+      "url": "https://clinicaltrials.gov/study/NCT04214210",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04214210",
+      "excerpt": "2022-04-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-04-15",
+        "supports": "start year: 2022; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04239716",
+      "title": "Regional Anesthesia for Modified Radical Mastectomy With Axillary Lymph Node Dissection",
+      "url": "https://clinicaltrials.gov/study/NCT04239716",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04239716",
+      "excerpt": "2022-01-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-01-01",
+        "supports": "start year: 2022; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04348123",
+      "title": "Interventional Program Educates, Identifies + Overcomes Barriers to Complete Screening Mammography",
+      "url": "https://clinicaltrials.gov/study/NCT04348123",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04348123",
+      "excerpt": "2022-03-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-03-15",
+        "supports": "start year: 2022; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04593277",
+      "title": "Interactive Survivorship Program for the Improvement of Healthcare Resources in Adolescent and Young Adult Cancer Survivors, INSPIRE-AYA Study",
+      "url": "https://clinicaltrials.gov/study/NCT04593277",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04593277",
+      "excerpt": "2022-10-23",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-10-23",
+        "supports": "start year: 2022; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[12]",
+        "text": "Anatomic Stage I Breast Cancer AJCC v8",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2023,
+    "cohort": "Completed",
+    "study_count": 192,
+    "evidence": {
+     "total": 192,
+     "sample": [
+      "NCT04319510",
+      "NCT04343807",
+      "NCT04378751",
+      "NCT04407611",
+      "NCT05101564"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r18"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT04319510",
+      "title": "Supportive Effects of Craniosacral Therapy for Women With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04319510",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04319510",
+      "excerpt": "2023-09-18",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-09-18",
+        "supports": "start year: 2023; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04343807",
+      "title": "Effectiveness of Ultrasound Guided PECS Block on Opioid Consumption and Patient Satisfaction Through Adequate Pain Control Following Breast Cancer Surgery.",
+      "url": "https://clinicaltrials.gov/study/NCT04343807",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04343807",
+      "excerpt": "2023-11-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-11-01",
+        "supports": "start year: 2023; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[5]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04378751",
+      "title": "Promoting Genetic Counseling Among African American Women With a Family History of Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04378751",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04378751",
+      "excerpt": "2023-06-06",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-06-06",
+        "supports": "start year: 2023; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "High Risk for Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04407611",
+      "title": "Scalable Communication Modalities for Returning Genetic Research Results",
+      "url": "https://clinicaltrials.gov/study/NCT04407611",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04407611",
+      "excerpt": "2023-03-06",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-03-06",
+        "supports": "start year: 2023; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Completed': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05101564",
+      "title": "Umbrella Trial of Subtype-Targeted Therapies in ER+/HER2- Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT05101564",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05101564",
+      "excerpt": "2023-03-20",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-03-20",
+        "supports": "start year: 2023; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "start_year": 2024,
+    "cohort": "Completed",
+    "study_count": 124,
+    "evidence": {
+     "total": 124,
+     "sample": [
+      "NCT05836077",
+      "NCT05896566",
+      "NCT05968157",
+      "NCT06033092",
+      "NCT06035731"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d1b47db9281b3aaf/evidence/r19"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT05836077",
+      "title": "Pecha Kucha Method Effects on Posttraumatic Growth and Psychological Resilience",
+      "url": "https://clinicaltrials.gov/study/NCT05836077",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05836077",
+      "excerpt": "2024-03-10",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-03-10",
+        "supports": "start year: 2024; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[2]",
+        "text": "Breast Cancer Patients",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05896566",
+      "title": "A Window-of-Opportunity Trial of Giredestrant +/- Triptorelin vs. Anastrozole + Triptorelin in Premenopausal Patients With ER-positive/HER2-negative Early Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT05896566",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05896566",
+      "excerpt": "2024-01-23",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-01-23",
+        "supports": "start year: 2024; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05968157",
+      "title": "MIRAI-MRI: Comparing Screening MRI for Patients at High Risk for Breast Cancer Identified by Mirai and Tyrer-Cuzick",
+      "url": "https://clinicaltrials.gov/study/NCT05968157",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05968157",
+      "excerpt": "2024-02-04",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-02-04",
+        "supports": "start year: 2024; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT06033092",
+      "title": "Low Dose TamOxifen and LifestylE Changes for bReast cANcer prevenTion",
+      "url": "https://clinicaltrials.gov/study/NCT06033092",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06033092",
+      "excerpt": "2024-06-21",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-06-21",
+        "supports": "start year: 2024; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Low Dose TamOxifen and LifestylE Changes for bReast cANcer prevenTion",
+        "supports": "cohort 'Completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT06035731",
+      "title": "Evaluation of the Medical Service by Socio-aesthetics in Oncology",
+      "url": "https://clinicaltrials.gov/study/NCT06035731",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06035731",
+      "excerpt": "2024-05-15",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2024-05-15",
+        "supports": "start year: 2024; cohort 'Completed' (start date filter)"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Completed': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Completed' (study type filter)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "vega_lite": {
+   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+   "title": {
+    "text": "Recruiting vs Completed studies by start year",
+    "subtitle": "Recruiting: Recruiting, Interventional, start 2015-01-01 to 2024-12-31 · Completed: Completed, Interventional, start 2015-01-01 to 2024-12-31 · started 2015–2024 · distinct studies (NCT IDs)"
+   },
+   "width": "container",
+   "height": 320,
+   "data": {
+    "values": [
+     {
+      "start_year": 2015,
+      "cohort": "Recruiting",
+      "study_count": 3,
+      "_row": 0,
+      "_series": 0
+     },
+     {
+      "start_year": 2016,
+      "cohort": "Recruiting",
+      "study_count": 6,
+      "_row": 1,
+      "_series": 0
+     },
+     {
+      "start_year": 2017,
+      "cohort": "Recruiting",
+      "study_count": 13,
+      "_row": 2,
+      "_series": 0
+     },
+     {
+      "start_year": 2018,
+      "cohort": "Recruiting",
+      "study_count": 20,
+      "_row": 3,
+      "_series": 0
+     },
+     {
+      "start_year": 2019,
+      "cohort": "Recruiting",
+      "study_count": 33,
+      "_row": 4,
+      "_series": 0
+     },
+     {
+      "start_year": 2020,
+      "cohort": "Recruiting",
+      "study_count": 65,
+      "_row": 5,
+      "_series": 0
+     },
+     {
+      "start_year": 2021,
+      "cohort": "Recruiting",
+      "study_count": 125,
+      "_row": 6,
+      "_series": 0
+     },
+     {
+      "start_year": 2022,
+      "cohort": "Recruiting",
+      "study_count": 148,
+      "_row": 7,
+      "_series": 0
+     },
+     {
+      "start_year": 2023,
+      "cohort": "Recruiting",
+      "study_count": 256,
+      "_row": 8,
+      "_series": 0
+     },
+     {
+      "start_year": 2024,
+      "cohort": "Recruiting",
+      "study_count": 386,
+      "_row": 9,
+      "_series": 0
+     },
+     {
+      "start_year": 2015,
+      "cohort": "Completed",
+      "study_count": 328,
+      "_row": 10,
+      "_series": 1
+     },
+     {
+      "start_year": 2016,
+      "cohort": "Completed",
+      "study_count": 339,
+      "_row": 11,
+      "_series": 1
+     },
+     {
+      "start_year": 2017,
+      "cohort": "Completed",
+      "study_count": 345,
+      "_row": 12,
+      "_series": 1
+     },
+     {
+      "start_year": 2018,
+      "cohort": "Completed",
+      "study_count": 301,
+      "_row": 13,
+      "_series": 1
+     },
+     {
+      "start_year": 2019,
+      "cohort": "Completed",
+      "study_count": 257,
+      "_row": 14,
+      "_series": 1
+     },
+     {
+      "start_year": 2020,
+      "cohort": "Completed",
+      "study_count": 234,
+      "_row": 15,
+      "_series": 1
+     },
+     {
+      "start_year": 2021,
+      "cohort": "Completed",
+      "study_count": 255,
+      "_row": 16,
+      "_series": 1
+     },
+     {
+      "start_year": 2022,
+      "cohort": "Completed",
+      "study_count": 196,
+      "_row": 17,
+      "_series": 1
+     },
+     {
+      "start_year": 2023,
+      "cohort": "Completed",
+      "study_count": 192,
+      "_row": 18,
+      "_series": 1
+     },
+     {
+      "start_year": 2024,
+      "cohort": "Completed",
+      "study_count": 124,
+      "_row": 19,
+      "_series": 1
+     }
+    ]
+   },
+   "layer": [
+    {
+     "mark": {
+      "type": "line",
+      "point": {
+       "filled": true,
+       "size": 64,
+       "stroke": "#fcfcfb",
+       "strokeWidth": 2
+      }
+     },
+     "encoding": {
+      "x": {
+       "field": "start_year",
+       "type": "ordinal",
+       "title": "Start year",
+       "sort": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+       ],
+       "axis": {
+        "labelAngle": 0
+       }
+      },
+      "y": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "tooltip": [
+       {
+        "field": "start_year",
+        "title": "Start year"
+       },
+       {
+        "field": "cohort",
+        "title": "Cohort"
+       },
+       {
+        "field": "study_count",
+        "title": "Studies",
+        "format": ","
+       }
+      ],
+      "color": {
+       "field": "cohort",
+       "type": "nominal",
+       "title": "Cohort",
+       "sort": [
+        "Recruiting",
+        "Completed"
+       ],
+       "scale": {
+        "domain": [
+         "Recruiting",
+         "Completed"
+        ],
+        "range": [
+         "#2a78d6",
+         "#eb6834"
+        ]
+       }
+      }
+     }
+    }
+   ],
+   "config": {
+    "background": "#fcfcfb",
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "view": {
+     "stroke": null
+    },
+    "title": {
+     "color": "#0b0b0b",
+     "subtitleColor": "#52514e",
+     "anchor": "start",
+     "fontSize": 15,
+     "subtitleFontSize": 12
+    },
+    "axis": {
+     "gridColor": "#e1e0d9",
+     "gridWidth": 1,
+     "domainColor": "#c3c2b7",
+     "tickColor": "#c3c2b7",
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "labelFontSize": 11,
+     "titleFontWeight": "normal",
+     "labelLimit": 220
+    },
+    "legend": {
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "orient": "top",
+     "labelLimit": 320
+    },
+    "range": {
+     "category": [
+      "#2a78d6",
+      "#eb6834",
+      "#1baf7a",
+      "#eda100",
+      "#e87ba4",
+      "#008300",
+      "#4a3aa7",
+      "#e34948"
+     ]
+    },
+    "line": {
+     "strokeWidth": 2,
+     "strokeCap": "round",
+     "strokeJoin": "round"
+    }
+   }
+  }
+ },
+ "meta": {
+  "source": "ClinicalTrials.gov API v2",
+  "api_version": "2.0.5",
+  "data_timestamp": "2026-09-23T09:00:05",
+  "retrieved_at": "2026-09-24T09:12:26+00:00",
+  "unit": "distinct studies (NCT IDs)",
+  "definitions": {
+   "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
+   "start_date_filter": "Start-date bounds are inclusive and use the registered start date (actual or anticipated).",
+   "unit": "Each bar/point/edge counts distinct studies (NCT IDs), never sites or arms.",
+   "start_year": "Year of the registered study start date (actual, or anticipated if not yet started). This is not the same as being active during that year."
+  },
+  "api_queries": [
+   {
+    "cohort": "Recruiting",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=breast+cancer&filter.overallStatus=RECRUITING&filter.advanced=AREA%5BStudyType%5DINTERVENTIONAL+AND+AREA%5BStartDate%5DRANGE%5B2015-01-01%2C2024-12-31%5D&fields=NCTId%2CBriefTitle%2CStartDate%2CStartDateType%2COverallStatus%2CStudyType%2CCondition",
+    "total": 1055,
+    "fetched": 1055,
+    "pages": 2,
+    "complete": true
+   },
+   {
+    "cohort": "Completed",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=breast+cancer&filter.overallStatus=COMPLETED&filter.advanced=AREA%5BStudyType%5DINTERVENTIONAL+AND+AREA%5BStartDate%5DRANGE%5B2015-01-01%2C2024-12-31%5D&fields=NCTId%2CBriefTitle%2CStartDate%2CStartDateType%2COverallStatus%2CStudyType%2CCondition",
+    "total": 2571,
+    "fetched": 2571,
+    "pages": 3,
+    "complete": true
+   }
+  ],
+  "completeness": {
+   "complete": true
+  },
+  "studies_analyzed": 3626,
+  "filters": {
+   "Recruiting": {
+    "condition": "breast cancer",
+    "overall_status": [
+     "RECRUITING"
+    ],
+    "study_type": "INTERVENTIONAL",
+    "start_date_from": "2015-01-01",
+    "start_date_to": "2024-12-31"
+   },
+   "Completed": {
+    "condition": "breast cancer",
+    "overall_status": [
+     "COMPLETED"
+    ],
+    "study_type": "INTERVENTIONAL",
+    "start_date_from": "2015-01-01",
+    "start_date_to": "2024-12-31"
+   }
+  },
+  "request_fields": {},
+  "cohort_overlap": {
+   "Recruiting ∩ Completed": 0
+  },
+  "excluded": {
+   "missing_start_date_not_retrieved": 20
+  },
+  "assumptions": [
+   "'Started in each year' = registered study start date, restricted to 2015-2024.",
+   "Only interventional studies are included.",
+   "Status is the current overall status in the registry; studies with other statuses (e.g. active not recruiting, terminated, unknown) are not shown.",
+   "'Recruiting' means overall status RECRUITING only; 'not yet recruiting' and 'enrolling by invitation' studies are not included.",
+   "Each cohort is retrieved independently; a study matching several cohorts counts in each of their series (see meta.cohort_overlap).",
+   "Studies without a registered start date are excluded from the trend."
+  ],
+  "warnings": [],
+  "llm": {
+   "model": "claude-opus-5",
+   "tool_calls": [
+    "validate_plan"
+   ],
+   "repaired": false,
+   "cached": false
+  },
+  "timings_ms": {
+   "preflight": 244,
+   "fetch": 2047,
+   "analyze": 90,
+   "verify": 8,
+   "total": 2396
+  }
+ }
+}

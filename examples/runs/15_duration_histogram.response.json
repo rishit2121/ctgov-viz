@@ -1,0 +1,1287 @@
+{
+ "status": "ok",
+ "query_id": "q_28dd113c6e220a62",
+ "query": "How long do pembrolizumab trials typically run?",
+ "plan": {
+  "version": "1",
+  "cohorts": [
+   {
+    "label": "Pembrolizumab",
+    "intervention": "pembrolizumab",
+    "filters": {
+     "overall_status": [],
+     "phase": []
+    }
+   }
+  ],
+  "analysis": {
+   "kind": "aggregate",
+   "dimension": "duration",
+   "sort": {
+    "by": "domain"
+   }
+  },
+  "assumptions": [
+   "'How long trials run' = months from study start to primary completion (actual or anticipated), shown as a distribution.",
+   "Studies lacking month-precision start or primary completion dates are excluded.",
+   "All pembrolizumab trials are included regardless of phase, status or condition."
+  ]
+ },
+ "visualization": {
+  "schema_version": "1.0",
+  "type": "histogram",
+  "title": "Pembrolizumab studies by duration (start to primary completion)",
+  "subtitle": "distinct studies (NCT IDs)",
+  "encoding": {
+   "x": {
+    "field": "duration",
+    "type": "ordinal",
+    "title": "Duration (start to primary completion)",
+    "sort": [
+     "< 6 months",
+     "6–11 months",
+     "1–2 years",
+     "2–3 years",
+     "3–5 years",
+     "5–10 years",
+     "10+ years"
+    ]
+   },
+   "y": {
+    "field": "study_count",
+    "type": "quantitative",
+    "title": "Studies"
+   },
+   "tooltip": [
+    "duration",
+    "study_count"
+   ]
+  },
+  "hints": {
+   "orientation": "vertical",
+   "legend": false,
+   "value_labels": true,
+   "stacked": false,
+   "show_totals": false
+  },
+  "palette": {
+   "Pembrolizumab": "#2a78d6"
+  },
+  "data": [
+   {
+    "duration": "< 6 months",
+    "study_count": 62,
+    "evidence": {
+     "total": 62,
+     "sample": [
+      "NCT03009058",
+      "NCT03099161",
+      "NCT03114280",
+      "NCT03122548",
+      "NCT03191981"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_28dd113c6e220a62/evidence/r0"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT03009058",
+      "title": "Study of IMM 101 in Combination With Standard of Care in Patients With Metastatic or Unresectable Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03009058",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03009058",
+      "excerpt": "2017-05-31",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-05-31",
+        "supports": "start date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2017-08-30",
+        "supports": "primary completion date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions",
+        "text": null,
+        "supports": "cohort 'Pembrolizumab': matched by ClinicalTrials.gov's intervention search (synonym expansion); 'pembrolizumab' is not verbatim here"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03099161",
+      "title": "Study of Preladenant (MK-3814) Alone and With Pembrolizumab (MK-3475) in Participants With Advanced Solid Tumors (MK-3814A-062)",
+      "url": "https://clinicaltrials.gov/study/NCT03099161",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03099161",
+      "excerpt": "2017-06-27",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-06-27",
+        "supports": "start date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2017-11-24",
+        "supports": "primary completion date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03114280",
+      "title": "Pembrolizumab and Induction Chemotherapy in Head and Neck Squamous Cell Carcinoma (PICH Study)",
+      "url": "https://clinicaltrials.gov/study/NCT03114280",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03114280",
+      "excerpt": "2019-03-12",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2019-03-12",
+        "supports": "start date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2019-03-12",
+        "supports": "primary completion date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Pembrolizumab and Induction Chemotherapy in Head and Neck Squamous Cell Carcinoma (PICH Study)",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03122548",
+      "title": "Safety and Efficacy of CRS-207 With Pembrolizumab in Gastric, Gastroesophageal Junction or Esophageal Cancers",
+      "url": "https://clinicaltrials.gov/study/NCT03122548",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03122548",
+      "excerpt": "2017-08-14",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-08-14",
+        "supports": "start date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2017-12-27",
+        "supports": "primary completion date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03191981",
+      "title": "Pembrolizumab Cyclophosphamide and Lenalidomide for Patients With Relapsed Multiple Myeloma",
+      "url": "https://clinicaltrials.gov/study/NCT03191981",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03191981",
+      "excerpt": "2017-08-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-08-01",
+        "supports": "start date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2017-08-01",
+        "supports": "primary completion date (duration < 6 months)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "duration": "6–11 months",
+    "study_count": 98,
+    "evidence": {
+     "total": 98,
+     "sample": [
+      "NCT02408042",
+      "NCT02530502",
+      "NCT02880228",
+      "NCT02925533",
+      "NCT02949843"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_28dd113c6e220a62/evidence/r1"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02408042",
+      "title": "Study of Pembrolizumab With Chemotherapy in Patients With Advanced Lymphoma (PembroHeme)",
+      "url": "https://clinicaltrials.gov/study/NCT02408042",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02408042",
+      "excerpt": "2015-04",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-04",
+        "supports": "start date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2015-11",
+        "supports": "primary completion date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02530502",
+      "title": "Radiation Therapy With Temozolomide and Pembrolizumab in Treating Patients With Newly Diagnosed Glioblastoma",
+      "url": "https://clinicaltrials.gov/study/NCT02530502",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02530502",
+      "excerpt": "2015-09-30",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-09-30",
+        "supports": "start date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2016-05-10",
+        "supports": "primary completion date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02880228",
+      "title": "Pembrolizumab, Lenalidomide, and Dexamethasone in Treating Patients With Newly Diagnosed Multiple Myeloma Eligible for Stem Cell Transplant",
+      "url": "https://clinicaltrials.gov/study/NCT02880228",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02880228",
+      "excerpt": "2016-09-16",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-09-16",
+        "supports": "start date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2017-07-06",
+        "supports": "primary completion date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02925533",
+      "title": "Ph 1B B-701 in Combination With Pembrolizumab in Metastatic Transitional Cell Carcinoma of the Urothelial Tract",
+      "url": "https://clinicaltrials.gov/study/NCT02925533",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02925533",
+      "excerpt": "2016-12-14",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-12-14",
+        "supports": "start date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2017-06",
+        "supports": "primary completion date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02949843",
+      "title": "Targeted Therapy in Treating Patients With Incurable Non-Small Cell Lung Cancer With Genetic Mutations",
+      "url": "https://clinicaltrials.gov/study/NCT02949843",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02949843",
+      "excerpt": "2017-03-10",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2017-03-10",
+        "supports": "start date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2018-01-08",
+        "supports": "primary completion date (duration 6–11 months)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "duration": "1–2 years",
+    "study_count": 449,
+    "evidence": {
+     "total": 449,
+     "sample": [
+      "NCT01866319",
+      "NCT02007070",
+      "NCT02142738",
+      "NCT02255097",
+      "NCT02256436"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_28dd113c6e220a62/evidence/r2"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01866319",
+      "title": "Study to Evaluate the Safety and Efficacy of Two Different Dosing Schedules of Pembrolizumab (MK-3475) Compared to Ipilimumab in Participants With Advanced Melanoma (MK-3475-006/KEYNOTE-006)",
+      "url": "https://clinicaltrials.gov/study/NCT01866319",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01866319",
+      "excerpt": "2013-08-28",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2013-08-28",
+        "supports": "start date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2015-03-03",
+        "supports": "primary completion date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02007070",
+      "title": "Study of Pembrolizumab (MK-3475) in Participants With Advanced Non-small Cell Lung Cancer (MK-3475-025/KEYNOTE-025)",
+      "url": "https://clinicaltrials.gov/study/NCT02007070",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02007070",
+      "excerpt": "2014-02-28",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-02-28",
+        "supports": "start date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2015-07-09",
+        "supports": "primary completion date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02142738",
+      "title": "Study of Pembrolizumab (MK-3475) Compared to Platinum-Based Chemotherapies in Participants With Metastatic Non-Small Cell Lung Cancer (MK-3475-024/KEYNOTE-024)",
+      "url": "https://clinicaltrials.gov/study/NCT02142738",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02142738",
+      "excerpt": "2014-08-25",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-08-25",
+        "supports": "start date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2016-05-09",
+        "supports": "primary completion date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02255097",
+      "title": "Study of MK-3475 (Pembrolizumab) in Recurrent or Metastatic Head and Neck Squamous Cell Carcinoma After Treatment With Platinum-based and Cetuximab Therapy (MK-3475-055/KEYNOTE-055)",
+      "url": "https://clinicaltrials.gov/study/NCT02255097",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02255097",
+      "excerpt": "2014-10-24",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-10-24",
+        "supports": "start date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2016-04-22",
+        "supports": "primary completion date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02256436",
+      "title": "A Study of Pembrolizumab (MK-3475) Versus Paclitaxel, Docetaxel, or Vinflunine for Participants With Advanced Urothelial Cancer (MK-3475-045/KEYNOTE-045)",
+      "url": "https://clinicaltrials.gov/study/NCT02256436",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02256436",
+      "excerpt": "2014-10-22",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-10-22",
+        "supports": "start date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2016-09-07",
+        "supports": "primary completion date (duration 1–2 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "duration": "2–3 years",
+    "study_count": 594,
+    "evidence": {
+     "total": 594,
+     "sample": [
+      "NCT01704287",
+      "NCT01822652",
+      "NCT01848834",
+      "NCT01905657",
+      "NCT02039674"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_28dd113c6e220a62/evidence/r3"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01704287",
+      "title": "Study of Pembrolizumab (MK-3475) Versus Chemotherapy in Participants With Advanced Melanoma (MK-3475-002/P08719/KEYNOTE-002)",
+      "url": "https://clinicaltrials.gov/study/NCT01704287",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01704287",
+      "excerpt": "2012-11-20",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2012-11-20",
+        "supports": "start date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2015-11-16",
+        "supports": "primary completion date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01822652",
+      "title": "3rd Generation GD-2 Chimeric Antigen Receptor and iCaspase Suicide Safety Switch, Neuroblastoma, GRAIN",
+      "url": "https://clinicaltrials.gov/study/NCT01822652",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01822652",
+      "excerpt": "2013-08",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2013-08",
+        "supports": "start date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2015-12",
+        "supports": "primary completion date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+        "text": "Keytruda",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01848834",
+      "title": "Study of Pembrolizumab (MK-3475) in Participants With Advanced Solid Tumors (MK-3475-012/KEYNOTE-012)",
+      "url": "https://clinicaltrials.gov/study/NCT01848834",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01848834",
+      "excerpt": "2013-05-07",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2013-05-07",
+        "supports": "start date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2016-04-26",
+        "supports": "primary completion date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01905657",
+      "title": "Study of Two Doses of Pembrolizumab (MK-3475) Versus Docetaxel in Previously Treated Participants With Non-Small Cell Lung Cancer (MK-3475-010/KEYNOTE-010)",
+      "url": "https://clinicaltrials.gov/study/NCT01905657",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01905657",
+      "excerpt": "2013-08-09",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2013-08-09",
+        "supports": "start date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2015-09-30",
+        "supports": "primary completion date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02039674",
+      "title": "A Study of Pembrolizumab (MK-3475) in Combination With Chemotherapy or Immunotherapy in Participants With Non-small Cell Lung Cancer (MK-3475-021/KEYNOTE-021)",
+      "url": "https://clinicaltrials.gov/study/NCT02039674",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02039674",
+      "excerpt": "2014-02-21",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-02-21",
+        "supports": "start date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2016-11-07",
+        "supports": "primary completion date (duration 2–3 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "duration": "3–5 years",
+    "study_count": 1008,
+    "evidence": {
+     "total": 1008,
+     "sample": [
+      "NCT01676753",
+      "NCT01789827",
+      "NCT01986426",
+      "NCT02054520",
+      "NCT02073123"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_28dd113c6e220a62/evidence/r4"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01676753",
+      "title": "Phase 1b Trial of Dinaciclib With Pembrolizumab for Advanced Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01676753",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01676753",
+      "excerpt": "2016-12-28",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2016-12-28",
+        "supports": "start date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2020-06-30",
+        "supports": "primary completion date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01789827",
+      "title": "Aldesleukin Imaging in Viewing Tumor Growth in Patients With Stage IV Melanoma Receiving Ipilimumab or Pembrolizumab Therapy",
+      "url": "https://clinicaltrials.gov/study/NCT01789827",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01789827",
+      "excerpt": "2014-03",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-03",
+        "supports": "start date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2018-06-27",
+        "supports": "primary completion date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "Aldesleukin Imaging in Viewing Tumor Growth in Patients With Stage IV Melanoma Receiving Ipilimumab or Pembrolizumab Therapy",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01986426",
+      "title": "LTX-315 in Patients With Transdermally Accessible Tumours as Monotherapy or Combination With Ipilimumab or Pembrolizumab",
+      "url": "https://clinicaltrials.gov/study/NCT01986426",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01986426",
+      "excerpt": "2013-11",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2013-11",
+        "supports": "start date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2018-04",
+        "supports": "primary completion date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+        "text": "LTX-315 + pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02054520",
+      "title": "Immunotherapy Study for Patients With Stage IV Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT02054520",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02054520",
+      "excerpt": "2014-06",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-06",
+        "supports": "start date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2018-04-05",
+        "supports": "primary completion date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02073123",
+      "title": "Study of IDO Inhibitor in Combination With Checkpoint Inhibitors for Adult Patients With Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT02073123",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02073123",
+      "excerpt": "2014-07",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-07",
+        "supports": "start date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2018-01-17",
+        "supports": "primary completion date (duration 3–5 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "duration": "5–10 years",
+    "study_count": 680,
+    "evidence": {
+     "total": 680,
+     "sample": [
+      "NCT01295827",
+      "NCT01840579",
+      "NCT01876511",
+      "NCT01953692",
+      "NCT01993719"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_28dd113c6e220a62/evidence/r5"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01295827",
+      "title": "Study of Pembrolizumab (MK-3475) in Participants With Progressive Locally Advanced or Metastatic Carcinoma, Melanoma, or Non-small Cell Lung Carcinoma (P07990/MK-3475-001/KEYNOTE-001)",
+      "url": "https://clinicaltrials.gov/study/NCT01295827",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01295827",
+      "excerpt": "2011-03-04",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2011-03-04",
+        "supports": "start date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2018-11-05",
+        "supports": "primary completion date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01840579",
+      "title": "Study of Pembrolizumab (MK-3475) Monotherapy in Advanced Solid Tumors and Pembrolizumab Combination Therapy in Advanced Non-small Cell Lung Cancer/ Extensive-disease Small Cell Lung Cancer (MK-3475-011/KEYNOTE-011)",
+      "url": "https://clinicaltrials.gov/study/NCT01840579",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01840579",
+      "excerpt": "2013-04-26",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2013-04-26",
+        "supports": "start date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2020-02-28",
+        "supports": "primary completion date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab 2 mg/kg",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01876511",
+      "title": "Study of MK-3475 in Patients With Microsatellite Unstable (MSI) Tumors (Cohorts A, B and C)",
+      "url": "https://clinicaltrials.gov/study/NCT01876511",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01876511",
+      "excerpt": "2013-09",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2013-09",
+        "supports": "start date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2019-08",
+        "supports": "primary completion date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "MK-3475",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01953692",
+      "title": "A Trial of Pembrolizumab (MK-3475) in Participants With Blood Cancers (MK-3475-013/KEYNOTE-013)",
+      "url": "https://clinicaltrials.gov/study/NCT01953692",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01953692",
+      "excerpt": "2013-11-22",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2013-11-22",
+        "supports": "start date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2020-06-26",
+        "supports": "primary completion date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01993719",
+      "title": "Immunotherapy Using Tumor Infiltrating Lymphocytes for Patients With Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT01993719",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01993719",
+      "excerpt": "2013-12-12",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2013-12-12",
+        "supports": "start date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2021-10-14",
+        "supports": "primary completion date (duration 5–10 years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[7].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "duration": "10+ years",
+    "study_count": 61,
+    "evidence": {
+     "total": 61,
+     "sample": [
+      "NCT01042379",
+      "NCT01174121",
+      "NCT02194738",
+      "NCT02287428",
+      "NCT02298959"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_28dd113c6e220a62/evidence/r6"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01042379",
+      "title": "I-SPY TRIAL: Neoadjuvant and Personalized Adaptive Novel Agents to Treat Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01042379",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01042379",
+      "excerpt": "2010-03-01",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2010-03-01",
+        "supports": "start date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2030-12",
+        "supports": "primary completion date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[11].name",
+        "text": "Pembrolizumab - 4 cycle",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01174121",
+      "title": "Immunotherapy Using Tumor Infiltrating Lymphocytes for Patients With Metastatic Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01174121",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01174121",
+      "excerpt": "2010-08-26",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2010-08-26",
+        "supports": "start date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2028-12-27",
+        "supports": "primary completion date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab (Keytruda)",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02194738",
+      "title": "Genetic Testing in Screening Patients With Stage IB-IIIA Non-small Cell Lung Cancer That Has Been or Will Be Removed by Surgery (The ALCHEMIST Screening Trial)",
+      "url": "https://clinicaltrials.gov/study/NCT02194738",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02194738",
+      "excerpt": "2014-09-26",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-09-26",
+        "supports": "start date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2025-12-03",
+        "supports": "primary completion date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[12].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02287428",
+      "title": "Personalized NeoAntigen Cancer Vaccine w RT Plus Pembrolizumab for Patients With Newly Diagnosed GBM",
+      "url": "https://clinicaltrials.gov/study/NCT02287428",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02287428",
+      "excerpt": "2014-11",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2014-11",
+        "supports": "start date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2027-02",
+        "supports": "primary completion date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02298959",
+      "title": "Testing the PD-1 Antibody, MK3475, Given With Ziv-aflibercept in Patients With Advanced Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02298959",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02298959",
+      "excerpt": "2015-04-08",
+      "excerpts": [
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2015-04-08",
+        "supports": "start date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.statusModule.primaryCompletionDateStruct.date",
+        "text": "2025-05-21",
+        "supports": "primary completion date (duration 10+ years)"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+        "text": "Pembrolizumab",
+        "supports": "cohort 'Pembrolizumab' (intervention search 'pembrolizumab')"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "vega_lite": {
+   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+   "title": {
+    "text": "Pembrolizumab studies by duration (start to primary completion)",
+    "subtitle": "distinct studies (NCT IDs)"
+   },
+   "width": "container",
+   "height": 320,
+   "data": {
+    "values": [
+     {
+      "duration": "< 6 months",
+      "study_count": 62,
+      "_row": 0
+     },
+     {
+      "duration": "6–11 months",
+      "study_count": 98,
+      "_row": 1
+     },
+     {
+      "duration": "1–2 years",
+      "study_count": 449,
+      "_row": 2
+     },
+     {
+      "duration": "2–3 years",
+      "study_count": 594,
+      "_row": 3
+     },
+     {
+      "duration": "3–5 years",
+      "study_count": 1008,
+      "_row": 4
+     },
+     {
+      "duration": "5–10 years",
+      "study_count": 680,
+      "_row": 5
+     },
+     {
+      "duration": "10+ years",
+      "study_count": 61,
+      "_row": 6
+     }
+    ]
+   },
+   "layer": [
+    {
+     "mark": {
+      "type": "bar",
+      "cornerRadiusEnd": 4,
+      "color": "#2a78d6",
+      "width": {
+       "band": 0.94
+      }
+     },
+     "encoding": {
+      "x": {
+       "field": "duration",
+       "type": "ordinal",
+       "title": "Duration (start to primary completion)",
+       "sort": [
+        "< 6 months",
+        "6–11 months",
+        "1–2 years",
+        "2–3 years",
+        "3–5 years",
+        "5–10 years",
+        "10+ years"
+       ],
+       "axis": {
+        "labelAngle": 0
+       }
+      },
+      "y": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "tooltip": [
+       {
+        "field": "duration",
+        "title": "Duration (start to primary completion)"
+       },
+       {
+        "field": "study_count",
+        "title": "Studies",
+        "format": ","
+       }
+      ]
+     }
+    },
+    {
+     "mark": {
+      "type": "text",
+      "align": "center",
+      "baseline": "bottom",
+      "dx": 0,
+      "dy": -4,
+      "color": "#52514e",
+      "fontSize": 11
+     },
+     "encoding": {
+      "x": {
+       "field": "duration",
+       "type": "ordinal",
+       "title": "Duration (start to primary completion)",
+       "sort": [
+        "< 6 months",
+        "6–11 months",
+        "1–2 years",
+        "2–3 years",
+        "3–5 years",
+        "5–10 years",
+        "10+ years"
+       ],
+       "axis": {
+        "labelAngle": 0
+       }
+      },
+      "y": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "text": {
+       "field": "study_count",
+       "type": "quantitative",
+       "format": ","
+      }
+     }
+    }
+   ],
+   "config": {
+    "background": "#fcfcfb",
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "view": {
+     "stroke": null
+    },
+    "title": {
+     "color": "#0b0b0b",
+     "subtitleColor": "#52514e",
+     "anchor": "start",
+     "fontSize": 15,
+     "subtitleFontSize": 12
+    },
+    "axis": {
+     "gridColor": "#e1e0d9",
+     "gridWidth": 1,
+     "domainColor": "#c3c2b7",
+     "tickColor": "#c3c2b7",
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "labelFontSize": 11,
+     "titleFontWeight": "normal",
+     "labelLimit": 220
+    },
+    "legend": {
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "orient": "top",
+     "labelLimit": 320
+    },
+    "range": {
+     "category": [
+      "#2a78d6",
+      "#eb6834",
+      "#1baf7a",
+      "#eda100",
+      "#e87ba4",
+      "#008300",
+      "#4a3aa7",
+      "#e34948"
+     ]
+    },
+    "line": {
+     "strokeWidth": 2,
+     "strokeCap": "round",
+     "strokeJoin": "round"
+    }
+   }
+  }
+ },
+ "meta": {
+  "source": "ClinicalTrials.gov API v2",
+  "api_version": "2.0.5",
+  "data_timestamp": "2026-09-23T09:00:05",
+  "retrieved_at": "2026-09-24T09:13:12+00:00",
+  "unit": "distinct studies (NCT IDs)",
+  "definitions": {
+   "intervention_match": "Studies are matched with ClinicalTrials.gov's intervention search, which includes brand names and development codes (e.g. 'Keytruda', 'MK-3475').",
+   "unit": "Each bar/point/edge counts distinct studies (NCT IDs), never sites or arms.",
+   "duration": "Months from start to primary completion (actual or anticipated), in fixed bins. Needs month precision on both dates; others are excluded."
+  },
+  "api_queries": [
+   {
+    "cohort": "Pembrolizumab",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.intr=pembrolizumab&fields=NCTId%2CBriefTitle%2CStartDate%2CStartDateType%2CPrimaryCompletionDate%2CPrimaryCompletionDateType%2CInterventionName",
+    "total": 2957,
+    "fetched": 2957,
+    "pages": 3,
+    "complete": true
+   }
+  ],
+  "completeness": {
+   "complete": true
+  },
+  "studies_analyzed": 2957,
+  "filters": {
+   "Pembrolizumab": {
+    "intervention": "pembrolizumab"
+   }
+  },
+  "request_fields": {},
+  "cohort_overlap": {},
+  "excluded": {
+   "no_duration_reported": 5
+  },
+  "assumptions": [
+   "'How long trials run' = months from study start to primary completion (actual or anticipated), shown as a distribution.",
+   "Studies lacking month-precision start or primary completion dates are excluded.",
+   "All pembrolizumab trials are included regardless of phase, status or condition."
+  ],
+  "warnings": [],
+  "llm": {
+   "model": "claude-opus-5",
+   "tool_calls": [
+    "validate_plan"
+   ],
+   "repaired": false,
+   "cached": false
+  },
+  "timings_ms": {
+   "preflight": 204,
+   "fetch": 2498,
+   "analyze": 112,
+   "verify": 2,
+   "total": 2820
+  }
+ }
+}

@@ -1,0 +1,3 @@
+{
+  "query": "Among interventional melanoma studies that started from 2020 through 2024, which pairs of drug interventions appear together in the same study most often? Show the top 15 pairs as a network, with drugs as nodes and the number of distinct studies as each edge\u2019s weight."
+}

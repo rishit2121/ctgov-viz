@@ -25,9 +25,9 @@
    }
   },
   "assumptions": [
+   "Duration = months from study start to primary completion (actual or anticipated).",
    "Enrollment = registered enrollment (actual, or anticipated for ongoing studies).",
-   "Duration = months from study start to primary completion; studies lacking precise dates or enrollment are excluded.",
-   "Phase 3 = studies registered with phase Phase 3."
+   "Studies missing enrollment or month-precision dates are excluded."
   ]
  },
  "visualization": {
@@ -58,7 +58,9 @@
   },
   "hints": {
    "legend": false,
-   "value_labels": false
+   "value_labels": false,
+   "stacked": false,
+   "show_totals": false
   },
   "palette": {
    "Phase 3 breast cancer": "#2a78d6"
@@ -61430,7 +61432,7 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T05:34:44+00:00",
+  "retrieved_at": "2026-09-24T09:17:38+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
@@ -61466,9 +61468,9 @@
    "missing_or_invalid_measure": 132
   },
   "assumptions": [
+   "Duration = months from study start to primary completion (actual or anticipated).",
    "Enrollment = registered enrollment (actual, or anticipated for ongoing studies).",
-   "Duration = months from study start to primary completion; studies lacking precise dates or enrollment are excluded.",
-   "Phase 3 = studies registered with phase Phase 3.",
+   "Studies missing enrollment or month-precision dates are excluded.",
    "A phase filter keeps studies whose registered phases include that phase, so multi-phase studies (e.g. Phase 2/3) are included in a Phase 3 filter.",
    "Studies missing either measure (or with 0 enrollment) are excluded."
   ],
@@ -61478,14 +61480,15 @@
    "tool_calls": [
     "validate_plan"
    ],
-   "repaired": false
+   "repaired": false,
+   "cached": false
   },
   "timings_ms": {
-   "preflight": 342,
-   "fetch": 1306,
-   "analyze": 31,
-   "verify": 87,
-   "total": 1794
+   "preflight": 233,
+   "fetch": 1323,
+   "analyze": 39,
+   "verify": 351,
+   "total": 1977
   }
  }
 }

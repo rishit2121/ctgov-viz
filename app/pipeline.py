@@ -96,6 +96,7 @@ class Pipeline:
         if cached := self.cache.get(qid):
             response = QueryResponse.model_validate(cached[0])
             response.query = question or response.query
+            response.meta.llm = llm  # this request's planner info, not the first request's
             return response
 
         fields = fields_for(plan)

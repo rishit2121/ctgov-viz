@@ -1,0 +1,19 @@
+{
+  "query": "How are cancer trials distributed by country?",
+  "plan": {
+    "cohorts": [
+      {
+        "label": "Cancer",
+        "condition": "cancer"
+      }
+    ],
+    "analysis": {
+      "kind": "aggregate",
+      "dimension": "country",
+      "top_k": 20,
+      "sort": {
+        "by": "count_desc"
+      }
+    }
+  }
+}

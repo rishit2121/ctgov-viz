@@ -34,8 +34,8 @@
   "assumptions": [
    "'Started from 2020 through 2024' = registered study start date between 2020-01-01 and 2024-12-31.",
    "'Currently recruiting' = overall status Recruiting.",
-   "Phase filter includes studies registered as Phase 2, Phase 3, or the combined Phase 2/Phase 3 bucket.",
-   "A multinational trial counts once in each of its site countries."
+   "Phase filter keeps Phase 2 and Phase 3 studies; studies registered as Phase 2/Phase 3 appear as their own combined bucket.",
+   "Countries are distinct site countries; a multinational study counts once in each of its countries."
   ]
  },
  "visualization": {
@@ -9855,7 +9855,7 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T06:24:45+00:00",
+  "retrieved_at": "2026-09-24T09:17:52+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
@@ -9900,8 +9900,8 @@
   "assumptions": [
    "'Started from 2020 through 2024' = registered study start date between 2020-01-01 and 2024-12-31.",
    "'Currently recruiting' = overall status Recruiting.",
-   "Phase filter includes studies registered as Phase 2, Phase 3, or the combined Phase 2/Phase 3 bucket.",
-   "A multinational trial counts once in each of its site countries.",
+   "Phase filter keeps Phase 2 and Phase 3 studies; studies registered as Phase 2/Phase 3 appear as their own combined bucket.",
+   "Countries are distinct site countries; a multinational study counts once in each of its countries.",
    "A phase filter keeps studies whose registered phases include that phase, so multi-phase studies (e.g. Phase 2/3) are included in a Phase 3 filter.",
    "'Recruiting' means overall status RECRUITING only; 'not yet recruiting' and 'enrolling by invitation' studies are not included."
   ],
@@ -9913,14 +9913,15 @@
    "tool_calls": [
     "validate_plan"
    ],
-   "repaired": false
+   "repaired": false,
+   "cached": false
   },
   "timings_ms": {
-   "preflight": 303,
-   "fetch": 447,
-   "analyze": 25,
-   "verify": 5,
-   "total": 791
+   "preflight": 274,
+   "fetch": 441,
+   "analyze": 18,
+   "verify": 6,
+   "total": 751
   }
  }
 }

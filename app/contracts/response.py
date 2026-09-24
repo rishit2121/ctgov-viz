@@ -41,6 +41,8 @@ class LLMInfo(BaseModel):
     model: str
     tool_calls: list[str] = Field(default_factory=list)
     repaired: bool = False
+    cached: bool = Field(False, description="The plan was reused from an identical earlier "
+                         "question (no new LLM call).")
 
 
 class Meta(BaseModel):

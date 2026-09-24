@@ -38,6 +38,35 @@ REQUESTS: dict[str, dict[str, Any]] = {
         "query": "For interventional breast cancer studies that started from 2020 through 2024 "
                  "and are currently recruiting, which 10 countries have the most Phase 2 and "
                  "Phase 3 trials? Show the counts by phase for each country."},
+    "09_condition_phase_distribution": {
+        "query": "How are melanoma trials distributed across phases?"},
+    "10_intervention_types": {
+        "query": "What are the most common intervention types for lung cancer trials?"},
+    "11_sponsor_categories_two_conditions": {
+        "query": "Compare sponsor categories across breast cancer and prostate cancer trials."},
+    "12_condition_trend_by_status": {
+        "query": "For interventional breast cancer studies, how many distinct trials started in "
+                 "each year from 2015 through 2024, split into recruiting and completed studies "
+                 "based on their current status?"},
+    "13_drug_pair_network": {
+        "query": "Among interventional melanoma studies that started from 2020 through 2024, "
+                 "which pairs of drug interventions appear together in the same study most "
+                 "often? Show the top 15 pairs as a network, with drugs as nodes and the number "
+                 "of distinct studies as each edge’s weight."},
+    "14_country_collaboration_network": {
+        "query": "Which countries most often run melanoma trials together?"},
+    "15_duration_histogram": {"query": "How long do pembrolizumab trials typically run?"},
+    "16_clarification": {"query": "Show me the immunotherapy landscape"},
+    "17_unsupported": {"query": "Which melanoma drug has the best overall survival?"},
+    "18_broad_question_auto_narrowed": {
+        "query": "How are cancer trials distributed by country?"},
+    # the same question as an explicit, unrestricted plan: shows the refusal path with counted
+    # narrowing options (no LLM call)
+    "19_too_broad_plan_refused": {
+        "query": "How are cancer trials distributed by country?",
+        "plan": {"cohorts": [{"label": "Cancer", "condition": "cancer"}],
+                 "analysis": {"kind": "aggregate", "dimension": "country", "top_k": 20,
+                              "sort": {"by": "count_desc"}}}},
 }
 
 
@@ -55,7 +84,7 @@ def main(filters: list[str]) -> None:
                                                                   ensure_ascii=False) + "\n")
             viz = body.get("visualization") or {}
             items = len(viz.get("data") or viz.get("edges") or [])
-            print(f"{name:36s} HTTP {r.status_code} {body.get('status', body.get('code')):8s} "
+            print(f"{name:38s} HTTP {r.status_code} {body.get('status', body.get('code')):20s} "
                   f"{viz.get('type', '-'):14s} items={items:<5} "
                   f"{time.perf_counter() - started:5.1f}s  {viz.get('title', '')}")
 

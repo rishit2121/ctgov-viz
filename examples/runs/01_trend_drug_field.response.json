@@ -26,7 +26,8 @@
   },
   "assumptions": [
    "'Over time' = count of pembrolizumab trials by registered study start year.",
-   "All study types, phases, statuses and countries are included.",
+   "All phases, statuses and study types included.",
+   "Brand names and development codes for pembrolizumab are expanded by the registry search.",
    "Request field drug_name='Pembrolizumab' applied to every cohort."
   ]
  },
@@ -75,7 +76,9 @@
   },
   "hints": {
    "legend": false,
-   "value_labels": false
+   "value_labels": false,
+   "stacked": false,
+   "show_totals": false
   },
   "palette": {
    "Pembrolizumab": "#2a78d6"
@@ -2212,7 +2215,7 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T05:32:36+00:00",
+  "retrieved_at": "2026-09-24T09:16:12+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "intervention_match": "Studies are matched with ClinicalTrials.gov's intervention search, which includes brand names and development codes (e.g. 'Keytruda', 'MK-3475').",
@@ -2248,7 +2251,8 @@
   },
   "assumptions": [
    "'Over time' = count of pembrolizumab trials by registered study start year.",
-   "All study types, phases, statuses and countries are included.",
+   "All phases, statuses and study types included.",
+   "Brand names and development codes for pembrolizumab are expanded by the registry search.",
    "Request field drug_name='Pembrolizumab' applied to every cohort.",
    "Studies without a registered start date are excluded from the trend."
   ],
@@ -2261,14 +2265,15 @@
    "tool_calls": [
     "validate_plan"
    ],
-   "repaired": false
+   "repaired": false,
+   "cached": false
   },
   "timings_ms": {
-   "preflight": 336,
-   "fetch": 2761,
+   "preflight": 321,
+   "fetch": 2648,
    "analyze": 106,
    "verify": 3,
-   "total": 3209
+   "total": 3082
   }
  }
 }
