@@ -10,7 +10,12 @@ NCT ID, label, or chart value in a response can originate from the model.
 
 ---
 
-## 0. Current state (snapshot, 2026-09-23)
+> **Status (2026-09-23): milestones M0–M7 are implemented; see README.md for the current
+> system. The one open item is running the golden planner set against a live LLM (needs an
+> `OPENAI_API_KEY`). The optional demo UI from M8 was not built. The snapshot below is the
+> starting point this plan was written from.**
+
+## 0. Starting state (snapshot, 2026-09-23)
 
 ### Already implemented (≈1,800 lines, imports cleanly, no tests yet, no commits yet)
 
