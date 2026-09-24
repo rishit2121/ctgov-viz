@@ -97,8 +97,8 @@ assumptions and warnings, a data table, the exact ClinicalTrials.gov API queries
 |---|---|
 | ![Drug-pair network](docs/images/network_drug_pairs.png) | ![Enrollment histogram](docs/images/histogram_enrollment.png) |
 | *"Among interventional melanoma studies that started from 2020 through 2024, which pairs of drug interventions appear together in the same study most often? Show the top 15 pairs as a network, with drugs as nodes and the number of distinct studies as each edge’s weight."* | *"What is the distribution of enrollment sizes for Phase 3 breast cancer trials?"* |
-| ![Time series](docs/images/time_series.png) | ![Stacked bar chart of countries by phase](docs/images/stacked_country_phase.png) |
-| *"How many breast cancer trials started each year since 2015?"* | *"For interventional breast cancer studies that started from 2020 through 2024 and are currently recruiting, which 10 countries have the most Phase 2 and Phase 3 trials? Show the counts by phase for each country."* |
+| ![Two-line time series: recruiting vs completed](docs/images/time_series.png) | ![Stacked bar chart of countries by phase](docs/images/stacked_country_phase.png) |
+| *"For interventional breast cancer studies, how many distinct trials started in each year from 2015 through 2024, split into recruiting and completed studies based on their current status?"* | *"For interventional breast cancer studies that started from 2020 through 2024 and are currently recruiting, which 10 countries have the most Phase 2 and Phase 3 trials? Show the counts by phase for each country."* |
 | ![Scatter plot](docs/images/scatter_enrollment_duration.png) | |
 | *"How does enrollment relate to study duration for Phase 3 breast cancer trials?"* | |
 
