@@ -239,8 +239,8 @@ class Pipeline:
             meta.warnings.append("ClinicalTrials.gov refreshed its data during retrieval; "
                                  "pages may mix two snapshots.")
 
-        titles = {t.nct_id: t.title for r in runs for t in r.trials}
-        bundle = EvidenceBundle(qid, titles, self.settings.evidence_sample_size)
+        trials = {t.nct_id: t for r in runs for t in r.trials}
+        bundle = EvidenceBundle(qid, trials, self.settings.evidence_sample_size)
         if result.is_empty:
             return QueryResponse(
                 status="empty", query_id=qid, query=question, plan=plan, meta=meta,

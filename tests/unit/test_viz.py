@@ -21,8 +21,8 @@ def make(analysis: dict[str, Any], cohorts: dict[str, list[Trial]],
                     for lab in cohorts],
         "analysis": analysis,
     })
-    titles = {t.nct_id: t.title for ts in cohorts.values() for t in ts}
-    bundle = EvidenceBundle(query_id="q_test", titles=titles, sample_size=2)
+    trials = {t.nct_id: t for ts in cohorts.values() for t in ts}
+    bundle = EvidenceBundle(query_id="q_test", trials=trials, sample_size=2)
     return build(plan, run(plan, cohorts), bundle), bundle
 
 
@@ -57,8 +57,8 @@ def test_country_ranking_is_horizontal_choropleth_bar() -> None:
     assert spec.hints.orientation == "horizontal"
     assert spec.encoding.y is not None and spec.encoding.y.field == "country"
     assert spec.encoding.x is not None and spec.encoding.x.field == "study_count"
-    assert spec.data[0] | {"evidence": None} == {"country": "Japan", "iso3": "JPN",
-                                                 "study_count": 2, "evidence": None}
+    assert spec.data[0] | {"evidence": None, "citations": None} == {
+        "country": "Japan", "iso3": "JPN", "study_count": 2, "evidence": None, "citations": None}
     assert spec.geo is not None and spec.geo.color_ramp == theme.SEQUENTIAL_BLUE
     assert spec.subtitle == ("Recruiting · Phase 3 (incl. multi-phase) · "
                              "distinct studies (NCT IDs)")
@@ -130,7 +130,8 @@ def test_vega_lite_spec_is_self_contained() -> None:
     assert vl is not None
     assert vl["$schema"].endswith("vega-lite/v5.json")
     values = vl["data"]["values"]
-    assert values == [{k: v for k, v in d.items() if k != "evidence"} for d in spec.data]
+    assert values == [{**{k: v for k, v in d.items() if k not in ("evidence", "citations")},
+                       "_row": i} for i, d in enumerate(spec.data)]
     bar = vl["layer"][0]["mark"]
     assert bar["size"] <= 24 and bar["cornerRadiusEnd"] == 4
     assert vl["layer"][1]["mark"]["type"] == "text"  # value labels on single-series bars
@@ -143,3 +144,28 @@ def test_evidence_pages() -> None:
     assert page.items[0].url == "https://clinicaltrials.gov/study/NCT02"
     assert page.items[0].fields_used["designModule.phases"] == ["PHASE3"]
     assert bundle.page("r99", 1, 10) is None
+
+
+def test_histogram_bins_enrollment_in_fixed_order() -> None:
+    trials = [trial("NCT01", enrollment=0), trial("NCT02", enrollment=12),
+              trial("NCT03", enrollment=40), trial("NCT04", enrollment=6000), trial("NCT05")]
+    spec, _ = make({"kind": "aggregate", "dimension": "enrollment_size"}, {"Melanoma": trials})
+    assert spec.type == "histogram" and spec.hints.orientation == "vertical"
+    assert spec.encoding.x is not None and spec.encoding.x.type == "ordinal"
+    assert spec.encoding.x.sort == ["0", "10–49", "5,000+"]  # domain order, empty bins dropped
+    assert [d["study_count"] for d in spec.data] == [1, 2, 1]
+    vl = spec.vega_lite
+    assert vl is not None and vl["layer"][0]["mark"]["width"] == {"band": 0.94}
+
+
+def test_duration_histogram_and_cohort_comparison() -> None:
+    a = [trial("NCT01", start="2019-01", completion="2019-04"),
+         trial("NCT02", start="2019-01", completion="2023-01")]
+    b = [trial("NCT03", start="2020-01", completion="2020-09")]
+    spec, _ = make({"kind": "aggregate", "dimension": "duration", "series_by": "cohort"},
+                   {"A": a, "B": b})
+    assert spec.type == "histogram" and spec.hints.legend
+    assert spec.encoding.x is not None
+    assert spec.encoding.x.sort == ["< 6 months", "6–11 months", "3–5 years"]
+    counts = {(d["cohort"], d["duration"]): d["study_count"] for d in spec.data}
+    assert counts[("A", "< 6 months")] == 1 and counts[("B", "6–11 months")] == 1

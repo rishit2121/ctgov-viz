@@ -1,5 +1,6 @@
 """HTTP API. Thin: request parsing, routing, and error mapping only.
 
+    GET  /                              demo UI (static page using the endpoints below)
     POST /query                         query (+ optional structured fields) -> verified chart
     GET  /query/{query_id}              a previously computed response (while cached)
     GET  /query/{query_id}/evidence/{item_id}?page=&page_size=
@@ -14,12 +15,13 @@ from __future__ import annotations
 import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, Query, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 
 from app.contracts.plan import Measure, QueryPlan
 from app.contracts.request import QueryRequest
@@ -33,6 +35,7 @@ from app.registry.request_fields import RequestFieldConflict, apply_request_fiel
 from app.settings import Settings, get_settings
 
 log = logging.getLogger(__name__)
+DEMO_PAGE = Path(__file__).resolve().parents[1] / "static" / "index.html"
 
 
 def build_planner(settings: Settings, client: CTGovClient) -> QuestionPlanner | None:
@@ -87,6 +90,11 @@ def create_app(
     async def _unexpected(_: Request, e: Exception) -> JSONResponse:
         log.exception("unhandled error")
         return _error(500, "internal_error", "Unexpected server error.")
+
+    @app.get("/", include_in_schema=False)
+    async def demo() -> FileResponse:
+        """Small demo UI: ask a question, see the chart, click any datum for its citations."""
+        return FileResponse(DEMO_PAGE)
 
     @app.post("/query", response_model=QueryResponse, response_model_exclude_none=True,
               responses={422: {"model": ErrorResponse}, 502: {"model": ErrorResponse},

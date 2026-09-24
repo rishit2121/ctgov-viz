@@ -14,7 +14,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
-ChartType = Literal["bar", "grouped_bar", "line", "choropleth_bar", "network", "scatter"]
+ChartType = Literal["bar", "grouped_bar", "histogram", "line", "choropleth_bar", "network",
+                    "scatter"]
 FieldType = Literal["nominal", "ordinal", "quantitative", "temporal"]
 
 
@@ -25,6 +26,23 @@ class EvidenceRef(BaseModel):
         description="True when `sample` already lists every contributor (no need to follow ref)."
     )
     ref: str = Field(description="Relative URL returning the complete, paginated contributor list.")
+
+
+class Excerpt(BaseModel):
+    field: str = Field(description="Exact path in the API study record, list index included, "
+                       "e.g. 'protocolSection.designModule.phases[0]'.")
+    text: str | None = Field(description="The value at that path, verbatim. null when the claim "
+                             "rests on the value being absent, or on search expansion.")
+    supports: str = Field(description="What this excerpt supports, e.g. 'phase: Phase 3'.")
+
+
+class Citation(BaseModel):
+    nct_id: str
+    title: str | None = Field(description="The study's brief title, verbatim.")
+    url: str = Field(description="Study page on ClinicalTrials.gov.")
+    record_url: str = Field(description="The study's API record; every excerpt resolves in it.")
+    excerpt: str | None = Field(description="The primary supporting text (first excerpt).")
+    excerpts: list[Excerpt]
 
 
 class Channel(BaseModel):
@@ -58,6 +76,7 @@ class NetworkNode(BaseModel):
     group: str
     study_count: int
     evidence: EvidenceRef
+    citations: list[Citation] = Field(default_factory=list)
 
 
 class NetworkEdge(BaseModel):
@@ -65,6 +84,7 @@ class NetworkEdge(BaseModel):
     target: str
     weight: int = Field(description="Distinct studies containing both endpoints.")
     evidence: EvidenceRef
+    citations: list[Citation] = Field(default_factory=list)
 
 
 class GeoHint(BaseModel):
@@ -89,8 +109,8 @@ class VisualizationSpec(BaseModel):
     )
     data: list[dict[str, Any]] = Field(
         default_factory=list,
-        description="Rows (bar/line/scatter). Aggregated rows carry study_count + evidence; "
-        "scatter rows are one study each.",
+        description="Rows (bar/histogram/line/scatter). Aggregated rows carry study_count, "
+        "evidence and citations (for the evidence sample); scatter rows are one study each.",
     )
     nodes: list[NetworkNode] | None = None
     edges: list[NetworkEdge] | None = None

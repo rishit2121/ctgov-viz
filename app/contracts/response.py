@@ -7,7 +7,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field
 
 from app.contracts.plan import QueryPlan
-from app.contracts.viz import VisualizationSpec
+from app.contracts.viz import Citation, VisualizationSpec
 
 Status = Literal["ok", "partial", "empty", "needs_clarification", "unsupported", "error"]
 
@@ -84,11 +84,9 @@ class ErrorResponse(BaseModel):
     detail: Any = None
 
 
-class EvidenceItem(BaseModel):
-    nct_id: str
-    url: str
-    title: str | None
-    fields_used: dict[str, Any]
+class EvidenceItem(Citation):
+    fields_used: dict[str, Any] = Field(
+        description="Normalized source values the grouping used (by API field path).")
 
 
 class EvidencePage(BaseModel):

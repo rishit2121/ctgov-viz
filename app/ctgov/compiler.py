@@ -91,6 +91,8 @@ _MEASURE_FIELDS = {
     Measure.enrollment: ("EnrollmentCount", "EnrollmentType"),
     Measure.duration_months: (*_START, "PrimaryCompletionDate", "PrimaryCompletionDateType"),
 }
+_SEARCH_FIELDS = {"condition": ("Condition",), "intervention": ("InterventionName",),
+                  "sponsor": ("LeadSponsorName",)}
 _FILTER_FIELDS = {"overall_status": ("OverallStatus",), "phase": ("Phase",),
                   "study_type": ("StudyType",), "country": ("LocationCountry",),
                   "start_date_from": _START, "start_date_to": _START}
@@ -115,6 +117,10 @@ def fields_for(plan: QueryPlan) -> list[str]:
     for c in plan.cohorts:
         for name, fields in _FILTER_FIELDS.items():
             if getattr(c.filters, name):
+                wanted += fields
+        # cohort-membership citations quote the searched field when the term appears verbatim
+        for name, fields in _SEARCH_FIELDS.items():
+            if getattr(c, name):
                 wanted += fields
     return [f for f in dict.fromkeys(wanted) if f in API_FIELDS]
 

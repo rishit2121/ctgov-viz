@@ -26,7 +26,8 @@ def respond(analysis: dict[str, Any], cohorts: dict[str, list[Trial]],
         "cohorts": [{"label": lab, "condition": lab.lower()} for lab in cohorts],
         "analysis": analysis})
     result = run(plan, cohorts)
-    bundle = EvidenceBundle(query_id="q_t", titles={}, sample_size=2)
+    trials = {t.nct_id: t for ts in cohorts.values() for t in ts}
+    bundle = EvidenceBundle(query_id="q_t", trials=trials, sample_size=2)
     spec = build(plan, result, bundle)
     meta = Meta(api_queries=[ApiQuery(cohort=lab, url="u", total=len(ts), fetched=len(ts),
                                       pages=1, complete=True) for lab, ts in cohorts.items()])
@@ -153,3 +154,17 @@ def test_empty_status_rules() -> None:
     violations = verify(r, res, b, c)
     assert any("nonzero data" in v for v in violations)
     assert any("explain why" in v for v in violations)
+
+
+def test_tampered_citation_excerpt_is_caught() -> None:
+    r, res, b, c = bar()
+    assert r.visualization is not None
+    r.visualization.data[0]["citations"][0]["excerpts"][0]["text"] = "PHASE4"
+    assert any("not verbatim" in v for v in verify(r, res, b, c))
+
+
+def test_citation_of_a_non_contributor_is_caught() -> None:
+    r, res, b, c = network()
+    assert r.visualization is not None and r.visualization.edges
+    r.visualization.edges[0].citations[0].nct_id = "NCT00000099"
+    assert any("not one of its contributors" in v for v in verify(r, res, b, c))

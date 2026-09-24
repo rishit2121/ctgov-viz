@@ -118,7 +118,7 @@ def test_plan_schema_forbids_unknown_fields() -> None:
         ({"kind": "aggregate", "time": {"from_year": 1800}}, "outside supported range"),
         ({"kind": "aggregate", "dimension": "phase", "top_k": 500}, "top_k"),
         ({"kind": "cooccurrence"}, "requires `pair`"),
-        ({"kind": "cooccurrence", "pair": {"left": "country", "right": "intervention"}},
+        ({"kind": "cooccurrence", "pair": {"left": "phase", "right": "intervention"}},
          "cannot be used in a network"),
         ({"kind": "cooccurrence", "pair": {"left": "sponsor", "right": "intervention",
                                            "scope": "arm"}}, "arm scope"),

@@ -13,7 +13,10 @@ from typing import Literal
 from app.contracts.plan import Dimension
 from app.contracts.trial import Trial
 from app.normalize import trial as paths
+from app.normalize.dates import months_between
 from app.normalize.labels import (
+    DURATION_BINS,
+    ENROLLMENT_BINS,
     INTERVENTION_TYPE_LABELS,
     PHASE_ORDER,
     SPONSOR_CLASS_LABELS,
@@ -22,6 +25,7 @@ from app.normalize.labels import (
     STATUS_ORDER,
     STUDY_TYPE_LABELS,
     STUDY_TYPE_ORDER,
+    bin_label,
     label,
     phase_bucket,
 )
@@ -44,6 +48,7 @@ class FieldDef:
     default_top_k: int | None = None
     multi_valued: bool = False  # a study can contribute to several categories
     description: str = ""
+    histogram: bool = False  # ordered bins of a numeric measure -> rendered as a histogram
 
 
 def _one(value: str) -> list[tuple[str, str]]:
@@ -52,6 +57,18 @@ def _one(value: str) -> list[tuple[str, str]]:
 
 def _interventions(t: Trial) -> list[tuple[str, str]]:
     return [(i.key, i.label) for i in t.interventions]
+
+
+def _binned(value: float | None, bins: list[tuple[float, float | None, str]]
+            ) -> list[tuple[str, str]]:
+    lab = bin_label(value, bins)
+    return _one(lab) if lab else []
+
+
+def duration_months(t: Trial) -> float | None:
+    """Start -> primary completion in months (month precision needed on both dates)."""
+    d = months_between(t.start, t.primary_completion)
+    return d if d is not None and d >= 0 else None
 
 
 REGISTRY: dict[Dimension, FieldDef] = {
@@ -103,7 +120,22 @@ REGISTRY: dict[Dimension, FieldDef] = {
             default_top_k=20, multi_valued=True,
         ),
         FieldDef(
-            Dimension.country, "Country", frozenset({"group"}),
+            Dimension.enrollment_size, "Enrollment (participants)", frozenset({"group"}),
+            lambda t: _binned(t.enrollment, ENROLLMENT_BINS), (paths.P_ENROLLMENT,), "domain",
+            tuple(b[2] for b in ENROLLMENT_BINS), histogram=True,
+            description="Registered enrollment (actual, or anticipated for ongoing studies) in "
+                        "fixed, roughly log-spaced bins. Studies without enrollment are "
+                        "excluded.",
+        ),
+        FieldDef(
+            Dimension.duration, "Duration (start to primary completion)", frozenset({"group"}),
+            lambda t: _binned(duration_months(t), DURATION_BINS), (paths.P_START, paths.P_PCD),
+            "domain", tuple(b[2] for b in DURATION_BINS), histogram=True,
+            description="Months from start to primary completion (actual or anticipated), in "
+                        "fixed bins. Needs month precision on both dates; others are excluded.",
+        ),
+        FieldDef(
+            Dimension.country, "Country", frozenset({"group", "pair"}),
             lambda t: [(c, c) for c in t.countries], (paths.P_COUNTRIES,), "count",
             default_top_k=20, multi_valued=True,
             description="Distinct site countries per study; a multinational study counts once "
@@ -124,6 +156,9 @@ API_FIELDS: dict[Dimension, tuple[str, ...]] = {
     Dimension.intervention_type: ("InterventionName", "InterventionType"),
     Dimension.condition: ("Condition",),
     Dimension.country: ("LocationCountry",),
+    Dimension.enrollment_size: ("EnrollmentCount", "EnrollmentType"),
+    Dimension.duration: ("StartDate", "StartDateType", "PrimaryCompletionDate",
+                         "PrimaryCompletionDateType"),
     Dimension.cohort: (),
 }
 

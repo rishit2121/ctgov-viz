@@ -109,6 +109,11 @@ A plan has 1-4 cohorts (each a ClinicalTrials.gov search) and one analysis:
 - "most common", "top", "which ... the most" -> sort="count_desc" (and top_k 10-20 for long
   lists such as country, sponsor, condition, intervention).
 - phases/years/statuses otherwise keep their natural order (sort="domain" or "chronological").
+- distribution of trial sizes / enrollment -> dimension enrollment_size (a histogram); how long
+  trials run / duration distribution -> dimension duration (a histogram). A relationship between
+  enrollment and duration -> numeric_pair (a scatter).
+- which countries run trials together / international collaboration -> cooccurrence with
+  pair.left == pair.right == "country".
 - "drug network" / "drugs" -> pair.drugs_only=true. Keep exclude_placebo and exclude_ancillary
   true unless the user asks about placebo or procedures.
 

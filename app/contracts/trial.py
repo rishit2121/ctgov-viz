@@ -52,6 +52,9 @@ class Trial:
     enrollment_type: str | None
     # API field path -> raw source value, for field-level evidence.
     source: dict[str, Any] = field(default_factory=dict)
+    # The record's protocolSection exactly as the API returned it (already field-projected).
+    # Citation excerpts are read from here by exact path, e.g. "designModule.phases[0]".
+    record: dict[str, Any] = field(default_factory=dict, compare=False, repr=False)
 
     @property
     def url(self) -> str:

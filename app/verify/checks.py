@@ -17,7 +17,8 @@ from app.contracts.analysis import AnalysisResult
 from app.contracts.plan import Dimension
 from app.contracts.response import QueryResponse
 from app.contracts.trial import Trial
-from app.contracts.viz import EvidenceRef, VisualizationSpec
+from app.contracts.viz import Citation, EvidenceRef, VisualizationSpec
+from app.evidence.citations import resolve
 from app.evidence.store import EvidenceBundle
 from app.registry.fields import REGISTRY
 
@@ -139,6 +140,8 @@ def _check_evidence(spec: VisualizationSpec, bundle: EvidenceBundle, trials: Map
         for i, d in enumerate(spec.data):
             v += _check_ref(f"row {i}", d["study_count"], EvidenceRef(**d["evidence"]), bundle)
 
+    v += _check_citations(spec, bundle, trials)
+
     # Every cited study is a real, fetched record that satisfies its cohort's filters.
     valid = {label: {t.nct_id for t in ch.trials if ch.predicate(t)}
              for label, ch in cohorts.items()}
@@ -152,6 +155,35 @@ def _check_evidence(spec: VisualizationSpec, bundle: EvidenceBundle, trials: Map
             elif c.nct_id not in (valid[label] if (label := c.fields.get(COHORT_PATH)) in valid
                                   else valid_any):
                 v.append(f"{item_id}: {c.nct_id} does not satisfy its cohort's filters")
+    return v
+
+
+def _check_citations(spec: VisualizationSpec, bundle: EvidenceBundle,
+                     trials: Mapping[str, Trial]) -> list[str]:
+    """Inline citations cite contributors of that datum, and every excerpt is verbatim."""
+    groups: list[tuple[str, str, list[Citation]]] = []  # (where, item id, citations)
+    if spec.type == "network":
+        groups += [(f"node {n.id}", _item_id(n.evidence), n.citations) for n in spec.nodes or []]
+        groups += [(f"edge {e.source}--{e.target}", _item_id(e.evidence), e.citations)
+                   for e in spec.edges or []]
+    elif spec.type == "scatter":
+        groups += [(f"point {d['nct_id']}", "points", [Citation(**c) for c in d["citations"]])
+                   for d in spec.data]
+    else:
+        groups += [(f"row {i}", _item_id(EvidenceRef(**d["evidence"])),
+                    [Citation(**c) for c in d.get("citations", [])])
+                   for i, d in enumerate(spec.data)]
+    v: list[str] = []
+    for where, item_id, citations in groups:
+        members = {c.nct_id for c in bundle.items.get(item_id, [])}
+        for c in citations:
+            if c.nct_id not in members:
+                v.append(f"{where}: cites {c.nct_id}, which is not one of its contributors")
+                continue
+            record = trials[c.nct_id].record if c.nct_id in trials else {}
+            for e in c.excerpts:
+                if e.text is not None and str(resolve(record, e.field)) != e.text:
+                    v.append(f"{where}: excerpt {e.field} of {c.nct_id} is not verbatim")
     return v
 
 

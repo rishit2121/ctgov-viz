@@ -120,6 +120,25 @@
   pair: [sponsor, intervention]
   terms: [[non-small cell lung|nsclc]]
 
+- question: Which countries most often run melanoma trials together?
+  decision: plan
+  kind: cooccurrence
+  pair: [country, country]
+  terms: [[melanoma]]
+
+# ---------------------------------------------------------------- histograms
+- question: What is the distribution of enrollment sizes for Phase 3 breast cancer trials?
+  decision: plan
+  kind: aggregate
+  dimension: enrollment_size
+  phase: [PHASE3]
+  terms: [[breast cancer]]
+- question: How long do pembrolizumab trials typically run?
+  decision: plan
+  kind: aggregate
+  dimension: duration
+  terms: [[pembrolizumab]]
+
 # ---------------------------------------------------------------- numeric
 - question: How does enrollment relate to study duration for Phase 3 breast cancer trials?
   decision: plan

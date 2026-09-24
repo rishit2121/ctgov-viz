@@ -24,6 +24,7 @@ class Row:
     values: dict[str, str | int]  # e.g. {"phase": "Phase 2"} or {"cohort": "A", "start_year": 2019}
     contributors: dict[str, Contributor] = field(default_factory=dict)
     extra: dict[str, Any] = field(default_factory=dict)  # non-key attributes, e.g. iso3
+    keys: dict[str, str | int] = field(default_factory=dict)  # field -> grouping key (for citing)
 
     @property
     def count(self) -> int:

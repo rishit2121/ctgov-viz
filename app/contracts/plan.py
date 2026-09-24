@@ -61,6 +61,8 @@ class Dimension(StrEnum):
     sponsor_class = "sponsor_class"
     country = "country"
     study_type = "study_type"
+    enrollment_size = "enrollment_size"  # binned numeric -> histogram
+    duration = "duration"  # binned numeric (start -> primary completion) -> histogram
     cohort = "cohort"  # virtual: the plan's cohort label
 
 

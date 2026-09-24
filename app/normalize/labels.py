@@ -96,3 +96,25 @@ def label(mapping: dict[str, str], value: str | None) -> str:
     if value is None:
         return "Not Reported"
     return mapping.get(value, value.replace("_", " ").title())
+
+
+# Histogram bins: (inclusive lower bound, exclusive upper bound or None, label). Fixed edges so
+# the same question always yields the same bins; enrollment is roughly log-spaced.
+ENROLLMENT_BINS: list[tuple[float, float | None, str]] = [
+    (0, 1, "0"), (1, 10, "1–9"), (10, 50, "10–49"), (50, 100, "50–99"), (100, 250, "100–249"),
+    (250, 500, "250–499"), (500, 1000, "500–999"), (1000, 5000, "1,000–4,999"),
+    (5000, None, "5,000+"),
+]
+DURATION_BINS: list[tuple[float, float | None, str]] = [
+    (0, 6, "< 6 months"), (6, 12, "6–11 months"), (12, 24, "1–2 years"), (24, 36, "2–3 years"),
+    (36, 60, "3–5 years"), (60, 120, "5–10 years"), (120, None, "10+ years"),
+]
+
+
+def bin_label(value: float | None, bins: list[tuple[float, float | None, str]]) -> str | None:
+    if value is None or value < 0:
+        return None
+    for lo, hi, lab in bins:
+        if value >= lo and (hi is None or value < hi):
+            return lab
+    return None

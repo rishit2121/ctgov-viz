@@ -265,3 +265,9 @@ def test_field_that_collapses_a_comparison_is_rejected(fake: FakeCTGov) -> None:
     with make_client(fake, planner=planner) as api:
         r = api.post("/query", json={"query": "Compare them by phase", "drug_name": "Keytruda"})
     assert r.status_code == 422 and r.json()["code"] == "conflicting_fields"
+
+
+def test_demo_page_is_served(api: TestClient) -> None:
+    r = api.get("/")
+    assert r.status_code == 200 and "text/html" in r.headers["content-type"]
+    assert "vega-embed" in r.text and "d3" in r.text

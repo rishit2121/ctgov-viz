@@ -141,4 +141,5 @@ def normalize_study(raw: dict[str, Any]) -> Trial:
         enrollment=count if isinstance(count, int) and count >= 0 else None,
         enrollment_type=enrollment.get("type") if isinstance(enrollment, dict) else None,
         source=source,
+        record=ps,
     )

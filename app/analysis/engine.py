@@ -15,9 +15,8 @@ from app.contracts.analysis import AnalysisResult, Edge, Node, Point, Row
 from app.contracts.plan import Analysis, Dimension, Measure, PairSpec, QueryPlan
 from app.contracts.trial import Intervention, Trial
 from app.normalize import trial as paths
-from app.normalize.dates import months_between
 from app.normalize.labels import INTERVENTION_TYPE_LABELS, label, phase_bucket
-from app.registry.fields import REGISTRY, FieldDef
+from app.registry.fields import REGISTRY, FieldDef, duration_months
 
 from .ops import (
     LabelResolver,
@@ -161,8 +160,10 @@ def _categorical(plan: QueryPlan, cohort_trials: CohortTrials) -> AnalysisResult
         for c_key in ordered:
             row = rows.get((s_key, c_key)) or Row(values={})  # explicit zero for aligned series
             row.values = {fdef.name.value: labels[c_key]}
+            row.keys = {fdef.name.value: c_key}
             if series_field:
                 row.values[series_field] = series_labels[s_key]
+                row.keys[series_field] = s_key
             if a.dimension == Dimension.country:
                 row.extra["iso3"] = iso3.get(c_key)
             result.rows.append(row)
@@ -234,8 +235,10 @@ def _temporal(plan: QueryPlan, cohort_trials: CohortTrials, today: date) -> Anal
         for y in years:
             row = rows.get((s_key, y)) or Row(values={})  # zero-filled gap years
             row.values = {"start_year": y}
+            row.keys = {"start_year": y}
             if series_field:
                 row.values[series_field] = series_labels[s_key]
+                row.keys[series_field] = s_key
             result.rows.append(row)
     result.category_order = list(years)
     result.series_order = [series_labels[s] for s in series_keys] if series_field else []
@@ -358,8 +361,7 @@ def _network(pair: PairSpec, top_k: int | None, trials: Sequence[Trial]) -> Anal
 def _measure(t: Trial, m: Measure) -> float | None:
     if m == Measure.enrollment:
         return float(t.enrollment) if t.enrollment else None
-    d = months_between(t.start, t.primary_completion)
-    return d if d is not None and d >= 0 else None
+    return duration_months(t)
 
 
 def _scatter(a: Analysis, trials: Sequence[Trial]) -> AnalysisResult:

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ctgov-viz · ClinicalTrials.gov questions → verified charts</title>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<style>
+  :root {
+    --surface: #fcfcfb; --page: #f9f9f7; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+    --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,0.10); --accent: #2a78d6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); }
+  header { padding: 20px 28px 8px; }
+  header h1 { margin: 0; font-size: 20px; }
+  header p { margin: 4px 0 0; color: var(--ink-2); font-size: 14px; }
+  main { padding: 8px 28px 40px; max-width: 1400px; }
+  .card { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px;
+          padding: 16px 18px; margin-bottom: 14px; }
+  textarea { width: 100%; font: inherit; font-size: 15px; padding: 10px 12px; min-height: 58px;
+             border: 1px solid var(--axis); border-radius: 8px; resize: vertical; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+  button { font: inherit; font-size: 14px; border-radius: 8px; border: 1px solid var(--axis);
+           background: var(--surface); padding: 7px 12px; cursor: pointer; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff;
+                   font-weight: 600; padding: 8px 18px; }
+  button:disabled { opacity: .55; cursor: progress; }
+  .chip { font-size: 12.5px; color: var(--ink-2); padding: 5px 10px; border-radius: 999px; }
+  .chip:hover, button:hover:not(.primary) { background: var(--page); }
+  details > summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin-top: 10px; }
+  .fields { display: grid; grid-template-columns: repeat(4, minmax(160px, 1fr)); gap: 10px;
+            margin-top: 10px; }
+  .fields label { font-size: 12px; color: var(--ink-2); display: flex; flex-direction: column;
+                  gap: 3px; }
+  .fields input { font: inherit; font-size: 14px; padding: 6px 8px; border-radius: 6px;
+                  border: 1px solid var(--axis); }
+  .status { font-size: 13px; color: var(--ink-2); }
+  .badge { display: inline-block; font-size: 12px; font-weight: 600; border-radius: 999px;
+           padding: 2px 9px; border: 1px solid var(--axis); margin-right: 8px; color: var(--ink); }
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 14px; }
+  #chart { width: 100%; min-height: 380px; }
+  #chart svg { display: block; }
+  h2 { margin: 0; font-size: 17px; }
+  .sub { color: var(--ink-2); font-size: 13px; margin: 3px 0 10px; }
+  #panel h3 { margin: 0 0 2px; font-size: 15px; }
+  #panel .hint { color: var(--muted); font-size: 13px; }
+  .cite { border-top: 1px solid var(--grid); padding: 9px 0; font-size: 13px; }
+  .cite a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .cite .title { color: var(--ink-2); margin: 2px 0 5px; }
+  .ex { display: grid; grid-template-columns: 1fr; gap: 1px; margin: 4px 0 0 8px;
+        border-left: 2px solid var(--grid); padding-left: 8px; }
+  .ex code { font-size: 11.5px; color: var(--muted); word-break: break-all; }
+  .ex .text { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; }
+  .ex .why { color: var(--ink-2); font-size: 12px; }
+  .ex .none { color: var(--muted); font-style: italic; }
+  ul.notes { margin: 6px 0 0; padding-left: 18px; font-size: 13px; color: var(--ink-2); }
+  table { border-collapse: collapse; font-size: 12.5px; width: 100%; }
+  th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--grid);
+           font-variant-numeric: tabular-nums; }
+  pre { font-size: 11.5px; max-height: 420px; overflow: auto; background: var(--page);
+        padding: 10px; border-radius: 6px; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2);
+            margin-top: 6px; }
+  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px;
+                         border-radius: 50%; background: var(--c); margin-right: 5px; }
+  .options button { display: block; width: 100%; text-align: left; margin-top: 8px; }
+  .options small { color: var(--ink-2); display: block; }
+  .tooltip { position: fixed; pointer-events: none; background: var(--surface); color: var(--ink);
+             border: 1px solid var(--ring); border-radius: 6px; padding: 5px 8px; font-size: 12.5px;
+             box-shadow: 0 2px 8px rgba(0,0,0,.08); display: none; }
+  @media (max-width: 1000px) { .layout { grid-template-columns: 1fr; }
+                               .fields { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<header>
+  <h1>ctgov-viz</h1>
+  <p>Ask about clinical trials. Every number is computed from the complete set of matching
+     ClinicalTrials.gov records, and every bar, point, node and edge cites its source studies.</p>
+</header>
+<main>
+  <form class="card" id="ask">
+    <textarea id="query" placeholder="e.g. Which countries have the most recruiting Phase 3 lung cancer trials?" required></textarea>
+    <div class="row" id="examples"></div>
+    <details>
+      <summary>Optional structured fields (hard constraints, applied to every cohort)</summary>
+      <div class="fields">
+        <label>drug_name<input name="drug_name" placeholder="Pembrolizumab"></label>
+        <label>condition<input name="condition" placeholder="melanoma"></label>
+        <label>sponsor<input name="sponsor" placeholder="Merck"></label>
+        <label>country<input name="country" placeholder="Germany"></label>
+        <label>trial_phase<input name="trial_phase" placeholder="Phase 3, Phase 2/3"></label>
+        <label>status<input name="status" placeholder="recruiting, completed"></label>
+        <label>start_year<input name="start_year" type="number" placeholder="2015"></label>
+        <label>end_year<input name="end_year" type="number" placeholder="2024"></label>
+      </div>
+    </details>
+    <div class="row">
+      <button class="primary" id="go" type="submit">Ask</button>
+      <span class="status" id="status"></span>
+    </div>
+  </form>
+
+  <section id="result" hidden>
+    <div class="layout">
+      <div class="card">
+        <div id="headline"></div>
+        <h2 id="title"></h2>
+        <p class="sub" id="subtitle"></p>
+        <div id="chart"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <aside class="card" id="panel">
+        <h3>Citations</h3>
+        <p class="hint">Click a bar, point, node or edge to see the studies behind it and the
+          exact record text that supports it.</p>
+      </aside>
+    </div>
+    <div class="card">
+      <details open><summary>Interpretation: assumptions, warnings, filters</summary>
+        <div id="notes"></div></details>
+      <details><summary>Data table</summary><div id="table"></div></details>
+      <details><summary>Retrieval: API queries, completeness, timings</summary>
+        <div id="retrieval"></div></details>
+      <details id="rawbox"><summary>Raw JSON response</summary><pre id="raw"></pre></details>
+    </div>
+  </section>
+</main>
+<div class="tooltip" id="tip"></div>
+
+<script>
+const EXAMPLES = [
+  "How many breast cancer trials started each year since 2015?",
+  "Compare pembrolizumab and nivolumab trials across phases.",
+  "Which countries have the most recruiting Phase 3 lung cancer trials?",
+  "Which drugs are combined in the same arm in melanoma trials?",
+  "Show a network of sponsors and drugs for non-small cell lung cancer trials",
+  "Which countries most often run melanoma trials together?",
+  "What is the distribution of enrollment sizes for Phase 3 breast cancer trials?",
+  "How does enrollment relate to study duration for Phase 3 breast cancer trials?",
+];
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+let response = null;
+
+for (const q of EXAMPLES) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "chip"; b.textContent = q;
+  b.onclick = () => { $("#query").value = q; };
+  $("#examples").appendChild(b);
+}
+
+// /?q=<question> runs a question on load (shareable demo links)
+const initial = new URLSearchParams(location.search).get("q");
+if (initial) { $("#query").value = initial; setTimeout(() => $("#ask").requestSubmit(), 0); }
+
+$("#ask").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const body = { query: $("#query").value.trim() };
+  for (const input of document.querySelectorAll(".fields input")) {
+    const v = input.value.trim();
+    if (!v) continue;
+    if (input.name === "trial_phase" || input.name === "status") body[input.name] = v.split(",").map((x) => x.trim()).filter(Boolean);
+    else if (input.type === "number") body[input.name] = Number(v);
+    else body[input.name] = v;
+  }
+  ask(body);
+});
+
+async function ask(body) {
+  $("#go").disabled = true;
+  const started = performance.now();
+  const timer = setInterval(() => {
+    $("#status").textContent = `Planning and retrieving every matching study… ${((performance.now() - started) / 1000).toFixed(0)}s`;
+  }, 250);
+  try {
+    const r = await fetch("/query", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+    const j = await r.json();
+    render(j, r.ok);
+    $("#status").textContent = `Done in ${((performance.now() - started) / 1000).toFixed(1)}s`;
+  } catch (err) {
+    $("#status").textContent = `Request failed: ${err}`;
+  } finally {
+    clearInterval(timer); $("#go").disabled = false;
+  }
+}
+
+function render(resp, ok) {
+  response = resp;
+  $("#result").hidden = false;
+  $("#chart").innerHTML = ""; $("#legend").innerHTML = ""; resetPanel();
+  $("#raw").textContent = "";
+  $("#rawbox").ontoggle = () => { if ($("#rawbox").open) $("#raw").textContent = JSON.stringify(resp, null, 2); };
+  const viz = resp.visualization;
+  $("#headline").innerHTML = `<span class="badge">${esc(ok ? resp.status : "error: " + resp.code)}</span>` +
+    (resp.message ? `<span class="status">${esc(resp.message)}</span>` : "");
+  $("#title").textContent = viz ? viz.title : "";
+  $("#subtitle").textContent = viz ? viz.subtitle : "";
+  if (!ok) { $("#chart").innerHTML = `<p>${esc(resp.message)}</p><pre>${esc(JSON.stringify(resp.detail ?? "", null, 2))}</pre>`; }
+  else if (resp.clarification) renderClarification(resp);
+  else if (viz) (viz.type === "network" ? renderNetwork(viz) : renderVega(viz));
+  renderNotes(resp); renderTable(viz); renderRetrieval(resp);
+}
+
+function renderClarification(resp) {
+  const c = resp.clarification;
+  const box = document.createElement("div");
+  box.className = "options";
+  box.innerHTML = `<p>${esc(c.question)}</p>`;
+  for (const opt of c.options) {
+    const b = document.createElement("button");
+    b.innerHTML = `<strong>${esc(opt.label)}</strong><small>${esc(opt.description)}</small>`;
+    b.onclick = () => ask({ query: resp.query || $("#query").value, plan: opt.plan });
+    box.appendChild(b);
+  }
+  $("#chart").appendChild(box);
+}
+
+// ---------------------------------------------------------------- bar / histogram / line / scatter
+
+function renderVega(viz) {
+  const spec = structuredClone(viz.vega_lite);
+  spec.width = "container";
+  if (spec.encoding) delete spec.encoding.href;  // clicks open the citations panel instead
+  delete spec.title;  // shown above the chart already
+  vegaEmbed("#chart", spec, { actions: false, renderer: "svg" }).then(({ view }) => {
+    view.addEventListener("click", (_, item) => {
+      const d = item && item.datum;
+      if (d && d._row !== undefined) selectRow(viz, d._row);
+    });
+  });
+  if (viz.hints.legend) legend(viz.palette);
+}
+
+function selectRow(viz, i) {
+  const d = viz.data[i];
+  if (viz.type === "scatter") {
+    return showCitations(`Study ${d.nct_id}`, null, d.citations, null);
+  }
+  const keys = [viz.encoding.x, viz.encoding.y, viz.encoding.color].filter((c) => c && c.field !== "study_count");
+  const label = keys.map((c) => `${c.title}: ${d[c.field]}`).join(" · ");
+  showCitations(label, d.study_count, d.citations, d.evidence);
+}
+
+// ---------------------------------------------------------------- network
+
+function renderNetwork(viz) {
+  const width = $("#chart").clientWidth || 800, height = 600;
+  const maxN = d3.max(viz.nodes, (n) => n.study_count) || 1;
+  const maxW = d3.max(viz.edges, (e) => e.weight) || 1;
+  const nodes = viz.nodes.map((n) => ({ ...n, r: 5 + 20 * Math.sqrt(n.study_count / maxN) }));
+  const links = viz.edges.map((e) => ({ ...e }));
+  const svg = d3.select("#chart").append("svg").attr("width", width).attr("height", height)
+    .attr("viewBox", [0, 0, width, height]).style("background", "var(--surface)");
+  const g = svg.append("g");
+  svg.call(d3.zoom().scaleExtent([0.3, 4]).on("zoom", (ev) => g.attr("transform", ev.transform)));
+
+  const link = g.append("g").selectAll("g").data(links).join("g").style("cursor", "pointer");
+  const visible = link.append("line").attr("stroke", "#c3c2b7").attr("stroke-opacity", 0.8)
+    .attr("stroke-width", (e) => 1 + 7 * (e.weight / maxW));
+  link.append("line").attr("stroke", "transparent").attr("stroke-width", 12);  // hit target
+  link.on("click", (_, e) => showCitations(`${nodeLabel(e.source)} — ${nodeLabel(e.target)}`, e.weight, e.citations, e.evidence))
+      .on("mousemove", (ev, e) => tip(ev, `${nodeLabel(e.source)} — ${nodeLabel(e.target)}<br>${e.weight} studies`))
+      .on("mouseleave", hideTip);
+
+  const node = g.append("g").selectAll("g").data(nodes).join("g").style("cursor", "pointer")
+    .call(d3.drag().on("start", (ev, d) => { if (!ev.active) sim.alphaTarget(0.2).restart(); d.fx = d.x; d.fy = d.y; })
+                   .on("drag", (ev, d) => { d.fx = ev.x; d.fy = ev.y; })
+                   .on("end", (ev, d) => { if (!ev.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+  node.append("circle").attr("r", (d) => d.r).attr("fill", (d) => viz.palette[d.group] || "#898781")
+    .attr("stroke", "#fcfcfb").attr("stroke-width", 2);
+  // labels live in their own layer above every node, with a surface halo so they stay legible
+  const labelled = new Set([...nodes].sort((a, b) => b.study_count - a.study_count).slice(0, 30).map((n) => n.id));
+  const labels = g.append("g").attr("pointer-events", "none").selectAll("text")
+    .data(nodes.filter((n) => labelled.has(n.id))).join("text").text((d) => d.label)
+    .attr("font-size", 11.5).attr("fill", "#0b0b0b").attr("stroke", "#fcfcfb")
+    .attr("stroke-width", 3).attr("paint-order", "stroke").attr("dy", 4);
+  node.on("click", (_, d) => showCitations(d.label, d.study_count, d.citations, d.evidence))
+      .on("mousemove", (ev, d) => tip(ev, `<strong>${esc(d.label)}</strong><br>${esc(d.group)} · ${d.study_count} studies`))
+      .on("mouseleave", hideTip)
+      .on("mouseenter", (_, d) => {
+        const near = new Set([d.id]);
+        links.forEach((l) => { if (l.source.id === d.id) near.add(l.target.id); if (l.target.id === d.id) near.add(l.source.id); });
+        node.style("opacity", (n) => (near.has(n.id) ? 1 : 0.25));
+        visible.style("opacity", (l) => (l.source.id === d.id || l.target.id === d.id ? 1 : 0.1));
+      })
+      .on("mouseout", () => { node.style("opacity", 1); visible.style("opacity", 1); });
+
+  const pad = 40;
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id((d) => d.id).distance(130).strength((l) => 0.15 + 0.5 * l.weight / maxW))
+    .force("charge", d3.forceManyBody().strength(-380))
+    .force("x", d3.forceX(width / 2).strength(0.05)).force("y", d3.forceY(height / 2).strength(0.07))
+    .force("collide", d3.forceCollide((d) => d.r + 14))
+    .on("tick", () => {
+      for (const d of nodes) {  // keep every node on the canvas
+        d.x = Math.max(pad, Math.min(width - pad, d.x));
+        d.y = Math.max(pad, Math.min(height - pad, d.y));
+      }
+      link.selectAll("line").attr("x1", (l) => l.source.x).attr("y1", (l) => l.source.y)
+        .attr("x2", (l) => l.target.x).attr("y2", (l) => l.target.y);
+      node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+      labels.attr("x", (d) => d.x + d.r + 4).attr("y", (d) => d.y);
+    });
+  function nodeLabel(n) { return typeof n === "object" ? n.label : (viz.nodes.find((x) => x.id === n) || {}).label; }
+  legend(viz.palette);
+}
+
+function legend(palette) {
+  $("#legend").innerHTML = Object.entries(palette).map(([k, c]) => `<span style="--c:${c}">${esc(k)}</span>`).join("");
+}
+function tip(ev, html) { const t = $("#tip"); t.innerHTML = html; t.style.display = "block"; t.style.left = ev.clientX + 12 + "px"; t.style.top = ev.clientY + 12 + "px"; }
+function hideTip() { $("#tip").style.display = "none"; }
+
+// ---------------------------------------------------------------- citations panel
+
+function resetPanel() {
+  $("#panel").innerHTML = `<h3>Citations</h3><p class="hint">Click a bar, point, node or edge to see the studies behind it and the exact record text that supports it.</p>`;
+}
+
+function citationHtml(c) {
+  const ex = c.excerpts.map((e) => `<div><code>${esc(e.field)}</code><br>` +
+    (e.text === null ? `<span class="none">(no verbatim value)</span>` : `<span class="text">"${esc(e.text)}"</span>`) +
+    `<div class="why">${esc(e.supports)}</div></div>`).join("");
+  return `<div class="cite"><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.nct_id)}</a>
+    · <a href="${esc(c.record_url)}" target="_blank" rel="noopener" style="font-weight:400">API record</a>
+    <div class="title">${esc(c.title)}</div><div class="ex">${ex}</div></div>`;
+}
+
+function showCitations(label, count, citations, evidence) {
+  const p = $("#panel");
+  const total = evidence ? evidence.total : (citations || []).length;
+  p.innerHTML = `<h3>${esc(label)}</h3><p class="hint">${count ?? total} ${total === 1 ? "study" : "studies"}` +
+    (evidence && !evidence.complete_inline ? ` · showing ${citations.length} inline` : "") + `</p>` +
+    `<div id="cites">${(citations || []).map(citationHtml).join("")}</div>`;
+  if (evidence && !evidence.complete_inline) {
+    let page = 0;
+    const more = document.createElement("button");
+    more.textContent = `Load all ${total} studies`;
+    more.onclick = async () => {
+      page += 1;
+      const r = await (await fetch(`${evidence.ref}?page=${page}&page_size=50`)).json();
+      if (page === 1) $("#cites").innerHTML = "";
+      $("#cites").insertAdjacentHTML("beforeend", r.items.map(citationHtml).join(""));
+      const shown = Math.min(page * 50, r.total);
+      more.textContent = shown < r.total ? `Load more (${shown} of ${r.total})` : `All ${r.total} studies shown`;
+      more.disabled = shown >= r.total;
+    };
+    p.appendChild(more);
+  }
+}
+
+// ---------------------------------------------------------------- notes, table, retrieval
+
+function renderNotes(resp) {
+  const m = resp.meta || {};
+  const list = (title, xs) => (xs && xs.length ? `<p><strong>${title}</strong></p><ul class="notes">${xs.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "");
+  const filters = Object.entries(m.filters || {}).map(([k, v]) => `${k}: ${JSON.stringify(v)}`);
+  const defs = Object.entries(m.definitions || {}).map(([k, v]) => `${k}: ${v}`);
+  const excluded = Object.entries(m.excluded || {}).map(([k, v]) => `${k.replaceAll("_", " ")}: ${v}`);
+  $("#notes").innerHTML = list("Assumptions", m.assumptions) + list("Warnings", m.warnings) +
+    list("Effective filters per cohort", filters) + list("Excluded studies", excluded) + list("Definitions", defs);
+}
+
+function renderTable(viz) {
+  if (!viz) { $("#table").innerHTML = ""; return; }
+  const rows = viz.type === "network"
+    ? viz.edges.map((e) => ({ source: e.source, target: e.target, weight: e.weight }))
+    : viz.data.slice(0, 500).map((d) => Object.fromEntries(Object.entries(d).filter(([k]) => !["evidence", "citations", "url"].includes(k))));
+  if (!rows.length) { $("#table").innerHTML = "<p>No rows.</p>"; return; }
+  const cols = Object.keys(rows[0]);
+  $("#table").innerHTML = `<table><thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map((r) => `<tr>${cols.map((c) => `<td>${esc(r[c])}</td>`).join("")}</tr>`).join("") + `</tbody></table>`;
+}
+
+function renderRetrieval(resp) {
+  const m = resp.meta || {};
+  const qs = (m.api_queries || []).map((q) => `<li>${esc(q.cohort)}: ${q.fetched} of ${q.total} studies, ${q.pages} page(s), ${q.complete ? "complete" : "INCOMPLETE"} · <a href="${esc(q.url)}" target="_blank" rel="noopener">API query</a></li>`).join("");
+  $("#retrieval").innerHTML = `<ul class="notes">${qs}
+    <li>Studies analyzed: ${m.studies_analyzed ?? 0} · data snapshot ${esc(m.data_timestamp ?? "–")}</li>
+    <li>Completeness: ${m.completeness ? (m.completeness.complete ? "complete" : "incomplete: " + esc(m.completeness.reason)) : "–"}</li>
+    <li>Planner: ${esc(m.llm ? `${m.llm.model}, tools ${JSON.stringify(m.llm.tool_calls)}, repaired ${m.llm.repaired}` : "plan submitted directly")}</li>
+    <li>Timings (ms): ${esc(JSON.stringify(m.timings_ms || {}))}</li></ul>`;
+}
+</script>
+</body>
+</html>
