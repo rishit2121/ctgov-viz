@@ -1,57 +1,114 @@
 # ctgov-viz
 
-Ask a question about clinical trials in plain English; get back **verified, visualization-ready
-JSON** computed from the complete set of matching ClinicalTrials.gov records, with every bar,
-line point, node and edge traceable to the exact studies and registry fields behind it.
+**Ask a question about clinical trials in plain English. Get back a verified chart computed from
+every matching ClinicalTrials.gov record, where every bar, point, node and edge cites the exact
+studies and record text behind it.**
 
-```text
-"Which countries have the most recruiting Phase 3 lung cancer trials?"
-   -> choropleth-ready ranked bar chart: China 136, United States 89, France 65, ...
-      each bar -> the full, paginated list of NCT IDs + the location values that placed them there
-```
+![Stacked bar of the top 10 countries by recruiting Phase 2/3 breast cancer trials, with the citations panel open for the United States total](docs/images/stacked_totals_citations.png)
 
-**Guiding rule: the LLM only interprets the question.** It produces a constrained query plan.
-Validated code retrieves every matching record, computes every number, picks the chart, and
-verifies the response before it is returned. There is no field in the model's output schema
-where a count, an NCT ID or a chart value could go.
+<sub>*"For interventional breast cancer studies that started from 2020 through 2024 and are
+currently recruiting, which 10 countries have the most Phase 2 and Phase 3 trials? Show the
+counts by phase for each country."* The United States total (191) is selected; the panel lists
+the distinct studies behind it, each with verbatim excerpts from its API record at exact paths.
+Both totals shown were cross-checked against direct ClinicalTrials.gov count queries.</sub>
+
+**Guiding rule: the LLM only interprets the question.** Claude turns the question into a
+constrained query plan. Validated code retrieves every matching record, computes every number,
+picks the chart, and verifies the response before it is returned. There is no field in the
+model's output where a count, an NCT ID or a chart value could go.
+
+- **Charts:** bar, grouped bar, stacked bar with totals, histogram, time series, choropleth-ready
+  ranking, force-directed network (drug ↔ drug, sponsor ↔ drug, country ↔ country), scatter.
+- **Deep citations:** every datum cites its studies with exact, verbatim record excerpts.
+- **Complete retrieval:** all pages, or an explicit `partial` status; never a silent sample.
+- **Verified:** a response verifier, 267 offline tests, live oracle tests against ClinicalTrials.gov,
+  and a 28-question planner evaluation (28/28 on Claude).
 
 ---
 
 ## Contents
 
 1. [Quick start](#quick-start)
-2. [API](#api)
-3. [Architecture](#architecture)
-4. [AI design and hallucination controls](#ai-design-and-hallucination-controls)
-5. [What the numbers mean](#what-the-numbers-mean)
-6. [Supported questions](#supported-questions)
-7. [Output contract](#output-contract)
-8. [Verification and testing](#verification-and-testing)
-9. [Design decisions](#design-decisions)
-10. [Limitations](#limitations)
-11. [Repository layout](#repository-layout)
+2. [Using it](#using-it)
+3. [API](#api)
+4. [Architecture](#architecture)
+5. [AI design and hallucination controls](#ai-design-and-hallucination-controls)
+6. [What the numbers mean](#what-the-numbers-mean)
+7. [Supported questions](#supported-questions)
+8. [Output contract](#output-contract)
+9. [Deep citations](#deep-citations)
+10. [Verification and testing](#verification-and-testing)
+11. [Design decisions](#design-decisions)
+12. [Limitations](#limitations)
+13. [What I would improve with more time](#what-i-would-improve-with-more-time)
+14. [How this was built](#how-this-was-built)
+15. [Repository layout](#repository-layout)
 
 ---
 
 ## Quick start
 
-Requires Python 3.12+ and [uv](https://docs.astral.sh/uv/).
+**Prerequisites:** Python 3.12+, [uv](https://docs.astral.sh/uv/) (install with
+`curl -LsSf https://astral.sh/uv/install.sh | sh` or `brew install uv`), internet access (data
+comes live from ClinicalTrials.gov), and an [Anthropic API key](https://console.anthropic.com/)
+for the planner.
 
 ```bash
+# 1. Get the code and install dependencies (uv creates the virtualenv)
+git clone https://github.com/rishit2121/ctgov-viz.git
+cd ctgov-viz
 uv sync
 
-# Run with Claude as the planner (any question); the key can also go in .env
-export ANTHROPIC_API_KEY=sk-ant-...
-uv run uvicorn app.api.main:app --reload
+# 2. Configure the planner LLM
+cp .env.example .env
+#    then edit .env and set ANTHROPIC_API_KEY=sk-ant-...
+#    (if the API says your key is not scoped to a workspace, also set ANTHROPIC_WORKSPACE_ID)
 
-# ...or fully offline for the LLM (example questions only; data still comes live from CT.gov)
-LLM_MODE=fake uv run uvicorn app.api.main:app --reload
+# 3. Run
+uv run uvicorn app.api.main:app --reload
 ```
 
-Then open **http://localhost:8000/** for the demo page: ask a question (or click an example),
-see the chart, and click any bar, point, node or edge to see the studies behind it with their
-exact supporting record text. `http://localhost:8000/?q=<question>` runs a question directly.
-**http://localhost:8000/docs** lets you try every endpoint interactively. Or from a shell:
+Open **http://localhost:8000/**. That's it.
+
+No API key? `LLM_MODE=fake uv run uvicorn app.api.main:app --reload` runs everything except the
+LLM: it answers the example questions in `examples/plans/` (data still comes live from
+ClinicalTrials.gov), and any `plan` can be submitted directly to the API.
+
+**Check your setup:**
+
+```bash
+curl -s localhost:8000/health        # {"status":"ok","ctgov":{"reachable":true,...},"llm":true}
+uv run pytest                        # 267 offline tests, ~4 s
+```
+
+## Using it
+
+### Demo page (`http://localhost:8000/`)
+
+Type a question or click an example. Open **Optional structured fields** to add hard constraints
+(drug, condition, sponsor, country, phase, status, years), which are applied to every cohort
+regardless of how the question is worded.
+
+![The question box with example questions and the optional structured fields](docs/images/ask_form.png)
+
+Questions take about 10–20 s: Claude plans for a few seconds, then every matching study is
+downloaded and analyzed. **Click any bar, point, node, edge or total** to see the studies behind
+it with verbatim record excerpts; **Load all** pages through every study. Below the chart:
+assumptions and warnings, a data table, the exact ClinicalTrials.gov API queries, and the raw JSON.
+`http://localhost:8000/?q=<question>` runs a question directly (handy for sharing).
+
+| | |
+|---|---|
+| ![Drug-combination network for melanoma with the Pembrolizumab node selected](docs/images/network_drug_combinations.png) | ![Histogram of Phase 3 breast cancer enrollment sizes with a bin selected](docs/images/histogram_enrollment.png) |
+| *Which drugs are combined in the same arm in melanoma trials?* Force-directed network; drag, zoom, hover to highlight neighbors. | *Distribution of enrollment sizes for Phase 3 breast cancer trials.* Fixed bins. |
+| ![Breast cancer trials by start year since 2015](docs/images/time_series.png) | ![Pembrolizumab vs nivolumab trials by phase](docs/images/grouped_comparison.png) |
+| *How many breast cancer trials started each year since 2015?* | *Compare pembrolizumab and nivolumab trials across phases.* |
+| ![Enrollment vs duration scatter for Phase 3 breast cancer trials](docs/images/scatter_enrollment_duration.png) | |
+| *How does enrollment relate to study duration for Phase 3 breast cancer trials?* One point per study. | |
+
+### From the command line
+
+**http://localhost:8000/docs** lets you try every endpoint interactively. From a shell:
 
 ```bash
 curl -s localhost:8000/query -H 'content-type: application/json' \
@@ -66,7 +123,12 @@ curl -s localhost:8000/query -H 'content-type: application/json' \
 curl -s 'localhost:8000/query/<query_id>/evidence/r3?page=1&page_size=50'
 ```
 
-Configuration (environment variables or `.env`):
+Complete real request/response pairs for every chart type are in
+[`examples/runs/`](examples/runs/) (see [Example runs](#example-runs)).
+
+### Configuration
+
+Environment variables or `.env` (template: [`.env.example`](.env.example)):
 
 | Variable | Default | Meaning |
 |---|---|---|
@@ -482,6 +544,52 @@ pages); repeated plans are served from cache.
 - The demo page loads Vega and d3 from a CDN, labels only the 30 largest network nodes, and
   has no dark theme.
 
+## What I would improve with more time
+
+- **Faster cold queries.** Pages of one cohort are fetched sequentially (the API uses a cursor);
+  a persistent per-study cache keyed by the data snapshot would make repeated and overlapping
+  questions near-instant.
+- **Better intervention and condition identity.** Replace the fixed 46-drug alias table with a
+  vocabulary (RxNorm / MeSH, via the NLM APIs), so brand names, codes and salts merge for every
+  drug, and conditions can roll up ("NSCLC" under "lung cancer").
+- **"Active during year X" timelines**, from start to completion intervals, alongside
+  start-year trends.
+- **Strict-phase option**, so "Phase 2 and Phase 3" can mean exactly those phases rather than
+  also including Phase 1/2 and Phase 2/3 studies (today's disclosed default).
+- **A real map** for geographic results (the response already carries ISO3 codes and a color
+  ramp), and a dark theme for the demo page.
+- **Durable evidence storage** (SQLite or Redis instead of the in-memory LRU), so evidence links
+  survive restarts.
+- **Larger evaluation set** of real user questions, with a trend line of planner accuracy per
+  model and effort level.
+
+## How this was built
+
+> *Author's note: review and adjust this section to reflect your own process.*
+
+- **Tools.** Developed with [Claude Code](https://claude.com/claude-code) as an AI pair
+  programmer (design discussion, implementation, tests, and debugging), in Python with FastAPI,
+  Pydantic, httpx and the Anthropic SDK. The running service uses Claude (`claude-opus-5`) only
+  to turn questions into plans.
+- **How correctness was validated.**
+  - Numbers were cross-checked against **independent** ClinicalTrials.gov count queries (see
+    [Verification and testing](#verification-and-testing)); every checked value matched exactly.
+  - Citations were verified by re-downloading cited studies and checking each excerpt at its
+    path.
+  - The planner was evaluated on 28 differently worded questions.
+  - Charts were rendered and click-tested in a real browser.
+  - Real-data surveys (about 16k intervention names, 157 country spellings) drove the
+    normalization rules.
+- **Designed deliberately vs generated and adapted.**
+  - *Deliberate design decisions:* the architecture (LLM confined to planning; cohorts + one
+    analysis instead of per-intent code; field registry as the single extension point),
+    counting semantics, completeness rules, the verifier-rejects-rather-than-repairs policy,
+    and the request format.
+  - *Generated and then reviewed, tested and adapted:* most implementation code.
+  - *Found by testing against real data:* many fixes, e.g. brand-name drug merging,
+    assessment entries polluting networks, a case-sensitive country filter, the
+    grammar-size limit that led to answer tools, and showing totals for breakdowns.
+
 ## Repository layout
 
 ```text
@@ -497,6 +605,7 @@ app/
   viz/                 chart builder, titles, theme
   evidence/            deep citations, evidence registry, result cache
   static/index.html    demo UI (served at /)
+docs/images/           screenshots used in this README
   verify/              response invariants
 examples/runs/         real requests + complete JSON responses (Claude + live CT.gov)
 examples/plans/        hand-checked plans (offline planner, live oracle tests)
