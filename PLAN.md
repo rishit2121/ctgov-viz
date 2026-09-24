@@ -44,7 +44,17 @@ What each stage contains:
 
 `app/contracts/` holds the typed models passed between stages and depends on nothing. `app/pipeline.py` runs the stages in order, and `app/api/` is a thin FastAPI layer on top.
 
-Supported fields live in one place, the field registry (`app/registry/fields.py`). Each of the 11 dimensions (phase, status, study type, sponsor, sponsor class, intervention, intervention type, condition, country, enrollment size, duration) is one `FieldDef`. The prompt, validator, engine, chart builder, field projection, citations, and `GET /capabilities` all read from it. Adding a dimension means adding one entry and its citer, not a new handler.
+Supported fields live in one place, the field registry (`app/registry/fields.py`). Each of the 11 dimensions (phase, status, study type, sponsor, sponsor class, intervention, intervention type, condition, country, enrollment size, duration) is one `FieldDef`. The prompt, validator, engine, chart builder, field projection, citations, and `GET /capabilities` all read from it. Adding a dimension means adding one entry and its citer, not a new handler. For example, lead sponsor:
+
+```python
+# app/registry/fields.py
+FieldDef(
+    Dimension.sponsor, "Lead sponsor", frozenset({"group", "pair"}),  # title, legal operations
+    lambda t: _one(t.sponsor_name) if t.sponsor_name else [],          # extractor
+    (paths.P_SPONSOR,),                                                # path cited as evidence
+    "count", default_top_k=20,                                         # rank by count, top 20
+),
+```
 
 ## One request, step by step
 
@@ -89,6 +99,21 @@ Research tools are capped at 4 calls per question. A reply in plain text instead
 
 **Checking the answer.** The plan arrives as tool arguments. It is checked in code: first the Pydantic schema, then the validator. I tried making Claude decode against the plan schema directly, but it was larger than the decoding grammar limit, and it would only grow as dimensions are added. An invalid plan gets one repair turn with the full list of problems. A second failure returns `plan_invalid`; the service doesn't guess.
 
+```python
+# app/planner/planner.py (inside the tool loop)
+answer = next((c for c in reply.tool_calls if c.name in ANSWER_TOOLS), None)
+if answer is not None:
+    errors, result = self._interpret(answer, info, tools.probe_totals)  # schema + validator
+    if result is not None:
+        return result
+...
+if errors:
+    if repaired:
+        raise PlannerError("plan_invalid", "Could not turn the question into a "
+                           "valid query plan.", errors)
+    repaired = True  # the errors go back to Claude as the tool result
+```
+
 **Keeping model text out of the numbers.** The prompt is generated from the field registry, so it can't drift from what the validator accepts. Definitions come from the linter, not from the model. If a model-written assumption repeats a study count it saw while probing, it is dropped, because counts may only come from the pipeline.
 
 **Providers.** The planner uses a provider-neutral conversation format with adapters for Anthropic (default, `claude-opus-5`) and OpenAI. `LLM_MODE=fake` answers the saved example questions without an API key, and a scripted LLM drives the tests.
@@ -97,7 +122,20 @@ Research tools are capped at 4 calls per question. A reply in plain text instead
 
 ## Retrieval
 
-- **Filters are sent to the API and checked again.** Structured filters go to ClinicalTrials.gov to keep downloads small. They are then checked on every normalized study, so every cited study meets them. Free-text matching is left to ClinicalTrials.gov, whose synonym expansion (Keytruda, MK-3475 → pembrolizumab) is better than anything I would write.
+- **Filters are sent to the API and checked again.** Structured filters go to ClinicalTrials.gov to keep downloads small. They are then checked on every normalized study, so every cited study meets them. Free-text matching is left to ClinicalTrials.gov, whose synonym expansion (Keytruda, MK-3475 → pembrolizumab) is better than anything I would write. The local check is plain code over the normalized study:
+
+  ```python
+  # app/ctgov/compiler.py
+  def check(t: Trial) -> bool:
+      if statuses and t.overall_status not in statuses:
+          return False
+      if phases and not phases.intersection(t.phases):  # Phase 3 filter includes Phase 2/3
+          return False
+      if country and not _has_country(t, country, country_iso3):
+          return False
+      ...
+      return True
+  ```
 - **Only the needed fields.** The compiler requests just the fields the plan reads. For a trend, that makes pages about 10× smaller. A test checks that projected and full records give the same analysis.
 - **Year ranges are pushed down.** A trend's years become `AREA[StartDate]RANGE[...]`, so out-of-range studies are never downloaded.
 - **Search text is sanitized.** API filter syntax (`AREA[`, `RANGE[`) and control characters are removed from user text.
@@ -126,6 +164,18 @@ These rules are also written into `meta.definitions` on every response.
 ## Analysis engine
 
 Every group is a dict keyed by NCT ID, and its count is the dict's length. Counts can't drift from their evidence, and a study can't be counted twice in one group.
+
+```python
+# app/contracts/analysis.py
+@dataclass(slots=True)
+class Row:
+    values: dict[str, str | int]  # e.g. {"phase": "Phase 2"}
+    contributors: dict[str, Contributor] = field(default_factory=dict)  # keyed by NCT ID
+
+    @property
+    def count(self) -> int:
+        return len(self.contributors)  # never stored separately
+```
 
 | Result | Steps |
 |---|---|
@@ -180,7 +230,17 @@ The verifier works from the fetched studies and the evidence store, and rejects 
 - the status matches completeness;
 - the payload stays within bounds (1,000 rows, 300 nodes, 150 edges, 5,000 points, 3 MB).
 
-A failed check means there's a bug, so the service returns an error rather than a chart that might be wrong. Each check has a test that injects the fault it should catch.
+A failed check means there's a bug, so the service returns an error rather than a chart that might be wrong. Each check has a test that injects the fault it should catch. Here is the count check, run on every row, node, and edge:
+
+```python
+# app/verify/checks.py
+ids = [c.nct_id for c in items]  # contributors registered in the evidence store
+if not count == ref.total == len(set(ids)) == len(ids):
+    v.append(f"{where}: count {count}, evidence total {ref.total} and {len(ids)} "
+             "registered contributors must be equal and distinct")
+if not set(ref.sample) <= set(ids):
+    v.append(f"{where}: evidence sample contains studies that are not contributors")
+```
 
 ## When things go wrong
 
