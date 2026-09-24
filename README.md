@@ -112,7 +112,7 @@ Errors use `{"status": "error", "code", "message", "detail"}` with stable codes:
 flowchart TD
     Q["POST /query"] --> P
     subgraph P[Planner: the only LLM stage]
-      P1[Registry-generated prompt] --> P2[LLM, strict JSON schema]
+      P1[Registry-generated prompt] --> P2[LLM: research tools, then one answer tool]
       P2 <-->|≤ 4 calls| T[probe_cohort / validate_plan]
     end
     P2 -->|plan| V[Validator]
