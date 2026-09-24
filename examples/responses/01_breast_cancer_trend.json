@@ -1,0 +1,549 @@
+{
+ "status": "ok",
+ "query_id": "q_d0bae6b0ad938121",
+ "question": "How many breast cancer trials started each year since 2015?",
+ "plan": {
+  "version": "1",
+  "cohorts": [
+   {
+    "label": "Breast cancer",
+    "condition": "breast cancer",
+    "intervention": null,
+    "term": null,
+    "sponsor": null,
+    "filters": {
+     "overall_status": [],
+     "phase": [],
+     "study_type": null,
+     "start_date_from": null,
+     "start_date_to": null,
+     "country": null
+    }
+   }
+  ],
+  "analysis": {
+   "kind": "aggregate",
+   "dimension": null,
+   "time": {
+    "field": "start_date",
+    "granularity": "year",
+    "from_year": 2015,
+    "to_year": null
+   },
+   "series_by": null,
+   "pair": null,
+   "x_measure": null,
+   "y_measure": null,
+   "top_k": null,
+   "sort": {
+    "by": "chronological"
+   }
+  },
+  "assumptions": [
+   "'Trials started' interpreted as the registered study start date."
+  ]
+ },
+ "visualization": {
+  "schema_version": "1.0",
+  "type": "line",
+  "title": "Breast cancer studies by start year",
+  "subtitle": "started 2015 or later · distinct studies (NCT IDs)",
+  "encoding": {
+   "x": {
+    "field": "start_year",
+    "type": "ordinal",
+    "title": "Start year",
+    "sort": [
+     2015,
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026,
+     2027,
+     2028
+    ],
+    "scale": null
+   },
+   "y": {
+    "field": "study_count",
+    "type": "quantitative",
+    "title": "Studies",
+    "sort": null,
+    "scale": null
+   },
+   "color": null,
+   "size": null,
+   "tooltip": [
+    "start_year",
+    "study_count"
+   ]
+  },
+  "hints": {
+   "orientation": null,
+   "layout": null,
+   "legend": false,
+   "value_labels": false
+  },
+  "palette": {
+   "Breast cancer": "#2a78d6"
+  },
+  "data": [
+   {
+    "start_year": 2015,
+    "study_count": 691,
+    "evidence": {
+     "total": 691,
+     "sample": [
+      "NCT00589043",
+      "NCT01029977",
+      "NCT01740323",
+      "NCT01799031",
+      "NCT01817374"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r0"
+    }
+   },
+   {
+    "start_year": 2016,
+    "study_count": 725,
+    "evidence": {
+     "total": 725,
+     "sample": [
+      "NCT00194714",
+      "NCT00999557",
+      "NCT01635465",
+      "NCT01676753",
+      "NCT01821833"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r1"
+    }
+   },
+   {
+    "start_year": 2017,
+    "study_count": 750,
+    "evidence": {
+     "total": 750,
+     "sample": [
+      "NCT01710293",
+      "NCT01959867",
+      "NCT02151071",
+      "NCT02261311",
+      "NCT02295059"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r2"
+    }
+   },
+   {
+    "start_year": 2018,
+    "study_count": 758,
+    "evidence": {
+     "total": 758,
+     "sample": [
+      "NCT02269696",
+      "NCT02317783",
+      "NCT02666378",
+      "NCT02670109",
+      "NCT02688166"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r3"
+    }
+   },
+   {
+    "start_year": 2019,
+    "study_count": 862,
+    "evidence": {
+     "total": 862,
+     "sample": [
+      "NCT00960544",
+      "NCT01907529",
+      "NCT02514837",
+      "NCT02790021",
+      "NCT02840084"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r4"
+    }
+   },
+   {
+    "start_year": 2020,
+    "study_count": 825,
+    "evidence": {
+     "total": 825,
+     "sample": [
+      "NCT00910884",
+      "NCT01801878",
+      "NCT02807597",
+      "NCT02883361",
+      "NCT03110445"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r5"
+    }
+   },
+   {
+    "start_year": 2021,
+    "study_count": 982,
+    "evidence": {
+     "total": 982,
+     "sample": [
+      "NCT02627313",
+      "NCT02850939",
+      "NCT03542695",
+      "NCT03606967",
+      "NCT03728829"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r6"
+    }
+   },
+   {
+    "start_year": 2022,
+    "study_count": 999,
+    "evidence": {
+     "total": 999,
+     "sample": [
+      "NCT02201381",
+      "NCT02562612",
+      "NCT03238053",
+      "NCT03426254",
+      "NCT03492918"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r7"
+    }
+   },
+   {
+    "start_year": 2023,
+    "study_count": 1020,
+    "evidence": {
+     "total": 1020,
+     "sample": [
+      "NCT00455039",
+      "NCT03463954",
+      "NCT03613181",
+      "NCT03662633",
+      "NCT03969693"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r8"
+    }
+   },
+   {
+    "start_year": 2024,
+    "study_count": 1054,
+    "evidence": {
+     "total": 1054,
+     "sample": [
+      "NCT04102436",
+      "NCT04176081",
+      "NCT04261244",
+      "NCT04469127",
+      "NCT04619186"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r9"
+    }
+   },
+   {
+    "start_year": 2025,
+    "study_count": 1087,
+    "evidence": {
+     "total": 1087,
+     "sample": [
+      "NCT02958852",
+      "NCT03868475",
+      "NCT03954431",
+      "NCT04119024",
+      "NCT04364672"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r10"
+    }
+   },
+   {
+    "start_year": 2026,
+    "study_count": 908,
+    "evidence": {
+     "total": 908,
+     "sample": [
+      "NCT03946423",
+      "NCT03978780",
+      "NCT04016818",
+      "NCT04273555",
+      "NCT04362826"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r11"
+    }
+   },
+   {
+    "start_year": 2027,
+    "study_count": 23,
+    "evidence": {
+     "total": 23,
+     "sample": [
+      "NCT02802423",
+      "NCT04430595",
+      "NCT04715542",
+      "NCT04861077",
+      "NCT04982848"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r12"
+    }
+   },
+   {
+    "start_year": 2028,
+    "study_count": 1,
+    "evidence": {
+     "total": 1,
+     "sample": [
+      "NCT07389200"
+     ],
+     "complete_inline": true,
+     "ref": "/query/q_d0bae6b0ad938121/evidence/r13"
+    }
+   }
+  ],
+  "nodes": null,
+  "edges": null,
+  "geo": null,
+  "vega_lite": {
+   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+   "title": {
+    "text": "Breast cancer studies by start year",
+    "subtitle": "started 2015 or later · distinct studies (NCT IDs)"
+   },
+   "width": "container",
+   "height": 320,
+   "data": {
+    "values": [
+     {
+      "start_year": 2015,
+      "study_count": 691
+     },
+     {
+      "start_year": 2016,
+      "study_count": 725
+     },
+     {
+      "start_year": 2017,
+      "study_count": 750
+     },
+     {
+      "start_year": 2018,
+      "study_count": 758
+     },
+     {
+      "start_year": 2019,
+      "study_count": 862
+     },
+     {
+      "start_year": 2020,
+      "study_count": 825
+     },
+     {
+      "start_year": 2021,
+      "study_count": 982
+     },
+     {
+      "start_year": 2022,
+      "study_count": 999
+     },
+     {
+      "start_year": 2023,
+      "study_count": 1020
+     },
+     {
+      "start_year": 2024,
+      "study_count": 1054
+     },
+     {
+      "start_year": 2025,
+      "study_count": 1087
+     },
+     {
+      "start_year": 2026,
+      "study_count": 908
+     },
+     {
+      "start_year": 2027,
+      "study_count": 23
+     },
+     {
+      "start_year": 2028,
+      "study_count": 1
+     }
+    ]
+   },
+   "layer": [
+    {
+     "mark": {
+      "type": "line",
+      "point": {
+       "filled": true,
+       "size": 64,
+       "stroke": "#fcfcfb",
+       "strokeWidth": 2
+      },
+      "color": "#2a78d6"
+     },
+     "encoding": {
+      "x": {
+       "field": "start_year",
+       "type": "ordinal",
+       "title": "Start year",
+       "sort": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026,
+        2027,
+        2028
+       ],
+       "axis": {
+        "labelAngle": 0
+       }
+      },
+      "y": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "tooltip": [
+       {
+        "field": "start_year",
+        "title": "Start year"
+       },
+       {
+        "field": "study_count",
+        "title": "Studies",
+        "format": ","
+       }
+      ]
+     }
+    }
+   ],
+   "config": {
+    "background": "#fcfcfb",
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "view": {
+     "stroke": null
+    },
+    "title": {
+     "color": "#0b0b0b",
+     "subtitleColor": "#52514e",
+     "anchor": "start",
+     "fontSize": 15,
+     "subtitleFontSize": 12
+    },
+    "axis": {
+     "gridColor": "#e1e0d9",
+     "gridWidth": 1,
+     "domainColor": "#c3c2b7",
+     "tickColor": "#c3c2b7",
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "labelFontSize": 11,
+     "titleFontWeight": "normal",
+     "labelLimit": 220
+    },
+    "legend": {
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "orient": "top",
+     "labelLimit": 320
+    },
+    "range": {
+     "category": [
+      "#2a78d6",
+      "#eb6834",
+      "#1baf7a",
+      "#eda100",
+      "#e87ba4",
+      "#008300",
+      "#4a3aa7",
+      "#e34948"
+     ]
+    },
+    "line": {
+     "strokeWidth": 2,
+     "strokeCap": "round",
+     "strokeJoin": "round"
+    }
+   }
+  }
+ },
+ "clarification": null,
+ "message": null,
+ "meta": {
+  "source": "ClinicalTrials.gov API v2",
+  "api_version": "2.0.5",
+  "data_timestamp": "2026-09-23T09:00:05",
+  "retrieved_at": "2026-09-24T03:24:25+00:00",
+  "unit": "distinct studies (NCT IDs)",
+  "definitions": {
+   "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
+   "unit": "Each bar/point/edge counts distinct studies (NCT IDs), never sites or arms.",
+   "start_year": "Year of the registered study start date (actual, or anticipated if not yet started). This is not the same as being active during that year."
+  },
+  "api_queries": [
+   {
+    "cohort": "Breast cancer",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=breast+cancer&filter.advanced=AREA%5BStartDate%5DRANGE%5B2015-01-01%2CMAX%5D&fields=NCTId%2CBriefTitle%2CStartDate%2CStartDateType",
+    "total": 10685,
+    "fetched": 10685,
+    "pages": 11,
+    "complete": true
+   }
+  ],
+  "completeness": {
+   "complete": true,
+   "reason": null
+  },
+  "studies_analyzed": 10685,
+  "cohort_overlap": {},
+  "excluded": {
+   "missing_start_date_not_retrieved": 85
+  },
+  "assumptions": [
+   "'Trials started' interpreted as the registered study start date.",
+   "Studies without a registered start date are excluded from the trend."
+  ],
+  "warnings": [
+   "24 studies have anticipated start dates after 2026.",
+   "2026 is still in progress; its count is partial."
+  ],
+  "llm": null,
+  "timings_ms": {
+   "preflight": 360,
+   "fetch": 7724,
+   "analyze": 167,
+   "verify": 8,
+   "total": 8265
+  }
+ }
+}

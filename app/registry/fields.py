@@ -113,6 +113,21 @@ REGISTRY: dict[Dimension, FieldDef] = {
 }
 
 
+# ClinicalTrials.gov `fields=` names each dimension needs (see normalize.trial.API_FIELDS).
+API_FIELDS: dict[Dimension, tuple[str, ...]] = {
+    Dimension.phase: ("Phase",),
+    Dimension.overall_status: ("OverallStatus",),
+    Dimension.study_type: ("StudyType",),
+    Dimension.sponsor_class: ("LeadSponsorName", "LeadSponsorClass"),
+    Dimension.sponsor: ("LeadSponsorName", "LeadSponsorClass"),
+    Dimension.intervention: ("InterventionName", "InterventionType", "ArmGroupInterventionName"),
+    Dimension.intervention_type: ("InterventionName", "InterventionType"),
+    Dimension.condition: ("Condition",),
+    Dimension.country: ("LocationCountry",),
+    Dimension.cohort: (),
+}
+
+
 def get_field(dim: Dimension) -> FieldDef:
     return REGISTRY[dim]
 

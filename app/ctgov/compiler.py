@@ -17,10 +17,11 @@ from dataclasses import dataclass
 from datetime import date
 from urllib.parse import urlencode
 
-from app.contracts.plan import Cohort, CohortFilters, TimeSpec
+from app.contracts.plan import Cohort, CohortFilters, Measure, QueryPlan, TimeSpec
 from app.contracts.trial import DateValue, Trial
 from app.normalize.countries import canonical_country
 from app.normalize.trial import API_FIELDS
+from app.registry.fields import API_FIELDS as DIMENSION_FIELDS
 
 
 @dataclass(frozen=True)
@@ -84,11 +85,46 @@ def _search_params(cohort: Cohort) -> dict[str, str]:
     return params
 
 
-def compile_cohort(cohort: Cohort, time: TimeSpec | None = None) -> CTGovQuery:
+_BASE_FIELDS = ("NCTId", "BriefTitle")
+_START = ("StartDate", "StartDateType")
+_MEASURE_FIELDS = {
+    Measure.enrollment: ("EnrollmentCount", "EnrollmentType"),
+    Measure.duration_months: (*_START, "PrimaryCompletionDate", "PrimaryCompletionDateType"),
+}
+_FILTER_FIELDS = {"overall_status": ("OverallStatus",), "phase": ("Phase",),
+                  "study_type": ("StudyType",), "country": ("LocationCountry",),
+                  "start_date_from": _START, "start_date_to": _START}
+
+
+def fields_for(plan: QueryPlan) -> list[str]:
+    """The API fields this plan reads: grouping dimensions, measures, and filtered fields.
+
+    Requesting only these keeps pages small (a trend needs ~10x less data than a network).
+    """
+    a = plan.analysis
+    wanted: list[str] = [*_BASE_FIELDS]
+    dims = [a.dimension, a.series_by] + ([a.pair.left, a.pair.right] if a.pair else [])
+    for dim in dims:
+        if dim is not None:
+            wanted += DIMENSION_FIELDS[dim]
+    if a.time is not None:
+        wanted += _START
+    for m in (a.x_measure, a.y_measure):
+        if m is not None:
+            wanted += [*_MEASURE_FIELDS[m], *_MEASURE_FIELDS[Measure.enrollment], "Phase"]
+    for c in plan.cohorts:
+        for name, fields in _FILTER_FIELDS.items():
+            if getattr(c.filters, name):
+                wanted += fields
+    return [f for f in dict.fromkeys(wanted) if f in API_FIELDS]
+
+
+def compile_cohort(cohort: Cohort, time: TimeSpec | None = None,
+                   fields: list[str] | None = None) -> CTGovQuery:
     params = _search_params(cohort)
     if adv := _advanced(cohort.filters, time):
         params["filter.advanced"] = adv
-    params["fields"] = ",".join(API_FIELDS)
+    params["fields"] = ",".join(fields or API_FIELDS)
     return CTGovQuery(cohort.label, params, _predicate(cohort.filters))
 
 

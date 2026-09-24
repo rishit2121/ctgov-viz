@@ -33,7 +33,7 @@ from app.contracts.response import (
 )
 from app.contracts.trial import Trial
 from app.ctgov.client import CTGovClient, FetchResult
-from app.ctgov.compiler import CTGovQuery, compile_cohort, missing_start_params
+from app.ctgov.compiler import CTGovQuery, compile_cohort, fields_for, missing_start_params
 from app.ctgov.errors import CTGovError, CTGovTimeout
 from app.evidence.store import EvidenceBundle, ResultCache
 from app.normalize.trial import NormalizationError, normalize_study
@@ -98,7 +98,9 @@ class Pipeline:
             response.question = question or response.question
             return response
 
-        runs = [CohortRun(c.label, compile_cohort(c, plan.analysis.time)) for c in plan.cohorts]
+        fields = fields_for(plan)
+        runs = [CohortRun(c.label, compile_cohort(c, plan.analysis.time, fields))
+                for c in plan.cohorts]
         try:
             async with asyncio.timeout(self.settings.request_deadline_s):
                 totals = await self._gather([self.client.count(r.query.params) for r in runs])

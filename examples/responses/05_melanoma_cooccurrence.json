@@ -1,0 +1,1294 @@
+{
+ "status": "ok",
+ "query_id": "q_d3d1ab1d4d37b087",
+ "question": "Which interventions most frequently co-occur in melanoma studies?",
+ "plan": {
+  "version": "1",
+  "cohorts": [
+   {
+    "label": "Melanoma",
+    "condition": "melanoma",
+    "intervention": null,
+    "term": null,
+    "sponsor": null,
+    "filters": {
+     "overall_status": [],
+     "phase": [],
+     "study_type": null,
+     "start_date_from": null,
+     "start_date_to": null,
+     "country": null
+    }
+   }
+  ],
+  "analysis": {
+   "kind": "cooccurrence",
+   "dimension": null,
+   "time": null,
+   "series_by": null,
+   "pair": {
+    "left": "intervention",
+    "right": "intervention",
+    "scope": "study",
+    "exclude_placebo": true,
+    "exclude_ancillary": true,
+    "drugs_only": false,
+    "max_edges": 40
+   },
+   "x_measure": null,
+   "y_measure": null,
+   "top_k": 30,
+   "sort": {
+    "by": "domain"
+   }
+  },
+  "assumptions": []
+ },
+ "visualization": {
+  "schema_version": "1.0",
+  "type": "network",
+  "title": "Intervention co-occurrence in Melanoma studies",
+  "subtitle": "distinct studies (NCT IDs)",
+  "encoding": {
+   "x": null,
+   "y": null,
+   "color": {
+    "field": "group",
+    "type": "nominal",
+    "title": "Group",
+    "sort": [
+     "Drug",
+     "Biological"
+    ],
+    "scale": null
+   },
+   "size": {
+    "field": "study_count",
+    "type": "quantitative",
+    "title": "Studies listing the node",
+    "sort": null,
+    "scale": null
+   },
+   "tooltip": [
+    "label",
+    "group",
+    "study_count"
+   ]
+  },
+  "hints": {
+   "orientation": null,
+   "layout": "force",
+   "legend": true,
+   "value_labels": false
+  },
+  "palette": {
+   "Drug": "#2a78d6",
+   "Biological": "#eb6834"
+  },
+  "data": [],
+  "nodes": [
+   {
+    "id": "intervention:pembrolizumab",
+    "label": "Pembrolizumab",
+    "group": "Drug",
+    "study_count": 293,
+    "evidence": {
+     "total": 293,
+     "sample": [
+      "NCT01295827",
+      "NCT01704287",
+      "NCT01866319",
+      "NCT01993719",
+      "NCT02009449"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n0"
+    }
+   },
+   {
+    "id": "intervention:nivolumab",
+    "label": "Nivolumab",
+    "group": "Drug",
+    "study_count": 254,
+    "evidence": {
+     "total": 254,
+     "sample": [
+      "NCT00441337",
+      "NCT00730639",
+      "NCT01024231",
+      "NCT01176461",
+      "NCT01176474"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n1"
+    }
+   },
+   {
+    "id": "intervention:ipilimumab",
+    "label": "Ipilimumab",
+    "group": "Drug",
+    "study_count": 242,
+    "evidence": {
+     "total": 242,
+     "sample": [
+      "NCT00025181",
+      "NCT00032045",
+      "NCT00039091",
+      "NCT00050102",
+      "NCT00058279"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n2"
+    }
+   },
+   {
+    "id": "intervention:cyclophosphamide",
+    "label": "Cyclophosphamide",
+    "group": "Drug",
+    "study_count": 127,
+    "evidence": {
+     "total": 127,
+     "sample": [
+      "NCT00001832",
+      "NCT00002535",
+      "NCT00002854",
+      "NCT00003060",
+      "NCT00003552"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n3"
+    }
+   },
+   {
+    "id": "intervention:aldesleukin",
+    "label": "Aldesleukin",
+    "group": "Drug",
+    "study_count": 106,
+    "evidence": {
+     "total": 106,
+     "sample": [
+      "NCT00002535",
+      "NCT00002669",
+      "NCT00002733",
+      "NCT00002786",
+      "NCT00002845"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n4"
+    }
+   },
+   {
+    "id": "intervention:fludarabine",
+    "label": "Fludarabine",
+    "group": "Drug",
+    "study_count": 90,
+    "evidence": {
+     "total": 90,
+     "sample": [
+      "NCT00001832",
+      "NCT00003552",
+      "NCT00004135",
+      "NCT00006126",
+      "NCT00006233"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n5"
+    }
+   },
+   {
+    "id": "intervention:temozolomide",
+    "label": "Temozolomide",
+    "group": "Drug",
+    "study_count": 69,
+    "evidence": {
+     "total": 69,
+     "sample": [
+      "NCT00003747",
+      "NCT00005815",
+      "NCT00014092",
+      "NCT00016055",
+      "NCT00020839"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n6"
+    }
+   },
+   {
+    "id": "intervention:vemurafenib",
+    "label": "Vemurafenib",
+    "group": "Drug",
+    "study_count": 69,
+    "evidence": {
+     "total": 69,
+     "sample": [
+      "NCT00949702",
+      "NCT01006980",
+      "NCT01271803",
+      "NCT01307397",
+      "NCT01378975"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n7"
+    }
+   },
+   {
+    "id": "intervention:dabrafenib",
+    "label": "Dabrafenib",
+    "group": "Drug",
+    "study_count": 68,
+    "evidence": {
+     "total": 68,
+     "sample": [
+      "NCT01584648",
+      "NCT01597908",
+      "NCT01682083",
+      "NCT01682213",
+      "NCT01701037"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n8"
+    }
+   },
+   {
+    "id": "intervention:trametinib",
+    "label": "Trametinib",
+    "group": "Drug",
+    "study_count": 68,
+    "evidence": {
+     "total": 68,
+     "sample": [
+      "NCT01584648",
+      "NCT01597908",
+      "NCT01682083",
+      "NCT01701037",
+      "NCT01721603"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n9"
+    }
+   },
+   {
+    "id": "intervention:dacarbazine",
+    "label": "Dacarbazine",
+    "group": "Drug",
+    "study_count": 65,
+    "evidence": {
+     "total": 65,
+     "sample": [
+      "NCT00002669",
+      "NCT00002882",
+      "NCT00003027",
+      "NCT00003647",
+      "NCT00004141"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n10"
+    }
+   },
+   {
+    "id": "intervention:bevacizumab",
+    "label": "Bevacizumab",
+    "group": "Biological",
+    "study_count": 43,
+    "evidence": {
+     "total": 43,
+     "sample": [
+      "NCT00026221",
+      "NCT00074308",
+      "NCT00139360",
+      "NCT00255762",
+      "NCT00308607"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n11"
+    }
+   },
+   {
+    "id": "intervention:paclitaxel",
+    "label": "Paclitaxel",
+    "group": "Drug",
+    "study_count": 41,
+    "evidence": {
+     "total": 41,
+     "sample": [
+      "NCT00002854",
+      "NCT00019019",
+      "NCT00084214",
+      "NCT00110019",
+      "NCT00255762"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n12"
+    }
+   },
+   {
+    "id": "intervention:gp100 antigen",
+    "label": "gp100 antigen",
+    "group": "Biological",
+    "study_count": 38,
+    "evidence": {
+     "total": 38,
+     "sample": [
+      "NCT00003222",
+      "NCT00003229",
+      "NCT00003274",
+      "NCT00003339",
+      "NCT00003362"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n13"
+    }
+   },
+   {
+    "id": "intervention:incomplete freund's adjuvant",
+    "label": "incomplete Freund's adjuvant",
+    "group": "Biological",
+    "study_count": 37,
+    "evidence": {
+     "total": 37,
+     "sample": [
+      "NCT00003222",
+      "NCT00003274",
+      "NCT00003339",
+      "NCT00003362",
+      "NCT00003568"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n14"
+    }
+   },
+   {
+    "id": "intervention:interleukin-2",
+    "label": "Interleukin-2",
+    "group": "Drug",
+    "study_count": 36,
+    "evidence": {
+     "total": 36,
+     "sample": [
+      "NCT00006237",
+      "NCT00019448",
+      "NCT00020267",
+      "NCT00020475",
+      "NCT00059475"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n15"
+    }
+   },
+   {
+    "id": "intervention:sargramostim",
+    "label": "sargramostim",
+    "group": "Biological",
+    "study_count": 35,
+    "evidence": {
+     "total": 35,
+     "sample": [
+      "NCT00002817",
+      "NCT00003222",
+      "NCT00003274",
+      "NCT00003362",
+      "NCT00003897"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n16"
+    }
+   },
+   {
+    "id": "intervention:carboplatin",
+    "label": "Carboplatin",
+    "group": "Drug",
+    "study_count": 33,
+    "evidence": {
+     "total": 33,
+     "sample": [
+      "NCT00002854",
+      "NCT00003597",
+      "NCT00003690",
+      "NCT00003747",
+      "NCT00110019"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n17"
+    }
+   },
+   {
+    "id": "intervention:cobimetinib",
+    "label": "Cobimetinib",
+    "group": "Drug",
+    "study_count": 32,
+    "evidence": {
+     "total": 32,
+     "sample": [
+      "NCT01271803",
+      "NCT01495988",
+      "NCT01656642",
+      "NCT01689519",
+      "NCT01813214"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n18"
+    }
+   },
+   {
+    "id": "intervention:atezolizumab",
+    "label": "Atezolizumab",
+    "group": "Drug",
+    "study_count": 30,
+    "evidence": {
+     "total": 30,
+     "sample": [
+      "NCT01656642",
+      "NCT02303951",
+      "NCT02902029",
+      "NCT02908672",
+      "NCT03050060"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n19"
+    }
+   },
+   {
+    "id": "intervention:cisplatin",
+    "label": "Cisplatin",
+    "group": "Drug",
+    "study_count": 30,
+    "evidence": {
+     "total": 30,
+     "sample": [
+      "NCT00002669",
+      "NCT00002854",
+      "NCT00002882",
+      "NCT00003027",
+      "NCT00003690"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n20"
+    }
+   },
+   {
+    "id": "intervention:binimetinib",
+    "label": "Binimetinib",
+    "group": "Drug",
+    "study_count": 29,
+    "evidence": {
+     "total": 29,
+     "sample": [
+      "NCT02263898",
+      "NCT02465060",
+      "NCT02902042",
+      "NCT02910700",
+      "NCT03543969"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n21"
+    }
+   },
+   {
+    "id": "intervention:mart-1 antigen",
+    "label": "MART-1 antigen",
+    "group": "Biological",
+    "study_count": 24,
+    "evidence": {
+     "total": 24,
+     "sample": [
+      "NCT00002952",
+      "NCT00003792",
+      "NCT00005841",
+      "NCT00006113",
+      "NCT00006385"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n22"
+    }
+   },
+   {
+    "id": "intervention:tyrosinase peptide",
+    "label": "tyrosinase peptide",
+    "group": "Biological",
+    "study_count": 23,
+    "evidence": {
+     "total": 23,
+     "sample": [
+      "NCT00003222",
+      "NCT00003229",
+      "NCT00003274",
+      "NCT00003339",
+      "NCT00003362"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n23"
+    }
+   },
+   {
+    "id": "intervention:encorafenib",
+    "label": "Encorafenib",
+    "group": "Drug",
+    "study_count": 22,
+    "evidence": {
+     "total": 22,
+     "sample": [
+      "NCT02857270",
+      "NCT02902042",
+      "NCT02910700",
+      "NCT03543969",
+      "NCT03563729"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n24"
+    }
+   },
+   {
+    "id": "intervention:recombinant interferon alfa",
+    "label": "recombinant interferon alfa",
+    "group": "Biological",
+    "study_count": 20,
+    "evidence": {
+     "total": 20,
+     "sample": [
+      "NCT00002669",
+      "NCT00002733",
+      "NCT00002763",
+      "NCT00002767",
+      "NCT00002882"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/n25"
+    }
+   }
+  ],
+  "edges": [
+   {
+    "source": "intervention:ipilimumab",
+    "target": "intervention:nivolumab",
+    "weight": 120,
+    "evidence": {
+     "total": 120,
+     "sample": [
+      "NCT01024231",
+      "NCT01176474",
+      "NCT01585194",
+      "NCT01621490",
+      "NCT01783938"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e0"
+    }
+   },
+   {
+    "source": "intervention:cyclophosphamide",
+    "target": "intervention:fludarabine",
+    "weight": 85,
+    "evidence": {
+     "total": 85,
+     "sample": [
+      "NCT00001832",
+      "NCT00003552",
+      "NCT00004135",
+      "NCT00006126",
+      "NCT00062036"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e1"
+    }
+   },
+   {
+    "source": "intervention:dabrafenib",
+    "target": "intervention:trametinib",
+    "weight": 54,
+    "evidence": {
+     "total": 54,
+     "sample": [
+      "NCT01584648",
+      "NCT01597908",
+      "NCT01682083",
+      "NCT01701037",
+      "NCT01721603"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e2"
+    }
+   },
+   {
+    "source": "intervention:aldesleukin",
+    "target": "intervention:cyclophosphamide",
+    "weight": 50,
+    "evidence": {
+     "total": 50,
+     "sample": [
+      "NCT00002535",
+      "NCT00062036",
+      "NCT00079144",
+      "NCT00085423",
+      "NCT00085462"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e3"
+    }
+   },
+   {
+    "source": "intervention:aldesleukin",
+    "target": "intervention:fludarabine",
+    "weight": 40,
+    "evidence": {
+     "total": 40,
+     "sample": [
+      "NCT00062036",
+      "NCT00079144",
+      "NCT00085423",
+      "NCT00085462",
+      "NCT00091104"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e4"
+    }
+   },
+   {
+    "source": "intervention:nivolumab",
+    "target": "intervention:pembrolizumab",
+    "weight": 36,
+    "evidence": {
+     "total": 36,
+     "sample": [
+      "NCT02009449",
+      "NCT02054520",
+      "NCT02073123",
+      "NCT02419495",
+      "NCT03050060"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e5"
+    }
+   },
+   {
+    "source": "intervention:carboplatin",
+    "target": "intervention:paclitaxel",
+    "weight": 25,
+    "evidence": {
+     "total": 25,
+     "sample": [
+      "NCT00002854",
+      "NCT00110019",
+      "NCT00255762",
+      "NCT00288041",
+      "NCT00329641"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e6"
+    }
+   },
+   {
+    "source": "intervention:cobimetinib",
+    "target": "intervention:vemurafenib",
+    "weight": 24,
+    "evidence": {
+     "total": 24,
+     "sample": [
+      "NCT01271803",
+      "NCT01495988",
+      "NCT01656642",
+      "NCT01689519",
+      "NCT01813214"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e7"
+    }
+   },
+   {
+    "source": "intervention:ipilimumab",
+    "target": "intervention:pembrolizumab",
+    "weight": 23,
+    "evidence": {
+     "total": 23,
+     "sample": [
+      "NCT01866319",
+      "NCT02054520",
+      "NCT02073123",
+      "NCT02089685",
+      "NCT02419495"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e8"
+    }
+   },
+   {
+    "source": "intervention:gp100 antigen",
+    "target": "intervention:incomplete freund's adjuvant",
+    "weight": 22,
+    "evidence": {
+     "total": 22,
+     "sample": [
+      "NCT00003222",
+      "NCT00003274",
+      "NCT00003339",
+      "NCT00003362",
+      "NCT00003568"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e9"
+    }
+   },
+   {
+    "source": "intervention:binimetinib",
+    "target": "intervention:encorafenib",
+    "weight": 19,
+    "evidence": {
+     "total": 19,
+     "sample": [
+      "NCT02902042",
+      "NCT02910700",
+      "NCT03543969",
+      "NCT03563729",
+      "NCT03864042"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e10"
+    }
+   },
+   {
+    "source": "intervention:gp100 antigen",
+    "target": "intervention:mart-1 antigen",
+    "weight": 18,
+    "evidence": {
+     "total": 18,
+     "sample": [
+      "NCT00003792",
+      "NCT00005841",
+      "NCT00006113",
+      "NCT00006385",
+      "NCT00010309"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e11"
+    }
+   },
+   {
+    "source": "intervention:gp100 antigen",
+    "target": "intervention:tyrosinase peptide",
+    "weight": 18,
+    "evidence": {
+     "total": 18,
+     "sample": [
+      "NCT00003222",
+      "NCT00003229",
+      "NCT00003274",
+      "NCT00003339",
+      "NCT00003362"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e12"
+    }
+   },
+   {
+    "source": "intervention:aldesleukin",
+    "target": "intervention:incomplete freund's adjuvant",
+    "weight": 15,
+    "evidence": {
+     "total": 15,
+     "sample": [
+      "NCT00003222",
+      "NCT00003568",
+      "NCT00019383",
+      "NCT00019487",
+      "NCT00019721"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e13"
+    }
+   },
+   {
+    "source": "intervention:cyclophosphamide",
+    "target": "intervention:pembrolizumab",
+    "weight": 15,
+    "evidence": {
+     "total": 15,
+     "sample": [
+      "NCT01993719",
+      "NCT02419495",
+      "NCT02500576",
+      "NCT02621021",
+      "NCT03003676"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e14"
+    }
+   },
+   {
+    "source": "intervention:cyclophosphamide",
+    "target": "intervention:interleukin-2",
+    "weight": 14,
+    "evidence": {
+     "total": 14,
+     "sample": [
+      "NCT00338377",
+      "NCT01946373",
+      "NCT01995344",
+      "NCT02278887",
+      "NCT02379195"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e15"
+    }
+   },
+   {
+    "source": "intervention:fludarabine",
+    "target": "intervention:interleukin-2",
+    "weight": 14,
+    "evidence": {
+     "total": 14,
+     "sample": [
+      "NCT00338377",
+      "NCT01946373",
+      "NCT01995344",
+      "NCT02278887",
+      "NCT02379195"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e16"
+    }
+   },
+   {
+    "source": "intervention:aldesleukin",
+    "target": "intervention:gp100 antigen",
+    "weight": 13,
+    "evidence": {
+     "total": 13,
+     "sample": [
+      "NCT00003222",
+      "NCT00003229",
+      "NCT00003568",
+      "NCT00006113",
+      "NCT00019175"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e17"
+    }
+   },
+   {
+    "source": "intervention:incomplete freund's adjuvant",
+    "target": "intervention:tyrosinase peptide",
+    "weight": 13,
+    "evidence": {
+     "total": 13,
+     "sample": [
+      "NCT00003222",
+      "NCT00003274",
+      "NCT00003339",
+      "NCT00003362",
+      "NCT00005841"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e18"
+    }
+   },
+   {
+    "source": "intervention:incomplete freund's adjuvant",
+    "target": "intervention:sargramostim",
+    "weight": 12,
+    "evidence": {
+     "total": 12,
+     "sample": [
+      "NCT00003222",
+      "NCT00003274",
+      "NCT00003362",
+      "NCT00006243",
+      "NCT00006385"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e19"
+    }
+   },
+   {
+    "source": "intervention:atezolizumab",
+    "target": "intervention:cobimetinib",
+    "weight": 11,
+    "evidence": {
+     "total": 11,
+     "sample": [
+      "NCT01656642",
+      "NCT02303951",
+      "NCT02902029",
+      "NCT02908672",
+      "NCT03175432"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e20"
+    }
+   },
+   {
+    "source": "intervention:mart-1 antigen",
+    "target": "intervention:tyrosinase peptide",
+    "weight": 11,
+    "evidence": {
+     "total": 11,
+     "sample": [
+      "NCT00003792",
+      "NCT00005841",
+      "NCT00006113",
+      "NCT00006385",
+      "NCT00019396"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e21"
+    }
+   },
+   {
+    "source": "intervention:paclitaxel",
+    "target": "intervention:pembrolizumab",
+    "weight": 11,
+    "evidence": {
+     "total": 11,
+     "sample": [
+      "NCT01704287",
+      "NCT02009449",
+      "NCT02419495",
+      "NCT02617849",
+      "NCT03645928"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e22"
+    }
+   },
+   {
+    "source": "intervention:sargramostim",
+    "target": "intervention:tyrosinase peptide",
+    "weight": 11,
+    "evidence": {
+     "total": 11,
+     "sample": [
+      "NCT00003222",
+      "NCT00003274",
+      "NCT00003362",
+      "NCT00006113",
+      "NCT00006243"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e23"
+    }
+   },
+   {
+    "source": "intervention:incomplete freund's adjuvant",
+    "target": "intervention:mart-1 antigen",
+    "weight": 10,
+    "evidence": {
+     "total": 10,
+     "sample": [
+      "NCT00005841",
+      "NCT00006385",
+      "NCT00019721",
+      "NCT00019994",
+      "NCT00025181"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e24"
+    }
+   },
+   {
+    "source": "intervention:bevacizumab",
+    "target": "intervention:paclitaxel",
+    "weight": 9,
+    "evidence": {
+     "total": 9,
+     "sample": [
+      "NCT00255762",
+      "NCT00434252",
+      "NCT00976573",
+      "NCT02023710",
+      "NCT03872947"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e25"
+    }
+   },
+   {
+    "source": "intervention:carboplatin",
+    "target": "intervention:pembrolizumab",
+    "weight": 9,
+    "evidence": {
+     "total": 9,
+     "sample": [
+      "NCT01704287",
+      "NCT02419495",
+      "NCT02617849",
+      "NCT03645928",
+      "NCT03872947"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e26"
+    }
+   },
+   {
+    "source": "intervention:gp100 antigen",
+    "target": "intervention:sargramostim",
+    "weight": 9,
+    "evidence": {
+     "total": 9,
+     "sample": [
+      "NCT00003222",
+      "NCT00003274",
+      "NCT00003362",
+      "NCT00003897",
+      "NCT00006113"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e27"
+    }
+   },
+   {
+    "source": "intervention:binimetinib",
+    "target": "intervention:nivolumab",
+    "weight": 8,
+    "evidence": {
+     "total": 8,
+     "sample": [
+      "NCT02465060",
+      "NCT02910700",
+      "NCT03543969",
+      "NCT03563729",
+      "NCT04375527"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e28"
+    }
+   },
+   {
+    "source": "intervention:cisplatin",
+    "target": "intervention:dacarbazine",
+    "weight": 8,
+    "evidence": {
+     "total": 8,
+     "sample": [
+      "NCT00002669",
+      "NCT00002882",
+      "NCT00003027",
+      "NCT00004141",
+      "NCT00006237"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e29"
+    }
+   },
+   {
+    "source": "intervention:cyclophosphamide",
+    "target": "intervention:ipilimumab",
+    "weight": 8,
+    "evidence": {
+     "total": 8,
+     "sample": [
+      "NCT00871481",
+      "NCT02027935",
+      "NCT02210104",
+      "NCT02278887",
+      "NCT02419495"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e30"
+    }
+   },
+   {
+    "source": "intervention:dacarbazine",
+    "target": "intervention:temozolomide",
+    "weight": 8,
+    "evidence": {
+     "total": 8,
+     "sample": [
+      "NCT00091572",
+      "NCT00257205",
+      "NCT00395070",
+      "NCT01143402",
+      "NCT01704287"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e31"
+    }
+   },
+   {
+    "source": "intervention:fludarabine",
+    "target": "intervention:pembrolizumab",
+    "weight": 8,
+    "evidence": {
+     "total": 8,
+     "sample": [
+      "NCT01993719",
+      "NCT02500576",
+      "NCT02621021",
+      "NCT03158935",
+      "NCT03841110"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e32"
+    }
+   },
+   {
+    "source": "intervention:aldesleukin",
+    "target": "intervention:sargramostim",
+    "weight": 7,
+    "evidence": {
+     "total": 7,
+     "sample": [
+      "NCT00003222",
+      "NCT00006113",
+      "NCT00014092",
+      "NCT00019331",
+      "NCT00019383"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e33"
+    }
+   },
+   {
+    "source": "intervention:atezolizumab",
+    "target": "intervention:vemurafenib",
+    "weight": 7,
+    "evidence": {
+     "total": 7,
+     "sample": [
+      "NCT01656642",
+      "NCT02303951",
+      "NCT02902029",
+      "NCT02908672",
+      "NCT03554083"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e34"
+    }
+   },
+   {
+    "source": "intervention:bevacizumab",
+    "target": "intervention:carboplatin",
+    "weight": 7,
+    "evidence": {
+     "total": 7,
+     "sample": [
+      "NCT00255762",
+      "NCT00434252",
+      "NCT00626405",
+      "NCT00976573",
+      "NCT02023710"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e35"
+    }
+   },
+   {
+    "source": "intervention:cyclophosphamide",
+    "target": "intervention:nivolumab",
+    "weight": 7,
+    "evidence": {
+     "total": 7,
+     "sample": [
+      "NCT02419495",
+      "NCT02652455",
+      "NCT03166397",
+      "NCT03167177",
+      "NCT03475134"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e36"
+    }
+   },
+   {
+    "source": "intervention:dacarbazine",
+    "target": "intervention:ipilimumab",
+    "weight": 7,
+    "evidence": {
+     "total": 7,
+     "sample": [
+      "NCT00324155",
+      "NCT00796991",
+      "NCT01681212",
+      "NCT02545075",
+      "NCT03070392"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e37"
+    }
+   },
+   {
+    "source": "intervention:nivolumab",
+    "target": "intervention:paclitaxel",
+    "weight": 7,
+    "evidence": {
+     "total": 7,
+     "sample": [
+      "NCT01721746",
+      "NCT02009449",
+      "NCT02419495",
+      "NCT03645928",
+      "NCT03872947"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e38"
+    }
+   },
+   {
+    "source": "intervention:aldesleukin",
+    "target": "intervention:recombinant interferon alfa",
+    "weight": 6,
+    "evidence": {
+     "total": 6,
+     "sample": [
+      "NCT00002669",
+      "NCT00002733",
+      "NCT00002882",
+      "NCT00003027",
+      "NCT00003091"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d3d1ab1d4d37b087/evidence/e39"
+    }
+   }
+  ],
+  "geo": null,
+  "vega_lite": null
+ },
+ "clarification": null,
+ "message": null,
+ "meta": {
+  "source": "ClinicalTrials.gov API v2",
+  "api_version": "2.0.5",
+  "data_timestamp": "2026-09-23T09:00:05",
+  "retrieved_at": "2026-09-24T03:24:34+00:00",
+  "unit": "distinct studies (NCT IDs)",
+  "definitions": {
+   "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
+   "unit": "Each bar/point/edge counts distinct studies (NCT IDs), never sites or arms.",
+   "edge_weight": "Distinct studies listing both endpoints. Being listed in the same study does not imply they were given together (they may be in different arms).",
+   "node_size": "Distinct studies listing the node's value."
+  },
+  "api_queries": [
+   {
+    "cohort": "Melanoma",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=melanoma&fields=NCTId%2CBriefTitle%2CInterventionName%2CInterventionType%2CArmGroupInterventionName",
+    "total": 3764,
+    "fetched": 3764,
+    "pages": 4,
+    "complete": true
+   }
+  ],
+  "completeness": {
+   "complete": true,
+   "reason": null
+  },
+  "studies_analyzed": 3764,
+  "cohort_overlap": {},
+  "excluded": {
+   "studies_without_a_pair": 1902
+  },
+  "assumptions": [
+   "Intervention names are merged only by deterministic rules (case, trademark symbols, doses, formulation words, a fixed brand/code alias table); combination products registered under one name stay one node.",
+   "Placebo, sham, usual-care and observation comparators are excluded.",
+   "Assessment and data-collection entries registered as interventions (imaging, biospecimen collection, questionnaires, ...) are excluded."
+  ],
+  "warnings": [
+   "Showing the 40 strongest of 5998 connections."
+  ],
+  "llm": null,
+  "timings_ms": {
+   "preflight": 111,
+   "fetch": 3023,
+   "analyze": 218,
+   "verify": 2,
+   "total": 3356
+  }
+ }
+}
