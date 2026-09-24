@@ -6,7 +6,7 @@ Ask a question about clinical trials in plain English and get back a chart built
 
 *"For interventional breast cancer studies that started from 2020 through 2024 and are currently recruiting, which 10 countries have the most Phase 2 and Phase 3 trials? Show the counts by phase for each country."*
 
-**Live demo:** [ctgov-viz.onrender.com](https://ctgov-viz.onrender.com). It runs on Render's free tier, so if it has been idle the first load can take up to a minute while the server wakes up. A short demo video (`demo/ctgov-viz-demo.mov`) is included in the submission zip.
+**Live demo:** [ctgov-viz.onrender.com](https://ctgov-viz.onrender.com). On Render’s free tier, the first load after inactivity can take about a minute. A short video is included at `demo/ctgov-viz-demo.mov` in the submission zip.
 
 The app finds matching studies, counts distinct trials, and returns both the chart and the data behind it. Claude interprets the question; the actual counts, chart data, and citations come from code and ClinicalTrials.gov records.
 
@@ -52,23 +52,31 @@ Click a bar, point, network node, connection, or country total to see the studie
 
 It also supports regular bar charts, geographic rankings, and networks involving sponsors or countries. Example requests and full responses are in [`examples/runs/`](examples/runs/).
 
-## How it works
+## System design
 
-I kept the design simple: one planner figures out **what to calculate**, then regular code does the calculation.
+The service has one planner for understanding the question and a shared pipeline for producing the answer. Claude creates a constrained `QueryPlan`; code validates it, retrieves the studies, calculates the result, builds the chart, and checks the response.
 
-```text
-Question → validated plan → ClinicalTrials.gov records → distinct-study counts
-         → chart specification + study citations → final checks
-```
+| Part | Job |
+|---|---|
+| Planner and validator | Turn the question into supported searches and an analysis; reject invalid plans or ask for clarification |
+| ClinicalTrials.gov client | Fetch every required API page and report if retrieval is incomplete |
+| Normalizer | Put nested study records into a consistent form keyed by NCT ID |
+| Analysis engine | Calculate counts, trends, networks, or numeric points while retaining contributing study IDs |
+| Chart builder and verifier | Choose the chart, attach evidence, and check the numbers and output before returning it |
 
-1. **Understand the question.** Claude produces a plan with search terms, filters, the grouping or relationship to calculate, and any necessary sort order. It cannot supply counts or NCT IDs as answers.
-2. **Fetch the studies.** The app builds ClinicalTrials.gov API queries, checks the matching cohort size, and retrieves every page it needs. Structured filters are checked again on the downloaded records.
-3. **Calculate the result.** The app normalizes study records and uses the same analysis code for different questions: filter, group, count distinct study IDs, sort, or build pairs for a network.
-4. **Build and check the chart.** Code picks a chart that fits the result and checks that counts, totals, ordering, and citations agree with the studies that were fetched.
+The analysis engine supports three analysis modes: `aggregate` for categories and time trends, `cooccurrence` for networks, and `numeric_pair` for scatter plots. They share the same distinct-study counting and evidence rules, so a chart type does not need its own retrieval or counting implementation.
 
-There is one shared counting and evidence pipeline rather than a separate agent for every chart. That makes a “trial count” mean the same thing in a bar chart, a timeline, and a network.
+Claude can probe a cohort and validate a proposed plan within a fixed tool-call budget. It cannot supply chart counts, NCT IDs, or citations. Invalid plans get one repair attempt; ambiguous or unsupported questions receive an explicit response instead of a guessed chart.
 
-For a country-by-phase question, a study with five sites in the United States counts **once** for the United States. A study with sites in two countries can count once in each. The chart can also show a distinct total for each country, so you can see both the overall ranking and the phase breakdown.
+Filters are sent to ClinicalTrials.gov and then checked on the returned records. A study with five sites in one country counts once for that country; a multinational study can count once in each of its countries. If retrieval fails after some pages, the result is marked `partial` rather than silently treated as complete. Very large cohorts ask for a narrower question instead of using an arbitrary sample.
+
+The chart builder receives calculated results and applies the right encoding and order. A final verifier checks counts, totals, ordering, and evidence against the studies that contributed to each value. Supported fields and allowed operations live in a shared registry, which makes it easier to extend the service without adding separate handlers for each question.
+
+### Agent design
+
+Claude API acts as a planner, not as the source of the answer. It turns the question into a `QueryPlan` containing search cohorts, filters, and one analysis mode. It can use `probe_cohort` to check whether a search finds relevant studies and `validate_plan` to check its proposed plan. Tool calls are limited since most analysis is done through the generated plan, and an invalid plan gets one repair attempt.
+
+The validator checks the plan against supported fields and operations before any analysis runs. The model cannot provide trial counts, NCT IDs, citations, or chart values in its plan; those come from ClinicalTrials.gov records and deterministic code. For ambiguous or unsupported questions, it returns a clarification or an explicit unsupported response instead of guessing.
 
 ## Using the API
 
@@ -112,48 +120,34 @@ A completed chart has status `ok`. Other possible results include `empty`, `part
 | `visualization` | Chart type, labels, encodings, and already calculated chart data |
 | `meta` | Data source, retrieval details, completeness, definitions, assumptions, and warnings |
 
-For the country-by-phase example, `visualization.data` has one row for each **country and registered phase bucket**. The actual response has 40 rows for 10 countries and four phase buckets. `visualization.totals` has one **distinct-study total per country**; that is what the stacked bars and their end labels show. For example, the U.S. total in the example response is 191. The phase breakdown and totals are computed from study IDs, not generated by the LLM.
+For the country-by-phase example, `visualization.data` has one row for each **country and registered phase bucket**. This example response has 40 rows for 10 countries and four phase buckets. `visualization.totals` has one **distinct-study total per country**; that is what the stacked bars and their end labels show. For example, the U.S. total in the example response is 191. The phase breakdown and totals are computed from study IDs, not generated by the LLM.
 
-A shortened example of one chart row looks like this:
+Inside `visualization.data`, one country-and-phase row looks like this (shortened):
 
 ```json
 {
-  "status": "ok",
-  "query_id": "q_2a3f6b091702256c",
-  "query": "For interventional breast cancer studies ...",
-  "plan": {
-    "cohorts": ["..."],
-    "analysis": {"kind": "aggregate", "dimension": "country", "series_by": "phase"}
+  "country": "United States",
+  "phase": "Phase 1/2",
+  "study_count": 53,
+  "evidence": {
+    "total": 53,
+    "sample": ["NCT03934905", "NCT04300556"],
+    "complete_inline": false,
+    "ref": "/query/q_2a3f6b091702256c/evidence/r0"
   },
-  "visualization": {
-    "type": "stacked_bar",
-    "title": "Breast cancer studies by country and phase",
-    "encoding": {"...": "..."},
-    "data": [
-      {
-        "country": "United States",
-        "phase": "Phase 1/2",
-        "study_count": 53,
-        "evidence": {"total": 53, "ref": "/query/q_2a3f6b091702256c/evidence/r0"},
-        "citations": ["..."]
-      }
-    ],
-    "totals": [
-      {
-        "country": "United States",
-        "study_count": 191,
-        "evidence": {"...": "..."},
-        "citations": ["..."]
-      }
-    ],
-    "vega_lite": {"...": "..."}
-  },
-  "meta": {
-    "completeness": {"complete": true},
-    "studies_analyzed": 466,
-    "assumptions": ["..."],
-    "api_queries": ["..."]
-  }
+  "citations": [
+    {
+      "nct_id": "NCT03934905",
+      "url": "https://clinicaltrials.gov/study/NCT03934905",
+      "excerpts": [
+        {
+          "field": "protocolSection.contactsLocationsModule.locations[0].country",
+          "text": "United States",
+          "supports": "site country: United States"
+        }
+      ]
+    }
+  ]
 }
 ```
 
