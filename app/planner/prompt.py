@@ -31,7 +31,7 @@ EXAMPLES: list[tuple[str, str, dict[str, Any]]] = [
             "assumptions": []}}),
     ("Which drugs are frequently combined in melanoma studies?", "submit_plan", {"plan": {
         "cohorts": [{"label": "Melanoma", "condition": "melanoma"}],
-        "analysis": {"kind": "cooccurrence", "top_k": 30,
+        "analysis": {"kind": "cooccurrence",
                      "pair": {"left": "intervention", "right": "intervention", "scope": "arm",
                               "exclude_placebo": True, "exclude_ancillary": True,
                               "drugs_only": True, "max_edges": 40}},
@@ -108,6 +108,9 @@ A plan has 1-4 cohorts (each a ClinicalTrials.gov search) and one analysis:
 - "since 2015" -> time.from_year=2015 (trend) or start_date_from=2015-01-01 (filter).
 - "most common", "top", "which ... the most" -> sort="count_desc" (and top_k 10-20 for long
   lists such as country, sponsor, condition, intervention).
+- networks: "top N pairs / connections" -> pair.max_edges=N with top_k null, so pairs are ranked
+  across all nodes. Set top_k only when the question limits the nodes ("among the 20 most common
+  drugs").
 - phases/years/statuses otherwise keep their natural order (sort="domain" or "chronological").
 - distribution of trial sizes / enrollment -> dimension enrollment_size (a histogram); how long
   trials run / duration distribution -> dimension duration (a histogram). A relationship between

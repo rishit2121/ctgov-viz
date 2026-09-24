@@ -50,7 +50,7 @@ class PairDraft(_Draft):
     exclude_placebo: bool
     exclude_ancillary: bool = Field(description="Drop imaging/biospecimen/questionnaire entries.")
     drugs_only: bool
-    max_edges: int | None
+    max_edges: int | None = Field(description="'Top N pairs/connections' -> N.")
 
 
 class AnalysisDraft(_Draft):
@@ -61,7 +61,8 @@ class AnalysisDraft(_Draft):
     pair: PairDraft | None
     x_measure: Measure | None
     y_measure: Measure | None
-    top_k: int | None
+    top_k: int | None = Field(description="Largest k categories. For networks: null unless the "
+                              "question limits the nodes ('among the 20 most common drugs').")
     sort: Literal["domain", "count_desc", "chronological", "label"] | None
 
 

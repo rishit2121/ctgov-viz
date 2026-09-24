@@ -229,6 +229,24 @@ def test_network_edge_cap_is_disclosed() -> None:
     assert all(e.source in node_ids and e.target in node_ids for e in r.edges)
 
 
+def test_top_pairs_are_ranked_across_all_nodes() -> None:
+    # A and B are the most frequent nodes but never appear together; the strongest pair is
+    # C-D (2 studies), whose nodes are the least frequent.
+    trials = [trial("NCT01", interventions=[("C", "DRUG"), ("D", "DRUG")]),
+              trial("NCT02", interventions=[("C", "DRUG"), ("D", "DRUG")]),
+              *[trial(f"NCT1{i}", interventions=[("A", "DRUG"), (f"X{i}", "DRUG")])
+                for i in range(3)],
+              *[trial(f"NCT2{i}", interventions=[("B", "DRUG"), (f"Y{i}", "DRUG")])
+                for i in range(3)]]
+    pair = {"left": "intervention", "right": "intervention", "max_edges": 1}
+    r = run(plan({"kind": "cooccurrence", "pair": pair}), {"Cohort": trials})
+    assert _edges(r) == {("c", "d"): 2}  # max_edges alone: the true strongest pair
+
+    capped = run(plan({"kind": "cooccurrence", "pair": pair, "top_k": 2}), {"Cohort": trials})
+    assert _edges(capped) == {}  # an explicit node cap leaves no pair between A and B
+    assert any("2 most frequent of 10 nodes" in w for w in capped.warnings)
+
+
 # ------------------------------------------------------------------ scatter
 
 

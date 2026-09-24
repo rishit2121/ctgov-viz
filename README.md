@@ -175,7 +175,7 @@ uv run pytest -m live tests/golden  # needs an Anthropic API key
 uv run ruff check . && uv run mypy app
 ```
 
-The original project README reports 267 offline tests, live checks against independent ClinicalTrials.gov counts, and a 28/28 planner evaluation on differently worded questions using Claude. Those results were reported for the September 23, 2026 data snapshot; live trial data and model output can change. The tests cover counting rules, pagination and failures, plan validation, citation paths, and whether the chart and evidence agree. See `tests/` and [`examples/runs/`](examples/runs/) for the reproducible cases.
+The original project README reports 271 offline tests, live checks against independent ClinicalTrials.gov counts, and a 29/29 planner evaluation on differently worded questions using Claude. Those results were reported for the September 23, 2026 data snapshot; live trial data and model output can change. The tests cover counting rules, pagination and failures, plan validation, citation paths, and whether the chart and evidence agree. See `tests/` and [`examples/runs/`](examples/runs/) for the reproducible cases.
 
 ## Limits and next steps
 

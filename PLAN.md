@@ -133,12 +133,14 @@ Every group is a dict keyed by NCT ID, and its count is the dict's length. Count
 | Yearly trend | filter → start year → year range, zero-filled → distinct count → chronological |
 | Country ranking | filter → distinct countries per study → group → distinct count → count desc → top k |
 | Drug comparison | fetch each cohort → tag with cohort → group by (cohort, phase) → distinct count → aligned series |
-| Drug network | eligible interventions per study or arm → unordered pairs → group → distinct count → top edges |
+| Drug network | eligible interventions per study or arm → unordered pairs → group → distinct count → strongest edges across all pairs |
 | Sponsor–drug network | sponsor × eligible interventions per study → pairs → group → distinct count |
 | Histogram | measure per study → fixed bins → distinct count per bin |
 | Scatter | two measures per study → drop missing → sort by NCT ID |
 
-When a result is split into series, the engine also computes a distinct total for each category. It checks whether the series partition the category, meaning every study is in exactly one series. That decides between a stacked and a grouped bar. Ordering is deterministic: domain order for phase and status, count descending with alphabetical tie-breaks, and ascending years. The palette has eight colors, so a ninth series isn't given a new one; the smaller series fold into "Other", counted as a distinct union.
+When a result is split into series, the engine also computes a distinct total for each category. It checks whether the series partition the category, meaning every study is in exactly one series. That decides between a stacked and a grouped bar.
+
+For networks, "top 15 pairs" means `max_edges: 15`, ranked across every pair. `top_k` is a separate cap on nodes, used only when the question limits them ("among the 20 most common drugs"). I first applied both together, which could drop a strong pair whose drugs weren't among the most frequent. When a node cap is used, the warning now says so. Ordering is deterministic: domain order for phase and status, count descending with alphabetical tie-breaks, and ascending years. The palette has eight colors, so a ninth series isn't given a new one; the smaller series fold into "Other", counted as a distinct union.
 
 ## Charts
 

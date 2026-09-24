@@ -350,7 +350,10 @@ def _network(pair: PairSpec, top_k: int | None, trials: Sequence[Trial]) -> Anal
 
     result = AnalysisResult(shape="network")
     total_edges = len(edges)
-    if top_k:  # restrict to the top-k most frequent nodes first
+    # "Top N pairs" is max_edges over *all* pairs. top_k is a separate, explicit node cap
+    # ("among the 20 most common drugs"): only edges between those nodes are then eligible.
+    node_capped = bool(top_k) and len(nodes) > (top_k or 0)
+    if node_capped:
         keep = set(sorted(nodes, key=lambda n: (-nodes[n].count, n))[:top_k])
         edges = {k: e for k, e in edges.items() if k[0] in keep and k[1] in keep}
     ranked = sorted(edges.values(), key=lambda e: (-e.count, e.source, e.target))
@@ -362,7 +365,12 @@ def _network(pair: PairSpec, top_k: int | None, trials: Sequence[Trial]) -> Anal
         node.group = node_groups.get(nid, node.group)
         result.nodes.append(node)
     result.edges = kept
-    if total_edges > len(kept):
+    if node_capped:
+        result.warnings.append(
+            f"Only connections among the {top_k} most frequent of {len(nodes)} nodes are "
+            f"considered; showing the {len(kept)} strongest of those {len(ranked)} "
+            f"({total_edges} connections in total).")
+    elif total_edges > len(kept):
         result.warnings.append(
             f"Showing the {len(kept)} strongest of {total_edges} connections.")
     if no_pairs:

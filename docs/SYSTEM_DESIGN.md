@@ -13,10 +13,10 @@ from the model.
 
 | Measure | Result |
 |---|---|
-| Planner evaluation (28 differently worded questions, `claude-opus-5`) | 28/28 |
+| Planner evaluation (29 differently worded questions, `claude-opus-5`) | 29/29 |
 | Numbers checked against independent ClinicalTrials.gov count queries | all exact (e.g. 191/191, 184/184, 862/862) |
 | Citation excerpts re-checked against freshly downloaded full records | all verbatim at their paths |
-| Automated tests | 267 offline + 37 live |
+| Automated tests | 271 offline + 37 live |
 | End-to-end latency | ~10–20 s (planning ~9 s; retrieval 0.5–8 s cold) |
 
 ---
@@ -452,7 +452,7 @@ All schemas are published at `GET /schema`.
 | Verifier | Every invariant caught by an injected fault |
 | Integration | Real client, pipeline and FastAPI against an in-process fake ClinicalTrials.gov: paging, duplicates, retries, partial results, error codes, caching |
 | Live oracles | Results re-derived with **independent** Essie count queries; cited studies' full records re-downloaded and every excerpt checked at its path |
-| Golden planner set | 28 questions asserting plan *properties*: 28/28 |
+| Golden planner set | 29 questions asserting plan *properties*: 29/29 |
 | UI | Headless Chrome rendering and click tests |
 
 Examples of independent cross-checks (all exact):

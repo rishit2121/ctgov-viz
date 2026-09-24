@@ -13,8 +13,7 @@
         "left": "intervention",
         "right": "intervention",
         "max_edges": 40
-      },
-      "top_k": 30
+      }
     }
   }
 }

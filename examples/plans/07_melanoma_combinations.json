@@ -18,8 +18,7 @@
         "scope": "arm",
         "drugs_only": true,
         "max_edges": 40
-      },
-      "top_k": 30
+      }
     }
   }
 }

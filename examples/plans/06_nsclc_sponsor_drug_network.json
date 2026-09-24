@@ -18,8 +18,7 @@
         "right": "intervention",
         "drugs_only": true,
         "max_edges": 50
-      },
-      "top_k": 40
+      }
     }
   }
 }

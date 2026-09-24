@@ -114,6 +114,16 @@
   scope: arm
   drugs_only: true
   terms: [[colorectal]]
+- question: Among interventional melanoma studies that started from 2020 through 2024, which
+    pairs of drug interventions appear together in the same study most often? Show the top 15
+    pairs as a network.
+  decision: plan
+  kind: cooccurrence
+  pair: [intervention, intervention]
+  drugs_only: true
+  max_edges: 15
+  top_k: null  # "top 15 pairs" ranks pairs across all drugs, with no node cap
+  terms: [[melanoma]]
 - question: Show a network of sponsors and drugs for non-small cell lung cancer trials
   decision: plan
   kind: cooccurrence

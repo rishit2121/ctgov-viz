@@ -78,6 +78,8 @@ def check_plan(plan: QueryPlan, case: dict[str, Any]) -> list[str]:
         expect("pair", [a.pair.left.value, a.pair.right.value])
         expect("scope", a.pair.scope)
         expect("drugs_only", a.pair.drugs_only)
+        expect("max_edges", a.pair.max_edges)
+        expect("top_k", a.top_k)
     elif "pair" in case:
         problems.append("expected a network pair")
     if "measures" in case:

@@ -131,7 +131,8 @@ class PairSpec(_Strict):
     drugs_only: bool = Field(
         False, description="Keep only DRUG/BIOLOGICAL interventions (for 'drug' networks)."
     )
-    max_edges: int = 40
+    max_edges: int = Field(
+        40, description="Keep the N strongest connections among all pairs ('top N pairs').")
 
 
 class SortSpec(_Strict):
@@ -150,7 +151,9 @@ class Analysis(_Strict):
     pair: PairSpec | None = None
     x_measure: Measure | None = None
     y_measure: Measure | None = None
-    top_k: int | None = Field(None, description="Keep only the k largest categories / nodes.")
+    top_k: int | None = Field(
+        None, description="Keep only the k largest categories. For networks, an explicit node "
+        "cap (only edges between the k most frequent nodes); leave null for 'top N pairs'.")
     sort: SortSpec = Field(default_factory=SortSpec)
 
 
