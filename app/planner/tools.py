@@ -15,8 +15,17 @@ from app.contracts.plan import Cohort
 from app.ctgov.client import CTGovClient
 from app.ctgov.compiler import compile_cohort
 from app.ctgov.errors import CTGovError
-from app.planner.llm import ToolResult, ToolSpec
-from app.planner.schema import CohortDraft, PlanConversionError, PlanDraft, drop_nulls, to_plan
+from app.planner.llm import ToolSpec
+from app.planner.schema import (
+    ClarificationDraft,
+    CohortDraft,
+    DeclareUnsupportedArgs,
+    PlanConversionError,
+    PlanDraft,
+    SubmitPlanArgs,
+    drop_nulls,
+    to_plan,
+)
 from app.registry.validator import validate_plan
 
 
@@ -30,12 +39,25 @@ class ValidateArgs(BaseModel):
     plan: PlanDraft
 
 
+# Research tools (read-only, budgeted) and answer tools (end the loop). Schemas small enough are
+# strict (grammar-constrained decoding). The plan-carrying schemas are too large to compile as
+# grammars, so they are validated in code instead: Pydantic + the plan validator + a repair turn.
 TOOL_SPECS: list[ToolSpec] = [
     ToolSpec("probe_cohort", "Count the ClinicalTrials.gov studies a cohort matches and show "
-             "3 titles.", to_strict_json_schema(ProbeArgs)),
+             "3 titles.", to_strict_json_schema(ProbeArgs), strict=True),
     ToolSpec("validate_plan", "Check a draft plan; returns a list of problems to fix (empty = "
              "valid).", to_strict_json_schema(ValidateArgs)),
+    ToolSpec("submit_plan", "Final answer: the query plan for the question.",
+             to_strict_json_schema(SubmitPlanArgs)),
+    ToolSpec("ask_clarification", "Final answer when the question is genuinely ambiguous: a "
+             "clarifying question with 2-3 complete alternative plans.",
+             to_strict_json_schema(ClarificationDraft)),
+    ToolSpec("declare_unsupported", "Final answer when the question cannot be answered from "
+             "ClinicalTrials.gov registration data.",
+             to_strict_json_schema(DeclareUnsupportedArgs), strict=True),
 ]
+RESEARCH_TOOLS = frozenset({"probe_cohort", "validate_plan"})
+ANSWER_TOOLS = frozenset({"submit_plan", "ask_clarification", "declare_unsupported"})
 
 
 class Tools:
@@ -83,7 +105,3 @@ class Tools:
         except PlanConversionError as e:
             errors = e.errors
         return {"valid": not errors, "errors": errors}
-
-
-def tool_result(call_id: str, payload: dict[str, Any]) -> ToolResult:
-    return ToolResult(call_id, payload)

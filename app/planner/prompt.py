@@ -10,38 +10,38 @@ from app.contracts.plan import Measure, OverallStatus, Phase, StudyType
 from app.normalize.labels import PHASE_LABELS, STATUS_LABELS, STUDY_TYPE_LABELS
 from app.registry.fields import REGISTRY
 
-# (question, compact plan / output) pairs. Unset fields are omitted here for readability; the
-# response schema requires them explicitly as null / [] / false.
-EXAMPLES: list[tuple[str, dict[str, Any]]] = [
-    ("How many breast cancer trials started each year since 2015?", {"decision": "plan", "plan": {
+# (question, answer tool, compact arguments). Unset fields are omitted here for readability; the
+# tool schemas require them explicitly as null / [] / false.
+EXAMPLES: list[tuple[str, str, dict[str, Any]]] = [
+    ("How many breast cancer trials started each year since 2015?", "submit_plan", {"plan": {
         "cohorts": [{"label": "Breast cancer", "condition": "breast cancer"}],
         "analysis": {"kind": "aggregate", "time": {"from_year": 2015}, "sort": "chronological"},
         "assumptions": ["'Started' = registered study start date."]}}),
-    ("Compare pembrolizumab and nivolumab trials across phases.", {"decision": "plan", "plan": {
+    ("Compare pembrolizumab and nivolumab trials across phases.", "submit_plan", {"plan": {
         "cohorts": [{"label": "Pembrolizumab", "intervention": "pembrolizumab"},
                     {"label": "Nivolumab", "intervention": "nivolumab"}],
         "analysis": {"kind": "aggregate", "dimension": "phase", "series_by": "cohort"},
         "assumptions": []}}),
-    ("Which countries have the most recruiting Phase 3 lung cancer trials?", {
-        "decision": "plan", "plan": {
+    ("Which countries have the most recruiting Phase 3 lung cancer trials?", "submit_plan", {
+        "plan": {
             "cohorts": [{"label": "Lung cancer", "condition": "lung cancer",
                          "filters": {"overall_status": ["RECRUITING"], "phase": ["PHASE3"]}}],
             "analysis": {"kind": "aggregate", "dimension": "country", "top_k": 20,
                          "sort": "count_desc"},
             "assumptions": []}}),
-    ("Which drugs are frequently combined in melanoma studies?", {"decision": "plan", "plan": {
+    ("Which drugs are frequently combined in melanoma studies?", "submit_plan", {"plan": {
         "cohorts": [{"label": "Melanoma", "condition": "melanoma"}],
         "analysis": {"kind": "cooccurrence", "top_k": 30,
                      "pair": {"left": "intervention", "right": "intervention", "scope": "arm",
                               "exclude_placebo": True, "exclude_ancillary": True,
                               "drugs_only": True, "max_edges": 40}},
         "assumptions": ["'Combined' = assigned together in the same arm group."]}}),
-    ("Compare sponsor types for Alzheimer's and Parkinson's trials", {"decision": "plan", "plan": {
+    ("Compare sponsor types for Alzheimer's and Parkinson's trials", "submit_plan", {"plan": {
         "cohorts": [{"label": "Alzheimer's disease", "condition": "alzheimer's disease"},
                     {"label": "Parkinson's disease", "condition": "parkinson's disease"}],
         "analysis": {"kind": "aggregate", "dimension": "sponsor_class", "series_by": "cohort"},
         "assumptions": ["'Sponsor types' = lead sponsor class."]}}),
-    ("Show me the immunotherapy landscape", {"decision": "clarify", "clarification": {
+    ("Show me the immunotherapy landscape", "ask_clarification", {
         "question": "Which view of immunotherapy trials would be most useful?",
         "options": [
             {"label": "Trend", "description": "Immunotherapy trials started per year",
@@ -50,13 +50,11 @@ EXAMPLES: list[tuple[str, dict[str, Any]]] = [
             {"label": "Conditions", "description": "Most studied conditions",
              "plan": {"cohorts": [{"label": "Immunotherapy", "intervention": "immunotherapy"}],
                       "analysis": {"kind": "aggregate", "dimension": "condition", "top_k": 20,
-                                   "sort": "count_desc"}, "assumptions": []}}]}}),
-    ("Which melanoma drugs had the best overall survival?", {
-        "decision": "unsupported",
-        "unsupported_reason": "Efficacy/outcome results are not analyzed; only registration "
-                              "data (phases, dates, sites, interventions, sponsors). A related "
-                              "answerable question: 'Which drugs are most studied in Phase 3 "
-                              "melanoma trials?'"}),
+                                   "sort": "count_desc"}, "assumptions": []}}]}),
+    ("Which melanoma drugs had the best overall survival?", "declare_unsupported", {
+        "reason": "Efficacy/outcome results are not analyzed; only registration data (phases, "
+                  "dates, sites, interventions, sponsors). A related answerable question: "
+                  "'Which drugs are most studied in Phase 3 melanoma trials?'"}),
 ]
 
 
@@ -71,8 +69,8 @@ def system_prompt(today: date | None = None) -> str:
         f"{'; multi-valued' if f.multi_valued else ''}"
         f"{'. ' + f.description if f.description else ''}"
         for f in REGISTRY.values())
-    examples = "\n\n".join(f"Q: {q}\nA: {json.dumps(a, ensure_ascii=False)}"
-                           for q, a in EXAMPLES)
+    examples = "\n\n".join(f"Q: {q}\nA: {tool}({json.dumps(args, ensure_ascii=False)})"
+                           for q, tool, args in EXAMPLES)
     return f"""\
 You translate a question about clinical trials into a query plan for ClinicalTrials.gov.
 Code — not you — retrieves every matching study, counts, draws the chart and cites evidence.
@@ -114,20 +112,21 @@ A plan has 1-4 cohorts (each a ClinicalTrials.gov search) and one analysis:
 - "drug network" / "drugs" -> pair.drugs_only=true. Keep exclude_placebo and exclude_ancillary
   true unless the user asks about placebo or procedures.
 
-# When to clarify or refuse
-- decision="clarify" only if the question admits materially different charts and no default
+# Answering: finish by calling exactly one answer tool
+- submit_plan: the plan for the question (the normal case).
+- ask_clarification: only if the question admits materially different charts and no default
   above applies. Give 2-3 options, each a complete plan.
-- decision="unsupported" for anything beyond registration data: efficacy, outcomes, safety
-  results, adverse events, costs, individual patients. Suggest an answerable alternative.
+- declare_unsupported: anything beyond registration data (efficacy, outcomes, safety results,
+  adverse events, costs, individual patients) or unrelated to clinical trials. Suggest an
+  answerable alternative.
+Every field of a tool's arguments must be present: use null, [] or false where unused. If an
+answer is rejected, the tool result lists the problems; fix all of them and answer again.
 
-# Tools (optional, at most a few calls)
+# Research tools (optional, at most a few calls, before answering)
 - probe_cohort: returns how many studies a cohort matches and a few titles. Use it when unsure
   a search term is right (0 matches -> try the other field, a synonym or broader wording; over
   20,000 -> add a sensible filter or clarify). Do not mention probe counts in the plan.
 - validate_plan: checks a draft plan and returns errors to fix.
-
-# Output
-Return a PlannerOutput. Every field must be present: use null, [] or false where unused.
 
 # Examples (unused fields omitted here for brevity)
 {examples}

@@ -1,9 +1,9 @@
-"""LLM-facing output schema (strict-structured-output compatible) and its conversion to QueryPlan.
+"""LLM-facing schemas (all fields required, optionals nullable, no defaults) and their conversion
+to QueryPlan.
 
-The internal ``QueryPlan`` uses defaults for readability; strict JSON-schema decoding requires
-every property to be present (optionals as ``null``) and forbids defaults. So the model fills in
-these *draft* models, and ``to_plan`` converts a draft into a validated ``QueryPlan``. Neither
-model has anywhere to put a count, an NCT ID, or chart data.
+The internal ``QueryPlan`` uses defaults for readability; the model instead fills in these explicit
+*draft* models, and ``to_plan`` converts a draft into a validated ``QueryPlan``. None of them has
+anywhere to put a count, an NCT ID, or chart data.
 """
 
 from __future__ import annotations
@@ -83,14 +83,13 @@ class ClarificationDraft(_Draft):
     options: list[OptionDraft] = Field(description="2-3 complete alternative plans.")
 
 
-class PlannerOutput(_Draft):
-    decision: Literal["plan", "clarify", "unsupported"]
-    plan: PlanDraft | None = Field(description="Required when decision='plan'.")
-    clarification: ClarificationDraft | None = Field(
-        description="Required when decision='clarify'.")
-    unsupported_reason: str | None = Field(
-        description="Required when decision='unsupported': what cannot be answered and what "
-                    "similar question can be.")
+# Arguments of the three answer tools; the model finishes by calling exactly one of them.
+class SubmitPlanArgs(_Draft):
+    plan: PlanDraft
+
+
+class DeclareUnsupportedArgs(_Draft):
+    reason: str = Field(description="What cannot be answered, and a similar question that can.")
 
 
 def drop_nulls(value: Any) -> Any:

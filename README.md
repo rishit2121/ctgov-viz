@@ -157,12 +157,13 @@ with structured filters) and one **analysis**. It never sees or produces results
 
 | Control | How |
 |---|---|
-| Nowhere to put data | The output schema has only search terms, enums and analysis options: no counts, IDs or values |
-| Strict decoding | Structured outputs with a strict JSON schema (Claude `output_config.format`, or OpenAI `response_format`) and strict tool inputs; an LLM-facing *draft* schema (all fields required, no defaults) is converted into `QueryPlan` in code |
+| Nowhere to put data | The answer schemas have only search terms, enums and analysis options: no counts, IDs or values |
+| Answers are tool calls | The model must finish by calling exactly one answer tool (`submit_plan`, `ask_clarification`, `declare_unsupported`); free-text replies are rejected. Arguments use an LLM-facing *draft* schema (all fields required, no defaults) converted into `QueryPlan` in code |
+| Validation over decoding | Small tool schemas are strict (grammar-constrained decoding). The plan schema is too large to compile as a decoding grammar (a platform limit), so plan-carrying arguments are validated in code: Pydantic, then the plan validator, then the repair turn. This keeps working as the registry grows |
 | Enums, not prose | Status, phase, study type, dimensions and measures are closed enums |
 | Registry-generated prompt | Dimensions and their legal operations are rendered from the same registry the validator uses, so they cannot disagree (tested) |
-| Grounding tools | `probe_cohort` returns how many studies a cohort matches, plus 3 titles, so the model can fix a zero-hit term or narrow a too-broad one. `validate_plan` lets it self-check. Both are read-only, capped at 4 calls, and then withdrawn |
-| One repair turn | Invalid output → the full list of validation errors → one retry → otherwise `plan_invalid` (never a guess) |
+| Grounding tools | `probe_cohort` returns how many studies a cohort matches, plus 3 titles, so the model can fix a zero-hit term or narrow a too-broad one (e.g. "pembrolizimab"). `validate_plan` lets it self-check. Both are read-only and capped at 4 calls |
+| One repair turn | An invalid answer → the full list of validation errors, returned as that tool call's result → one retry → otherwise `plan_invalid` (never a guess) |
 | Clarification as plans | Each clarification option is a complete validated plan the client can re-submit |
 | Code-generated disclosures | What a number *means* (phase-filter inclusion, "recruiting" scope, start date vs activity, overlap semantics) is written by `registry/linter.py` and the engine, not by the model |
 | Count scrubbing | Model-written assumption sentences that restate a probed study count are dropped |
@@ -178,7 +179,8 @@ Evaluation: `tests/golden/questions.yaml` has 25 differently worded questions: a
 query types, paraphrases, a misspelled drug, ambiguous wording, and out-of-scope questions.
 Each asserts *properties* of the plan (analysis kind, dimension, series, cohort terms,
 filters), not exact JSON. Run with `uv run pytest -m live tests/golden` once
-`ANTHROPIC_API_KEY` is set.
+`ANTHROPIC_API_KEY` is set. Result with `claude-opus-5` (2026-09-23): **25/25**, about 10 s per
+question.
 
 ## What the numbers mean
 
@@ -282,7 +284,7 @@ Charts ship **already aggregated and ordered**; frontends never recompute. `sche
 ## Verification and testing
 
 ```bash
-uv run pytest                      # 201 unit + integration tests, no network (~3 s)
+uv run pytest                      # 204 unit + integration tests, no network (~3 s)
 uv run pytest -m live tests/live   # live CT.gov oracle tests
 uv run pytest -m live tests/golden   # planner golden set (needs ANTHROPIC_API_KEY)
 uv run ruff check . && uv run mypy app

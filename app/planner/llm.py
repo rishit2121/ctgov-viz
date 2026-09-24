@@ -18,7 +18,8 @@ from app.planner.base import PlannerError
 class ToolSpec:
     name: str
     description: str
-    input_schema: dict[str, Any]  # strict JSON schema
+    input_schema: dict[str, Any]  # all fields required, no additional properties
+    strict: bool = False  # grammar-constrained decoding (only for small schemas)
 
 
 @dataclass
@@ -53,18 +54,15 @@ Message = UserMessage | LLMReply | list[ToolResult]
 class LLMClient(Protocol):
     model: str
 
-    async def complete(self, system: str, messages: list[Message], tools: list[ToolSpec],
-                       schema: dict[str, Any], allow_tools: bool = True) -> LLMReply:
-        """``allow_tools=False`` keeps the tool definitions (history may reference them) but
-        forbids new calls, forcing a final answer."""
-        ...
+    async def complete(self, system: str, messages: list[Message],
+                       tools: list[ToolSpec]) -> LLMReply: ...
 
 
 # --------------------------------------------------------------------------- Anthropic
 
 
 class AnthropicLLM:
-    """Claude Messages API: client tools + strict JSON-schema final output.
+    """Claude Messages API with client tools; the final answer arrives as an answer-tool call.
 
     Adaptive thinking is on by default for Claude Opus 5; its thinking blocks are carried in
     ``LLMReply.raw`` and returned unchanged. Server-side refusal fallbacks are enabled so a
@@ -100,25 +98,22 @@ class AnthropicLLM:
                     for r in m]})
         return wire
 
-    async def complete(self, system: str, messages: list[Message], tools: list[ToolSpec],
-                       schema: dict[str, Any], allow_tools: bool = True) -> LLMReply:
+    async def complete(self, system: str, messages: list[Message],
+                       tools: list[ToolSpec]) -> LLMReply:
         import anthropic
 
-        output_config: dict[str, Any] = {"format": {"type": "json_schema", "schema": schema}}
-        if self.effort:
-            output_config["effort"] = self.effort
         request: dict[str, Any] = {
             "model": self.model,
             "max_tokens": 16000,
             "system": system,
             "messages": self.to_wire(messages),
             "tools": [{"name": t.name, "description": t.description,
-                       "input_schema": t.input_schema, "strict": True} for t in tools],
-            "tool_choice": {"type": "auto" if allow_tools else "none"},
-            "output_config": output_config,
+                       "input_schema": t.input_schema, "strict": t.strict} for t in tools],
             "betas": [self.FALLBACK_BETA],
             "fallbacks": "default",
         }
+        if self.effort:
+            request["output_config"] = {"effort": self.effort}
         create: Any = self._client.beta.messages.create  # request built as a plain dict
         try:
             response = await create(**request)
@@ -145,7 +140,7 @@ class AnthropicLLM:
 
 
 class OpenAIChatLLM:
-    """Chat Completions with strict JSON-schema output and function tools."""
+    """Chat Completions with function tools; the final answer arrives as an answer-tool call."""
 
     def __init__(self, api_key: str, model: str, timeout_s: float,
                  reasoning_effort: str | None = None):
@@ -172,21 +167,17 @@ class OpenAIChatLLM:
                           "content": json.dumps(r.payload)} for r in m]
         return wire
 
-    async def complete(self, system: str, messages: list[Message], tools: list[ToolSpec],
-                       schema: dict[str, Any], allow_tools: bool = True) -> LLMReply:
+    async def complete(self, system: str, messages: list[Message],
+                       tools: list[ToolSpec]) -> LLMReply:
         import openai
 
         kwargs: dict[str, Any] = {
             "model": self.model,
             "messages": self.to_wire(system, messages),
-            "response_format": {"type": "json_schema", "json_schema": {
-                "name": "planner_output", "schema": schema, "strict": True}},
-        }
-        if tools:
-            kwargs["tools"] = [{"type": "function", "function": {
+            "tools": [{"type": "function", "function": {
                 "name": t.name, "description": t.description, "parameters": t.input_schema,
-                "strict": True}} for t in tools]
-            kwargs["tool_choice"] = "auto" if allow_tools else "none"
+                "strict": t.strict}} for t in tools],
+        }
         if self.reasoning_effort:
             kwargs["reasoning_effort"] = self.reasoning_effort
         try:
@@ -208,11 +199,11 @@ class ScriptedLLM:
     def __init__(self, replies: list[LLMReply], model: str = "scripted"):
         self.model = model
         self.replies = list(replies)
-        self.calls: list[tuple[list[Message], bool]] = []  # (messages sent, tools allowed)
+        self.calls: list[list[Message]] = []  # the messages sent on each call
 
-    async def complete(self, system: str, messages: list[Message], tools: list[ToolSpec],
-                       schema: dict[str, Any], allow_tools: bool = True) -> LLMReply:
-        self.calls.append((list(messages), allow_tools))
+    async def complete(self, system: str, messages: list[Message],
+                       tools: list[ToolSpec]) -> LLMReply:
+        self.calls.append(list(messages))
         if not self.replies:
             raise AssertionError("ScriptedLLM ran out of replies")
         return self.replies.pop(0)

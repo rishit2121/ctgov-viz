@@ -20,16 +20,24 @@ from app.planner.llm import (
     UserMessage,
 )
 from app.planner.offline import ExamplePlanner
-from app.planner.planner import OUTPUT_SCHEMA, LLMPlanner, make_planner
+from app.planner.planner import LLMPlanner, make_planner
 from app.planner.prompt import EXAMPLES, system_prompt
-from app.planner.schema import CohortDraft, PlannerOutput, to_plan
+from app.planner.schema import (
+    ClarificationDraft,
+    CohortDraft,
+    DeclareUnsupportedArgs,
+    PlanDraft,
+    SubmitPlanArgs,
+    to_plan,
+)
+from app.planner.tools import ANSWER_TOOLS, RESEARCH_TOOLS, TOOL_SPECS
 from app.registry.fields import REGISTRY
 from app.registry.validator import validate_plan
 from app.settings import Settings
 from tests.conftest import study
 from tests.integration.fake_ctgov import FakeCTGov
 
-# ------------------------------------------------------------------ building strict outputs
+# ------------------------------------------------------------------ building tool arguments
 
 
 def _fill(model: type[BaseModel], data: dict[str, Any]) -> dict[str, Any]:
@@ -55,12 +63,9 @@ def _fill(model: type[BaseModel], data: dict[str, Any]) -> dict[str, Any]:
     return out
 
 
-def output(compact: dict[str, Any]) -> str:
-    full = _fill(PlannerOutput, compact)
-    PlannerOutput.model_validate(full)  # the helper itself must produce schema-valid output
-    return json.dumps(full)
-
-
+ANSWER_ARGS: dict[str, type[BaseModel]] = {
+    "submit_plan": SubmitPlanArgs, "ask_clarification": ClarificationDraft,
+    "declare_unsupported": DeclareUnsupportedArgs}
 PHASE_PLAN = {"cohorts": [{"label": "Melanoma", "condition": "melanoma"}],
               "analysis": {"kind": "aggregate", "dimension": "phase"}, "assumptions": []}
 
@@ -73,8 +78,13 @@ def planner(replies: list[LLMReply], studies: int = 3, **settings: Any) -> tuple
     return LLMPlanner(llm, fake.client(), Settings(**settings)), llm
 
 
-def answer(compact: dict[str, Any]) -> LLMReply:
-    return LLMReply(content=output(compact))
+def call(tool: str, compact: dict[str, Any], call_id: str = "a1") -> ToolCall:
+    return ToolCall(call_id, tool, json.dumps(_fill(ANSWER_ARGS[tool], compact)))
+
+
+def submit(plan: dict[str, Any] | None = PHASE_PLAN, call_id: str = "a1") -> LLMReply:
+    args = {"plan": plan} if plan is not None else {}
+    return LLMReply(content=None, tool_calls=[call("submit_plan", args, call_id)])
 
 
 def probe(call_id: str, condition: str = "melanoma") -> ToolCall:
@@ -86,54 +96,55 @@ def probe(call_id: str, condition: str = "melanoma") -> ToolCall:
 
 
 async def test_direct_plan() -> None:
-    p, llm = planner([answer({"decision": "plan", "plan": PHASE_PLAN})])
+    p, llm = planner([submit()])
     result = await p.plan("Melanoma trials by phase?")
     assert result.kind == "plan" and result.plan is not None
     assert result.plan.analysis.dimension is not None
     assert result.llm.tool_calls == [] and not result.llm.repaired
-    assert llm.calls[0][0] == [UserMessage("Melanoma trials by phase?")]
+    assert llm.calls[0] == [UserMessage("Melanoma trials by phase?")]
 
 
 async def test_probe_tool_result_is_fed_back() -> None:
-    p, llm = planner([LLMReply(content=None, tool_calls=[probe("c1")]),
-                      answer({"decision": "plan", "plan": PHASE_PLAN})], studies=3)
+    p, llm = planner([LLMReply(content=None, tool_calls=[probe("c1")]), submit()], studies=3)
     result = await p.plan("q")
     assert result.llm.tool_calls == ["probe_cohort"]
-    (result_msg,) = llm.calls[1][0][-1]  # the tool results of the previous turn
+    (result_msg,) = llm.calls[1][-1]  # the tool results of the previous turn
     assert result_msg.call_id == "c1"
     assert result_msg.payload["matches"] == 3 and len(result_msg.payload["sample_titles"]) == 3
 
 
 async def test_probe_reports_zero_and_too_broad() -> None:
-    p, llm = planner([LLMReply(None, [probe("a", "nothing"), probe("b")]),
-                      answer({"decision": "plan", "plan": PHASE_PLAN})],
+    p, llm = planner([LLMReply(None, [probe("a", "nothing"), probe("b")]), submit()],
                      studies=5, max_studies_per_cohort=4)
     await p.plan("q")
-    msgs = [r.payload for r in llm.calls[1][0][-1]]
+    msgs = [r.payload for r in llm.calls[1][-1]]
     assert msgs[0]["matches"] == 0 and "No matches" in msgs[0]["hint"]
     assert msgs[1]["matches"] == 5 and "Too broad" in msgs[1]["hint"]
 
 
-async def test_tool_budget_is_enforced() -> None:
+async def test_research_budget_is_enforced() -> None:
     p, llm = planner([LLMReply(None, [probe(f"c{i}") for i in range(3)]),
                       LLMReply(None, [probe("c3"), probe("c4")]),
-                      answer({"decision": "plan", "plan": PHASE_PLAN})],
-                     planner_max_tool_calls=4)
+                      submit()], planner_max_tool_calls=4)
     result = await p.plan("q")
     assert len(result.llm.tool_calls) == 4
-    assert "budget exhausted" in llm.calls[2][0][-1][-1].payload["error"]
-    assert [allowed for _, allowed in llm.calls] == [True, True, False]  # then answer-only
+    assert "budget used up" in llm.calls[2][-1][-1].payload["error"]
 
 
 async def test_validate_plan_tool() -> None:
     bad = {**PHASE_PLAN, "analysis": {"kind": "aggregate"}}
-    draft = json.loads(output({"decision": "plan", "plan": bad}))["plan"]
+    draft = _fill(PlanDraft, bad)
     p, llm = planner([LLMReply(None, [ToolCall("v", "validate_plan",
-                                               json.dumps({"plan": draft}))]),
-                      answer({"decision": "plan", "plan": PHASE_PLAN})])
+                                               json.dumps({"plan": draft}))]), submit()])
     await p.plan("q")
-    payload = llm.calls[1][0][-1][0].payload
+    payload = llm.calls[1][-1][0].payload
     assert payload["valid"] is False and any("exactly one" in e for e in payload["errors"])
+
+
+async def test_research_and_answer_in_one_turn() -> None:
+    reply = LLMReply(None, [probe("c1"), *submit().tool_calls])
+    p, _ = planner([reply])
+    assert (await p.plan("q")).kind == "plan"
 
 
 # ------------------------------------------------------------------ repair
@@ -142,46 +153,58 @@ async def test_validate_plan_tool() -> None:
 async def test_invalid_plan_gets_one_repair_turn() -> None:
     bad = {**PHASE_PLAN, "analysis": {"kind": "aggregate", "dimension": "phase",
                                       "series_by": "cohort"}}
-    p, llm = planner([answer({"decision": "plan", "plan": bad}),
-                      answer({"decision": "plan", "plan": PHASE_PLAN})])
+    p, llm = planner([submit(bad), submit(call_id="a2")])
     result = await p.plan("q")
     assert result.kind == "plan" and result.llm.repaired
-    feedback = llm.calls[1][0][-1]
-    assert isinstance(feedback, UserMessage)
-    assert "requires at least two cohorts" in feedback.text
+    (feedback,) = llm.calls[1][-1]  # rejection is the answer tool's own result
+    assert feedback.call_id == "a1" and "error" in feedback.payload
+    assert any("requires at least two cohorts" in e for e in feedback.payload["problems"])
 
 
 async def test_second_failure_raises_plan_invalid() -> None:
-    p, _ = planner([LLMReply("not json"), LLMReply("{}")])
+    p, _ = planner([LLMReply("I think the answer is a bar chart."), LLMReply("{}")])
     with pytest.raises(PlannerError) as exc:
         await p.plan("q")
     assert exc.value.code == "plan_invalid"
 
 
+async def test_text_reply_is_asked_to_use_an_answer_tool() -> None:
+    p, llm = planner([LLMReply("Here is my plan..."), submit()])
+    result = await p.plan("q")
+    assert result.llm.repaired
+    nudge = llm.calls[1][-1]
+    assert isinstance(nudge, UserMessage) and "submit_plan" in nudge.text
+
+
 async def test_missing_plan_body_is_repaired() -> None:
-    p, _ = planner([answer({"decision": "plan"}),
-                    answer({"decision": "plan", "plan": PHASE_PLAN})])
+    p, _ = planner([submit(plan=None), submit(call_id="a2")])
     assert (await p.plan("q")).llm.repaired
+
+
+async def test_second_answer_in_one_turn_is_rejected() -> None:
+    reply = LLMReply(None, [*submit(PHASE_PLAN, "a1").tool_calls,
+                            call("declare_unsupported", {"reason": "x"}, "a2")])
+    p, _ = planner([reply])
+    assert (await p.plan("q")).kind == "plan"  # the first answer wins
 
 
 # ------------------------------------------------------------------ other outcomes
 
 
 async def test_clarification_options_are_validated_plans() -> None:
-    clarify = {"decision": "clarify", "clarification": {
-        "question": "Which view?",
-        "options": [{"label": "Phases", "description": "By phase", "plan": PHASE_PLAN},
-                    {"label": "Trend", "description": "By year", "plan": {
-                        **PHASE_PLAN, "analysis": {"kind": "aggregate", "time": {}}}}]}}
-    p, _ = planner([answer(clarify)])
+    clarify = {"question": "Which view?",
+               "options": [{"label": "Phases", "description": "By phase", "plan": PHASE_PLAN},
+                           {"label": "Trend", "description": "By year", "plan": {
+                               **PHASE_PLAN, "analysis": {"kind": "aggregate", "time": {}}}}]}
+    p, _ = planner([LLMReply(None, [call("ask_clarification", clarify)])])
     result = await p.plan("q")
     assert result.kind == "clarify" and result.clarification is not None
     assert [o.label for o in result.clarification.options] == ["Phases", "Trend"]
 
 
 async def test_unsupported() -> None:
-    p, _ = planner([answer({"decision": "unsupported",
-                            "unsupported_reason": "Outcomes are not analyzed."})])
+    p, _ = planner([LLMReply(None, [call("declare_unsupported",
+                                         {"reason": "Outcomes are not analyzed."})])])
     result = await p.plan("Which drug works best?")
     assert result.kind == "unsupported" and result.message == "Outcomes are not analyzed."
 
@@ -190,8 +213,7 @@ async def test_assumptions_repeating_probe_counts_are_dropped() -> None:
     plan = {**PHASE_PLAN, "assumptions": ["There are 1,234 melanoma studies.",
                                           "Phase 3 includes Phase 2/3 studies.",
                                           "Trend starts in 2015."]}
-    p, _ = planner([LLMReply(None, [probe("c")]),
-                    answer({"decision": "plan", "plan": plan})], studies=1234)
+    p, _ = planner([LLMReply(None, [probe("c")]), submit(plan)], studies=1234)
     result = await p.plan("q")
     assert result.plan is not None
     assert result.plan.assumptions == ["Phase 3 includes Phase 2/3 studies.",
@@ -207,17 +229,18 @@ def test_prompt_is_generated_from_the_registry() -> None:
         assert f"- {f.name.value}: {f.title}" in prompt
 
 
-@pytest.mark.parametrize(("question", "compact"), EXAMPLES, ids=[q for q, _ in EXAMPLES])
-def test_prompt_examples_are_valid_outputs(question: str, compact: dict[str, Any]) -> None:
-    out = PlannerOutput.model_validate_json(output(compact))
-    drafts = [out.plan] if out.plan else [o.plan for o in
-                                          (out.clarification.options if out.clarification
-                                           else [])]
+@pytest.mark.parametrize(("question", "tool", "compact"), EXAMPLES,
+                         ids=[q for q, _, _ in EXAMPLES])
+def test_prompt_examples_are_valid_answers(question: str, tool: str,
+                                           compact: dict[str, Any]) -> None:
+    args = ANSWER_ARGS[tool].model_validate(_fill(ANSWER_ARGS[tool], compact))
+    drafts = ([args.plan] if isinstance(args, SubmitPlanArgs) else
+              [o.plan for o in args.options] if isinstance(args, ClarificationDraft) else [])
     for draft in drafts:
         assert validate_plan(to_plan(draft)) == [], question
 
 
-def test_output_schema_is_strict() -> None:
+def test_tool_schemas_are_closed_and_small_ones_strict() -> None:
     def walk(node: Any) -> None:
         if isinstance(node, dict):
             assert "default" not in node
@@ -229,7 +252,10 @@ def test_output_schema_is_strict() -> None:
         elif isinstance(node, list):
             for v in node:
                 walk(v)
-    walk(OUTPUT_SCHEMA)
+    for spec in TOOL_SPECS:
+        walk(spec.input_schema)
+    assert {t.name for t in TOOL_SPECS if t.strict} == {"probe_cohort", "declare_unsupported"}
+    assert {t.name for t in TOOL_SPECS} == RESEARCH_TOOLS | ANSWER_TOOLS
 
 
 async def test_offline_planner_answers_only_examples() -> None:
