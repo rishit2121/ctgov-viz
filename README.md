@@ -6,6 +6,8 @@ Ask a question about clinical trials in plain English and get back a chart built
 
 *"For interventional breast cancer studies that started from 2020 through 2024 and are currently recruiting, which 10 countries have the most Phase 2 and Phase 3 trials? Show the counts by phase for each country."*
 
+**Live demo:** [ctgov-viz.onrender.com](https://ctgov-viz.onrender.com). It runs on Render's free tier, so if it has been idle the first load can take up to a minute while the server wakes up. A short demo video (`demo/ctgov-viz-demo.mov`) is included in the submission zip.
+
 The app finds matching studies, counts distinct trials, and returns both the chart and the data behind it. Claude interprets the question; the actual counts, chart data, and citations come from code and ClinicalTrials.gov records.
 
 ## Run it locally

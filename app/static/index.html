@@ -69,6 +69,10 @@
             margin-top: 6px; }
   .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px;
                          border-radius: 50%; background: var(--c); margin-right: 5px; }
+  .note { font-size: 13px; color: var(--ink-2); background: var(--page); border: 1px solid var(--ring);
+          border-radius: 8px; padding: 7px 11px; margin: 0 0 10px; }
+  .note strong { color: var(--ink); }
+  #hosting { margin: 10px 0 0; }
   .options button { display: block; width: 100%; text-align: left; margin-top: 8px; }
   .options small { color: var(--ink-2); display: block; }
   .tooltip { position: fixed; pointer-events: none; background: var(--surface); color: var(--ink);
@@ -83,6 +87,9 @@
   <h1>ctgov-viz</h1>
   <p>Ask about clinical trials. Every number is computed from the complete set of matching
      ClinicalTrials.gov records, and every bar, point, node and edge cites its source studies.</p>
+  <p class="note" id="hosting" hidden>This demo runs on Render's free tier. If it has been idle,
+     the server may take up to a minute to wake up, so the first question can be slow. Later
+     questions take about 10–20 seconds (every matching study is downloaded and analyzed).</p>
 </header>
 <main>
   <form class="card" id="ask">
@@ -118,8 +125,8 @@
       </div>
       <aside class="card" id="panel">
         <h3>Citations</h3>
-        <p class="hint">Click a bar, point, node or edge to see the studies behind it and the
-          exact record text that supports it.</p>
+        <p class="hint">Click a bar, point, network node or connection line to see the studies
+          behind it and the exact record text that supports it.</p>
       </aside>
     </div>
     <div class="card">
@@ -146,6 +153,8 @@ const EXAMPLES = [
   "How does enrollment relate to study duration for Phase 3 breast cancer trials?",
 ];
 const $ = (s) => document.querySelector(s);
+const ON_RENDER = location.hostname.endsWith("onrender.com");
+if (ON_RENDER) document.getElementById("hosting").hidden = false;
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 let response = null;
 
@@ -177,7 +186,9 @@ async function ask(body) {
   $("#go").disabled = true;
   const started = performance.now();
   const timer = setInterval(() => {
-    $("#status").textContent = `Planning and retrieving every matching study… ${((performance.now() - started) / 1000).toFixed(0)}s`;
+    const secs = (performance.now() - started) / 1000;
+    $("#status").textContent = `Planning and retrieving every matching study… ${secs.toFixed(0)}s` +
+      (ON_RENDER && secs > 10 ? " (the free-tier server may still be waking up)" : "");
   }, 250);
   try {
     const r = await fetch("/query", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
@@ -258,6 +269,11 @@ function selectRow(viz, i) {
 // ---------------------------------------------------------------- network
 
 function renderNetwork(viz) {
+  $("#chart").insertAdjacentHTML("beforeend",
+    `<p class="note"><strong>Tip:</strong> click a <strong>connection line</strong> to see the studies that
+     share both endpoints, with their record excerpts; line thickness is the number of studies. Click a
+     <strong>node</strong> for its study count and citations. Hover to highlight neighbors; drag nodes; scroll
+     to zoom.</p>`);
   const width = $("#chart").clientWidth || 800, height = 600;
   const maxN = d3.max(viz.nodes, (n) => n.study_count) || 1;
   const maxW = d3.max(viz.edges, (e) => e.weight) || 1;
@@ -328,7 +344,7 @@ function hideTip() { $("#tip").style.display = "none"; }
 // ---------------------------------------------------------------- citations panel
 
 function resetPanel() {
-  $("#panel").innerHTML = `<h3>Citations</h3><p class="hint">Click a bar, point, node or edge to see the studies behind it and the exact record text that supports it.</p>`;
+  $("#panel").innerHTML = `<h3>Citations</h3><p class="hint">Click a bar, point, network node or connection line to see the studies behind it and the exact record text that supports it.</p>`;
 }
 
 function citationHtml(c) {

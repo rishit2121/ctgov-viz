@@ -18,4 +18,4 @@ services:
       - key: LLM_REQUESTS_PER_DAY
         value: "200"
       - key: RESPONSE_CACHE_SIZE
-        value: "48"
+        value: "16"       # fits the 512 MB free instance
