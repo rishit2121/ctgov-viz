@@ -32,7 +32,7 @@
   },
   "assumptions": [
    "Trials are those listing the drug as an intervention, any status, study type or year.",
-   "Phase buckets come from registered phase; multi-phase studies form combined buckets (e.g. Phase 1/2)."
+   "Phases are shown in natural order; studies without a registered phase appear as 'Not Applicable' or 'Not Reported'."
   ]
  },
  "visualization": {
@@ -3357,7 +3357,7 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T09:16:21+00:00",
+  "retrieved_at": "2026-09-24T09:56:24+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "intervention_match": "Studies are matched with ClinicalTrials.gov's intervention search, which includes brand names and development codes (e.g. 'Keytruda', 'MK-3475').",
@@ -3402,7 +3402,7 @@
   "excluded": {},
   "assumptions": [
    "Trials are those listing the drug as an intervention, any status, study type or year.",
-   "Phase buckets come from registered phase; multi-phase studies form combined buckets (e.g. Phase 1/2).",
+   "Phases are shown in natural order; studies without a registered phase appear as 'Not Applicable' or 'Not Reported'.",
    "Each cohort is retrieved independently; a study matching several cohorts counts in each of their series (see meta.cohort_overlap)."
   ],
   "warnings": [],
@@ -3414,10 +3414,10 @@
   },
   "timings_ms": {
    "preflight": 217,
-   "fetch": 2711,
-   "analyze": 170,
-   "verify": 7,
-   "total": 3113
+   "fetch": 2421,
+   "analyze": 178,
+   "verify": 9,
+   "total": 2832
   }
  }
 }

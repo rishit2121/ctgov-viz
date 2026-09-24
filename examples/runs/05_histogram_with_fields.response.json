@@ -1,15 +1,17 @@
 {
  "status": "ok",
- "query_id": "q_d96dd0ef968c2306",
- "query": "What is the distribution of enrollment sizes for Phase 3 breast cancer trials?",
+ "query_id": "q_ccce68393699f230",
+ "query": "What is the distribution of enrollment sizes?",
  "plan": {
   "version": "1",
   "cohorts": [
    {
-    "label": "Phase 3 breast cancer",
+    "label": "Breast cancer, Phase 3, completed",
     "condition": "breast cancer",
     "filters": {
-     "overall_status": [],
+     "overall_status": [
+      "COMPLETED"
+     ],
      "phase": [
       "PHASE3"
      ]
@@ -24,23 +26,24 @@
    }
   },
   "assumptions": [
-   "'Enrollment size' = registered enrollment (actual, or anticipated for ongoing studies), shown as a histogram over fixed bins.",
-   "Studies without a registered enrollment are excluded.",
-   "Phase 3 = studies registered with phase Phase 3 (including Phase 2/3 combined buckets only if registered as such is excluded; strictly the Phase 3 filter)."
+   "Enrollment = registered enrollment (actual, or anticipated where actual is not reported), grouped into fixed size bins; studies without enrollment data are excluded.",
+   "Restricted to completed Phase 3 breast cancer trials as specified.",
+   "Request field condition='breast cancer' applied to every cohort.",
+   "Request field trial_phase=[PHASE3] applied to every cohort.",
+   "Request field status=[COMPLETED] applied to every cohort."
   ]
  },
  "visualization": {
   "schema_version": "1.0",
   "type": "histogram",
-  "title": "Phase 3 breast cancer studies by enrollment (participants)",
-  "subtitle": "Phase 3 (incl. multi-phase) · distinct studies (NCT IDs)",
+  "title": "Breast cancer, Phase 3, completed studies by enrollment (participants)",
+  "subtitle": "Completed · Phase 3 (incl. multi-phase) · distinct studies (NCT IDs)",
   "encoding": {
    "x": {
     "field": "enrollment_size",
     "type": "ordinal",
     "title": "Enrollment (participants)",
     "sort": [
-     "0",
      "1–9",
      "10–49",
      "50–99",
@@ -69,216 +72,26 @@
    "show_totals": false
   },
   "palette": {
-   "Phase 3 breast cancer": "#2a78d6"
+   "Breast cancer, Phase 3, completed": "#2a78d6"
   },
   "data": [
    {
-    "enrollment_size": "0",
-    "study_count": 28,
-    "evidence": {
-     "total": 28,
-     "sample": [
-      "NCT00041171",
-      "NCT00053339",
-      "NCT00301886",
-      "NCT00324714",
-      "NCT00397761"
-     ],
-     "complete_inline": false,
-     "ref": "/query/q_d96dd0ef968c2306/evidence/r0"
-    },
-    "citations": [
-     {
-      "nct_id": "NCT00041171",
-      "title": "Docetaxel and St. John's Wort in Treating Patients With Solid Tumors That Cannot Be Removed By Surgery",
-      "url": "https://clinicaltrials.gov/study/NCT00041171",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00041171",
-      "excerpt": "0",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "0",
-        "supports": "enrollment in bin 0"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[1]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00053339",
-      "title": "Trastuzumab With or Without Tamoxifen in Treating Women With Progressive Stage IV Breast Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT00053339",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00053339",
-      "excerpt": "0",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "0",
-        "supports": "enrollment in bin 0"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Stage IV Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00301886",
-      "title": "S0308 Zoledronate or Ibandronate in Preventing Bone Problems in Women With Stage IV Breast Cancer That Has Spread to the Bone",
-      "url": "https://clinicaltrials.gov/study/NCT00301886",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00301886",
-      "excerpt": "0",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "0",
-        "supports": "enrollment in bin 0"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00324714",
-      "title": "Risedronate in Improving Bone Mineral Density and Bone Health in Postmenopausal Women With Ductal Carcinoma In Situ Enrolled in Clinical Trial CRUK-IBIS-II-DCIS",
-      "url": "https://clinicaltrials.gov/study/NCT00324714",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00324714",
-      "excerpt": "0",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "0",
-        "supports": "enrollment in bin 0"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00397761",
-      "title": "Capecitabine and Paclitaxel (Albumin-Stabilized Nanoparticle Formulation) in Treating Women Undergoing Surgery for Stage II or Stage III Breast Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT00397761",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00397761",
-      "excerpt": "0",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "0",
-        "supports": "enrollment in bin 0"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[1]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     }
-    ]
-   },
-   {
     "enrollment_size": "1–9",
-    "study_count": 14,
+    "study_count": 1,
     "evidence": {
-     "total": 14,
+     "total": 1,
      "sample": [
-      "NCT00301080",
-      "NCT00429403",
-      "NCT00581113",
-      "NCT00998738",
-      "NCT01259284"
+      "NCT01942980"
      ],
-     "complete_inline": false,
-     "ref": "/query/q_d96dd0ef968c2306/evidence/r1"
+     "complete_inline": true,
+     "ref": "/query/q_ccce68393699f230/evidence/r0"
     },
     "citations": [
      {
-      "nct_id": "NCT00301080",
-      "title": "D-cycloserine in the Management of Chemotherapy-Induced Peripheral Neuropathic Pain",
-      "url": "https://clinicaltrials.gov/study/NCT00301080",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00301080",
-      "excerpt": "7",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "7",
-        "supports": "enrollment in bin 1–9"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[2]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00429403",
-      "title": "Goserelin Acetate Study for Ovarian Function in Patients With Primary Breast Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT00429403",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00429403",
-      "excerpt": "1",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "1",
-        "supports": "enrollment in bin 1–9"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00581113",
-      "title": "Neural Stem Cell Preserving Brain Radiation Therapy & Stereotactic Radiosurgery in Patients With 1-6 Brain Metastases",
-      "url": "https://clinicaltrials.gov/study/NCT00581113",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00581113",
+      "nct_id": "NCT01942980",
+      "title": "Evaluation of the Efficacy of Hippocampal Avoidance on the Cognitive Toxicity of Whole-Brain Radiation Therapy After Surgical Resection of Single Brain Metastasis of Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01942980",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01942980",
       "excerpt": "8",
       "excerpts": [
        {
@@ -287,62 +100,19 @@
         "supports": "enrollment in bin 1–9"
        },
        {
-        "field": "protocolSection.conditionsModule.conditions[1]",
+        "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00998738",
-      "title": "Calcium and Magnesium in Preventing Peripheral Neuropathy Caused by Ixabepilone in Patients With Breast Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT00998738",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00998738",
-      "excerpt": "1",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "1",
-        "supports": "enrollment in bin 1–9"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[3]",
-        "text": "Stage IV Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT01259284",
-      "title": "Fish Oil Versus Statins Versus Placebos in Reducing Atrial Fibrillation in Patients Undergoing Thoracic Surgery for Lung Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT01259284",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01259284",
-      "excerpt": "2",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "2",
-        "supports": "enrollment in bin 1–9"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions",
-        "text": null,
-        "supports": "cohort 'Phase 3 breast cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
-       },
-       {
-        "field": "protocolSection.designModule.phases[1]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      }
@@ -350,18 +120,18 @@
    },
    {
     "enrollment_size": "10–49",
-    "study_count": 85,
+    "study_count": 32,
     "evidence": {
-     "total": 85,
+     "total": 32,
      "sample": [
       "NCT00004230",
-      "NCT00028704",
-      "NCT00049660",
-      "NCT00066807",
-      "NCT00169104"
+      "NCT00195013",
+      "NCT00245050",
+      "NCT00333047",
+      "NCT00357734"
      ],
      "complete_inline": false,
-     "ref": "/query/q_d96dd0ef968c2306/evidence/r2"
+     "ref": "/query/q_ccce68393699f230/evidence/r1"
     },
     "citations": [
      {
@@ -379,108 +149,133 @@
        {
         "field": "protocolSection.conditionsModule.conditions",
         "text": null,
-        "supports": "cohort 'Phase 3 breast cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+        "supports": "cohort 'Breast cancer, Phase 3, completed': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
      {
-      "nct_id": "NCT00028704",
-      "title": "Breast-Conserving Therapy Compared With Mastectomy Followed By Radiation Therapy in Treating Women With Locally Advanced Breast Cancer Previously Treated With Chemotherapy",
-      "url": "https://clinicaltrials.gov/study/NCT00028704",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00028704",
-      "excerpt": "26",
+      "nct_id": "NCT00195013",
+      "title": "Randomized Placebo-Controlled Trial of Glutamine for Breast Cancer Patients With Peripheral Neuropathy",
+      "url": "https://clinicaltrials.gov/study/NCT00195013",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00195013",
+      "excerpt": "30",
       "excerpts": [
        {
         "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "26",
+        "text": "30",
+        "supports": "enrollment in bin 10–49"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00245050",
+      "title": "Pyridoxine in Preventing Hand-Foot Syndrome in Patients Who Are Receiving Liposomal Doxorubicin for Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00245050",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00245050",
+      "excerpt": "34",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "34",
         "supports": "enrollment in bin 10–49"
        },
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
      {
-      "nct_id": "NCT00049660",
-      "title": "Capecitabine Compared With Vinorelbine in Treating Women With Metastatic Breast Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT00049660",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00049660",
-      "excerpt": "47",
+      "nct_id": "NCT00333047",
+      "title": "Letrozole in Metastatic Breast Cancer in Combination With Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT00333047",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00333047",
+      "excerpt": "24",
       "excerpts": [
        {
         "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "47",
-        "supports": "enrollment in bin 10–49"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[1]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00066807",
-      "title": "Premenopausal Endocrine Responsive Chemotherapy Trial",
-      "url": "https://clinicaltrials.gov/study/NCT00066807",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00066807",
-      "excerpt": "29",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "29",
-        "supports": "enrollment in bin 10–49"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00169104",
-      "title": "Effects of Granulocyte Colony-stimulating Factor (G-CSF), Trastuzumab, and Vinorelbine on Immune Cell Function",
-      "url": "https://clinicaltrials.gov/study/NCT00169104",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00169104",
-      "excerpt": "23",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "23",
+        "text": "24",
         "supports": "enrollment in bin 10–49"
        },
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[1]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00357734",
+      "title": "Iressa Follow-up Trial",
+      "url": "https://clinicaltrials.gov/study/NCT00357734",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00357734",
+      "excerpt": "14",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "14",
+        "supports": "enrollment in bin 10–49"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      }
@@ -488,18 +283,18 @@
    },
    {
     "enrollment_size": "50–99",
-    "study_count": 129,
+    "study_count": 64,
     "evidence": {
-     "total": 129,
+     "total": 64,
      "sample": [
       "NCT00001338",
-      "NCT00005983",
       "NCT00008411",
       "NCT00026117",
-      "NCT00038402"
+      "NCT00038402",
+      "NCT00046865"
      ],
      "complete_inline": false,
-     "ref": "/query/q_d96dd0ef968c2306/evidence/r3"
+     "ref": "/query/q_ccce68393699f230/evidence/r2"
     },
     "citations": [
      {
@@ -517,36 +312,17 @@
        {
         "field": "protocolSection.identificationModule.briefTitle",
         "text": "A Prospective, Randomized, Phase III Trial of FLAC (5-Fluorouracil, Leucovorin, Adriamycin, Cytoxan) Chemotherapy With GM-CSF (Granulocyte-Macrophage Colony-Stimulating Factor) Versus PIXY 321 in Advanced Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00005983",
-      "title": "S9927 Radiation Therapy After Surgery, Chemotherapy, and/or Hormone Therapy in Stage II Breast Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT00005983",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00005983",
-      "excerpt": "98",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "98",
-        "supports": "enrollment in bin 50–99"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -565,12 +341,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -589,12 +370,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -613,12 +399,46 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00046865",
+      "title": "Acupressure in Treating Nausea in Women Receiving Combination Chemotherapy for Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00046865",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00046865",
+      "excerpt": "57",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "57",
+        "supports": "enrollment in bin 50–99"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      }
@@ -626,9 +446,9 @@
    },
    {
     "enrollment_size": "100–249",
-    "study_count": 306,
+    "study_count": 164,
     "evidence": {
-     "total": 306,
+     "total": 164,
      "sample": [
       "NCT00001806",
       "NCT00002836",
@@ -637,7 +457,7 @@
       "NCT00003032"
      ],
      "complete_inline": false,
-     "ref": "/query/q_d96dd0ef968c2306/evidence/r4"
+     "ref": "/query/q_ccce68393699f230/evidence/r3"
     },
     "citations": [
      {
@@ -655,12 +475,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -679,12 +504,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -703,12 +533,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -727,12 +562,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -751,12 +591,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      }
@@ -764,9 +609,9 @@
    },
    {
     "enrollment_size": "250–499",
-    "study_count": 388,
+    "study_count": 175,
     "evidence": {
-     "total": 388,
+     "total": 175,
      "sample": [
       "NCT00002528",
       "NCT00002529",
@@ -775,7 +620,7 @@
       "NCT00002784"
      ],
      "complete_inline": false,
-     "ref": "/query/q_d96dd0ef968c2306/evidence/r5"
+     "ref": "/query/q_ccce68393699f230/evidence/r4"
     },
     "citations": [
      {
@@ -793,12 +638,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -817,12 +667,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -841,12 +696,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -865,12 +725,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -889,12 +754,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      }
@@ -902,18 +772,18 @@
    },
    {
     "enrollment_size": "500–999",
-    "study_count": 284,
+    "study_count": 127,
     "evidence": {
-     "total": 284,
+     "total": 127,
      "sample": [
       "NCT00002542",
       "NCT00002720",
       "NCT00002755",
-      "NCT00002772",
-      "NCT00002864"
+      "NCT00002864",
+      "NCT00002953"
      ],
      "complete_inline": false,
-     "ref": "/query/q_d96dd0ef968c2306/evidence/r6"
+     "ref": "/query/q_ccce68393699f230/evidence/r5"
     },
     "citations": [
      {
@@ -931,12 +801,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -955,12 +830,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -979,36 +859,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00002772",
-      "title": "S9623, Combination Chemotherapy Plus Peripheral Stem Cell Transplantation in Treating Women With Breast Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT00002772",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002772",
-      "excerpt": "602",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "602",
-        "supports": "enrollment in bin 500–999"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -1027,12 +888,46 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002953",
+      "title": "Epirubicin and Cyclophosphamide Compared With Epirubicin and Paclitaxel in Treating Women With Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002953",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002953",
+      "excerpt": "704",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "704",
+        "supports": "enrollment in bin 500–999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      }
@@ -1040,9 +935,9 @@
    },
    {
     "enrollment_size": "1,000–4,999",
-    "study_count": 255,
+    "study_count": 121,
     "evidence": {
-     "total": 255,
+     "total": 121,
      "sample": [
       "NCT00002564",
       "NCT00002579",
@@ -1051,7 +946,7 @@
       "NCT00002646"
      ],
      "complete_inline": false,
-     "ref": "/query/q_d96dd0ef968c2306/evidence/r7"
+     "ref": "/query/q_ccce68393699f230/evidence/r6"
     },
     "citations": [
      {
@@ -1069,12 +964,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -1093,12 +993,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -1117,12 +1022,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -1141,12 +1051,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -1165,12 +1080,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      }
@@ -1178,18 +1098,18 @@
    },
    {
     "enrollment_size": "5,000+",
-    "study_count": 34,
+    "study_count": 18,
     "evidence": {
-     "total": 34,
+     "total": 18,
      "sample": [
       "NCT00002582",
       "NCT00002644",
-      "NCT00003016",
       "NCT00003140",
-      "NCT00003678"
+      "NCT00003782",
+      "NCT00003830"
      ],
      "complete_inline": false,
-     "ref": "/query/q_d96dd0ef968c2306/evidence/r8"
+     "ref": "/query/q_ccce68393699f230/evidence/r7"
     },
     "citations": [
      {
@@ -1207,12 +1127,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -1231,36 +1156,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT00003016",
-      "title": "Prolonged Tamoxifen Compared With Shorter Tamoxifen in Treating Patients Who Have Breast Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT00003016",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003016",
-      "excerpt": "20000",
-      "excerpts": [
-       {
-        "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "20000",
-        "supports": "enrollment in bin 5,000+"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
-       },
-       {
-        "field": "protocolSection.designModule.phases[0]",
-        "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
@@ -1279,36 +1185,75 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      },
      {
-      "nct_id": "NCT00003678",
-      "title": "Tamoxifen in Treating Women With Breast Cancer",
-      "url": "https://clinicaltrials.gov/study/NCT00003678",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003678",
-      "excerpt": "20000",
+      "nct_id": "NCT00003782",
+      "title": "Combination Chemotherapy in Treating Women With Stage I, Stage II, or Stage IIIA (cT1-3, N0-1, M0) Breast Cancer and Positive Axillary Lymph Nodes",
+      "url": "https://clinicaltrials.gov/study/NCT00003782",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003782",
+      "excerpt": "5351",
       "excerpts": [
        {
         "field": "protocolSection.designModule.enrollmentInfo.count",
-        "text": "20000",
+        "text": "5351",
         "supports": "enrollment in bin 5,000+"
        },
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Breast Cancer",
-        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
        },
        {
         "field": "protocolSection.designModule.phases[0]",
         "text": "PHASE3",
-        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00003830",
+      "title": "Surgery to Remove Sentinel Lymph Nodes With or Without Removing Lymph Nodes in the Armpit in Treating Women With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00003830",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003830",
+      "excerpt": "5611",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "5611",
+        "supports": "enrollment in bin 5,000+"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "COMPLETED",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Breast cancer, Phase 3, completed' (phase filter)"
        }
       ]
      }
@@ -1318,57 +1263,52 @@
   "vega_lite": {
    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
    "title": {
-    "text": "Phase 3 breast cancer studies by enrollment (participants)",
-    "subtitle": "Phase 3 (incl. multi-phase) · distinct studies (NCT IDs)"
+    "text": "Breast cancer, Phase 3, completed studies by enrollment (participants)",
+    "subtitle": "Completed · Phase 3 (incl. multi-phase) · distinct studies (NCT IDs)"
    },
    "width": "container",
    "height": 320,
    "data": {
     "values": [
      {
-      "enrollment_size": "0",
-      "study_count": 28,
+      "enrollment_size": "1–9",
+      "study_count": 1,
       "_row": 0
      },
      {
-      "enrollment_size": "1–9",
-      "study_count": 14,
+      "enrollment_size": "10–49",
+      "study_count": 32,
       "_row": 1
      },
      {
-      "enrollment_size": "10–49",
-      "study_count": 85,
+      "enrollment_size": "50–99",
+      "study_count": 64,
       "_row": 2
      },
      {
-      "enrollment_size": "50–99",
-      "study_count": 129,
+      "enrollment_size": "100–249",
+      "study_count": 164,
       "_row": 3
      },
      {
-      "enrollment_size": "100–249",
-      "study_count": 306,
+      "enrollment_size": "250–499",
+      "study_count": 175,
       "_row": 4
      },
      {
-      "enrollment_size": "250–499",
-      "study_count": 388,
+      "enrollment_size": "500–999",
+      "study_count": 127,
       "_row": 5
      },
      {
-      "enrollment_size": "500–999",
-      "study_count": 284,
+      "enrollment_size": "1,000–4,999",
+      "study_count": 121,
       "_row": 6
      },
      {
-      "enrollment_size": "1,000–4,999",
-      "study_count": 255,
-      "_row": 7
-     },
-     {
       "enrollment_size": "5,000+",
-      "study_count": 34,
-      "_row": 8
+      "study_count": 18,
+      "_row": 7
      }
     ]
    },
@@ -1388,7 +1328,6 @@
        "type": "ordinal",
        "title": "Enrollment (participants)",
        "sort": [
-        "0",
         "1–9",
         "10–49",
         "50–99",
@@ -1440,7 +1379,6 @@
        "type": "ordinal",
        "title": "Enrollment (participants)",
        "sort": [
-        "0",
         "1–9",
         "10–49",
         "50–99",
@@ -1525,7 +1463,7 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T09:17:19+00:00",
+  "retrieved_at": "2026-09-24T09:57:04+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
@@ -1534,35 +1472,48 @@
   },
   "api_queries": [
    {
-    "cohort": "Phase 3 breast cancer",
-    "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=breast+cancer&filter.advanced=AREA%5BPhase%5DPHASE3&fields=NCTId%2CBriefTitle%2CEnrollmentCount%2CEnrollmentType%2CPhase%2CCondition",
-    "total": 1556,
-    "fetched": 1556,
-    "pages": 2,
+    "cohort": "Breast cancer, Phase 3, completed",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=breast+cancer&filter.overallStatus=COMPLETED&filter.advanced=AREA%5BPhase%5DPHASE3&fields=NCTId%2CBriefTitle%2CEnrollmentCount%2CEnrollmentType%2COverallStatus%2CPhase%2CCondition",
+    "total": 722,
+    "fetched": 722,
+    "pages": 1,
     "complete": true
    }
   ],
   "completeness": {
    "complete": true
   },
-  "studies_analyzed": 1556,
+  "studies_analyzed": 722,
   "filters": {
-   "Phase 3 breast cancer": {
+   "Breast cancer, Phase 3, completed": {
     "condition": "breast cancer",
+    "overall_status": [
+     "COMPLETED"
+    ],
     "phase": [
      "PHASE3"
     ]
    }
   },
-  "request_fields": {},
+  "request_fields": {
+   "condition": "breast cancer",
+   "trial_phase": [
+    "PHASE3"
+   ],
+   "status": [
+    "COMPLETED"
+   ]
+  },
   "cohort_overlap": {},
   "excluded": {
-   "no_enrollment_size_reported": 33
+   "no_enrollment_size_reported": 20
   },
   "assumptions": [
-   "'Enrollment size' = registered enrollment (actual, or anticipated for ongoing studies), shown as a histogram over fixed bins.",
-   "Studies without a registered enrollment are excluded.",
-   "Phase 3 = studies registered with phase Phase 3 (including Phase 2/3 combined buckets only if registered as such is excluded; strictly the Phase 3 filter).",
+   "Enrollment = registered enrollment (actual, or anticipated where actual is not reported), grouped into fixed size bins; studies without enrollment data are excluded.",
+   "Restricted to completed Phase 3 breast cancer trials as specified.",
+   "Request field condition='breast cancer' applied to every cohort.",
+   "Request field trial_phase=[PHASE3] applied to every cohort.",
+   "Request field status=[COMPLETED] applied to every cohort.",
    "A phase filter keeps studies whose registered phases include that phase, so multi-phase studies (e.g. Phase 2/3) are included in a Phase 3 filter."
   ],
   "warnings": [],
@@ -1575,11 +1526,11 @@
    "cached": false
   },
   "timings_ms": {
-   "preflight": 233,
-   "fetch": 1304,
-   "analyze": 29,
+   "preflight": 231,
+   "fetch": 744,
+   "analyze": 12,
    "verify": 1,
-   "total": 1570
+   "total": 990
   }
  }
 }

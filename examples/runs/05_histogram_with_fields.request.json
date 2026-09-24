@@ -1,0 +1,6 @@
+{
+  "query": "What is the distribution of enrollment sizes?",
+  "condition": "breast cancer",
+  "trial_phase": "Phase 3",
+  "status": "completed"
+}

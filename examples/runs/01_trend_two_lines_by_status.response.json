@@ -46,9 +46,9 @@
    }
   },
   "assumptions": [
-   "'Started in each year' = registered study start date, restricted to 2015-2024.",
+   "'Started in each year' = registered study start date, 2015-2024.",
    "Only interventional studies are included.",
-   "Status is the current overall status in the registry; studies with other statuses (e.g. active not recruiting, terminated, unknown) are not shown."
+   "Split uses the current overall status; studies in other statuses (e.g. terminated, active not recruiting, unknown) are excluded."
   ]
  },
  "visualization": {
@@ -3610,7 +3610,7 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T09:12:26+00:00",
+  "retrieved_at": "2026-09-24T09:56:16+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
@@ -3668,9 +3668,9 @@
    "missing_start_date_not_retrieved": 20
   },
   "assumptions": [
-   "'Started in each year' = registered study start date, restricted to 2015-2024.",
+   "'Started in each year' = registered study start date, 2015-2024.",
    "Only interventional studies are included.",
-   "Status is the current overall status in the registry; studies with other statuses (e.g. active not recruiting, terminated, unknown) are not shown.",
+   "Split uses the current overall status; studies in other statuses (e.g. terminated, active not recruiting, unknown) are excluded.",
    "'Recruiting' means overall status RECRUITING only; 'not yet recruiting' and 'enrolling by invitation' studies are not included.",
    "Each cohort is retrieved independently; a study matching several cohorts counts in each of their series (see meta.cohort_overlap).",
    "Studies without a registered start date are excluded from the trend."
@@ -3685,11 +3685,11 @@
    "cached": false
   },
   "timings_ms": {
-   "preflight": 244,
-   "fetch": 2047,
-   "analyze": 90,
-   "verify": 8,
-   "total": 2396
+   "preflight": 453,
+   "fetch": 2212,
+   "analyze": 74,
+   "verify": 6,
+   "total": 2752
   }
  }
 }

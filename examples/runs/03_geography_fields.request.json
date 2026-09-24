@@ -1,6 +1,0 @@
-{
-  "query": "Which countries have the most trials?",
-  "condition": "lung cancer",
-  "trial_phase": "Phase 3",
-  "status": "recruiting"
-}

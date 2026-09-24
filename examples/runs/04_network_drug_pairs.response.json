@@ -1,12 +1,12 @@
 {
  "status": "ok",
- "query_id": "q_00aba686d5be5c7f",
+ "query_id": "q_fb8f145686efe3ee",
  "query": "Among interventional melanoma studies that started from 2020 through 2024, which pairs of drug interventions appear together in the same study most often? Show the top 15 pairs as a network, with drugs as nodes and the number of distinct studies as each edge’s weight.",
  "plan": {
   "version": "1",
   "cohorts": [
    {
-    "label": "Melanoma (interventional, 2020-2024)",
+    "label": "Melanoma (2020-2024)",
     "condition": "melanoma",
     "filters": {
      "overall_status": [],
@@ -28,22 +28,22 @@
     "drugs_only": true,
     "max_edges": 15
    },
-   "top_k": 30,
+   "top_k": 15,
    "sort": {
     "by": "count_desc"
    }
   },
   "assumptions": [
-   "'Started from 2020 through 2024' = registered study start date between 2020-01-01 and 2024-12-31.",
-   "Pairs = two drug interventions listed in the same study (not necessarily in the same arm).",
-   "Only drug/biologic interventions are included; placebo and ancillary entries (imaging, questionnaires, biospecimens) are excluded.",
-   "Edge weight = number of distinct studies listing both drugs; the 15 strongest edges are shown."
+   "Study start date (registered) used for the 2020-2024 window, inclusive.",
+   "'Appear together' = both drugs listed in the same study, regardless of arm assignment.",
+   "Only drug/biologic interventions are included; placebo and ancillary items (imaging, questionnaires, biospecimens) are excluded.",
+   "Edge weight = number of distinct studies listing both drugs; top 15 pairs shown."
   ]
  },
  "visualization": {
   "schema_version": "1.0",
   "type": "network",
-  "title": "Intervention co-occurrence in Melanoma (interventional, 2020-2024) studies",
+  "title": "Intervention co-occurrence in Melanoma (2020-2024) studies",
   "subtitle": "Interventional · start 2020-01-01 to 2024-12-31 · distinct studies (NCT IDs)",
   "encoding": {
    "color": {
@@ -94,7 +94,7 @@
       "NCT04140526"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n0"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n0"
     },
     "citations": [
      {
@@ -112,17 +112,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-02-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -141,17 +141,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Clinical Stage III Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-02-13",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -170,17 +170,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-01-22",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -199,17 +199,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Malignant Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-09-05",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -228,17 +228,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[2]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-09-16",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -259,7 +259,7 @@
       "NCT04060407"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n1"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n1"
     },
     "citations": [
      {
@@ -277,17 +277,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-05",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -306,17 +306,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Cutaneous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-11-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -335,17 +335,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-01-30",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -364,17 +364,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma Stage III",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-01-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -393,17 +393,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-06-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -424,7 +424,7 @@
       "NCT04060407"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n2"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n2"
     },
     "citations": [
      {
@@ -442,17 +442,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Cutaneous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-11-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -471,17 +471,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-01-30",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -500,17 +500,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-12-09",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -529,17 +529,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma Stage III",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-01-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -558,182 +558,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-06-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "id": "intervention:cemiplimab",
-    "label": "Cemiplimab",
-    "group": "Drug",
-    "study_count": 17,
-    "evidence": {
-     "total": 17,
-     "sample": [
-      "NCT04291105",
-      "NCT04526899",
-      "NCT04913220",
-      "NCT05094804",
-      "NCT05259696"
-     ],
-     "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n3"
-    },
-    "citations": [
-     {
-      "nct_id": "NCT04291105",
-      "title": "Phase 2 Trial of Voyager V1 in Combination With Cemiplimab in Cancer Patients",
-      "url": "https://clinicaltrials.gov/study/NCT04291105",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04291105",
-      "excerpt": "Cemiplimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Cemiplimab",
-        "supports": "intervention: Cemiplimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2020-04-24",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT04526899",
-      "title": "A Study to Investigate the Novel Agent BNT111 and Cemiplimab in Combination or as Single Agents in Patients With Advanced Melanoma That Has Not Responded to Other Forms of Treatment",
-      "url": "https://clinicaltrials.gov/study/NCT04526899",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04526899",
-      "excerpt": "Cemiplimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Cemiplimab",
-        "supports": "intervention: Cemiplimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma Stage III",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-05-19",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT04913220",
-      "title": "A Study of SAR444245 Combined With Cemiplimab for the Treatment of Participants With Various Advanced Skin Cancers (Pegathor Skin 201)",
-      "url": "https://clinicaltrials.gov/study/NCT04913220",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04913220",
-      "excerpt": "Cemiplimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Cemiplimab",
-        "supports": "intervention: Cemiplimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Malignant Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-07-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05094804",
-      "title": "A Study of OR2805, a Monoclonal Antibody Targeting CD163, Alone and in Combination With Anticancer Agents",
-      "url": "https://clinicaltrials.gov/study/NCT05094804",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05094804",
-      "excerpt": "Cemiplimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Cemiplimab",
-        "supports": "intervention: Cemiplimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[6]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-09-09",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05259696",
-      "title": "Glycan Mediated Immune Regulation With a Bi-Sialidase Fusion Protein (GLIMMER-01)",
-      "url": "https://clinicaltrials.gov/study/NCT05259696",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05259696",
-      "excerpt": "Cemiplimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Cemiplimab",
-        "supports": "intervention: Cemiplimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[1]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2022-02-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -754,7 +589,7 @@
       "NCT05061017"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n4"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n3"
     },
     "citations": [
      {
@@ -772,17 +607,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-02-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -801,17 +636,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-11-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -830,17 +665,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[12]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-07-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -859,17 +694,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Malignant Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-09-17",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -888,17 +723,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[2]",
         "text": "Refractory Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-12-09",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -919,7 +754,7 @@
       "NCT04543188"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n5"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n4"
     },
     "citations": [
      {
@@ -937,17 +772,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-08-03",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -966,17 +801,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma of Unknown Primary",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-09-22",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -995,17 +830,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Clinical Stage III Cutaneous Melanoma AJCC V8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-12-03",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1024,17 +859,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Acral Lentiginous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-01-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1053,17 +888,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Malignant Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-01-08",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -1084,7 +919,7 @@
       "NCT04657991"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n6"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n5"
     },
     "citations": [
      {
@@ -1102,17 +937,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-08-03",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1131,17 +966,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma of Unknown Primary",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-09-22",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1160,17 +995,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Acral Lentiginous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-01-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1189,17 +1024,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-05-28",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1218,17 +1053,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-01-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -1249,7 +1084,7 @@
       "NCT05176470"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n7"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n6"
     },
     "citations": [
      {
@@ -1267,17 +1102,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-11-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1296,17 +1131,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[12]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-07-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1325,17 +1160,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Malignant Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-09-17",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1353,17 +1188,17 @@
        },
        {
         "field": "protocolSection.conditionsModule.conditions",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
+        "supports": "cohort 'Melanoma (2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-10-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1382,17 +1217,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Locally Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-07-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -1413,7 +1248,7 @@
       "NCT04889118"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n8"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n7"
     },
     "citations": [
      {
@@ -1431,17 +1266,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma Stage III",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-11-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1460,17 +1295,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-06-26",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1489,17 +1324,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-07-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1518,17 +1353,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-05-03",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1547,17 +1382,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Malignant Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-07-14",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -1578,7 +1413,7 @@
       "NCT05798546"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n9"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n8"
     },
     "citations": [
      {
@@ -1596,17 +1431,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Cutaneous Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-12-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1625,17 +1460,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma Stage III",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-09-24",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1654,17 +1489,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Uveal Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2023-02-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1683,17 +1518,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-11-22",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -1711,812 +1546,346 @@
        },
        {
         "field": "protocolSection.conditionsModule.conditions",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
+        "supports": "cohort 'Melanoma (2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-09-28",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
     ]
    },
    {
-    "id": "intervention:nivolumab + relatlimab",
-    "label": "Nivolumab + Relatlimab",
+    "id": "intervention:trametinib",
+    "label": "Trametinib",
     "group": "Drug",
-    "study_count": 6,
+    "study_count": 8,
     "evidence": {
-     "total": 6,
+     "total": 8,
      "sample": [
-      "NCT04697576",
-      "NCT05625399",
-      "NCT05704933",
-      "NCT06112314",
-      "NCT06264180"
+      "NCT04310397",
+      "NCT04417621",
+      "NCT04903119",
+      "NCT05299580",
+      "NCT05668585"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n10"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n9"
     },
     "citations": [
      {
-      "nct_id": "NCT04697576",
-      "title": "Intralesional Influenza Vaccine for the Treatment of Stage I-IV Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT04697576",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04697576",
-      "excerpt": "Nivolumab + Relatlimab",
+      "nct_id": "NCT04310397",
+      "title": "Dabrafenib, Trametinib, and Spartalizumab for the Treatment of BRAF V600E or V600K Mutation Positive Stage IIIB/C/D Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT04310397",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04310397",
+      "excerpt": "Trametinib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+        "text": "Trametinib",
+        "supports": "intervention: Trametinib"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Pathologic Stage IIIB Cutaneous Melanoma AJCC v8",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-01-29",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04417621",
+      "title": "Study of Efficacy and Safety of LXH254 Combinations in Patients With Previously Treated Unresectable or Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT04417621",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04417621",
+      "excerpt": "Trametinib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "Trametinib",
+        "supports": "intervention: Trametinib"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-10-30",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04903119",
+      "title": "Nilotinib Plus Dabrafenib/Trametinib or Encorafenib/Binimetinib in Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT04903119",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04903119",
+      "excerpt": "Trametinib",
       "excerpts": [
        {
         "field": "protocolSection.armsInterventionsModule.interventions[5].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Clinical Stage I Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-10-20",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05625399",
-      "title": "A Study of Subcutaneous Nivolumab + Relatlimab Fixed-dose Combination (FDC) in Previously Untreated Metastatic or Unresectable Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT05625399",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05625399",
-      "excerpt": "Nivolumab + Relatlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-03-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05704933",
-      "title": "Pilot Study of Nivolumab w/Ipilimumab or Relatlimab in Surgically Resectable Melanoma Brain Metastases",
-      "url": "https://clinicaltrials.gov/study/NCT05704933",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05704933",
-      "excerpt": "Nivolumab + Relatlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
+        "text": "Trametinib",
+        "supports": "intervention: Trametinib"
        },
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-06-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "text": "2022-06-01",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
      {
-      "nct_id": "NCT06112314",
-      "title": "IMC-F106C Regimen Versus Nivolumab Regimens in Previously Untreated Advanced Melanoma (PRISM-MEL-301)",
-      "url": "https://clinicaltrials.gov/study/NCT06112314",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06112314",
-      "excerpt": "Nivolumab + Relatlimab",
+      "nct_id": "NCT05299580",
+      "title": "\"Dabrafenib and Trametinib in Circulating Free DNA BRAFV600 Mutated Metastatic Melanoma Patients: a Prospective Phase II, Open Label, Multicentre Study - (Bioliquid TAILOR Study - BIOTAILOR)\"",
+      "url": "https://clinicaltrials.gov/study/NCT05299580",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05299580",
+      "excerpt": "Trametinib",
       "excerpts": [
        {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Trametinib",
+        "supports": "intervention: Trametinib"
        },
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-06-05",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "text": "2021-02-18",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
      {
-      "nct_id": "NCT06264180",
-      "title": "VO and Nivolumab vs Physician's Choice in Advanced Melanoma That Progressed on Anti-PD-1 & Anti-CTLA-4 Drugs [IGNYTE-3]",
-      "url": "https://clinicaltrials.gov/study/NCT06264180",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06264180",
-      "excerpt": "Nivolumab + Relatlimab",
+      "nct_id": "NCT05668585",
+      "title": "A Study to Characterize the Safety, Tolerability, and Preliminary Efficacy of CFT1946 as Monotherapy and Combination Therapy in Subjects With BRAF V600 Mutant Solid Tumors",
+      "url": "https://clinicaltrials.gov/study/NCT05668585",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05668585",
+      "excerpt": "Trametinib",
       "excerpts": [
        {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Trametinib",
+        "supports": "intervention: Trametinib"
        },
        {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-07-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "text": "2022-12-08",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
     ]
    },
    {
-    "id": "intervention:bevacizumab",
-    "label": "Bevacizumab",
+    "id": "intervention:dabrafenib",
+    "label": "Dabrafenib",
     "group": "Drug",
-    "study_count": 5,
+    "study_count": 7,
     "evidence": {
-     "total": 5,
+     "total": 7,
      "sample": [
-      "NCT04356729",
-      "NCT05039801",
-      "NCT05824975",
-      "NCT06047379",
-      "NCT06448364"
+      "NCT04310397",
+      "NCT04418167",
+      "NCT04527549",
+      "NCT04557956",
+      "NCT04903119"
      ],
-     "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n11"
+     "complete_inline": false,
+     "ref": "/query/q_fb8f145686efe3ee/evidence/n10"
     },
     "citations": [
      {
-      "nct_id": "NCT04356729",
-      "title": "A Phase II Trial of PD-L1 Therapy Combined With Anti-VEGF Therapy in Unresectable or Metastatic Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT04356729",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04356729",
-      "excerpt": "Bevacizumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Bevacizumab",
-        "supports": "intervention: Bevacizumab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Clinical Stage III Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2020-08-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05039801",
-      "title": "IACS-6274 With or Without Bevacizumab and Paclitaxel for the Treatment of Advanced Solid Tumors",
-      "url": "https://clinicaltrials.gov/study/NCT05039801",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05039801",
-      "excerpt": "Bevacizumab",
+      "nct_id": "NCT04310397",
+      "title": "Dabrafenib, Trametinib, and Spartalizumab for the Treatment of BRAF V600E or V600K Mutation Positive Stage IIIB/C/D Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT04310397",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04310397",
+      "excerpt": "Dabrafenib",
       "excerpts": [
        {
         "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Bevacizumab",
-        "supports": "intervention: Bevacizumab"
+        "text": "Dabrafenib",
+        "supports": "intervention: Dabrafenib"
        },
        {
-        "field": "protocolSection.conditionsModule.conditions[3]",
-        "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Pathologic Stage IIIB Cutaneous Melanoma AJCC v8",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-09-30",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "text": "2020-01-29",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
      {
-      "nct_id": "NCT05824975",
-      "title": "A Study to Evaluate the Safety and Therapeutic Activity of GI-102 As a Single Agent and in Combination with Conventional Anti-cancer Drugs, Pembrolizumab or Trastuzumab Deruxtecan(T-DXd) in Patients with Advanced Solid Tumors (KEYNOTE-G08)",
-      "url": "https://clinicaltrials.gov/study/NCT05824975",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05824975",
-      "excerpt": "bevacizumab",
+      "nct_id": "NCT04418167",
+      "title": "JSI-1187-01 Monotherapy and in Combination With Dabrafenib for Advanced Solid Tumors With MAPK Pathway Mutations",
+      "url": "https://clinicaltrials.gov/study/NCT04418167",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04418167",
+      "excerpt": "Dabrafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Dabrafenib",
+        "supports": "intervention: Dabrafenib"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "supports": "cohort 'Melanoma (2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-06-18",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04527549",
+      "title": "Testing Dabrafenib and Trametinib With or Without Hydroxychloroquine in Stage IIIC or IV BRAF V600E/K Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT04527549",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04527549",
+      "excerpt": "Dabrafenib mesylate",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Dabrafenib mesylate",
+        "supports": "intervention: Dabrafenib"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Clinical Stage IV Cutaneous Melanoma AJCC v8",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-06-01",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04557956",
+      "title": "Testing the Addition of the Anti-cancer Drug, Tazemetostat, to (Dabrafenib and Trametinib) for Metastatic Melanoma That Has Progressed on the Usual Treatment",
+      "url": "https://clinicaltrials.gov/study/NCT04557956",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04557956",
+      "excerpt": "Dabrafenib Mesylate",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "Dabrafenib Mesylate",
+        "supports": "intervention: Dabrafenib"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Clinical Stage IV Cutaneous Melanoma AJCC v8",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-08-19",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04903119",
+      "title": "Nilotinib Plus Dabrafenib/Trametinib or Encorafenib/Binimetinib in Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT04903119",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04903119",
+      "excerpt": "Dabrafenib",
       "excerpts": [
        {
         "field": "protocolSection.armsInterventionsModule.interventions[4].name",
-        "text": "bevacizumab",
-        "supports": "intervention: Bevacizumab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[7]",
-        "text": "Cutaneous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-05-30",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06047379",
-      "title": "Safety and Efficacy of NEO212 in Patients With Astrocytoma IDH-mutant, Glioblastoma IDH-wildtype or Brain Metastasis",
-      "url": "https://clinicaltrials.gov/study/NCT06047379",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06047379",
-      "excerpt": "Bevacizumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[8].name",
-        "text": "Bevacizumab",
-        "supports": "intervention: Bevacizumab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[10]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-11-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06448364",
-      "title": "A Study in Advanced/Metastatic Solid Tumors With the Study Medicine (PF-07329640) When Given Alone or In Combination",
-      "url": "https://clinicaltrials.gov/study/NCT06448364",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06448364",
-      "excerpt": "bevacizumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "bevacizumab",
-        "supports": "intervention: Bevacizumab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[4]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-05-09",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "id": "intervention:paclitaxel",
-    "label": "Paclitaxel",
-    "group": "Drug",
-    "study_count": 5,
-    "evidence": {
-     "total": 5,
-     "sample": [
-      "NCT04752826",
-      "NCT05039801",
-      "NCT05107674",
-      "NCT05824975",
-      "NCT06047379"
-     ],
-     "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n12"
-    },
-    "citations": [
-     {
-      "nct_id": "NCT04752826",
-      "title": "BI-1808 as a Single Agent and With Pembrolizumab (KEYTRUDA® ) in Treatment of Advanced Malignancies(Keynote-D20)",
-      "url": "https://clinicaltrials.gov/study/NCT04752826",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04752826",
-      "excerpt": "Paclitaxel 80 mg/m2 weekly",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Paclitaxel 80 mg/m2 weekly",
-        "supports": "intervention: Paclitaxel"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[3]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-01-25",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05039801",
-      "title": "IACS-6274 With or Without Bevacizumab and Paclitaxel for the Treatment of Advanced Solid Tumors",
-      "url": "https://clinicaltrials.gov/study/NCT05039801",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05039801",
-      "excerpt": "Paclitaxel",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Paclitaxel",
-        "supports": "intervention: Paclitaxel"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[3]",
-        "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-09-30",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05107674",
-      "title": "A Study of NX-1607 in Adults With Advanced Malignancies",
-      "url": "https://clinicaltrials.gov/study/NCT05107674",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05107674",
-      "excerpt": "Paclitaxel",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Paclitaxel",
-        "supports": "intervention: Paclitaxel"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[4]",
-        "text": "Metastatic or Unresectable Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-09-29",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05824975",
-      "title": "A Study to Evaluate the Safety and Therapeutic Activity of GI-102 As a Single Agent and in Combination with Conventional Anti-cancer Drugs, Pembrolizumab or Trastuzumab Deruxtecan(T-DXd) in Patients with Advanced Solid Tumors (KEYNOTE-G08)",
-      "url": "https://clinicaltrials.gov/study/NCT05824975",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05824975",
-      "excerpt": "paclitaxel",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
-        "text": "paclitaxel",
-        "supports": "intervention: Paclitaxel"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[7]",
-        "text": "Cutaneous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-05-30",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06047379",
-      "title": "Safety and Efficacy of NEO212 in Patients With Astrocytoma IDH-mutant, Glioblastoma IDH-wildtype or Brain Metastasis",
-      "url": "https://clinicaltrials.gov/study/NCT06047379",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06047379",
-      "excerpt": "Paclitaxel",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[6].name",
-        "text": "Paclitaxel",
-        "supports": "intervention: Paclitaxel"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[10]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-11-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "id": "intervention:relatlimab",
-    "label": "Relatlimab",
-    "group": "Drug",
-    "study_count": 5,
-    "evidence": {
-     "total": 5,
-     "sample": [
-      "NCT03978611",
-      "NCT04552223",
-      "NCT05034536",
-      "NCT05704647",
-      "NCT06683755"
-     ],
-     "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n13"
-    },
-    "citations": [
-     {
-      "nct_id": "NCT03978611",
-      "title": "A Study to Assess Safety of Relatlimab With Ipilimumab in Participants With Advanced Melanoma Who Progressed on Anti-Programmed Cell Death Protein 1 (Anti-PD-1) Treatment",
-      "url": "https://clinicaltrials.gov/study/NCT03978611",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03978611",
-      "excerpt": "Relatlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Relatlimab",
-        "supports": "intervention: Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-12-09",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT04552223",
-      "title": "Nivolumab Plus Relatlimab in Patients With Metastatic Uveal Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT04552223",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04552223",
-      "excerpt": "Relatlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Relatlimab",
-        "supports": "intervention: Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Metastatic Uveal Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2020-11-10",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05034536",
-      "title": "PD-1 Antibody Therapy + Infliximab for Metastatic Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT05034536",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05034536",
-      "excerpt": "Relatlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
-        "text": "Relatlimab",
-        "supports": "intervention: Relatlimab"
+        "text": "Dabrafenib",
+        "supports": "intervention: Dabrafenib"
        },
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2022-02-07",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05704647",
-      "title": "Phase II Study of Nivolumab in Combination With Relatlimab in Patients With Active Melanoma Brain Metastases",
-      "url": "https://clinicaltrials.gov/study/NCT05704647",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05704647",
-      "excerpt": "Relatlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Relatlimab",
-        "supports": "intervention: Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma (Skin)",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-02-23",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06683755",
-      "title": "Phase I/IIa Dose Finding Study of Triplet Regimen of Relatlimab Ipilimumab and NIvolumab in First Line Therapy of Metastatic Melanoma (TRINITY)",
-      "url": "https://clinicaltrials.gov/study/NCT06683755",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06683755",
-      "excerpt": "Relatlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Relatlimab",
-        "supports": "intervention: Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-12-31",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "id": "intervention:fianlimab",
-    "label": "Fianlimab",
-    "group": "Drug",
-    "study_count": 4,
-    "evidence": {
-     "total": 4,
-     "sample": [
-      "NCT05352672",
-      "NCT05608291",
-      "NCT06246916",
-      "NCT06594991"
-     ],
-     "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/n14"
-    },
-    "citations": [
-     {
-      "nct_id": "NCT05352672",
-      "title": "Clinical Study of Fianlimab in Combination With Cemiplimab Versus Pembrolizumab in Adolescent and Adult Patients With Previously Untreated Unresectable Locally Advanced or Metastatic Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT05352672",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05352672",
-      "excerpt": "Fianlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Fianlimab",
-        "supports": "intervention: Fianlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2022-07-14",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05608291",
-      "title": "A Trial to See if the Combination of Fianlimab With Cemiplimab Works Better Than Pembrolizumab for Preventing or Delaying Melanoma From Coming Back After it Has Been Removed With Surgery",
-      "url": "https://clinicaltrials.gov/study/NCT05608291",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05608291",
-      "excerpt": "Fianlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Fianlimab",
-        "supports": "intervention: Fianlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-01-16",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06246916",
-      "title": "A Study With Combinations of Anti-LAG-3 and Anti-PD-1 Antibodies in Adult Participants With Advanced or Metastatic Melanoma (Harmony Head-to-Head)",
-      "url": "https://clinicaltrials.gov/study/NCT06246916",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06246916",
-      "excerpt": "fianlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "fianlimab",
-        "supports": "intervention: fianlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-09-09",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06594991",
-      "title": "A Study of Fianlimab, Cemiplimab, and Ipilimumab in People With Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT06594991",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06594991",
-      "excerpt": "Fianlimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Fianlimab",
-        "supports": "intervention: Fianlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-09-10",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "text": "2022-06-01",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -2538,7 +1907,7 @@
       "NCT04091750"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e0"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e0"
     },
     "citations": [
      {
@@ -2561,17 +1930,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Cutaneous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-11-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -2595,17 +1964,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-01-30",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -2629,17 +1998,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma Stage III",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-01-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -2663,17 +2032,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-06-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -2697,17 +2066,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-03-02",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -2727,7 +2096,7 @@
       "NCT04913025"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e1"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e1"
     },
     "citations": [
      {
@@ -2750,17 +2119,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-02-09",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -2784,17 +2153,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-12-14",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -2818,17 +2187,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Clinical Stage I Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-10-20",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -2852,17 +2221,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[3]",
         "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-04-14",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -2886,17 +2255,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[1]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-05-26",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -2916,7 +2285,7 @@
       "NCT05176470"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e2"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e2"
     },
     "citations": [
      {
@@ -2939,17 +2308,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-11-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -2973,17 +2342,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[12]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-07-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3007,17 +2376,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Malignant Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-09-17",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3040,17 +2409,17 @@
        },
        {
         "field": "protocolSection.conditionsModule.conditions",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
+        "supports": "cohort 'Melanoma (2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-10-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3074,17 +2443,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Locally Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-07-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -3104,7 +2473,7 @@
       "NCT04657991"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e3"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e3"
     },
     "citations": [
      {
@@ -3127,17 +2496,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-08-03",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3161,17 +2530,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma of Unknown Primary",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-09-22",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3195,17 +2564,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Acral Lentiginous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-01-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3229,17 +2598,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-05-28",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3263,17 +2632,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-01-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -3293,7 +2662,7 @@
       "NCT04889118"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e4"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e4"
     },
     "citations": [
      {
@@ -3316,17 +2685,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma Stage III",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-11-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3350,17 +2719,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-06-26",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3384,17 +2753,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-07-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3418,17 +2787,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-05-03",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3452,17 +2821,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Malignant Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-07-14",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -3482,7 +2851,7 @@
       "NCT05987332"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e5"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e5"
     },
     "citations": [
      {
@@ -3505,17 +2874,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-02-09",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3539,17 +2908,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Clinical Stage I Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-10-20",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3573,17 +2942,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Clinical Stage IV Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-10-13",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3607,17 +2976,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2023-06-13",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3641,17 +3010,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Uveal Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2023-10-31",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -3671,7 +3040,7 @@
       "NCT05492682"
      ],
      "complete_inline": false,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e6"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e6"
     },
     "citations": [
      {
@@ -3694,17 +3063,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-02-15",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3728,17 +3097,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Malignant Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-09-17",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3762,17 +3131,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Locally Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-07-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3796,17 +3165,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[5]",
         "text": "Clinical Stage III Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-03-31",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3830,17 +3199,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma (Skin)",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2023-02-02",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -3860,7 +3229,7 @@
       "NCT06237881"
      ],
      "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e7"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e7"
     },
     "citations": [
      {
@@ -3883,17 +3252,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-11-22",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3916,17 +3285,17 @@
        },
        {
         "field": "protocolSection.conditionsModule.conditions",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
+        "supports": "cohort 'Melanoma (2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-09-28",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3950,17 +3319,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Clinical Stage IV Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2023-12-21",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -3984,17 +3353,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Stage IIIB Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2024-12-02",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -4018,17 +3387,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[1]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2024-01-31",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -4048,7 +3417,7 @@
       "NCT06237881"
      ],
      "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e8"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e8"
     },
     "citations": [
      {
@@ -4071,17 +3440,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-11-22",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -4104,17 +3473,17 @@
        },
        {
         "field": "protocolSection.conditionsModule.conditions",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
+        "supports": "cohort 'Melanoma (2020-2024)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'melanoma' is not verbatim here"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2022-09-28",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -4138,17 +3507,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Clinical Stage IV Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2023-12-21",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -4172,17 +3541,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Stage IIIB Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2024-12-02",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -4206,206 +3575,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[1]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2024-01-31",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "source": "intervention:nivolumab",
-    "target": "intervention:nivolumab + relatlimab",
-    "weight": 5,
-    "evidence": {
-     "total": 5,
-     "sample": [
-      "NCT04697576",
-      "NCT05704933",
-      "NCT06112314",
-      "NCT06264180",
-      "NCT06295159"
-     ],
-     "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e9"
-    },
-    "citations": [
-     {
-      "nct_id": "NCT04697576",
-      "title": "Intralesional Influenza Vaccine for the Treatment of Stage I-IV Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT04697576",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04697576",
-      "excerpt": "Nivolumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Nivolumab",
-        "supports": "intervention: Nivolumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[5].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Clinical Stage I Cutaneous Melanoma AJCC v8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-10-20",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05704933",
-      "title": "Pilot Study of Nivolumab w/Ipilimumab or Relatlimab in Surgically Resectable Melanoma Brain Metastases",
-      "url": "https://clinicaltrials.gov/study/NCT05704933",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05704933",
-      "excerpt": "Nivolumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Nivolumab",
-        "supports": "intervention: Nivolumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-06-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06112314",
-      "title": "IMC-F106C Regimen Versus Nivolumab Regimens in Previously Untreated Advanced Melanoma (PRISM-MEL-301)",
-      "url": "https://clinicaltrials.gov/study/NCT06112314",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06112314",
-      "excerpt": "Nivolumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Nivolumab",
-        "supports": "intervention: Nivolumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-06-05",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06264180",
-      "title": "VO and Nivolumab vs Physician's Choice in Advanced Melanoma That Progressed on Anti-PD-1 & Anti-CTLA-4 Drugs [IGNYTE-3]",
-      "url": "https://clinicaltrials.gov/study/NCT06264180",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06264180",
-      "excerpt": "Nivolumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Nivolumab",
-        "supports": "intervention: Nivolumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-07-11",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06295159",
-      "title": "Neoadjuvant and Adjuvant Anti-PD1 or Combinations for Locoregionally Advanced Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT06295159",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06295159",
-      "excerpt": "Nivolumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Nivolumab",
-        "supports": "intervention: Nivolumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Nivolumab + Relatlimab",
-        "supports": "intervention: Nivolumab + Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma Stage III",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-05-17",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -4424,7 +3604,7 @@
       "NCT05926960"
      ],
      "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e10"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e9"
     },
     "citations": [
      {
@@ -4447,17 +3627,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Clinical Stage III Cutaneous Melanoma AJCC V8",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2020-12-03",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -4481,17 +3661,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Acral Lentiginous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-01-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -4515,17 +3695,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-05-28",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -4549,444 +3729,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2023-06-13",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "source": "intervention:cemiplimab",
-    "target": "intervention:fianlimab",
-    "weight": 4,
-    "evidence": {
-     "total": 4,
-     "sample": [
-      "NCT05352672",
-      "NCT05608291",
-      "NCT06246916",
-      "NCT06594991"
-     ],
-     "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e11"
-    },
-    "citations": [
-     {
-      "nct_id": "NCT05352672",
-      "title": "Clinical Study of Fianlimab in Combination With Cemiplimab Versus Pembrolizumab in Adolescent and Adult Patients With Previously Untreated Unresectable Locally Advanced or Metastatic Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT05352672",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05352672",
-      "excerpt": "Cemiplimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Cemiplimab",
-        "supports": "intervention: Cemiplimab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Fianlimab",
-        "supports": "intervention: Fianlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2022-07-14",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05608291",
-      "title": "A Trial to See if the Combination of Fianlimab With Cemiplimab Works Better Than Pembrolizumab for Preventing or Delaying Melanoma From Coming Back After it Has Been Removed With Surgery",
-      "url": "https://clinicaltrials.gov/study/NCT05608291",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05608291",
-      "excerpt": "Cemiplimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Cemiplimab",
-        "supports": "intervention: Cemiplimab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Fianlimab",
-        "supports": "intervention: Fianlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-01-16",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06246916",
-      "title": "A Study With Combinations of Anti-LAG-3 and Anti-PD-1 Antibodies in Adult Participants With Advanced or Metastatic Melanoma (Harmony Head-to-Head)",
-      "url": "https://clinicaltrials.gov/study/NCT06246916",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06246916",
-      "excerpt": "cemiplimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "cemiplimab",
-        "supports": "intervention: Cemiplimab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "fianlimab",
-        "supports": "intervention: fianlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-09-09",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06594991",
-      "title": "A Study of Fianlimab, Cemiplimab, and Ipilimumab in People With Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT06594991",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06594991",
-      "excerpt": "Cemiplimab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Cemiplimab",
-        "supports": "intervention: Cemiplimab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Fianlimab",
-        "supports": "intervention: Fianlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-09-10",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "source": "intervention:nivolumab",
-    "target": "intervention:relatlimab",
-    "weight": 4,
-    "evidence": {
-     "total": 4,
-     "sample": [
-      "NCT04552223",
-      "NCT05034536",
-      "NCT05704647",
-      "NCT06683755"
-     ],
-     "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e12"
-    },
-    "citations": [
-     {
-      "nct_id": "NCT04552223",
-      "title": "Nivolumab Plus Relatlimab in Patients With Metastatic Uveal Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT04552223",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04552223",
-      "excerpt": "Nivolumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Nivolumab",
-        "supports": "intervention: Nivolumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Relatlimab",
-        "supports": "intervention: Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Metastatic Uveal Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2020-11-10",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05034536",
-      "title": "PD-1 Antibody Therapy + Infliximab for Metastatic Melanoma",
-      "url": "https://clinicaltrials.gov/study/NCT05034536",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05034536",
-      "excerpt": "Nivolumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[4].name",
-        "text": "Nivolumab",
-        "supports": "intervention: Nivolumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
-        "text": "Relatlimab",
-        "supports": "intervention: Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Metastatic Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2022-02-07",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05704647",
-      "title": "Phase II Study of Nivolumab in Combination With Relatlimab in Patients With Active Melanoma Brain Metastases",
-      "url": "https://clinicaltrials.gov/study/NCT05704647",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05704647",
-      "excerpt": "Nivolumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Nivolumab",
-        "supports": "intervention: Nivolumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Relatlimab",
-        "supports": "intervention: Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma (Skin)",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-02-23",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06683755",
-      "title": "Phase I/IIa Dose Finding Study of Triplet Regimen of Relatlimab Ipilimumab and NIvolumab in First Line Therapy of Metastatic Melanoma (TRINITY)",
-      "url": "https://clinicaltrials.gov/study/NCT06683755",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06683755",
-      "excerpt": "Nivolumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Nivolumab",
-        "supports": "intervention: Nivolumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-        "text": "Relatlimab",
-        "supports": "intervention: Relatlimab"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[0]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2024-12-31",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "source": "intervention:bevacizumab",
-    "target": "intervention:paclitaxel",
-    "weight": 3,
-    "evidence": {
-     "total": 3,
-     "sample": [
-      "NCT05039801",
-      "NCT05824975",
-      "NCT06047379"
-     ],
-     "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e13"
-    },
-    "citations": [
-     {
-      "nct_id": "NCT05039801",
-      "title": "IACS-6274 With or Without Bevacizumab and Paclitaxel for the Treatment of Advanced Solid Tumors",
-      "url": "https://clinicaltrials.gov/study/NCT05039801",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05039801",
-      "excerpt": "Bevacizumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-        "text": "Bevacizumab",
-        "supports": "intervention: Bevacizumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-        "text": "Paclitaxel",
-        "supports": "intervention: Paclitaxel"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[3]",
-        "text": "Advanced Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2021-09-30",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT05824975",
-      "title": "A Study to Evaluate the Safety and Therapeutic Activity of GI-102 As a Single Agent and in Combination with Conventional Anti-cancer Drugs, Pembrolizumab or Trastuzumab Deruxtecan(T-DXd) in Patients with Advanced Solid Tumors (KEYNOTE-G08)",
-      "url": "https://clinicaltrials.gov/study/NCT05824975",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05824975",
-      "excerpt": "bevacizumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[4].name",
-        "text": "bevacizumab",
-        "supports": "intervention: Bevacizumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
-        "text": "paclitaxel",
-        "supports": "intervention: Paclitaxel"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[7]",
-        "text": "Cutaneous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-05-30",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
-       }
-      ]
-     },
-     {
-      "nct_id": "NCT06047379",
-      "title": "Safety and Efficacy of NEO212 in Patients With Astrocytoma IDH-mutant, Glioblastoma IDH-wildtype or Brain Metastasis",
-      "url": "https://clinicaltrials.gov/study/NCT06047379",
-      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06047379",
-      "excerpt": "Bevacizumab",
-      "excerpts": [
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[8].name",
-        "text": "Bevacizumab",
-        "supports": "intervention: Bevacizumab"
-       },
-       {
-        "field": "protocolSection.armsInterventionsModule.interventions[6].name",
-        "text": "Paclitaxel",
-        "supports": "intervention: Paclitaxel"
-       },
-       {
-        "field": "protocolSection.conditionsModule.conditions[10]",
-        "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
-       },
-       {
-        "field": "protocolSection.designModule.studyType",
-        "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
-       },
-       {
-        "field": "protocolSection.statusModule.startDateStruct.date",
-        "text": "2023-11-01",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -5004,7 +3757,7 @@
       "NCT05926960"
      ],
      "complete_inline": true,
-     "ref": "/query/q_00aba686d5be5c7f/evidence/e14"
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e10"
     },
     "citations": [
      {
@@ -5027,17 +3780,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Acral Lentiginous Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-01-06",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -5061,17 +3814,17 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2021-05-28",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      },
@@ -5095,17 +3848,493 @@
        {
         "field": "protocolSection.conditionsModule.conditions[0]",
         "text": "Melanoma",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (condition search 'melanoma')"
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
        },
        {
         "field": "protocolSection.designModule.studyType",
         "text": "INTERVENTIONAL",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (study type filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
        },
        {
         "field": "protocolSection.statusModule.startDateStruct.date",
         "text": "2023-06-13",
-        "supports": "cohort 'Melanoma (interventional, 2020-2024)' (start date filter)"
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "source": "intervention:binimetinib",
+    "target": "intervention:pembrolizumab",
+    "weight": 3,
+    "evidence": {
+     "total": 3,
+     "sample": [
+      "NCT04657991",
+      "NCT05304546",
+      "NCT05926960"
+     ],
+     "complete_inline": true,
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e11"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT04657991",
+      "title": "A Clinical Trial of Three Study Medicines (Encorafenib, Binimetinib, and Pembrolizumab) in Patients With Advanced or Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT04657991",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04657991",
+      "excerpt": "Binimetinib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Binimetinib",
+        "supports": "intervention: Binimetinib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "Pembrolizumab",
+        "supports": "intervention: Pembrolizumab"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-01-15",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05304546",
+      "title": "Overcoming Primary Resistance to Immunotherapy in Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT05304546",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05304546",
+      "excerpt": "Binimetinib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "Binimetinib",
+        "supports": "intervention: Binimetinib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Pembrolizumab",
+        "supports": "intervention: Pembrolizumab"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Malignant Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-09-05",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05926960",
+      "title": "A Study Comparing 3 Study Medicines (Encorafenib, Binimetinib, Pembrolizumab) to 2 Study Medicines (Ipilimumab and Nivolumab) in Patients With Advanced Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT05926960",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05926960",
+      "excerpt": "binimetinib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "binimetinib",
+        "supports": "intervention: Binimetinib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "pembrolizumab",
+        "supports": "intervention: Pembrolizumab"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-06-13",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "source": "intervention:dabrafenib",
+    "target": "intervention:trametinib",
+    "weight": 3,
+    "evidence": {
+     "total": 3,
+     "sample": [
+      "NCT04310397",
+      "NCT04903119",
+      "NCT05299580"
+     ],
+     "complete_inline": true,
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e12"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT04310397",
+      "title": "Dabrafenib, Trametinib, and Spartalizumab for the Treatment of BRAF V600E or V600K Mutation Positive Stage IIIB/C/D Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT04310397",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04310397",
+      "excerpt": "Dabrafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "Dabrafenib",
+        "supports": "intervention: Dabrafenib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+        "text": "Trametinib",
+        "supports": "intervention: Trametinib"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Pathologic Stage IIIB Cutaneous Melanoma AJCC v8",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2020-01-29",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04903119",
+      "title": "Nilotinib Plus Dabrafenib/Trametinib or Encorafenib/Binimetinib in Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT04903119",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04903119",
+      "excerpt": "Dabrafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+        "text": "Dabrafenib",
+        "supports": "intervention: Dabrafenib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[5].name",
+        "text": "Trametinib",
+        "supports": "intervention: Trametinib"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2022-06-01",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05299580",
+      "title": "\"Dabrafenib and Trametinib in Circulating Free DNA BRAFV600 Mutated Metastatic Melanoma Patients: a Prospective Phase II, Open Label, Multicentre Study - (Bioliquid TAILOR Study - BIOTAILOR)\"",
+      "url": "https://clinicaltrials.gov/study/NCT05299580",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05299580",
+      "excerpt": "dabrafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "dabrafenib",
+        "supports": "intervention: Dabrafenib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Trametinib",
+        "supports": "intervention: Trametinib"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-02-18",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "source": "intervention:encorafenib",
+    "target": "intervention:ipilimumab",
+    "weight": 3,
+    "evidence": {
+     "total": 3,
+     "sample": [
+      "NCT04511013",
+      "NCT04655157",
+      "NCT05926960"
+     ],
+     "complete_inline": true,
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e13"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT04511013",
+      "title": "A Study to Compare the Administration of Encorafenib + Binimetinib + Nivolumab Versus Ipilimumab + Nivolumab in BRAF-V600 Mutant Melanoma With Brain Metastases",
+      "url": "https://clinicaltrials.gov/study/NCT04511013",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04511013",
+      "excerpt": "Encorafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Encorafenib",
+        "supports": "intervention: Encorafenib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "Ipilimumab",
+        "supports": "intervention: Ipilimumab"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Acral Lentiginous Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-01-06",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04655157",
+      "title": "Safety and Efficacy in Participants With Metastatic BRAF-mutant Melanoma Treated With Encorafenib With and Without Binimetinib in Combination With Nivolumab and Low-dose Ipilimuma",
+      "url": "https://clinicaltrials.gov/study/NCT04655157",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04655157",
+      "excerpt": "encorafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "encorafenib",
+        "supports": "intervention: Encorafenib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+        "text": "ipilimumab",
+        "supports": "intervention: Ipilimumab"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-05-28",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05926960",
+      "title": "A Study Comparing 3 Study Medicines (Encorafenib, Binimetinib, Pembrolizumab) to 2 Study Medicines (Ipilimumab and Nivolumab) in Patients With Advanced Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT05926960",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05926960",
+      "excerpt": "encorafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "encorafenib",
+        "supports": "intervention: Encorafenib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+        "text": "ipilimumab",
+        "supports": "intervention: Ipilimumab"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-06-13",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "source": "intervention:encorafenib",
+    "target": "intervention:nivolumab",
+    "weight": 3,
+    "evidence": {
+     "total": 3,
+     "sample": [
+      "NCT04511013",
+      "NCT04655157",
+      "NCT05926960"
+     ],
+     "complete_inline": true,
+     "ref": "/query/q_fb8f145686efe3ee/evidence/e14"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT04511013",
+      "title": "A Study to Compare the Administration of Encorafenib + Binimetinib + Nivolumab Versus Ipilimumab + Nivolumab in BRAF-V600 Mutant Melanoma With Brain Metastases",
+      "url": "https://clinicaltrials.gov/study/NCT04511013",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04511013",
+      "excerpt": "Encorafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "Encorafenib",
+        "supports": "intervention: Encorafenib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+        "text": "Nivolumab",
+        "supports": "intervention: Nivolumab"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Acral Lentiginous Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-01-06",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04655157",
+      "title": "Safety and Efficacy in Participants With Metastatic BRAF-mutant Melanoma Treated With Encorafenib With and Without Binimetinib in Combination With Nivolumab and Low-dose Ipilimuma",
+      "url": "https://clinicaltrials.gov/study/NCT04655157",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04655157",
+      "excerpt": "encorafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "encorafenib",
+        "supports": "intervention: Encorafenib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+        "text": "nivolumab",
+        "supports": "intervention: Nivolumab"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2021-05-28",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05926960",
+      "title": "A Study Comparing 3 Study Medicines (Encorafenib, Binimetinib, Pembrolizumab) to 2 Study Medicines (Ipilimumab and Nivolumab) in Patients With Advanced Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT05926960",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05926960",
+      "excerpt": "encorafenib",
+      "excerpts": [
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+        "text": "encorafenib",
+        "supports": "intervention: Encorafenib"
+       },
+       {
+        "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+        "text": "nivolumab",
+        "supports": "intervention: Nivolumab"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Melanoma",
+        "supports": "cohort 'Melanoma (2020-2024)' (condition search 'melanoma')"
+       },
+       {
+        "field": "protocolSection.designModule.studyType",
+        "text": "INTERVENTIONAL",
+        "supports": "cohort 'Melanoma (2020-2024)' (study type filter)"
+       },
+       {
+        "field": "protocolSection.statusModule.startDateStruct.date",
+        "text": "2023-06-13",
+        "supports": "cohort 'Melanoma (2020-2024)' (start date filter)"
        }
       ]
      }
@@ -5117,7 +4346,7 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T09:12:44+00:00",
+  "retrieved_at": "2026-09-24T09:56:53+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
@@ -5128,7 +4357,7 @@
   },
   "api_queries": [
    {
-    "cohort": "Melanoma (interventional, 2020-2024)",
+    "cohort": "Melanoma (2020-2024)",
     "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=melanoma&filter.advanced=AREA%5BStudyType%5DINTERVENTIONAL+AND+AREA%5BStartDate%5DRANGE%5B2020-01-01%2C2024-12-31%5D&fields=NCTId%2CBriefTitle%2CInterventionName%2CInterventionType%2CArmGroupInterventionName%2CStudyType%2CStartDate%2CStartDateType%2CCondition",
     "total": 764,
     "fetched": 764,
@@ -5141,7 +4370,7 @@
   },
   "studies_analyzed": 764,
   "filters": {
-   "Melanoma (interventional, 2020-2024)": {
+   "Melanoma (2020-2024)": {
     "condition": "melanoma",
     "study_type": "INTERVENTIONAL",
     "start_date_from": "2020-01-01",
@@ -5154,10 +4383,10 @@
    "studies_without_a_pair": 379
   },
   "assumptions": [
-   "'Started from 2020 through 2024' = registered study start date between 2020-01-01 and 2024-12-31.",
-   "Pairs = two drug interventions listed in the same study (not necessarily in the same arm).",
-   "Only drug/biologic interventions are included; placebo and ancillary entries (imaging, questionnaires, biospecimens) are excluded.",
-   "Edge weight = number of distinct studies listing both drugs; the 15 strongest edges are shown.",
+   "Study start date (registered) used for the 2020-2024 window, inclusive.",
+   "'Appear together' = both drugs listed in the same study, regardless of arm assignment.",
+   "Only drug/biologic interventions are included; placebo and ancillary items (imaging, questionnaires, biospecimens) are excluded.",
+   "Edge weight = number of distinct studies listing both drugs; top 15 pairs shown.",
    "Intervention names are merged only by deterministic rules (case, trademark symbols, doses, formulation words, a fixed brand/code alias table); combination products registered under one name stay one node.",
    "Placebo, sham, usual-care and observation comparators are excluded.",
    "Assessment and data-collection entries registered as interventions (imaging, biospecimen collection, questionnaires, ...) are excluded.",
@@ -5175,11 +4404,11 @@
    "cached": false
   },
   "timings_ms": {
-   "preflight": 228,
-   "fetch": 721,
-   "analyze": 374,
+   "preflight": 225,
+   "fetch": 995,
+   "analyze": 49,
    "verify": 2,
-   "total": 1333
+   "total": 1278
   }
  }
 }

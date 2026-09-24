@@ -3,7 +3,7 @@
     README.md            the project README, links rewritten for this layout
     <video>.mov          the demo video
     code/                the runnable project (from git: committed files only, no .env)
-    examples/            the example runs (request + response JSON) and their index
+    examples/            the example runs: one request and one response JSON per run
 
     uv run python scripts/make_submission.py --video "path/to/recording.mov" [--out file.zip]
 """
@@ -54,11 +54,6 @@ def build(video: Path, out: Path) -> None:
         archive.unlink()
 
         shutil.move(str(code / "examples" / "runs"), str(stage / "examples"))
-        (stage / "examples" / "README.md").write_text(
-            (stage / "examples" / "README.md").read_text()
-            .replace("`uv run python scripts/run_examples.py`",
-                     "`uv run python scripts/run_examples.py` (from `code/`; writes to "
-                     "`code/examples/runs/`)"))
 
         readme = (code / "README.md").read_text()
         for pattern, replacement in README_REWRITES:
