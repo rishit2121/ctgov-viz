@@ -20,6 +20,8 @@ model's output where a count, an NCT ID or a chart value could go.
 - **Verified:** a response verifier, 267 offline tests, live oracle tests against ClinicalTrials.gov,
   and a 28-question planner evaluation (28/28 on Claude).
 
+**Full design write-up:** [docs/SYSTEM_DESIGN.md](docs/SYSTEM_DESIGN.md).
+
 ---
 
 ## Contents
@@ -601,6 +603,7 @@ app/
   viz/                 chart builder, titles, theme
   evidence/            deep citations, evidence registry, result cache
   static/index.html    demo UI (served at /)
+docs/SYSTEM_DESIGN.md  system design report
 docs/images/           screenshots used in this README
   verify/              response invariants
 examples/runs/         real requests + complete JSON responses (Claude + live CT.gov)
