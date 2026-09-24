@@ -1,6 +1,6 @@
 """Golden planner evaluation against the real LLM and real ClinicalTrials.gov (``-m live``).
 
-    OPENAI_API_KEY=... uv run pytest -m live tests/golden -q
+    uv run pytest -m live tests/golden -q   (key from the environment or .env)
 
 Each case checks properties of the produced plan (see questions.yaml). A summary accuracy line
 is printed at the end of the session.
@@ -8,7 +8,6 @@ is printed at the end of the session.
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
 from typing import Any
 
@@ -26,7 +25,9 @@ CASES: list[dict[str, Any]] = yaml.safe_load((Path(__file__).parent / "questions
 
 pytestmark = [
     pytest.mark.live,
-    pytest.mark.skipif(not os.environ.get("OPENAI_API_KEY"), reason="needs OPENAI_API_KEY"),
+    # Same lookup as the app: environment variable or .env file.
+    pytest.mark.skipif(not Settings().openai_api_key,
+                       reason="needs OPENAI_API_KEY (environment or .env)"),
 ]
 
 
@@ -101,6 +102,6 @@ async def test_golden(planner: Any, case: dict[str, Any]) -> None:
         if not problems and result.kind == "plan" and result.plan is not None:
             problems = check_plan(result.plan, case)
     except PlannerError as e:
-        problems = [f"planner error: {e.code} {e.detail}"]
+        problems = [f"planner error: {e.code}: {e.message} {e.detail or ''}".rstrip()]
     RESULTS.append(not problems)
     assert not problems, problems
