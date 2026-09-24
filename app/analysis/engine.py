@@ -263,6 +263,7 @@ def _eligible_interventions(t: Trial, pair: PairSpec) -> list[Intervention]:
     return [
         i for i in t.interventions
         if not (pair.exclude_placebo and i.is_placebo)
+        and not (pair.exclude_ancillary and i.is_ancillary)
         and not (pair.drugs_only and i.type not in ("DRUG", "BIOLOGICAL"))
     ]
 
@@ -340,7 +341,12 @@ def _network(pair: PairSpec, top_k: int | None, trials: Sequence[Trial]) -> Anal
         "imply they were given together (they may be in different arms).")
     result.definitions["node_size"] = "Distinct studies listing the node's value."
     if pair.exclude_placebo:
-        result.assumptions.append("Placebo, sham and standard-of-care interventions excluded.")
+        result.assumptions.append(
+            "Placebo, sham, usual-care and observation comparators are excluded.")
+    if pair.exclude_ancillary:
+        result.assumptions.append(
+            "Assessment and data-collection entries registered as interventions (imaging, "
+            "biospecimen collection, questionnaires, ...) are excluded.")
     if pair.drugs_only:
         result.assumptions.append("Only drug and biological interventions included.")
     return result

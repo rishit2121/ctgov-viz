@@ -104,6 +104,8 @@ def test_months_between_requires_month_precision() -> None:
     ("raw", "name", "iso3"),
     [("United States", "United States", "USA"), ("Korea, Republic of", "South Korea", "KOR"),
      ("Russian Federation", "Russia", "RUS"), ("  Germany ", "Germany", "DEU"),
+     ("Turkey (Türkiye)", "Turkey", "TUR"), ("Côte d\u2019Ivoire", "Côte d'Ivoire", "CIV"),
+     ("Burma", "Myanmar", "MMR"), ("The Gambia", "Gambia", "GMB"),
      ("Former Serbia and Montenegro", "Former Serbia and Montenegro", None),
      ("Atlantis", "Atlantis", None)],
 )

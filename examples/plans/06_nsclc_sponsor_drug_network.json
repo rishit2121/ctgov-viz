@@ -1,0 +1,25 @@
+{
+  "question": "Show a network of sponsors and drugs for non-small cell lung cancer trials.",
+  "plan": {
+    "cohorts": [
+      {
+        "label": "NSCLC",
+        "condition": "non-small cell lung cancer",
+        "filters": {
+          "study_type": "INTERVENTIONAL",
+          "start_date_from": "2020-01-01"
+        }
+      }
+    ],
+    "analysis": {
+      "kind": "cooccurrence",
+      "pair": {
+        "left": "sponsor",
+        "right": "intervention",
+        "drugs_only": true,
+        "max_edges": 50
+      },
+      "top_k": 40
+    }
+  }
+}

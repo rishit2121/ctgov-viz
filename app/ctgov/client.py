@@ -71,17 +71,21 @@ class CTGovClient:
                 if resp.status_code == 200:
                     try:
                         return resp.json()  # type: ignore[no-any-return]
-                    except ValueError as e:
-                        raise CTGovError(f"invalid JSON from {path}: {e}", 200) from e
-                message = resp.text.strip()[:500] or resp.reason_phrase
-                if resp.status_code not in _RETRY_STATUS:
-                    raise CTGovError(f"ClinicalTrials.gov rejected the query: {message}",
-                                     resp.status_code)
-                last_error = CTGovError(f"HTTP {resp.status_code}: {message}", resp.status_code)
-                retry_after = resp.headers.get("Retry-After")
-                if retry_after and retry_after.isdigit() and attempt < self.max_retries:
-                    await asyncio.sleep(min(float(retry_after), 10.0))
-                    continue
+                    except ValueError:
+                        # Seen in practice under load: a 200 with a truncated/non-JSON body.
+                        last_error = CTGovError(f"invalid JSON from {path}")
+                        log.warning("CT.gov invalid JSON (attempt %d)", attempt + 1)
+                else:
+                    message = resp.text.strip()[:500] or resp.reason_phrase
+                    if resp.status_code not in _RETRY_STATUS:
+                        raise CTGovError(f"ClinicalTrials.gov rejected the query: {message}",
+                                         resp.status_code)
+                    last_error = CTGovError(f"HTTP {resp.status_code}: {message}",
+                                            resp.status_code)
+                    retry_after = resp.headers.get("Retry-After")
+                    if retry_after and retry_after.isdigit() and attempt < self.max_retries:
+                        await asyncio.sleep(min(float(retry_after), 10.0))
+                        continue
             if attempt < self.max_retries:
                 delay = self.backoff_base_s * 2**attempt
                 await asyncio.sleep(delay + random.uniform(0, delay / 2))

@@ -1,0 +1,15 @@
+{
+  "question": "How are pembrolizumab trials distributed across phases?",
+  "plan": {
+    "cohorts": [
+      {
+        "label": "Pembrolizumab",
+        "intervention": "pembrolizumab"
+      }
+    ],
+    "analysis": {
+      "kind": "aggregate",
+      "dimension": "phase"
+    }
+  }
+}

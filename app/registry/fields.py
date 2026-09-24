@@ -62,7 +62,9 @@ REGISTRY: dict[Dimension, FieldDef] = {
             lambda t: _one(phase_bucket(t.phases)), (paths.P_PHASES,), "domain",
             tuple(PHASE_ORDER),
             description="One bucket per study; multi-phase studies form combined buckets "
-                        "such as 'Phase 2/3'.",
+                        "such as 'Phase 2/3'. 'Not Applicable' is registered for studies "
+                        "without drug phases (e.g. device, behavioral); 'Not Reported' means no "
+                        "phase is registered (typical for observational studies).",
         ),
         FieldDef(
             Dimension.overall_status, "Overall status", frozenset({"group", "series"}),

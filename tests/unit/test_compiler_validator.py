@@ -84,6 +84,14 @@ def test_local_predicate_rechecks_every_structured_filter() -> None:
     assert not ok(trial("NCT6", **{**base, "countries": ["Georgia"]}))
 
 
+@pytest.mark.parametrize("wanted", ["turkey", "Turkey", "Türkiye", "TUR"])
+def test_country_filter_matches_by_iso_code(wanted: str) -> None:
+    ok = compile_cohort(Cohort(label="x", condition="c",
+                               filters=CohortFilters(country=wanted))).predicate
+    assert ok(trial("NCT1", countries=["Turkey (Türkiye)"]))
+    assert not ok(trial("NCT2", countries=["Greece"]))
+
+
 # ------------------------------------------------------------------ plan schema + validator
 
 

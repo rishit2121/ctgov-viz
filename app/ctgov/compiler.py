@@ -110,7 +110,7 @@ def _date_key(d: DateValue) -> tuple[int, int, int] | None:
 def _predicate(f: CohortFilters) -> Callable[[Trial], bool]:
     statuses = {s.value for s in f.overall_status}
     phases = {p.value for p in f.phase}
-    country = canonical_country(f.country)[0] if f.country else None
+    country, country_iso3 = canonical_country(f.country) if f.country else (None, None)
     lo = _as_key(f.start_date_from)
     hi = _as_key(f.start_date_to)
 
@@ -121,7 +121,7 @@ def _predicate(f: CohortFilters) -> Callable[[Trial], bool]:
             return False
         if f.study_type and t.study_type != f.study_type.value:
             return False
-        if country and country not in t.countries:
+        if country and not _has_country(t, country, country_iso3):
             return False
         if lo or hi:
             k = _date_key(t.start)
@@ -130,6 +130,12 @@ def _predicate(f: CohortFilters) -> Callable[[Trial], bool]:
         return True
 
     return check
+
+
+def _has_country(t: Trial, name: str, iso3: str | None) -> bool:
+    if iso3 is not None:
+        return iso3 in t.country_iso3.values()
+    return name.casefold() in {c.casefold() for c in t.countries}
 
 
 def _as_key(d: date | None) -> tuple[int, int, int] | None:

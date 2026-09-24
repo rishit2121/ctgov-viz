@@ -28,7 +28,8 @@ class Intervention:
     label: str  # cleaned display name, e.g. "Pembrolizumab"
     raw_name: str  # exactly as registered, e.g. "Pembrolizumab (KEYTRUDA®)"
     type: str | None  # CT.gov enum: DRUG, BIOLOGICAL, DEVICE, ...
-    is_placebo: bool = False
+    is_placebo: bool = False  # placebo / sham / usual-care comparator
+    is_ancillary: bool = False  # assessment or data collection (imaging, biospecimens, surveys)
 
 
 @dataclass(frozen=True, slots=True)

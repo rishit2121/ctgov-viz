@@ -1,0 +1,27 @@
+{
+  "question": "Which countries have the most recruiting Phase 3 lung cancer trials?",
+  "plan": {
+    "cohorts": [
+      {
+        "label": "Lung cancer",
+        "condition": "lung cancer",
+        "filters": {
+          "overall_status": [
+            "RECRUITING"
+          ],
+          "phase": [
+            "PHASE3"
+          ]
+        }
+      }
+    ],
+    "analysis": {
+      "kind": "aggregate",
+      "dimension": "country",
+      "top_k": 20,
+      "sort": {
+        "by": "count_desc"
+      }
+    }
+  }
+}

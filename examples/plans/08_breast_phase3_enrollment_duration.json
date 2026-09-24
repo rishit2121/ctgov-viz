@@ -1,0 +1,21 @@
+{
+  "question": "How does enrollment relate to study duration for Phase 3 breast cancer trials?",
+  "plan": {
+    "cohorts": [
+      {
+        "label": "Phase 3 breast cancer",
+        "condition": "breast cancer",
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ]
+        }
+      }
+    ],
+    "analysis": {
+      "kind": "numeric_pair",
+      "x_measure": "duration_months",
+      "y_measure": "enrollment"
+    }
+  }
+}

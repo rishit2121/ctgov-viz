@@ -1,0 +1,20 @@
+{
+  "question": "Which interventions most frequently co-occur in melanoma studies?",
+  "plan": {
+    "cohorts": [
+      {
+        "label": "Melanoma",
+        "condition": "melanoma"
+      }
+    ],
+    "analysis": {
+      "kind": "cooccurrence",
+      "pair": {
+        "left": "intervention",
+        "right": "intervention",
+        "max_edges": 40
+      },
+      "top_k": 30
+    }
+  }
+}

@@ -122,6 +122,10 @@ class PairSpec(_Strict):
     exclude_placebo: bool = Field(
         True, description="Drop placebo/sham/standard-of-care interventions from the network."
     )
+    exclude_ancillary: bool = Field(
+        True, description="Drop assessment/data-collection entries (imaging, biospecimen "
+        "collection, questionnaires) that are registered as interventions but are not treatments."
+    )
     drugs_only: bool = Field(
         False, description="Keep only DRUG/BIOLOGICAL interventions (for 'drug' networks)."
     )

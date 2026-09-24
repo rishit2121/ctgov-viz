@@ -1,0 +1,20 @@
+{
+  "question": "Compare pembrolizumab and nivolumab trials across phases.",
+  "plan": {
+    "cohorts": [
+      {
+        "label": "Pembrolizumab",
+        "intervention": "pembrolizumab"
+      },
+      {
+        "label": "Nivolumab",
+        "intervention": "nivolumab"
+      }
+    ],
+    "analysis": {
+      "kind": "aggregate",
+      "dimension": "phase",
+      "series_by": "cohort"
+    }
+  }
+}

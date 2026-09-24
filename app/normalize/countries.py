@@ -42,6 +42,13 @@ _OVERRIDES: dict[str, tuple[str, str | None]] = {
     "palestinian territories, occupied": ("Palestine", "PSE"),
     "palestinian territory, occupied": ("Palestine", "PSE"),
     "hong kong": ("Hong Kong", "HKG"),
+    "turkey (türkiye)": ("Turkey", "TUR"),
+    "democratic republic of the congo": ("DR Congo", "COD"),
+    "the gambia": ("Gambia", "GMB"),
+    "burma": ("Myanmar", "MMR"),
+    "reunion": ("Réunion", "REU"),
+    "palestinian territories": ("Palestine", "PSE"),
+    "the bahamas": ("Bahamas", "BHS"),
     "former serbia and montenegro": ("Former Serbia and Montenegro", None),
 }
 
@@ -49,7 +56,7 @@ _OVERRIDES: dict[str, tuple[str, str | None]] = {
 @lru_cache(maxsize=512)
 def canonical_country(raw: str) -> tuple[str, str | None]:
     """Return (display name, ISO3 or None)."""
-    name = " ".join(raw.split())
+    name = " ".join(raw.split()).replace("\u2019", "'")  # curly apostrophe: "Côte d’Ivoire"
     key = name.casefold()
     if key in _OVERRIDES:
         return _OVERRIDES[key]

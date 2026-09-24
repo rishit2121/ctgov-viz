@@ -83,7 +83,7 @@ def _check_status(r: QueryResponse) -> list[str]:
     all_complete = all(q.complete for q in m.api_queries)
     if m.completeness.complete != all_complete:
         v.append("meta.completeness disagrees with api_queries[].complete")
-    if r.status in ("ok", "partial", "empty") and r.visualization is None:
+    if r.status in ("ok", "partial") and r.visualization is None:
         v.append(f"status '{r.status}' requires a visualization")
     elif r.status in ("ok", "partial"):
         assert r.visualization is not None

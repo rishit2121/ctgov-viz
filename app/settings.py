@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     ctgov_max_retries: int = 3
     ctgov_concurrency: int = 3
     max_studies_per_cohort: int = 20_000
+    request_deadline_s: float = 90.0
 
     llm_mode: Literal["openai", "fake"] = "openai"
     openai_api_key: str | None = None

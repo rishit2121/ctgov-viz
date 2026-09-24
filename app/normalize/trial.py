@@ -12,7 +12,12 @@ from typing import Any
 from app.contracts.trial import Intervention, Trial
 from app.normalize.countries import canonical_country
 from app.normalize.dates import parse_date_struct
-from app.normalize.interventions import is_placebo, resolve, split_arm_intervention
+from app.normalize.interventions import (
+    is_ancillary,
+    is_placebo,
+    resolve,
+    split_arm_intervention,
+)
 from app.normalize.labels import sort_phases
 
 # Field paths (relative to protocolSection) used in evidence.
@@ -79,6 +84,7 @@ def normalize_study(raw: dict[str, Any]) -> Trial:
             interventions[key] = Intervention(
                 key=key, label=label, raw_name=name.strip(),
                 type=item.get("type"), is_placebo=is_placebo(name),
+                is_ancillary=is_ancillary(key),
             )
 
     arm_sets: list[frozenset[str]] = []

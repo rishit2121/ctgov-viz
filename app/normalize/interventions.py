@@ -80,6 +80,22 @@ _GENERIC_WORDS = frozenset({
     "anti-pd-1 antibody", "pd-1 inhibitor", "targeted therapy", "biologic",
 })
 
+# Study assessments / data collection registered as "interventions" (mostly NCI-standard names).
+# They describe how outcomes are measured, not what is given, so networks drop them by default.
+# Exact match on the resolved key only; the list was built from the most frequent non-drug
+# entries in real melanoma, lung and breast cancer records.
+ANCILLARY = frozenset({
+    "biospecimen collection", "laboratory biomarker analysis", "pharmacological study",
+    "pharmacokinetic study", "computed tomography", "magnetic resonance imaging",
+    "positron emission tomography", "fludeoxyglucose f-18", "x-ray imaging", "bone scan",
+    "echocardiography", "echocardiography test", "electrocardiography",
+    "multigated acquisition scan", "biopsy", "biopsy procedure", "blood sampling", "blood draw",
+    "lumbar puncture", "flow cytometry", "immunohistochemistry staining method",
+    "questionnaire administration", "questionnaire", "questionnaires", "survey administration",
+    "interview", "quality-of-life assessment", "electronic health record review",
+    "medical chart review", "data collection", "non-interventional study", "non-interventional",
+})
+
 _TRADEMARK_RE = re.compile(r"[®™©]")
 _TRAILING_GROUP_RE = re.compile(r"\s*[\(\[]([^()\[\]]*)[\)\]]\s*$")
 _VARIANT_RE = re.compile(r"^\d+[A-Za-z]$")  # e.g. gp100:209-217(210M)
@@ -93,8 +109,11 @@ _SUFFIX_RE = re.compile(
     re.IGNORECASE,
 )
 _WS_RE = re.compile(r"\s+")
+# Comparators rather than active interventions.
 _PLACEBO_RE = re.compile(
-    r"\b(placebo|sham|vehicle|dummy|standard of care|best supportive care|saline)\b", re.IGNORECASE
+    r"\b(placebo|sham|vehicle|dummy|standard of care|best supportive care|saline|usual care|"
+    r"best practice|no intervention|observation)\b",
+    re.IGNORECASE,
 )
 
 
@@ -131,16 +150,12 @@ def resolve(raw: str) -> tuple[str, str]:
     return base.casefold(), base
 
 
-def clean_name(raw: str) -> str:
-    return resolve(raw)[1]
-
-
-def intervention_key(raw: str) -> str:
-    return resolve(raw)[0]
-
-
 def is_placebo(raw: str) -> bool:
     return bool(_PLACEBO_RE.search(raw))
+
+
+def is_ancillary(key: str) -> bool:
+    return key in ANCILLARY
 
 
 def split_arm_intervention(raw: str) -> tuple[str | None, str]:

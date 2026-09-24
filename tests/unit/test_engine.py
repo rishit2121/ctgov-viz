@@ -256,3 +256,17 @@ def test_series_beyond_color_slots_fold_into_other() -> None:
     other = next(row for row in r.rows if row.values["overall_status"] == "Other")
     assert other.count == 2 + 1  # the two smallest statuses, distinct studies
     assert any("grouped into 'Other'" in w for w in r.warnings)
+
+
+def test_networks_drop_ancillary_assessments_by_default() -> None:
+    trials = [trial("NCT01", interventions=[("Nivolumab", "DRUG"),
+                                            ("Biospecimen Collection", "PROCEDURE"),
+                                            ("Computed Tomography", "PROCEDURE"),
+                                            ("Usual Care", "OTHER")])] * 1 + [
+              trial("NCT02", interventions=[("Nivolumab", "DRUG"), ("Surgery", "PROCEDURE")])]
+    pair = {"left": "intervention", "right": "intervention"}
+    r = run(plan({"kind": "cooccurrence", "pair": pair}), {"Cohort": trials})
+    assert _edges(r) == {("nivolumab", "surgery"): 1}
+    r = run(plan({"kind": "cooccurrence", "pair": {**pair, "exclude_ancillary": False}}),
+            {"Cohort": trials})
+    assert ("biospecimen collection", "nivolumab") in _edges(r)
