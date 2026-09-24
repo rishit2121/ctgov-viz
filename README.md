@@ -4,13 +4,9 @@
 every matching ClinicalTrials.gov record, where every bar, point, node and edge cites the exact
 studies and record text behind it.**
 
-![Stacked bar of the top 10 countries by recruiting Phase 2/3 breast cancer trials, with the citations panel open for the United States total](docs/images/stacked_totals_citations.png)
+![Stacked bar chart of countries by phase](docs/images/stacked_totals_citations.png)
 
-<sub>*"For interventional breast cancer studies that started from 2020 through 2024 and are
-currently recruiting, which 10 countries have the most Phase 2 and Phase 3 trials? Show the
-counts by phase for each country."* The United States total (191) is selected; the panel lists
-the distinct studies behind it, each with verbatim excerpts from its API record at exact paths.
-Both totals shown were cross-checked against direct ClinicalTrials.gov count queries.</sub>
+*"For interventional breast cancer studies that started from 2020 through 2024 and are currently recruiting, which 10 countries have the most Phase 2 and Phase 3 trials? Show the counts by phase for each country."*
 
 **Guiding rule: the LLM only interprets the question.** Claude turns the question into a
 constrained query plan. Validated code retrieves every matching record, computes every number,
@@ -99,12 +95,12 @@ assumptions and warnings, a data table, the exact ClinicalTrials.gov API queries
 
 | | |
 |---|---|
-| ![Drug-combination network for melanoma with the Pembrolizumab node selected](docs/images/network_drug_combinations.png) | ![Histogram of Phase 3 breast cancer enrollment sizes with a bin selected](docs/images/histogram_enrollment.png) |
-| *Which drugs are combined in the same arm in melanoma trials?* Force-directed network; drag, zoom, hover to highlight neighbors. | *Distribution of enrollment sizes for Phase 3 breast cancer trials.* Fixed bins. |
-| ![Breast cancer trials by start year since 2015](docs/images/time_series.png) | ![Pembrolizumab vs nivolumab trials by phase](docs/images/grouped_comparison.png) |
-| *How many breast cancer trials started each year since 2015?* | *Compare pembrolizumab and nivolumab trials across phases.* |
-| ![Enrollment vs duration scatter for Phase 3 breast cancer trials](docs/images/scatter_enrollment_duration.png) | |
-| *How does enrollment relate to study duration for Phase 3 breast cancer trials?* One point per study. | |
+| ![Drug-pair network](docs/images/network_drug_pairs.png) | ![Enrollment histogram](docs/images/histogram_enrollment.png) |
+| *"Among interventional melanoma studies that started from 2020 through 2024, which pairs of drug interventions appear together in the same study most often? Show the top 15 pairs as a network, with drugs as nodes and the number of distinct studies as each edge’s weight."* | *"What is the distribution of enrollment sizes for Phase 3 breast cancer trials?"* |
+| ![Time series](docs/images/time_series.png) | ![Stacked bar chart of countries by phase](docs/images/stacked_country_phase.png) |
+| *"How many breast cancer trials started each year since 2015?"* | *"For interventional breast cancer studies that started from 2020 through 2024 and are currently recruiting, which 10 countries have the most Phase 2 and Phase 3 trials? Show the counts by phase for each country."* |
+| ![Scatter plot](docs/images/scatter_enrollment_duration.png) | |
+| *"How does enrollment relate to study duration for Phase 3 breast cancer trials?"* | |
 
 ### From the command line
 
