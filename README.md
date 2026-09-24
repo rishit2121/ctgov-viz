@@ -116,28 +116,42 @@ A shortened example of one chart row looks like this:
 
 ```json
 {
-  "country": "United States",
-  "phase": "Phase 1/2",
-  "study_count": 53,
-  "evidence": {
-    "total": 53,
-    "sample": ["NCT03934905", "NCT04300556"],
-    "complete_inline": false,
-    "ref": "/query/q_2a3f6b091702256c/evidence/r0"
+  "status": "ok",
+  "query_id": "q_2a3f6b091702256c",
+  "query": "For interventional breast cancer studies ...",
+  "plan": {
+    "cohorts": ["..."],
+    "analysis": {"kind": "aggregate", "dimension": "country", "series_by": "phase"}
   },
-  "citations": [
-    {
-      "nct_id": "NCT03934905",
-      "url": "https://clinicaltrials.gov/study/NCT03934905",
-      "excerpts": [
-        {
-          "field": "protocolSection.contactsLocationsModule.locations[0].country",
-          "text": "United States",
-          "supports": "site country: United States"
-        }
-      ]
-    }
-  ]
+  "visualization": {
+    "type": "stacked_bar",
+    "title": "Breast cancer studies by country and phase",
+    "encoding": {"...": "..."},
+    "data": [
+      {
+        "country": "United States",
+        "phase": "Phase 1/2",
+        "study_count": 53,
+        "evidence": {"total": 53, "ref": "/query/q_2a3f6b091702256c/evidence/r0"},
+        "citations": ["..."]
+      }
+    ],
+    "totals": [
+      {
+        "country": "United States",
+        "study_count": 191,
+        "evidence": {"...": "..."},
+        "citations": ["..."]
+      }
+    ],
+    "vega_lite": {"...": "..."}
+  },
+  "meta": {
+    "completeness": {"complete": true},
+    "studies_analyzed": 466,
+    "assumptions": ["..."],
+    "api_queries": ["..."]
+  }
 }
 ```
 
