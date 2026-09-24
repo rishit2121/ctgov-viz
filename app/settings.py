@@ -20,6 +20,7 @@ class Settings(BaseSettings):
     openai_api_key: str | None = None
     openai_model: str = "gpt-5-mini"
     openai_timeout_s: float = 60.0
+    openai_reasoning_effort: str | None = "low"
     planner_max_tool_calls: int = 4
 
     evidence_sample_size: int = 5

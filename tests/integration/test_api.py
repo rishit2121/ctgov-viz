@@ -46,7 +46,7 @@ class ScriptedPlanner:
 
 
 def make_client(fake: FakeCTGov, planner: Any = None, **settings: Any) -> TestClient:
-    s = Settings(llm_mode="fake", openai_api_key=None, **settings)
+    s = Settings(llm_mode="openai", openai_api_key=None, **settings)  # no LLM unless injected
     return TestClient(create_app(s, client=fake.client(max_retries=1), planner=planner))
 
 

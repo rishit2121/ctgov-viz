@@ -1,0 +1,149 @@
+# Golden planner cases. Each asserts *properties* of the plan, not exact JSON, so equivalent
+# phrasings pass. Keys (all optional except question/decision):
+#   kind, dimension, series_by, sort, time (true | {from_year, to_year}), n_cohorts,
+#   terms: one list of substrings per cohort (matched against condition/intervention/term/
+#          sponsor, case-insensitive, cohorts in any order),
+#   status / phase: exact set required on every cohort, study_type,
+#   pair: [left, right], scope, drugs_only, measures: [x, y]
+
+# ---------------------------------------------------------------- trends
+- question: How many breast cancer trials started each year since 2015?
+  decision: plan
+  kind: aggregate
+  time: {from_year: 2015}
+  terms: [[breast cancer]]
+- question: How has the number of trials for semaglutide changed per year since 2018?
+  decision: plan
+  kind: aggregate
+  time: {from_year: 2018}
+  terms: [[semaglutide]]
+- question: Show the yearly number of new Alzheimer's studies between 2010 and 2020
+  decision: plan
+  kind: aggregate
+  time: {from_year: 2010, to_year: 2020}
+  terms: [[alzheimer]]
+- question: Pembrolizumab vs nivolumab trial starts per year
+  decision: plan
+  kind: aggregate
+  time: true
+  series_by: cohort
+  n_cohorts: 2
+  terms: [[pembrolizumab], [nivolumab]]
+
+# ---------------------------------------------------------------- distributions
+- question: How are pembrolizumab trials distributed across phases?
+  decision: plan
+  kind: aggregate
+  dimension: phase
+  terms: [[pembrolizumab]]
+- question: phase breakdown of keytruda studies
+  decision: plan
+  kind: aggregate
+  dimension: phase
+  terms: [[pembrolizumab|keytruda]]
+- question: What are the most common intervention types for melanoma trials?
+  decision: plan
+  kind: aggregate
+  dimension: intervention_type
+  terms: [[melanoma]]
+- question: What share of completed type 2 diabetes trials are industry sponsored?
+  decision: plan
+  kind: aggregate
+  dimension: sponsor_class
+  status: [COMPLETED]
+  terms: [[diabetes]]
+- question: Who are the top sponsors running recruiting multiple sclerosis trials?
+  decision: plan
+  kind: aggregate
+  dimension: sponsor
+  sort: count_desc
+  status: [RECRUITING]
+  terms: [[multiple sclerosis]]
+
+# ---------------------------------------------------------------- comparisons
+- question: Compare pembrolizumab and nivolumab trials across phases.
+  decision: plan
+  kind: aggregate
+  dimension: phase
+  series_by: cohort
+  terms: [[pembrolizumab], [nivolumab]]
+- question: Compare sponsor categories across breast cancer and prostate cancer trials
+  decision: plan
+  kind: aggregate
+  dimension: sponsor_class
+  series_by: cohort
+  terms: [[breast cancer], [prostate cancer]]
+- question: Break down lung cancer trials by phase and by type of lead sponsor
+  decision: plan
+  kind: aggregate
+  dimension: phase
+  series_by: sponsor_class
+  terms: [[lung cancer]]
+
+# ---------------------------------------------------------------- geography
+- question: Which countries have the most recruiting Phase 3 lung cancer trials?
+  decision: plan
+  kind: aggregate
+  dimension: country
+  sort: count_desc
+  status: [RECRUITING]
+  phase: [PHASE3]
+  terms: [[lung cancer]]
+- question: Where are most recruiting trials for sickle cell disease being run?
+  decision: plan
+  kind: aggregate
+  dimension: country
+  status: [RECRUITING]
+  terms: [[sickle cell]]
+- question: How are diabetes trials in India distributed by phase?
+  decision: plan
+  kind: aggregate
+  dimension: phase
+  terms: [[diabetes]]
+
+# ---------------------------------------------------------------- networks
+- question: Which interventions most frequently co-occur in melanoma studies?
+  decision: plan
+  kind: cooccurrence
+  pair: [intervention, intervention]
+  terms: [[melanoma]]
+- question: Which drugs frequently co-occur in combination studies for colorectal cancer?
+  decision: plan
+  kind: cooccurrence
+  pair: [intervention, intervention]
+  scope: arm
+  drugs_only: true
+  terms: [[colorectal]]
+- question: Show a network of sponsors and drugs for non-small cell lung cancer trials
+  decision: plan
+  kind: cooccurrence
+  pair: [sponsor, intervention]
+  terms: [[non-small cell lung|nsclc]]
+
+# ---------------------------------------------------------------- numeric
+- question: How does enrollment relate to study duration for Phase 3 breast cancer trials?
+  decision: plan
+  kind: numeric_pair
+  measures: [duration_months, enrollment]
+  phase: [PHASE3]
+  terms: [[breast cancer]]
+
+# ---------------------------------------------------------------- ambiguity & robustness
+- question: How many lung cancer trials were there in 2020?
+  decision: plan
+  terms: [[lung cancer]]
+- question: pembrolizimab trials by phase
+  decision: plan
+  kind: aggregate
+  dimension: phase
+  terms: [[pembrolizumab]]
+- question: Show me immunotherapy
+  decision: [clarify, plan]
+
+# ---------------------------------------------------------------- out of scope
+- question: Which melanoma drug has the best overall survival?
+  decision: unsupported
+- question: What were the most common adverse events in nivolumab trials?
+  decision: unsupported
+- question: What is the weather in Boston?
+  decision: unsupported
