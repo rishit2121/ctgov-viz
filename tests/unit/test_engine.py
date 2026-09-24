@@ -270,3 +270,26 @@ def test_networks_drop_ancillary_assessments_by_default() -> None:
     r = run(plan({"kind": "cooccurrence", "pair": {**pair, "exclude_ancillary": False}}),
             {"Cohort": trials})
     assert ("biospecimen collection", "nivolumab") in _edges(r)
+
+
+def test_breakdown_totals_are_distinct_and_partition_is_detected() -> None:
+    trials = [trial("NCT01", countries=["France", "Spain"], phases=["PHASE2"]),
+              trial("NCT02", countries=["France"], phases=["PHASE3"]),
+              trial("NCT03", countries=["France"], phases=["PHASE2", "PHASE3"])]
+    r = run(plan({"kind": "aggregate", "dimension": "country", "series_by": "phase"}),
+            {"Cohort": trials})
+    assert [(t.values["country"], t.count) for t in r.totals] == [("France", 3), ("Spain", 1)]
+    assert r.series_partition  # one phase bucket per study
+    assert "add up" in r.definitions["total"]
+
+
+def test_overlapping_series_are_not_a_partition() -> None:
+    trials = [trial("NCT01", phases=["PHASE2"],
+                    interventions=[("A", "DRUG"), ("R", "RADIATION")]),
+              trial("NCT02", phases=["PHASE2"], interventions=[("B", "DRUG")])]
+    r = run(plan({"kind": "aggregate", "dimension": "phase", "series_by": "intervention_type"}),
+            {"Cohort": trials})
+    (total,) = r.totals
+    assert total.count == 2 and sum(row.count for row in r.rows) == 3
+    assert not r.series_partition
+    assert "do not add up" in r.definitions["total"]

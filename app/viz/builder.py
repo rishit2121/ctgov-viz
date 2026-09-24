@@ -80,6 +80,19 @@ def _row_data(plan: QueryPlan, result: AnalysisResult,
     return data
 
 
+def _total_data(plan: QueryPlan, result: AnalysisResult,
+                bundle: EvidenceBundle) -> list[dict[str, Any]]:
+    """Per-category distinct totals, each a citable datum of its own."""
+    cohort = plan.cohorts[0] if len(plan.cohorts) == 1 else None
+    out = []
+    for i, row in enumerate(result.totals):
+        claims: list[Claim] = [DimClaim(Dimension(f), str(k)) for f, k in row.keys.items()]
+        ref, citations = bundle.register(f"t{i}", row.contributors, claims, cohort)
+        out.append({**row.values, **row.extra, COUNT: row.count, "evidence": ref.model_dump(),
+                    "citations": [c.model_dump() for c in citations]})
+    return out
+
+
 def _category_type(result: AnalysisResult) -> FieldType:
     if result.x_field == "start_year":
         return "ordinal"
@@ -97,8 +110,13 @@ def _rows_chart(plan: QueryPlan, result: AnalysisResult,
     temporal = result.shape in ("temporal", "temporal_series")
     histogram = not temporal and REGISTRY[Dimension(result.x_field)].histogram
     series = result.series_field
+    # A breakdown within one cohort shows its per-category total: stacked when the series
+    # partition every category (bar length = total), else grouped with a total marker.
+    # Cohort comparisons stay grouped for side-by-side reading; totals are still in the spec.
+    breakdown = bool(series) and series != Dimension.cohort.value and not temporal
+    stacked = breakdown and not histogram and result.series_partition
     chart: ChartType = ("line" if temporal else "histogram" if histogram
-                        else "grouped_bar" if series
+                        else "stacked_bar" if stacked else "grouped_bar" if series
                         else "choropleth_bar" if result.shape == "geo" else "bar")
 
     ranked = plan.analysis.sort.by == "count_desc" or (
@@ -119,11 +137,14 @@ def _rows_chart(plan: QueryPlan, result: AnalysisResult,
     labels = list(result.series_order) if series else [plan.cohorts[0].label]
     hints = RenderHints(orientation=None if temporal else
                         "horizontal" if horizontal else "vertical",
-                        legend=bool(series), value_labels=not temporal and not series)
+                        legend=bool(series), value_labels=not temporal and not series,
+                        stacked=stacked,
+                        show_totals=breakdown)
     data = _row_data(plan, result, bundle)
     spec = VisualizationSpec(
         type=chart, title=title(plan), subtitle=subtitle(plan), encoding=encoding, hints=hints,
         palette=theme.series_palette(labels), data=data,
+        totals=_total_data(plan, result, bundle) if series and not temporal else None,
         geo=GeoHint(color_ramp=theme.SEQUENTIAL_BLUE) if chart == "choropleth_bar" else None,
     )
     spec.vega_lite = _vega_rows(spec, temporal, histogram)
@@ -139,10 +160,18 @@ def _vl_channel(ch: Channel, extra: dict[str, Any] | None = None) -> dict[str, A
     return {**out, **(extra or {})}
 
 
-def _vl_values(data: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Chart values without evidence payloads; ``_row`` maps a clicked mark back to ``data``."""
-    return [{**{k: v for k, v in d.items() if k not in ("evidence", "citations")}, "_row": i}
-            for i, d in enumerate(data)]
+def _vl_values(data: list[dict[str, Any]], series_field: str | None = None,
+               series_order: list[str | int] | None = None) -> list[dict[str, Any]]:
+    """Chart values without evidence payloads; ``_row`` maps a clicked mark back to ``data``
+    and ``_series`` gives the stacking order."""
+    rank = {s: i for i, s in enumerate(series_order or [])}
+    out = []
+    for i, d in enumerate(data):
+        v = {**{k: x for k, x in d.items() if k not in ("evidence", "citations")}, "_row": i}
+        if series_field is not None:
+            v["_series"] = rank.get(d[series_field], len(rank)) if series_field in d else len(rank)
+        out.append(v)
+    return out
 
 
 def _tooltip(spec: VisualizationSpec) -> list[dict[str, Any]]:
@@ -181,33 +210,73 @@ def _vega_rows(spec: VisualizationSpec, temporal: bool, histogram: bool) -> dict
         layers: list[dict[str, Any]] = [{"mark": mark, "encoding": vl_enc}]
     else:
         bar: dict[str, Any] = {"type": "bar", "cornerRadiusEnd": 4}
+        count_axis = "x" if horizontal else "y"
         if color is None:
             bar["color"] = theme.CATEGORICAL[0]
             # histogram bins are contiguous, so bars fill the band (minus a thin surface gap)
             bar.update({"width": {"band": 0.94}} if histogram else {"size": theme.BAR_SIZE})
+        elif spec.hints.stacked:
+            # segments separated by a thin surface-colored gap; bar length is the total
+            bar = {"type": "bar", "size": theme.BAR_SIZE, "stroke": theme.SURFACE,
+                   "strokeWidth": 1.5}
+            vl_enc[count_axis] = {**vl_enc[count_axis], "stack": "zero"}
+            vl_enc["order"] = {"field": "_series", "type": "ordinal"}
         else:
             vl_enc[f"{cat_axis}Offset"] = {"field": color["field"], "sort": color["sort"]}
         layers = [{"mark": bar, "encoding": vl_enc}]
-        if spec.hints.value_labels:
+        label_mark = {"type": "text", "align": "left" if horizontal else "center",
+                      "baseline": "middle" if horizontal else "bottom",
+                      "dx": 4 if horizontal else 0, "dy": 0 if horizontal else -4,
+                      "color": theme.INK_SECONDARY, "fontSize": 11}
+        if spec.hints.show_totals:
+            layers += _total_layers(spec, vl_enc, label_mark, horizontal)
+        elif spec.hints.value_labels:
             layers.append({
-                "mark": {"type": "text", "align": "left" if horizontal else "center",
-                         "baseline": "middle" if horizontal else "bottom",
-                         "dx": 4 if horizontal else 0, "dy": 0 if horizontal else -4,
-                         "color": theme.INK_SECONDARY, "fontSize": 11},
+                "mark": label_mark,
                 "encoding": {k: v for k, v in vl_enc.items() if k in ("x", "y")}
                 | {"text": {"field": COUNT, "type": "quantitative", "format": ","}},
             })
-    size = ({"height": {"step": 26 if enc.color is None else 14}} if horizontal
+    one_bar_per_category = enc.color is None or spec.hints.stacked
+    size = ({"height": {"step": 26 if one_bar_per_category else 14}} if horizontal
             else {"height": 320})
     return {
         "$schema": VEGA_SCHEMA,
         "title": {"text": spec.title, "subtitle": spec.subtitle},
         "width": "container",
         **size,
-        "data": {"values": _vl_values(spec.data)},
+        "data": {"values": _vl_values(spec.data, enc.color.field if enc.color else None,
+                                      enc.color.sort if enc.color else None)},
         "layer": layers,
         "config": theme.vega_config(),
     }
+
+
+def _total_layers(spec: VisualizationSpec, vl_enc: dict[str, Any], label_mark: dict[str, Any],
+                  horizontal: bool) -> list[dict[str, Any]]:
+    """Totals drawn from ``spec.totals``: a label at the stack's end, or, for overlapping series,
+    a tick marking the distinct total with a 'N total' label."""
+    assert spec.totals is not None
+    cat_axis, count_axis = ("y", "x") if horizontal else ("x", "y")
+    values = [{**{k: v for k, v in d.items() if k not in ("evidence", "citations")}, "_total": i}
+              for i, d in enumerate(spec.totals)]
+    position = {cat_axis: {k: v for k, v in vl_enc[cat_axis].items() if k != "axis"},
+                count_axis: {"field": COUNT, "type": "quantitative"}}
+    tooltip = [{"field": vl_enc[cat_axis]["field"], "title": vl_enc[cat_axis]["title"]},
+               {"field": COUNT, "title": "Total (distinct studies)", "format": ","}]
+    text = ({"field": COUNT, "type": "quantitative", "format": ","} if spec.hints.stacked else
+            {"value": None})
+    layers: list[dict[str, Any]] = []
+    if not spec.hints.stacked:
+        layers.append({"data": {"values": values},
+                       "mark": {"type": "tick", "thickness": 2, "color": theme.INK_PRIMARY},
+                       "encoding": {**position, "tooltip": tooltip}})
+        text = {"field": "_label", "type": "nominal"}
+        for v in values:
+            v["_label"] = f"{v[COUNT]:,} total"
+    layers.append({"data": {"values": values},
+                   "mark": {**label_mark, "fontWeight": "bold", "color": theme.INK_PRIMARY},
+                   "encoding": {**position, "text": text, "tooltip": tooltip}})
+    return layers
 
 
 # --------------------------------------------------------------------------- network

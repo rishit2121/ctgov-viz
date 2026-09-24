@@ -56,6 +56,7 @@ def verify(
         v += _check_network(spec)
     elif spec.type != "scatter":
         v += _check_rows(spec, result)
+        v += _check_totals(spec, result)
         v += _check_partition(response, result, cohorts)
     v += _check_bounds(spec)
     return v
@@ -139,6 +140,8 @@ def _check_evidence(spec: VisualizationSpec, bundle: EvidenceBundle, trials: Map
     else:
         for i, d in enumerate(spec.data):
             v += _check_ref(f"row {i}", d["study_count"], EvidenceRef(**d["evidence"]), bundle)
+        for i, d in enumerate(spec.totals or []):
+            v += _check_ref(f"total {i}", d["study_count"], EvidenceRef(**d["evidence"]), bundle)
 
     v += _check_citations(spec, bundle, trials)
 
@@ -170,9 +173,10 @@ def _check_citations(spec: VisualizationSpec, bundle: EvidenceBundle,
         groups += [(f"point {d['nct_id']}", "points", [Citation(**c) for c in d["citations"]])
                    for d in spec.data]
     else:
-        groups += [(f"row {i}", _item_id(EvidenceRef(**d["evidence"])),
+        groups += [(f"{kind} {i}", _item_id(EvidenceRef(**d["evidence"])),
                     [Citation(**c) for c in d.get("citations", [])])
-                   for i, d in enumerate(spec.data)]
+                   for kind, rows in (("row", spec.data), ("total", spec.totals or []))
+                   for i, d in enumerate(rows)]
     v: list[str] = []
     for where, item_id, citations in groups:
         members = {c.nct_id for c in bundle.items.get(item_id, [])}
@@ -209,6 +213,28 @@ def _check_rows(spec: VisualizationSpec, result: AnalysisResult) -> list[str]:
         v.append("years must be contiguous and ascending")
     if list(category.sort) != list(result.category_order):
         v.append("encoding sort differs from the analysis category order")
+    return v
+
+
+def _check_totals(spec: VisualizationSpec, result: AnalysisResult) -> list[str]:
+    """Series breakdowns ship one distinct total per category; stacks must add up to it."""
+    if not result.series_field or result.shape.startswith("temporal"):
+        return [] if spec.totals is None else ["only category breakdowns carry totals"]
+    if spec.totals is None:
+        return ["a series breakdown must carry per-category totals"]
+    category = result.x_field
+    assert category is not None
+    if [t[category] for t in spec.totals] != list(result.category_order):
+        return ["totals are not in the category order"]
+    v: list[str] = []
+    for t in spec.totals:
+        counts = [d["study_count"] for d in spec.data if d[category] == t[category]]
+        total = t["study_count"]
+        if counts and not max(counts) <= total <= sum(counts):
+            v.append(f"total for {t[category]!r} ({total}) is outside [largest series, sum]")
+        if spec.hints.stacked and sum(counts) != total:
+            v.append(f"stacked series for {t[category]!r} sum to {sum(counts)}, not the total "
+                     f"{total}; overlapping series must not be stacked")
     return v
 
 

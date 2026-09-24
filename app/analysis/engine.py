@@ -11,7 +11,7 @@ from __future__ import annotations
 from collections.abc import Mapping, Sequence
 from datetime import date
 
-from app.contracts.analysis import AnalysisResult, Edge, Node, Point, Row
+from app.contracts.analysis import AnalysisResult, Contributor, Edge, Node, Point, Row
 from app.contracts.plan import Analysis, Dimension, Measure, PairSpec, QueryPlan
 from app.contracts.trial import Intervention, Trial
 from app.normalize import trial as paths
@@ -172,6 +172,13 @@ def _categorical(plan: QueryPlan, cohort_trials: CohortTrials) -> AnalysisResult
     result.series_order = [series_labels[s] for s in series_keys] if series_field else []
     if series_field:
         result.shape = "category_series"
+        result.totals, result.series_partition = _category_totals(
+            rows, series_keys, ordered, fdef.name.value, labels, iso3)
+        result.definitions["total"] = (
+            "Total = distinct studies in the category across all series"
+            + (". Each study is in exactly one series here, so the series add up to it."
+               if result.series_partition else
+               "; a study can be in several series, so the series do not add up to it."))
     elif a.dimension == Dimension.country:
         result.shape = "geo"
     result.definitions["unit"] = DEF_UNIT
@@ -182,6 +189,30 @@ def _categorical(plan: QueryPlan, cohort_trials: CohortTrials) -> AnalysisResult
             f"A study listing several {fdef.title.lower()} values counts once in each, so "
             "counts can sum to more than the number of studies.")
     return result
+
+
+def _category_totals(
+    rows: dict[tuple[str, str], Row], series_keys: list[str], ordered: list[str], field: str,
+    labels: dict[str, str], iso3: dict[str, str | None],
+) -> tuple[list[Row], bool]:
+    """Distinct-study total per category, and whether the series partition every category."""
+    totals: list[Row] = []
+    partition = True
+    for c_key in ordered:
+        members: dict[str, Contributor] = {}
+        series_sum = 0
+        for s_key in series_keys:
+            row = rows.get((s_key, c_key))
+            if row is not None:
+                series_sum += row.count
+                for nct, c in row.contributors.items():
+                    members.setdefault(nct, c)
+        partition = partition and series_sum == len(members)
+        total = Row(values={field: labels[c_key]}, contributors=members, keys={field: c_key})
+        if c_key in iso3:
+            total.extra["iso3"] = iso3[c_key]
+        totals.append(total)
+    return totals, partition
 
 
 def _temporal(plan: QueryPlan, cohort_trials: CohortTrials, today: date) -> AnalysisResult:

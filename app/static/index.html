@@ -231,10 +231,17 @@ function renderVega(viz) {
   vegaEmbed("#chart", spec, { actions: false, renderer: "svg" }).then(({ view }) => {
     view.addEventListener("click", (_, item) => {
       const d = item && item.datum;
-      if (d && d._row !== undefined) selectRow(viz, d._row);
+      if (d && d._total !== undefined) selectTotal(viz, d._total);
+      else if (d && d._row !== undefined) selectRow(viz, d._row);
     });
   });
   if (viz.hints.legend) legend(viz.palette);
+}
+
+function selectTotal(viz, i) {
+  const t = viz.totals[i];
+  const cat = [viz.encoding.x, viz.encoding.y].find((c) => c && c.field !== "study_count");
+  showCitations(`${cat.title}: ${t[cat.field]} · total (distinct studies)`, t.study_count, t.citations, t.evidence);
 }
 
 function selectRow(viz, i) {
@@ -373,9 +380,13 @@ function renderTable(viz) {
     ? viz.edges.map((e) => ({ source: e.source, target: e.target, weight: e.weight }))
     : viz.data.slice(0, 500).map((d) => Object.fromEntries(Object.entries(d).filter(([k]) => !["evidence", "citations", "url"].includes(k))));
   if (!rows.length) { $("#table").innerHTML = "<p>No rows.</p>"; return; }
-  const cols = Object.keys(rows[0]);
-  $("#table").innerHTML = `<table><thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
-    rows.map((r) => `<tr>${cols.map((c) => `<td>${esc(r[c])}</td>`).join("")}</tr>`).join("") + `</tbody></table>`;
+  const table = (rs) => {
+    const cols = Object.keys(rs[0]);
+    return `<table><thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
+      rs.map((r) => `<tr>${cols.map((c) => `<td>${esc(r[c])}</td>`).join("")}</tr>`).join("") + `</tbody></table>`;
+  };
+  const strip = (d) => Object.fromEntries(Object.entries(d).filter(([k]) => !["evidence", "citations"].includes(k)));
+  $("#table").innerHTML = (viz.totals ? `<p><strong>Totals</strong> (distinct studies per category, across all series)</p>${table(viz.totals.map(strip))}<p><strong>By series</strong></p>` : "") + table(rows);
 }
 
 function renderRetrieval(resp) {

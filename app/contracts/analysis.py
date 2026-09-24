@@ -77,6 +77,11 @@ class AnalysisResult:
     points: list[Point] = field(default_factory=list)
     x_measure: str | None = None
     y_measure: str | None = None
+    # Series breakdowns only: per category, the distinct studies across *all* series (the number a
+    # ranking is about), and whether the series partition each category (every study in exactly
+    # one series, so series counts sum to the total and can be stacked).
+    totals: list[Row] = field(default_factory=list)
+    series_partition: bool = False
     excluded: dict[str, int] = field(default_factory=dict)
     warnings: list[str] = field(default_factory=list)
     assumptions: list[str] = field(default_factory=list)

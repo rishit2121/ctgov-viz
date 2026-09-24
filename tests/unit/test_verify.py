@@ -168,3 +168,31 @@ def test_citation_of_a_non_contributor_is_caught() -> None:
     assert r.visualization is not None and r.visualization.edges
     r.visualization.edges[0].citations[0].nct_id = "NCT00000099"
     assert any("not one of its contributors" in v for v in verify(r, res, b, c))
+
+
+def breakdown() -> Built:
+    trials = [trial("NCT00000051", countries=["France", "Spain"], phases=["PHASE2"]),
+              trial("NCT00000052", countries=["France"], phases=["PHASE3"])]
+    return respond({"kind": "aggregate", "dimension": "country", "series_by": "phase"},
+                   {"X": trials})
+
+
+def test_breakdown_with_totals_passes() -> None:
+    assert verify(*breakdown()) == []
+
+
+def test_stacking_series_that_do_not_add_up_is_caught() -> None:
+    r, res, b, c = breakdown()
+    assert r.visualization is not None and r.visualization.totals is not None
+    r.visualization.data[0]["study_count"] += 1  # series now exceed the total
+    violations = verify(r, res, b, c)
+    assert any("overlapping series must not be stacked" in v for v in violations)
+
+
+def test_missing_or_tampered_totals_are_caught() -> None:
+    r, res, b, c = breakdown()
+    assert r.visualization is not None and r.visualization.totals is not None
+    r.visualization.totals[0]["study_count"] = 99
+    assert any("must be equal" in v for v in verify(r, res, b, c))
+    r.visualization.totals = None
+    assert any("must carry per-category totals" in v for v in verify(r, res, b, c))

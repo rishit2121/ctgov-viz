@@ -34,6 +34,10 @@ REQUESTS: dict[str, dict[str, Any]] = {
                                          "Phase 3 breast cancer trials?"},
     "07_enrollment_vs_duration_scatter": {"query": "How does enrollment relate to study duration "
                                                    "for Phase 3 breast cancer trials?"},
+    "08_country_by_phase_stacked": {
+        "query": "For interventional breast cancer studies that started from 2020 through 2024 "
+                 "and are currently recruiting, which 10 countries have the most Phase 2 and "
+                 "Phase 3 trials? Show the counts by phase for each country."},
 }
 
 

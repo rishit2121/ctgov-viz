@@ -250,7 +250,8 @@ All question classes use the same three analysis kinds:
 | Top-k | Top sponsors of recruiting multiple sclerosis trials | horizontal bar |
 | Comparison | Compare pembrolizumab and nivolumab trials across phases | grouped bar |
 | Comparison | Compare sponsor categories across breast and prostate cancer trials | grouped bar |
-| Cross-tab | Lung cancer trials by phase and lead-sponsor class | grouped bar |
+| Cross-tab | Lung cancer trials by phase and lead-sponsor class | stacked bar with totals |
+| Ranked breakdown | Which 10 countries have the most recruiting Phase 2/3 breast cancer trials, by phase? | stacked bar with totals |
 | Geography | Which countries have the most recruiting Phase 3 lung cancer trials? | choropleth-ready ranked bar |
 | Co-occurrence | Which interventions co-occur in melanoma studies? | network |
 | Combinations | Which drugs are combined in the same arm in melanoma trials? | network |
@@ -278,6 +279,7 @@ Regenerate with `uv run python scripts/run_examples.py`.
 | `05_sponsor_drug_network` | `{"query": "Show a network of sponsors and drugs for non-small cell lung cancer trials", "start_year": 2020}` | bipartite network |
 | `06_enrollment_histogram` | `{"query": "What is the distribution of enrollment sizes for Phase 3 breast cancer trials?"}` | histogram |
 | `07_enrollment_vs_duration_scatter` | `{"query": "How does enrollment relate to study duration for Phase 3 breast cancer trials?"}` | scatter |
+| `08_country_by_phase_stacked` | `{"query": "For interventional breast cancer studies that started from 2020 through 2024 and are currently recruiting, which 10 countries have the most Phase 2 and Phase 3 trials? Show the counts by phase for each country."}` | stacked bar with totals |
 
 ## Output contract
 
@@ -327,8 +329,25 @@ Charts ship **already aggregated and ordered**; frontends never recompute. `sche
 }
 ```
 
-- **Chart types:** `bar`, `grouped_bar`, `histogram`, `line`, `choropleth_bar`, `network`,
-  `scatter`.
+- **Chart types:** `bar`, `grouped_bar`, `stacked_bar`, `histogram`, `line`, `choropleth_bar`,
+  `network`, `scatter`.
+- **Totals for breakdowns.** Any chart with series across categories also ships
+  `visualization.totals`: one row per category (in category order) with the **distinct**
+  studies across all series, plus its own `evidence` and `citations`. Totals are computed by
+  the engine, never by summing series, because series can overlap (a study can be in both
+  compared cohorts, or have several intervention types). The engine checks whether the
+  series partition every category (each study in exactly one series):
+  - **Breakdown whose series partition** (e.g. countries by phase bucket): `stacked_bar`. Bar
+    length is the total, and the total is labeled at the end (`hints.stacked`,
+    `hints.show_totals`).
+  - **Breakdown whose series overlap:** `grouped_bar` with a total marker and a "N total" label
+    per category.
+  - **Cohort comparison** ("A vs B"): `grouped_bar` for side-by-side reading; `totals` are
+    still in the spec but not drawn (`hints.show_totals: false`).
+
+  `meta.definitions.total` states which case applies. The verifier rejects totals that
+  disagree with their evidence, totals outside [largest series, sum of series], and any
+  stacked chart whose series don't add up to the total.
 - **Networks** carry `nodes` (`id`, `label`, `group`, `study_count`, `evidence`, `citations`)
   and `edges` (`source`, `target`, `weight`, `evidence`, `citations`) instead of `data`.
 - **Scatter** rows are one study each (`nct_id`, both measures, phase, study URL), and each
@@ -386,7 +405,7 @@ cohort*. Real example: the China bar of run `03_geography_fields`:
 ## Verification and testing
 
 ```bash
-uv run pytest                      # 259 unit + integration tests, no network (~4 s)
+uv run pytest                      # 267 unit + integration tests, no network (~4 s)
 uv run pytest -m live tests/live   # live CT.gov oracle tests
 uv run pytest -m live tests/golden   # planner golden set (needs ANTHROPIC_API_KEY)
 uv run ruff check . && uv run mypy app
@@ -397,7 +416,7 @@ uv run ruff check . && uv run mypy app
 | Unit | Normalizer on 15 **real recorded studies** chosen by edge case (multi-phase, missing start date, repeated site countries, placebo arms, ™ names, ...), intervention-name resolution (merges and deliberate non-merges), countries, compiler and predicates, every validator rule, engine results on hand-computed cohorts, builder encodings, planner loop (tools, budget, repair, clarify, scrubbing), strict-schema compatibility |
 | Property (hypothesis) | For random cohorts: phase buckets partition the cohort; country counts equal distinct studies; edge weight ≤ both endpoint counts; output is identical under input shuffling |
 | Projection | Every example plan gives identical results on full and field-projected records (and the test fails if a needed field is dropped) |
-| Verifier | Each invariant is proven by an injected fault (wrong count, uncited study, filter violation, misordered rows, missing zero rows, self-loops, status/completeness mismatch, tampered citation excerpt, citation of a non-contributor, ...) |
+| Verifier | Each invariant is proven by an injected fault (wrong count, uncited study, filter violation, misordered rows, missing zero rows, self-loops, status/completeness mismatch, tampered citation excerpt, citation of a non-contributor, tampered or missing totals, stacked series that don't add up, ...) |
 | Citations | Every excerpt resolves verbatim for every chart type on real recorded studies; raw-spelling, brand-name, absent-value and search-expansion cases; evidence pages match inline citations |
 | Integration | Real client + pipeline + FastAPI against an in-process fake CT.gov: paging, duplicates across pages, retries (503, 429 + `Retry-After`, non-JSON 200), no retry on 400, partial results, too-broad refusal, error codes, evidence paging, caching |
 | Live oracles | Demo plans run against the real API; results re-derived with **independent** Essie count queries; cited studies' full records re-downloaded to check every citation excerpt at its exact path |
@@ -410,6 +429,7 @@ Live oracle results (2026-09-23 data snapshot): every checked number matched exa
 | Pembrolizumab, Phase 3 only | 324 | 324 |
 | Pembrolizumab, no phase registered | 171 | 171 |
 | Recruiting Phase 3 lung cancer: China / United States | 136 / 89 | 136 / 89 |
+| Recruiting interventional Phase 2/3 breast cancer, started 2020–2024: United States / China totals | 191 / 184 | 191 / 184 |
 | Breast cancer studies starting in 2019 / 2022 | 862 / 999 | 862 / 999 |
 
 Cold latency on the live API: 0.5 s (210 studies) to 8.3 s (10,685 studies, 11 sequential

@@ -14,8 +14,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
-ChartType = Literal["bar", "grouped_bar", "histogram", "line", "choropleth_bar", "network",
-                    "scatter"]
+ChartType = Literal["bar", "grouped_bar", "stacked_bar", "histogram", "line", "choropleth_bar",
+                    "network", "scatter"]
 FieldType = Literal["nominal", "ordinal", "quantitative", "temporal"]
 
 
@@ -68,6 +68,10 @@ class RenderHints(BaseModel):
     layout: Literal["force"] | None = Field(None, description="Networks: suggested layout.")
     legend: bool = Field(False, description="Show a legend (true whenever there are 2+ series).")
     value_labels: bool = Field(False, description="Label each bar's value at its tip.")
+    stacked: bool = Field(False, description="Series are stacked: bar length is the category "
+                          "total (only when every study is in exactly one series).")
+    show_totals: bool = Field(False, description="Draw each category's distinct total (from "
+                              "`totals`): at the stack's end, or as a marker beside grouped bars.")
 
 
 class NetworkNode(BaseModel):
@@ -112,6 +116,11 @@ class VisualizationSpec(BaseModel):
         description="Rows (bar/histogram/line/scatter). Aggregated rows carry study_count, "
         "evidence and citations (for the evidence sample); scatter rows are one study each.",
     )
+    totals: list[dict[str, Any]] | None = Field(
+        None, description="Series breakdowns only: one row per category (same order as the "
+        "category sort) with the distinct studies across all series, plus evidence and "
+        "citations. Use this for totals and rankings; never sum series rows yourself, since "
+        "series can overlap (see hints.stacked).")
     nodes: list[NetworkNode] | None = None
     edges: list[NetworkEdge] | None = None
     geo: GeoHint | None = None

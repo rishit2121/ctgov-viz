@@ -31,8 +31,9 @@
    }
   },
   "assumptions": [
-   "Each cohort is studies listing the drug as an intervention, any status, study type or year.",
-   "Phases are shown in natural order; studies without a registered phase appear as 'Not Reported' and non-phased studies as 'Not Applicable'."
+   "Each cohort = studies listing the drug as an intervention (brand names and codes expanded by the registry).",
+   "All study statuses, types and years included.",
+   "Phases shown in natural order; studies without a registered phase appear as 'Not Applicable' or 'Not Reported'."
   ]
  },
  "visualization": {
@@ -80,7 +81,9 @@
   "hints": {
    "orientation": "vertical",
    "legend": true,
-   "value_labels": false
+   "value_labels": false,
+   "stacked": false,
+   "show_totals": false
   },
   "palette": {
    "Pembrolizumab": "#2a78d6",
@@ -2240,6 +2243,850 @@
     ]
    }
   ],
+  "totals": [
+   {
+    "phase": "Early Phase 1",
+    "study_count": 79,
+    "evidence": {
+     "total": 79,
+     "sample": [
+      "NCT01789827",
+      "NCT02210117",
+      "NCT02591654",
+      "NCT02603887",
+      "NCT02652455"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_4d0be0bfbbee45a9/evidence/t0"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01789827",
+      "title": "Aldesleukin Imaging in Viewing Tumor Growth in Patients With Stage IV Melanoma Receiving Ipilimumab or Pembrolizumab Therapy",
+      "url": "https://clinicaltrials.gov/study/NCT01789827",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01789827",
+      "excerpt": "EARLY_PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "EARLY_PHASE1",
+        "supports": "phase: Early Phase 1"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02210117",
+      "title": "Nivolumab With or Without Bevacizumab or Ipilimumab Before Surgery in Treating Patients With Metastatic Kidney Cancer That Can Be Removed by Surgery",
+      "url": "https://clinicaltrials.gov/study/NCT02210117",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02210117",
+      "excerpt": "EARLY_PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "EARLY_PHASE1",
+        "supports": "phase: Early Phase 1"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02591654",
+      "title": "MRI and PET to Assess Pembrolizumab Response",
+      "url": "https://clinicaltrials.gov/study/NCT02591654",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02591654",
+      "excerpt": "EARLY_PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "EARLY_PHASE1",
+        "supports": "phase: Early Phase 1"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02603887",
+      "title": "Pembrolizumab in Treating Patients With Intermediate or High-Risk Smoldering Multiple Myeloma",
+      "url": "https://clinicaltrials.gov/study/NCT02603887",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02603887",
+      "excerpt": "EARLY_PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "EARLY_PHASE1",
+        "supports": "phase: Early Phase 1"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02652455",
+      "title": "Combining PD-1 Blockade, CD137 Agonism and Adoptive Cell Therapy for Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT02652455",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02652455",
+      "excerpt": "EARLY_PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "EARLY_PHASE1",
+        "supports": "phase: Early Phase 1"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "phase": "Phase 1",
+    "study_count": 919,
+    "evidence": {
+     "total": 919,
+     "sample": [
+      "NCT00441337",
+      "NCT00703469",
+      "NCT00730639",
+      "NCT00836888",
+      "NCT01024231"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_4d0be0bfbbee45a9/evidence/t1"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00441337",
+      "title": "A Study of MDX-1106 in Patients With Selected Refractory or Relapsed Malignancies",
+      "url": "https://clinicaltrials.gov/study/NCT00441337",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00441337",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00703469",
+      "title": "A Study of MDX-1106 to Treat Patients With Hepatitis C Infection",
+      "url": "https://clinicaltrials.gov/study/NCT00703469",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00703469",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00730639",
+      "title": "A Phase 1 Study of Nivolumab (BMS-936558) in Subjects With Advanced or Recurrent Malignancies",
+      "url": "https://clinicaltrials.gov/study/NCT00730639",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00730639",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00836888",
+      "title": "ONO-4538 Phase I Study in Patients With Advanced Malignant Solid Tumors in Japan",
+      "url": "https://clinicaltrials.gov/study/NCT00836888",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00836888",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01024231",
+      "title": "Dose-escalation Study of Combination BMS-936558 (MDX-1106) and Ipilimumab in Subjects With Unresectable Stage III or Stage IV Malignant Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT01024231",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01024231",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "phase": "Phase 1/2",
+    "study_count": 772,
+    "evidence": {
+     "total": 772,
+     "sample": [
+      "NCT01592370",
+      "NCT01658878",
+      "NCT01714739",
+      "NCT01896999",
+      "NCT01928394"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_4d0be0bfbbee45a9/evidence/t2"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01592370",
+      "title": "An Investigational Immuno-Therapy Study to Determine the Safety and Effectiveness of Nivolumab and Daratumumab in Patients With Multiple Myeloma",
+      "url": "https://clinicaltrials.gov/study/NCT01592370",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01592370",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1/2"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 1/2"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01658878",
+      "title": "An Immuno-therapy Study to Evaluate the Effectiveness, Safety and Tolerability of Nivolumab or Nivolumab in Combination With Other Agents in Patients With Advanced Liver Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01658878",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01658878",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1/2"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 1/2"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01714739",
+      "title": "A Study of an Anti-KIR Antibody Lirilumab in Combination With an Anti-PD1 Antibody Nivolumab and Nivolumab Plus an Anti-CTLA-4 Ipilimumab Antibody in Patients With Advanced Solid Tumors",
+      "url": "https://clinicaltrials.gov/study/NCT01714739",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01714739",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1/2"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 1/2"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01896999",
+      "title": "Brentuximab Vedotin and Nivolumab With or Without Ipilimumab in Treating Patients With Relapsed or Refractory Hodgkin Lymphoma",
+      "url": "https://clinicaltrials.gov/study/NCT01896999",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01896999",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1/2"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 1/2"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01928394",
+      "title": "A Study of Nivolumab by Itself or Nivolumab Combined With Ipilimumab in Patients With Advanced or Metastatic Solid Tumors",
+      "url": "https://clinicaltrials.gov/study/NCT01928394",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01928394",
+      "excerpt": "PHASE1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE1",
+        "supports": "phase: Phase 1/2"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 1/2"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "phase": "Phase 2",
+    "study_count": 1983,
+    "evidence": {
+     "total": 1983,
+     "sample": [
+      "NCT01042379",
+      "NCT01174121",
+      "NCT01354431",
+      "NCT01585194",
+      "NCT01703949"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_4d0be0bfbbee45a9/evidence/t3"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01042379",
+      "title": "I-SPY TRIAL: Neoadjuvant and Personalized Adaptive Novel Agents to Treat Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01042379",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01042379",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01174121",
+      "title": "Immunotherapy Using Tumor Infiltrating Lymphocytes for Patients With Metastatic Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01174121",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01174121",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01354431",
+      "title": "BMS-936558 (MDX-1106) In Subjects With Advanced/Metastatic Clear-Cell Renal Cell Carcinoma (RCC)",
+      "url": "https://clinicaltrials.gov/study/NCT01354431",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01354431",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01585194",
+      "title": "Nivolumab and Ipilimumab in Treating Patients With Metastatic Uveal Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT01585194",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01585194",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01703949",
+      "title": "Brentuximab Vedotin With or Without Nivolumab in Treating Patients With Relapsed or Refractory CD30+ Lymphoma",
+      "url": "https://clinicaltrials.gov/study/NCT01703949",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01703949",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "phase": "Phase 2/3",
+    "study_count": 64,
+    "evidence": {
+     "total": 64,
+     "sample": [
+      "NCT01905657",
+      "NCT02339571",
+      "NCT02746796",
+      "NCT02784171",
+      "NCT03092674"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_4d0be0bfbbee45a9/evidence/t4"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01905657",
+      "title": "Study of Two Doses of Pembrolizumab (MK-3475) Versus Docetaxel in Previously Treated Participants With Non-Small Cell Lung Cancer (MK-3475-010/KEYNOTE-010)",
+      "url": "https://clinicaltrials.gov/study/NCT01905657",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01905657",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2/3"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 2/3"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02339571",
+      "title": "A Phase II/III Trial of Nivolumab, Ipilimumab, and GM-CSF in Patients With Advanced Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT02339571",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02339571",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2/3"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 2/3"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02746796",
+      "title": "Study of ONO-4538 in Gastric Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02746796",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02746796",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2/3"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 2/3"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02784171",
+      "title": "Pembrolizumab in Patients With Advanced Malignant Pleural Mesothelioma",
+      "url": "https://clinicaltrials.gov/study/NCT02784171",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02784171",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2/3"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 2/3"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03092674",
+      "title": "Azacitidine With or Without Nivolumab or Midostaurin, or Decitabine and Cytarabine Alone in Treating Older Patients With Newly Diagnosed Acute Myeloid Leukemia or High-Risk Myelodysplastic Syndrome",
+      "url": "https://clinicaltrials.gov/study/NCT03092674",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03092674",
+      "excerpt": "PHASE2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE2",
+        "supports": "phase: Phase 2/3"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 2/3"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "phase": "Phase 3",
+    "study_count": 462,
+    "evidence": {
+     "total": 462,
+     "sample": [
+      "NCT01642004",
+      "NCT01668784",
+      "NCT01673867",
+      "NCT01721746",
+      "NCT01721772"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_4d0be0bfbbee45a9/evidence/t5"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01642004",
+      "title": "Study of BMS-936558 (Nivolumab) Compared to Docetaxel in Previously Treated Advanced or Metastatic Squamous Cell Non-small Cell Lung Cancer (NSCLC) (CheckMate 017)",
+      "url": "https://clinicaltrials.gov/study/NCT01642004",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01642004",
+      "excerpt": "PHASE3",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 3"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01668784",
+      "title": "Study of Nivolumab (BMS-936558) vs. Everolimus in Pre-Treated Advanced or Metastatic Clear-cell Renal Cell Carcinoma (CheckMate 025)",
+      "url": "https://clinicaltrials.gov/study/NCT01668784",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01668784",
+      "excerpt": "PHASE3",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 3"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01673867",
+      "title": "Study of BMS-936558 (Nivolumab) Compared to Docetaxel in Previously Treated Metastatic Non-squamous NSCLC",
+      "url": "https://clinicaltrials.gov/study/NCT01673867",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01673867",
+      "excerpt": "PHASE3",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 3"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01721746",
+      "title": "A Study to Compare BMS-936558 to the Physician's Choice of Either Dacarbazine or Carboplatin and Paclitaxel in Advanced Melanoma Patients That Have Progressed Following Anti-CTLA-4 Therapy (CheckMate 037)",
+      "url": "https://clinicaltrials.gov/study/NCT01721746",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01721746",
+      "excerpt": "PHASE3",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 3"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01721772",
+      "title": "Study of Nivolumab (BMS-936558) Compared With Dacarbazine in Untreated, Unresectable, or Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT01721772",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01721772",
+      "excerpt": "PHASE3",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "phase: Phase 3"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "phase": "Phase 4",
+    "study_count": 32,
+    "evidence": {
+     "total": 32,
+     "sample": [
+      "NCT02596035",
+      "NCT02626065",
+      "NCT02869789",
+      "NCT02982954",
+      "NCT03134456"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_4d0be0bfbbee45a9/evidence/t6"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02596035",
+      "title": "An Investigational Immuno-therapy Safety Trial of Nivolumab in Patients With Advanced or Metastatic Renal Cell Carcinoma",
+      "url": "https://clinicaltrials.gov/study/NCT02596035",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02596035",
+      "excerpt": "PHASE4",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE4",
+        "supports": "phase: Phase 4"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02626065",
+      "title": "Immune Modulation Study in Patients With Metastatic Melanoma Treated With Anti-PD1 Monoclonal Antibodies",
+      "url": "https://clinicaltrials.gov/study/NCT02626065",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02626065",
+      "excerpt": "PHASE4",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE4",
+        "supports": "phase: Phase 4"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02869789",
+      "title": "An Investigational Immuno-therapy Study for Safety of Nivolumab in Combination With Ipilimumab to Treat Advanced Cancers",
+      "url": "https://clinicaltrials.gov/study/NCT02869789",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02869789",
+      "excerpt": "PHASE4",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE4",
+        "supports": "phase: Phase 4"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02982954",
+      "title": "A Study to Evaluate the Safety of Nivolumab and Ipilimumab in Subjects With Previously Untreated Advanced or Metastatic Renal Cell Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02982954",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02982954",
+      "excerpt": "PHASE4",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE4",
+        "supports": "phase: Phase 4"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03134456",
+      "title": "Pembrolizumab for Metastatic NSCLC Patients Expressing PD-L1 Who Have Their Own PDX",
+      "url": "https://clinicaltrials.gov/study/NCT03134456",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03134456",
+      "excerpt": "PHASE4",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE4",
+        "supports": "phase: Phase 4"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "phase": "Not Applicable",
+    "study_count": 84,
+    "evidence": {
+     "total": 84,
+     "sample": [
+      "NCT02194738",
+      "NCT02489357",
+      "NCT02658279",
+      "NCT02700971",
+      "NCT02716077"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_4d0be0bfbbee45a9/evidence/t7"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02194738",
+      "title": "Genetic Testing in Screening Patients With Stage IB-IIIA Non-small Cell Lung Cancer That Has Been or Will Be Removed by Surgery (The ALCHEMIST Screening Trial)",
+      "url": "https://clinicaltrials.gov/study/NCT02194738",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02194738",
+      "excerpt": "NA",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "NA",
+        "supports": "phase: Not Applicable"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02489357",
+      "title": "Pembrolizumab and Cryosurgery in Treating Patients With Newly Diagnosed, Oligo-metastatic Prostate Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02489357",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02489357",
+      "excerpt": "NA",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "NA",
+        "supports": "phase: Not Applicable"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02658279",
+      "title": "Pembrolizumab (MK-3475) in Patients With Recurrent Malignant Glioma With a Hypermutator Phenotype",
+      "url": "https://clinicaltrials.gov/study/NCT02658279",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02658279",
+      "excerpt": "NA",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "NA",
+        "supports": "phase: Not Applicable"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02700971",
+      "title": "RATIO: Rational Approach To Immuno-Oncology",
+      "url": "https://clinicaltrials.gov/study/NCT02700971",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02700971",
+      "excerpt": "NA",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "NA",
+        "supports": "phase: Not Applicable"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02716077",
+      "title": "Early FDG PET in Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT02716077",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02716077",
+      "excerpt": "NA",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "NA",
+        "supports": "phase: Not Applicable"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "phase": "Not Reported",
+    "study_count": 293,
+    "evidence": {
+     "total": 293,
+     "sample": [
+      "NCT02083484",
+      "NCT02142218",
+      "NCT02154490",
+      "NCT02186249",
+      "NCT02449837"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_4d0be0bfbbee45a9/evidence/t8"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT02083484",
+      "title": "Program for Pembrolizumab (MK-3475) in Participants With Metastatic Melanoma Who Have Failed Standard of Care Therapy Including Ipilimumab (MK-3475-030)",
+      "url": "https://clinicaltrials.gov/study/NCT02083484",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02083484",
+      "excerpt": null,
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases",
+        "text": null,
+        "supports": "no phase registered, so phase: Not Reported"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02142218",
+      "title": "Expanded Access Program With Nivolumab to Treat Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT02142218",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02142218",
+      "excerpt": null,
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases",
+        "text": null,
+        "supports": "no phase registered, so phase: Not Reported"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02154490",
+      "title": "Lung-MAP: Biomarker-Targeted Second-Line Therapy in Treating Patients With Recurrent Stage IV Squamous Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02154490",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02154490",
+      "excerpt": null,
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases",
+        "text": null,
+        "supports": "no phase registered, so phase: Not Reported"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02186249",
+      "title": "Expanded Access Program With Nivolumab in Combination With Ipilimumab in Patients With Tumors Unable to be Removed by Surgery or Metastatic Melanoma",
+      "url": "https://clinicaltrials.gov/study/NCT02186249",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02186249",
+      "excerpt": null,
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases",
+        "text": null,
+        "supports": "no phase registered, so phase: Not Reported"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02449837",
+      "title": "Investigation of Circulating Tumor Cells From Cancer Patients Undergoing Radiation Therapy",
+      "url": "https://clinicaltrials.gov/study/NCT02449837",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02449837",
+      "excerpt": null,
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.phases",
+        "text": null,
+        "supports": "no phase registered, so phase: Not Reported"
+       }
+      ]
+     }
+    ]
+   }
+  ],
   "vega_lite": {
    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
    "title": {
@@ -2254,109 +3101,127 @@
       "phase": "Early Phase 1",
       "cohort": "Pembrolizumab",
       "study_count": 51,
-      "_row": 0
+      "_row": 0,
+      "_series": 0
      },
      {
       "phase": "Phase 1",
       "cohort": "Pembrolizumab",
       "study_count": 572,
-      "_row": 1
+      "_row": 1,
+      "_series": 0
      },
      {
       "phase": "Phase 1/2",
       "cohort": "Pembrolizumab",
       "study_count": 472,
-      "_row": 2
+      "_row": 2,
+      "_series": 0
      },
      {
       "phase": "Phase 2",
       "cohort": "Pembrolizumab",
       "study_count": 1253,
-      "_row": 3
+      "_row": 3,
+      "_series": 0
      },
      {
       "phase": "Phase 2/3",
       "cohort": "Pembrolizumab",
       "study_count": 43,
-      "_row": 4
+      "_row": 4,
+      "_series": 0
      },
      {
       "phase": "Phase 3",
       "cohort": "Pembrolizumab",
       "study_count": 324,
-      "_row": 5
+      "_row": 5,
+      "_series": 0
      },
      {
       "phase": "Phase 4",
       "cohort": "Pembrolizumab",
       "study_count": 18,
-      "_row": 6
+      "_row": 6,
+      "_series": 0
      },
      {
       "phase": "Not Applicable",
       "cohort": "Pembrolizumab",
       "study_count": 53,
-      "_row": 7
+      "_row": 7,
+      "_series": 0
      },
      {
       "phase": "Not Reported",
       "cohort": "Pembrolizumab",
       "study_count": 171,
-      "_row": 8
+      "_row": 8,
+      "_series": 0
      },
      {
       "phase": "Early Phase 1",
       "cohort": "Nivolumab",
       "study_count": 34,
-      "_row": 9
+      "_row": 9,
+      "_series": 1
      },
      {
       "phase": "Phase 1",
       "cohort": "Nivolumab",
       "study_count": 389,
-      "_row": 10
+      "_row": 10,
+      "_series": 1
      },
      {
       "phase": "Phase 1/2",
       "cohort": "Nivolumab",
       "study_count": 323,
-      "_row": 11
+      "_row": 11,
+      "_series": 1
      },
      {
       "phase": "Phase 2",
       "cohort": "Nivolumab",
       "study_count": 813,
-      "_row": 12
+      "_row": 12,
+      "_series": 1
      },
      {
       "phase": "Phase 2/3",
       "cohort": "Nivolumab",
       "study_count": 27,
-      "_row": 13
+      "_row": 13,
+      "_series": 1
      },
      {
       "phase": "Phase 3",
       "cohort": "Nivolumab",
       "study_count": 159,
-      "_row": 14
+      "_row": 14,
+      "_series": 1
      },
      {
       "phase": "Phase 4",
       "cohort": "Nivolumab",
       "study_count": 16,
-      "_row": 15
+      "_row": 15,
+      "_series": 1
      },
      {
       "phase": "Not Applicable",
       "cohort": "Nivolumab",
       "study_count": 50,
-      "_row": 16
+      "_row": 16,
+      "_series": 1
      },
      {
       "phase": "Not Reported",
       "cohort": "Nivolumab",
       "study_count": 213,
-      "_row": 17
+      "_row": 17,
+      "_series": 1
      }
     ]
    },
@@ -2493,10 +3358,11 @@
   "source": "ClinicalTrials.gov API v2",
   "api_version": "2.0.5",
   "data_timestamp": "2026-09-23T09:00:05",
-  "retrieved_at": "2026-09-24T05:32:46+00:00",
+  "retrieved_at": "2026-09-24T06:24:31+00:00",
   "unit": "distinct studies (NCT IDs)",
   "definitions": {
    "intervention_match": "Studies are matched with ClinicalTrials.gov's intervention search, which includes brand names and development codes (e.g. 'Keytruda', 'MK-3475').",
+   "total": "Total = distinct studies in the category across all series; a study can be in several series, so the series do not add up to it.",
    "unit": "Each bar/point/edge counts distinct studies (NCT IDs), never sites or arms.",
    "phase": "One bucket per study; multi-phase studies form combined buckets such as 'Phase 2/3'. 'Not Applicable' is registered for studies without drug phases (e.g. device, behavioral); 'Not Reported' means no phase is registered (typical for observational studies)."
   },
@@ -2536,8 +3402,9 @@
   },
   "excluded": {},
   "assumptions": [
-   "Each cohort is studies listing the drug as an intervention, any status, study type or year.",
-   "Phases are shown in natural order; studies without a registered phase appear as 'Not Reported' and non-phased studies as 'Not Applicable'.",
+   "Each cohort = studies listing the drug as an intervention (brand names and codes expanded by the registry).",
+   "All study statuses, types and years included.",
+   "Phases shown in natural order; studies without a registered phase appear as 'Not Applicable' or 'Not Reported'.",
    "Each cohort is retrieved independently; a study matching several cohorts counts in each of their series (see meta.cohort_overlap)."
   ],
   "warnings": [],
@@ -2547,11 +3414,11 @@
    "repaired": false
   },
   "timings_ms": {
-   "preflight": 253,
-   "fetch": 2462,
-   "analyze": 169,
-   "verify": 4,
-   "total": 2894
+   "preflight": 456,
+   "fetch": 2262,
+   "analyze": 186,
+   "verify": 8,
+   "total": 2919
   }
  }
 }

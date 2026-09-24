@@ -169,3 +169,44 @@ def test_duration_histogram_and_cohort_comparison() -> None:
     assert spec.encoding.x.sort == ["< 6 months", "6–11 months", "3–5 years"]
     counts = {(d["cohort"], d["duration"]): d["study_count"] for d in spec.data}
     assert counts[("A", "< 6 months")] == 1 and counts[("B", "6–11 months")] == 1
+
+
+BREAKDOWN = [trial("NCT01", countries=["France", "Spain"], phases=["PHASE2"]),
+             trial("NCT02", countries=["France"], phases=["PHASE3"]),
+             trial("NCT03", countries=["France"], phases=["PHASE2", "PHASE3"])]
+
+
+def test_partitioning_breakdown_is_a_stacked_bar_with_labelled_totals() -> None:
+    spec, bundle = make({"kind": "aggregate", "dimension": "country", "series_by": "phase",
+                         "sort": {"by": "count_desc"}}, {"Breast": BREAKDOWN})
+    assert spec.type == "stacked_bar" and spec.hints.stacked and spec.hints.show_totals
+    assert spec.totals is not None
+    assert [(t["country"], t["study_count"]) for t in spec.totals] == [("France", 3),
+                                                                        ("Spain", 1)]
+    france = spec.totals[0]
+    assert france["evidence"]["total"] == 3 and len(bundle.items["t0"]) == 3
+    assert france["citations"][0]["excerpts"][0]["supports"] == "site country: France"
+    vl = spec.vega_lite
+    assert vl is not None
+    assert vl["layer"][0]["encoding"]["x"]["stack"] == "zero"
+    labels = vl["layer"][1]
+    assert labels["mark"]["type"] == "text" and labels["data"]["values"][0]["_total"] == 0
+
+
+def test_overlapping_breakdown_keeps_grouped_bars_with_total_markers() -> None:
+    trials = [trial("NCT01", phases=["PHASE2"], interventions=[("A", "DRUG"), ("R", "RADIATION")]),
+              trial("NCT02", phases=["PHASE2"], interventions=[("B", "DRUG")])]
+    spec, _ = make({"kind": "aggregate", "dimension": "phase", "series_by": "intervention_type"},
+                   {"X": trials})
+    assert spec.type == "grouped_bar" and not spec.hints.stacked and spec.hints.show_totals
+    vl = spec.vega_lite
+    assert vl is not None
+    assert [layer["mark"]["type"] for layer in vl["layer"]] == ["bar", "tick", "text"]
+    assert vl["layer"][2]["data"]["values"][0]["_label"] == "2 total"
+
+
+def test_cohort_comparison_stays_grouped_but_ships_totals() -> None:
+    spec, _ = make({"kind": "aggregate", "dimension": "phase", "series_by": "cohort"},
+                   {"A": PHASED[:2], "B": PHASED[2:]})
+    assert spec.type == "grouped_bar" and not spec.hints.show_totals
+    assert spec.totals is not None and len(spec.totals) == len(spec.encoding.x.sort or [])
