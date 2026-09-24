@@ -88,6 +88,7 @@ def check_plan(plan: QueryPlan, case: dict[str, Any]) -> list[str]:
 
 
 RESULTS: list[bool] = []
+UNAVAILABLE: list[str] = []  # first "LLM unavailable" error; later cases are skipped
 
 
 @pytest.fixture
@@ -100,6 +101,8 @@ async def planner():  # type: ignore[no-untyped-def]
 
 @pytest.mark.parametrize("case", CASES, ids=[c["question"][:60] for c in CASES])
 async def test_golden(planner: Any, case: dict[str, Any]) -> None:
+    if UNAVAILABLE:
+        pytest.skip(f"LLM unavailable: {UNAVAILABLE[0]}")
     try:
         result: PlannerResult = await planner.plan(case["question"])
         decisions = case["decision"] if isinstance(case["decision"], list) else [
@@ -109,6 +112,9 @@ async def test_golden(planner: Any, case: dict[str, Any]) -> None:
         if not problems and result.kind == "plan" and result.plan is not None:
             problems = check_plan(result.plan, case)
     except PlannerError as e:
+        if e.code == "llm_unavailable":  # configuration/API problem, not a planning mistake
+            UNAVAILABLE.append(e.message)
+            pytest.fail(f"LLM unavailable: {e.message}", pytrace=False)
         problems = [f"planner error: {e.code}: {e.message} {e.detail or ''}".rstrip()]
     RESULTS.append(not problems)
     assert not problems, problems

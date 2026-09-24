@@ -73,13 +73,16 @@ class AnthropicLLM:
 
     FALLBACK_BETA = "server-side-fallback-2026-07-01"
 
-    def __init__(self, api_key: str, model: str, timeout_s: float, effort: str | None = None):
+    def __init__(self, api_key: str, model: str, timeout_s: float, effort: str | None = None,
+                 workspace_id: str | None = None):
         import anthropic
 
         self.model = model
         self.effort = effort
+        # Keys that aren't scoped to a workspace must name one on every request.
+        headers = {"anthropic-workspace-id": workspace_id} if workspace_id else None
         self._client = anthropic.AsyncAnthropic(api_key=api_key, timeout=timeout_s,
-                                                max_retries=2)
+                                                max_retries=2, default_headers=headers)
 
     @staticmethod
     def to_wire(messages: list[Message]) -> list[dict[str, Any]]:

@@ -153,7 +153,8 @@ def make_planner(settings: Settings, client: CTGovClient) -> QuestionPlanner | N
         if not settings.anthropic_api_key:
             return None
         llm = AnthropicLLM(settings.anthropic_api_key, settings.anthropic_model,
-                           settings.llm_timeout_s, settings.anthropic_effort)
+                           settings.llm_timeout_s, settings.anthropic_effort,
+                           settings.anthropic_workspace_id)
     else:
         if not settings.openai_api_key:
             return None

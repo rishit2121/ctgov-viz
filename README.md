@@ -74,6 +74,7 @@ Configuration (environment variables or `.env`):
 | `ANTHROPIC_API_KEY` | – | Enables the Claude planner |
 | `ANTHROPIC_MODEL` | `claude-opus-5` | Claude planner model |
 | `ANTHROPIC_EFFORT` | API default | Optional `low` … `max` effort for the planner |
+| `ANTHROPIC_WORKSPACE_ID` | – | Only for API keys not scoped to a workspace (sent as the `anthropic-workspace-id` header) |
 | `OPENAI_API_KEY` / `OPENAI_MODEL` | – / `gpt-5-mini` | Used when `LLM_MODE=openai` |
 | `MAX_STUDIES_PER_COHORT` | `20000` | Larger cohorts are refused with narrowing options, never sampled |
 | `REQUEST_DEADLINE_S` | `90` | Retrieval deadline per request |

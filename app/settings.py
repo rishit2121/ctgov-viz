@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     llm_mode: Literal["anthropic", "openai", "fake"] = "anthropic"
     llm_timeout_s: float = 120.0
     anthropic_api_key: str | None = None
+    anthropic_workspace_id: str | None = None  # needed only for keys not scoped to a workspace
     anthropic_model: str = "claude-opus-5"
     anthropic_effort: Literal["low", "medium", "high", "xhigh", "max"] | None = None  # API default
     openai_api_key: str | None = None
