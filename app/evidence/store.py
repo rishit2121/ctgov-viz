@@ -54,10 +54,14 @@ class EvidenceBundle:
         )
         return ref, [self.cite(item_id, n) for n in sample]
 
-    def cite(self, item_id: str, nct_id: str) -> Citation:
-        """Deep citation of one contributing study for one registered datum."""
+    def cite(self, item_id: str, nct_id: str, membership: bool = True) -> Citation:
+        """Deep citation of one contributing study for one registered datum.
+
+        ``membership=False`` cites only the datum's own claims (used for compact per-point
+        scatter citations; the evidence endpoint always returns the full citation).
+        """
         item = self._claims[item_id]
-        return cite(self.trials[nct_id], item.claims, item.cohort)
+        return cite(self.trials[nct_id], item.claims, item.cohort if membership else None)
 
     def page(self, item_id: str, page: int, page_size: int) -> EvidencePage | None:
         contributors = self.items.get(item_id)

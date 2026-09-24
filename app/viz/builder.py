@@ -271,7 +271,8 @@ def _scatter(plan: QueryPlan, result: AnalysisResult,
                     plan.cohorts[0])
     data = [{"nct_id": p.nct_id, xm: p.x, ym: p.y, **p.attrs,
              "url": f"https://clinicaltrials.gov/study/{p.nct_id}",
-             "citations": [bundle.cite("points", p.nct_id).model_dump()]}
+             # every point cites its plotted values; full citations via the evidence endpoint
+             "citations": [bundle.cite("points", p.nct_id, membership=False).model_dump()]}
             for p in result.points]
 
     def channel(m: str) -> Channel:

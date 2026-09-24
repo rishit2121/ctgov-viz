@@ -1,0 +1,1580 @@
+{
+ "status": "ok",
+ "query_id": "q_d96dd0ef968c2306",
+ "query": "What is the distribution of enrollment sizes for Phase 3 breast cancer trials?",
+ "plan": {
+  "version": "1",
+  "cohorts": [
+   {
+    "label": "Phase 3 breast cancer",
+    "condition": "breast cancer",
+    "filters": {
+     "overall_status": [],
+     "phase": [
+      "PHASE3"
+     ]
+    }
+   }
+  ],
+  "analysis": {
+   "kind": "aggregate",
+   "dimension": "enrollment_size",
+   "sort": {
+    "by": "domain"
+   }
+  },
+  "assumptions": [
+   "Enrollment = registered enrollment (actual, or anticipated for ongoing studies), shown as a histogram of fixed size bins; studies without enrollment are excluded.",
+   "Phase filter = studies registered with Phase 3 (including Phase 2/3 combinations)."
+  ]
+ },
+ "visualization": {
+  "schema_version": "1.0",
+  "type": "histogram",
+  "title": "Phase 3 breast cancer studies by enrollment (participants)",
+  "subtitle": "Phase 3 (incl. multi-phase) · distinct studies (NCT IDs)",
+  "encoding": {
+   "x": {
+    "field": "enrollment_size",
+    "type": "ordinal",
+    "title": "Enrollment (participants)",
+    "sort": [
+     "0",
+     "1–9",
+     "10–49",
+     "50–99",
+     "100–249",
+     "250–499",
+     "500–999",
+     "1,000–4,999",
+     "5,000+"
+    ]
+   },
+   "y": {
+    "field": "study_count",
+    "type": "quantitative",
+    "title": "Studies"
+   },
+   "tooltip": [
+    "enrollment_size",
+    "study_count"
+   ]
+  },
+  "hints": {
+   "orientation": "vertical",
+   "legend": false,
+   "value_labels": true
+  },
+  "palette": {
+   "Phase 3 breast cancer": "#2a78d6"
+  },
+  "data": [
+   {
+    "enrollment_size": "0",
+    "study_count": 28,
+    "evidence": {
+     "total": 28,
+     "sample": [
+      "NCT00041171",
+      "NCT00053339",
+      "NCT00301886",
+      "NCT00324714",
+      "NCT00397761"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d96dd0ef968c2306/evidence/r0"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00041171",
+      "title": "Docetaxel and St. John's Wort in Treating Patients With Solid Tumors That Cannot Be Removed By Surgery",
+      "url": "https://clinicaltrials.gov/study/NCT00041171",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00041171",
+      "excerpt": "0",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "0",
+        "supports": "enrollment in bin 0"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00053339",
+      "title": "Trastuzumab With or Without Tamoxifen in Treating Women With Progressive Stage IV Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00053339",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00053339",
+      "excerpt": "0",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "0",
+        "supports": "enrollment in bin 0"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Stage IV Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00301886",
+      "title": "S0308 Zoledronate or Ibandronate in Preventing Bone Problems in Women With Stage IV Breast Cancer That Has Spread to the Bone",
+      "url": "https://clinicaltrials.gov/study/NCT00301886",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00301886",
+      "excerpt": "0",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "0",
+        "supports": "enrollment in bin 0"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00324714",
+      "title": "Risedronate in Improving Bone Mineral Density and Bone Health in Postmenopausal Women With Ductal Carcinoma In Situ Enrolled in Clinical Trial CRUK-IBIS-II-DCIS",
+      "url": "https://clinicaltrials.gov/study/NCT00324714",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00324714",
+      "excerpt": "0",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "0",
+        "supports": "enrollment in bin 0"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00397761",
+      "title": "Capecitabine and Paclitaxel (Albumin-Stabilized Nanoparticle Formulation) in Treating Women Undergoing Surgery for Stage II or Stage III Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00397761",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00397761",
+      "excerpt": "0",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "0",
+        "supports": "enrollment in bin 0"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "enrollment_size": "1–9",
+    "study_count": 14,
+    "evidence": {
+     "total": 14,
+     "sample": [
+      "NCT00301080",
+      "NCT00429403",
+      "NCT00581113",
+      "NCT00998738",
+      "NCT01259284"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d96dd0ef968c2306/evidence/r1"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00301080",
+      "title": "D-cycloserine in the Management of Chemotherapy-Induced Peripheral Neuropathic Pain",
+      "url": "https://clinicaltrials.gov/study/NCT00301080",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00301080",
+      "excerpt": "7",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "7",
+        "supports": "enrollment in bin 1–9"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[2]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00429403",
+      "title": "Goserelin Acetate Study for Ovarian Function in Patients With Primary Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00429403",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00429403",
+      "excerpt": "1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "1",
+        "supports": "enrollment in bin 1–9"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00581113",
+      "title": "Neural Stem Cell Preserving Brain Radiation Therapy & Stereotactic Radiosurgery in Patients With 1-6 Brain Metastases",
+      "url": "https://clinicaltrials.gov/study/NCT00581113",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00581113",
+      "excerpt": "8",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "8",
+        "supports": "enrollment in bin 1–9"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00998738",
+      "title": "Calcium and Magnesium in Preventing Peripheral Neuropathy Caused by Ixabepilone in Patients With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00998738",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00998738",
+      "excerpt": "1",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "1",
+        "supports": "enrollment in bin 1–9"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[3]",
+        "text": "Stage IV Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT01259284",
+      "title": "Fish Oil Versus Statins Versus Placebos in Reducing Atrial Fibrillation in Patients Undergoing Thoracic Surgery for Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT01259284",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01259284",
+      "excerpt": "2",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "2",
+        "supports": "enrollment in bin 1–9"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Phase 3 breast cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "enrollment_size": "10–49",
+    "study_count": 85,
+    "evidence": {
+     "total": 85,
+     "sample": [
+      "NCT00004230",
+      "NCT00028704",
+      "NCT00049660",
+      "NCT00066807",
+      "NCT00169104"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d96dd0ef968c2306/evidence/r2"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00004230",
+      "title": "Captopril in Treating Patients Undergoing Bone Marrow or Stem Cell Transplantation",
+      "url": "https://clinicaltrials.gov/study/NCT00004230",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00004230",
+      "excerpt": "35",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "35",
+        "supports": "enrollment in bin 10–49"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Phase 3 breast cancer': matched by ClinicalTrials.gov's condition search (synonym expansion); 'breast cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00028704",
+      "title": "Breast-Conserving Therapy Compared With Mastectomy Followed By Radiation Therapy in Treating Women With Locally Advanced Breast Cancer Previously Treated With Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT00028704",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00028704",
+      "excerpt": "26",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "26",
+        "supports": "enrollment in bin 10–49"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00049660",
+      "title": "Capecitabine Compared With Vinorelbine in Treating Women With Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00049660",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00049660",
+      "excerpt": "47",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "47",
+        "supports": "enrollment in bin 10–49"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00066807",
+      "title": "Premenopausal Endocrine Responsive Chemotherapy Trial",
+      "url": "https://clinicaltrials.gov/study/NCT00066807",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00066807",
+      "excerpt": "29",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "29",
+        "supports": "enrollment in bin 10–49"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00169104",
+      "title": "Effects of Granulocyte Colony-stimulating Factor (G-CSF), Trastuzumab, and Vinorelbine on Immune Cell Function",
+      "url": "https://clinicaltrials.gov/study/NCT00169104",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00169104",
+      "excerpt": "23",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "23",
+        "supports": "enrollment in bin 10–49"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "enrollment_size": "50–99",
+    "study_count": 129,
+    "evidence": {
+     "total": 129,
+     "sample": [
+      "NCT00001338",
+      "NCT00005983",
+      "NCT00008411",
+      "NCT00026117",
+      "NCT00038402"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d96dd0ef968c2306/evidence/r3"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00001338",
+      "title": "A Prospective, Randomized, Phase III Trial of FLAC (5-Fluorouracil, Leucovorin, Adriamycin, Cytoxan) Chemotherapy With GM-CSF (Granulocyte-Macrophage Colony-Stimulating Factor) Versus PIXY 321 in Advanced Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00001338",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001338",
+      "excerpt": "65",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "65",
+        "supports": "enrollment in bin 50–99"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "A Prospective, Randomized, Phase III Trial of FLAC (5-Fluorouracil, Leucovorin, Adriamycin, Cytoxan) Chemotherapy With GM-CSF (Granulocyte-Macrophage Colony-Stimulating Factor) Versus PIXY 321 in Advanced Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00005983",
+      "title": "S9927 Radiation Therapy After Surgery, Chemotherapy, and/or Hormone Therapy in Stage II Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00005983",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00005983",
+      "excerpt": "98",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "98",
+        "supports": "enrollment in bin 50–99"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00008411",
+      "title": "Docetaxel in Treating Patients With Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00008411",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00008411",
+      "excerpt": "90",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "90",
+        "supports": "enrollment in bin 50–99"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00026117",
+      "title": "Shark Cartilage in Treating Patients With Advanced Colorectal or Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00026117",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00026117",
+      "excerpt": "88",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "88",
+        "supports": "enrollment in bin 50–99"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00038402",
+      "title": "Evaluation of the Addition of Herceptin to Standard Chemotherapy in the Neoadjuvant Setting for Operable Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00038402",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00038402",
+      "excerpt": "74",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "74",
+        "supports": "enrollment in bin 50–99"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "enrollment_size": "100–249",
+    "study_count": 306,
+    "evidence": {
+     "total": 306,
+     "sample": [
+      "NCT00001806",
+      "NCT00002836",
+      "NCT00002870",
+      "NCT00002942",
+      "NCT00003032"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d96dd0ef968c2306/evidence/r4"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00001806",
+      "title": "Methods in Education for Breast Cancer Genetics",
+      "url": "https://clinicaltrials.gov/study/NCT00001806",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00001806",
+      "excerpt": "170",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "170",
+        "supports": "enrollment in bin 100–249"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002836",
+      "title": "Filgrastim Plus Chemotherapy Compared With Filgrastim Alone In Treating Women Undergoing Peripheral Stem Cell Transplantation For Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002836",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002836",
+      "excerpt": "184",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "184",
+        "supports": "enrollment in bin 100–249"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002870",
+      "title": "High Dose Chemotherapy Plus Peripheral Stem Cell Transplantation Compared With Standard Therapy in Treating Women With Locally Recurrent or Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002870",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002870",
+      "excerpt": "180",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "180",
+        "supports": "enrollment in bin 100–249"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002942",
+      "title": "Bone Marrow or Peripheral Stem Cell Transplantation in Treating Patients With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002942",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002942",
+      "excerpt": "136",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "136",
+        "supports": "enrollment in bin 100–249"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00003032",
+      "title": "High Dose Chemotherapy Plus Peripheral Stem Cell Transplantation Compared With Standard Therapy in Treating Women With Metastatic or Recurrent Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00003032",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003032",
+      "excerpt": "224",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "224",
+        "supports": "enrollment in bin 100–249"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "enrollment_size": "250–499",
+    "study_count": 388,
+    "evidence": {
+     "total": 388,
+     "sample": [
+      "NCT00002528",
+      "NCT00002529",
+      "NCT00002544",
+      "NCT00002777",
+      "NCT00002784"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d96dd0ef968c2306/evidence/r5"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00002528",
+      "title": "Surgery With or Without Lymph Node Removal in Treating Older Women With Stage I or Stage IIA Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002528",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002528",
+      "excerpt": "473",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "473",
+        "supports": "enrollment in bin 250–499"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002529",
+      "title": "Hormone Therapy and Chemotherapy in Treating Perimenopausal or Postmenopausal Women With Node-Positive Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002529",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002529",
+      "excerpt": "452",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "452",
+        "supports": "enrollment in bin 250–499"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002544",
+      "title": "Mitoxantrone With or Without Docetaxel in Treating Women With Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002544",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002544",
+      "excerpt": "300",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "300",
+        "supports": "enrollment in bin 250–499"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002777",
+      "title": "Exemestane Compared With Tamoxifen in Treating Women With Locally Recurrent or Metastatic Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002777",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002777",
+      "excerpt": "342",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "342",
+        "supports": "enrollment in bin 250–499"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002784",
+      "title": "High-Dose Combination Chemotherapy Plus Peripheral Stem Cell Transplantation Compared With Standard Combination Chemotherapy in Treating Women With High-Risk Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002784",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002784",
+      "excerpt": "344",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "344",
+        "supports": "enrollment in bin 250–499"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "enrollment_size": "500–999",
+    "study_count": 284,
+    "evidence": {
+     "total": 284,
+     "sample": [
+      "NCT00002542",
+      "NCT00002720",
+      "NCT00002755",
+      "NCT00002772",
+      "NCT00002864"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d96dd0ef968c2306/evidence/r6"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00002542",
+      "title": "Tamoxifen in Treating Women With High-Risk Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002542",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002542",
+      "excerpt": "672",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "672",
+        "supports": "enrollment in bin 500–999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002720",
+      "title": "Surgery With or Without Lymph Node Removal in Treating Older Women With Stage I Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002720",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002720",
+      "excerpt": "642",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "642",
+        "supports": "enrollment in bin 500–999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002755",
+      "title": "Standard Chemotherapy Compared With High-Dose Combination Chemotherapy and Peripheral Stem Cell Transplantation in Treating Women With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002755",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002755",
+      "excerpt": "600",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "600",
+        "supports": "enrollment in bin 500–999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002772",
+      "title": "S9623, Combination Chemotherapy Plus Peripheral Stem Cell Transplantation in Treating Women With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002772",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002772",
+      "excerpt": "602",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "602",
+        "supports": "enrollment in bin 500–999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002864",
+      "title": "Tamoxifen With or Without Octreotide in Treating Postmenopausal Women With Stage I, Stage II, or Stage III Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002864",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002864",
+      "excerpt": "667",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "667",
+        "supports": "enrollment in bin 500–999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "enrollment_size": "1,000–4,999",
+    "study_count": 255,
+    "evidence": {
+     "total": 255,
+     "sample": [
+      "NCT00002564",
+      "NCT00002579",
+      "NCT00002580",
+      "NCT00002581",
+      "NCT00002646"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d96dd0ef968c2306/evidence/r7"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00002564",
+      "title": "Nutrition Intervention in Treating Women With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002564",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002564",
+      "excerpt": "2500",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "2500",
+        "supports": "enrollment in bin 1,000–4,999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002579",
+      "title": "Tamoxifen Following Combination Chemotherapy in Treating Women With Operable Invasive Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002579",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002579",
+      "excerpt": "2000",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "2000",
+        "supports": "enrollment in bin 1,000–4,999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002580",
+      "title": "Tamoxifen, Ovarian Ablation, and/or Combination Chemotherapy in Treating Premenopausal Women With Stage I, Stage II, or Stage IIIA Invasive Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002580",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002580",
+      "excerpt": "1000",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "1000",
+        "supports": "enrollment in bin 1,000–4,999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002581",
+      "title": "Tamoxifen With or Without Combination Chemotherapy in Treating Postmenopausal Women With Operable Invasive Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002581",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002581",
+      "excerpt": "1000",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "1000",
+        "supports": "enrollment in bin 1,000–4,999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002646",
+      "title": "Hormone Therapy in Treating Postmenopausal Women With Receptor-Positive Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002646",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002646",
+      "excerpt": "1500",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "1500",
+        "supports": "enrollment in bin 1,000–4,999"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "enrollment_size": "5,000+",
+    "study_count": 34,
+    "evidence": {
+     "total": 34,
+     "sample": [
+      "NCT00002582",
+      "NCT00002644",
+      "NCT00003016",
+      "NCT00003140",
+      "NCT00003678"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_d96dd0ef968c2306/evidence/r8"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT00002582",
+      "title": "Tamoxifen, Ovarian Ablation, and/or Chemotherapy in Treating Women With Stage I, Stage II, or Stage IIIA Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00002582",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002582",
+      "excerpt": "6000",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "6000",
+        "supports": "enrollment in bin 5,000+"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00002644",
+      "title": "Tamoxifen for the Prevention of Breast Cancer in High-Risk Women",
+      "url": "https://clinicaltrials.gov/study/NCT00002644",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00002644",
+      "excerpt": "7154",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "7154",
+        "supports": "enrollment in bin 5,000+"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00003016",
+      "title": "Prolonged Tamoxifen Compared With Shorter Tamoxifen in Treating Patients Who Have Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00003016",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003016",
+      "excerpt": "20000",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "20000",
+        "supports": "enrollment in bin 5,000+"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00003140",
+      "title": "Letrozole After Tamoxifen in Treating Women With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00003140",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003140",
+      "excerpt": "5187",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "5187",
+        "supports": "enrollment in bin 5,000+"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT00003678",
+      "title": "Tamoxifen in Treating Women With Breast Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT00003678",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT00003678",
+      "excerpt": "20000",
+      "excerpts": [
+       {
+        "field": "protocolSection.designModule.enrollmentInfo.count",
+        "text": "20000",
+        "supports": "enrollment in bin 5,000+"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Breast Cancer",
+        "supports": "cohort 'Phase 3 breast cancer' (condition search 'breast cancer')"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Phase 3 breast cancer' (phase filter)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "vega_lite": {
+   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+   "title": {
+    "text": "Phase 3 breast cancer studies by enrollment (participants)",
+    "subtitle": "Phase 3 (incl. multi-phase) · distinct studies (NCT IDs)"
+   },
+   "width": "container",
+   "height": 320,
+   "data": {
+    "values": [
+     {
+      "enrollment_size": "0",
+      "study_count": 28,
+      "_row": 0
+     },
+     {
+      "enrollment_size": "1–9",
+      "study_count": 14,
+      "_row": 1
+     },
+     {
+      "enrollment_size": "10–49",
+      "study_count": 85,
+      "_row": 2
+     },
+     {
+      "enrollment_size": "50–99",
+      "study_count": 129,
+      "_row": 3
+     },
+     {
+      "enrollment_size": "100–249",
+      "study_count": 306,
+      "_row": 4
+     },
+     {
+      "enrollment_size": "250–499",
+      "study_count": 388,
+      "_row": 5
+     },
+     {
+      "enrollment_size": "500–999",
+      "study_count": 284,
+      "_row": 6
+     },
+     {
+      "enrollment_size": "1,000–4,999",
+      "study_count": 255,
+      "_row": 7
+     },
+     {
+      "enrollment_size": "5,000+",
+      "study_count": 34,
+      "_row": 8
+     }
+    ]
+   },
+   "layer": [
+    {
+     "mark": {
+      "type": "bar",
+      "cornerRadiusEnd": 4,
+      "color": "#2a78d6",
+      "width": {
+       "band": 0.94
+      }
+     },
+     "encoding": {
+      "x": {
+       "field": "enrollment_size",
+       "type": "ordinal",
+       "title": "Enrollment (participants)",
+       "sort": [
+        "0",
+        "1–9",
+        "10–49",
+        "50–99",
+        "100–249",
+        "250–499",
+        "500–999",
+        "1,000–4,999",
+        "5,000+"
+       ],
+       "axis": {
+        "labelAngle": 0
+       }
+      },
+      "y": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "tooltip": [
+       {
+        "field": "enrollment_size",
+        "title": "Enrollment (participants)"
+       },
+       {
+        "field": "study_count",
+        "title": "Studies",
+        "format": ","
+       }
+      ]
+     }
+    },
+    {
+     "mark": {
+      "type": "text",
+      "align": "center",
+      "baseline": "bottom",
+      "dx": 0,
+      "dy": -4,
+      "color": "#52514e",
+      "fontSize": 11
+     },
+     "encoding": {
+      "x": {
+       "field": "enrollment_size",
+       "type": "ordinal",
+       "title": "Enrollment (participants)",
+       "sort": [
+        "0",
+        "1–9",
+        "10–49",
+        "50–99",
+        "100–249",
+        "250–499",
+        "500–999",
+        "1,000–4,999",
+        "5,000+"
+       ],
+       "axis": {
+        "labelAngle": 0
+       }
+      },
+      "y": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "text": {
+       "field": "study_count",
+       "type": "quantitative",
+       "format": ","
+      }
+     }
+    }
+   ],
+   "config": {
+    "background": "#fcfcfb",
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "view": {
+     "stroke": null
+    },
+    "title": {
+     "color": "#0b0b0b",
+     "subtitleColor": "#52514e",
+     "anchor": "start",
+     "fontSize": 15,
+     "subtitleFontSize": 12
+    },
+    "axis": {
+     "gridColor": "#e1e0d9",
+     "gridWidth": 1,
+     "domainColor": "#c3c2b7",
+     "tickColor": "#c3c2b7",
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "labelFontSize": 11,
+     "titleFontWeight": "normal",
+     "labelLimit": 220
+    },
+    "legend": {
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "orient": "top",
+     "labelLimit": 320
+    },
+    "range": {
+     "category": [
+      "#2a78d6",
+      "#eb6834",
+      "#1baf7a",
+      "#eda100",
+      "#e87ba4",
+      "#008300",
+      "#4a3aa7",
+      "#e34948"
+     ]
+    },
+    "line": {
+     "strokeWidth": 2,
+     "strokeCap": "round",
+     "strokeJoin": "round"
+    }
+   }
+  }
+ },
+ "meta": {
+  "source": "ClinicalTrials.gov API v2",
+  "api_version": "2.0.5",
+  "data_timestamp": "2026-09-23T09:00:05",
+  "retrieved_at": "2026-09-24T05:33:36+00:00",
+  "unit": "distinct studies (NCT IDs)",
+  "definitions": {
+   "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
+   "unit": "Each bar/point/edge counts distinct studies (NCT IDs), never sites or arms.",
+   "enrollment_size": "Registered enrollment (actual, or anticipated for ongoing studies) in fixed, roughly log-spaced bins. Studies without enrollment are excluded."
+  },
+  "api_queries": [
+   {
+    "cohort": "Phase 3 breast cancer",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=breast+cancer&filter.advanced=AREA%5BPhase%5DPHASE3&fields=NCTId%2CBriefTitle%2CEnrollmentCount%2CEnrollmentType%2CPhase%2CCondition",
+    "total": 1556,
+    "fetched": 1556,
+    "pages": 2,
+    "complete": true
+   }
+  ],
+  "completeness": {
+   "complete": true
+  },
+  "studies_analyzed": 1556,
+  "filters": {
+   "Phase 3 breast cancer": {
+    "condition": "breast cancer",
+    "phase": [
+     "PHASE3"
+    ]
+   }
+  },
+  "request_fields": {},
+  "cohort_overlap": {},
+  "excluded": {
+   "no_enrollment_size_reported": 33
+  },
+  "assumptions": [
+   "Enrollment = registered enrollment (actual, or anticipated for ongoing studies), shown as a histogram of fixed size bins; studies without enrollment are excluded.",
+   "Phase filter = studies registered with Phase 3 (including Phase 2/3 combinations).",
+   "A phase filter keeps studies whose registered phases include that phase, so multi-phase studies (e.g. Phase 2/3) are included in a Phase 3 filter."
+  ],
+  "warnings": [],
+  "llm": {
+   "model": "claude-opus-5",
+   "tool_calls": [
+    "validate_plan"
+   ],
+   "repaired": false
+  },
+  "timings_ms": {
+   "preflight": 249,
+   "fetch": 1584,
+   "analyze": 33,
+   "verify": 2,
+   "total": 1871
+  }
+ }
+}

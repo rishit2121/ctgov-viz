@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import random
+import time
 from pathlib import Path
 from typing import Any
 
@@ -43,6 +44,18 @@ def api_count(**params: str) -> int:
                                               "fields": "NCTId"}, timeout=60)
     r.raise_for_status()
     return int(r.json()["totalCount"])
+
+
+def fetch_record(url: str, attempts: int = 4) -> dict[str, Any]:
+    """GET a study record; CT.gov occasionally answers 200 with a non-JSON body, so retry."""
+    for i in range(attempts):
+        try:
+            return httpx.get(url, timeout=60).json()  # type: ignore[no-any-return]
+        except ValueError:
+            if i == attempts - 1:
+                raise
+            time.sleep(1 + i)
+    raise AssertionError("unreachable")
 
 
 def rows(response: QueryResponse) -> list[dict[str, Any]]:
@@ -103,7 +116,7 @@ async def test_cited_evidence_matches_source_records(name: str) -> None:
     rng = random.Random(0)
     item_id = rng.choice(sorted(bundle.items))
     for contributor in rng.sample(bundle.items[item_id], k=min(3, len(bundle.items[item_id]))):
-        record = httpx.get(f"{BASE}/studies/{contributor.nct_id}", timeout=60).json()
+        record = fetch_record(f"{BASE}/studies/{contributor.nct_id}")
         ps = record["protocolSection"]
         for path, value in contributor.fields.items():
             if path == "contactsLocationsModule.locations[].country":
@@ -115,3 +128,27 @@ async def test_cited_evidence_matches_source_records(name: str) -> None:
                 assert {v["name"] for v in value} <= registered
             elif path == "designModule.phases":
                 assert value == ps.get("designModule", {}).get("phases", [])
+
+
+@pytest.mark.parametrize("name", ["02_pembrolizumab_phases", "04_lung_cancer_countries",
+                                  "07_melanoma_combinations"])
+async def test_inline_citations_are_verbatim_in_the_full_api_record(name: str) -> None:
+    """Re-download each cited study's *full* record and check every excerpt at its exact path."""
+    from app.contracts.viz import Citation
+    from app.evidence.citations import resolve
+
+    response, _ = await respond(name)
+    viz = response.visualization
+    assert viz is not None
+    citations = ([Citation(**c) for d in viz.data[:3] for c in d["citations"][:2]]
+                 or [c for e in (viz.edges or [])[:3] for c in e.citations[:2]])
+    assert citations
+    checked = 0
+    for c in citations:
+        record = fetch_record(c.record_url)["protocolSection"]
+        assert record["identificationModule"]["briefTitle"] == c.title
+        for e in c.excerpts:
+            if e.text is not None:
+                assert str(resolve(record, e.field)) == e.text, (c.nct_id, e.field)
+                checked += 1
+    assert checked >= len(citations)

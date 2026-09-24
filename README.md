@@ -48,7 +48,10 @@ uv run uvicorn app.api.main:app --reload
 LLM_MODE=fake uv run uvicorn app.api.main:app --reload
 ```
 
-Then open **http://localhost:8000/docs** to try every endpoint interactively, or:
+Then open **http://localhost:8000/** for the demo page: ask a question (or click an example),
+see the chart, and click any bar, point, node or edge to see the studies behind it with their
+exact supporting record text. `http://localhost:8000/?q=<question>` runs a question directly.
+**http://localhost:8000/docs** lets you try every endpoint interactively. Or from a shell:
 
 ```bash
 curl -s localhost:8000/query -H 'content-type: application/json' \
@@ -213,7 +216,7 @@ Evaluation: `tests/golden/questions.yaml` has 25 differently worded questions: a
 query types, paraphrases, a misspelled drug, ambiguous wording, and out-of-scope questions.
 Each asserts *properties* of the plan (analysis kind, dimension, series, cohort terms,
 filters), not exact JSON. Run with `uv run pytest -m live tests/golden` once
-`ANTHROPIC_API_KEY` is set. Result with `claude-opus-5` (2026-09-23): **25/25**, about 10 s per
+`ANTHROPIC_API_KEY` is set. Result with `claude-opus-5` (2026-09-23): **28/28**, about 9 s per
 question.
 
 ## What the numbers mean
@@ -252,13 +255,29 @@ All question classes use the same three analysis kinds:
 | Co-occurrence | Which interventions co-occur in melanoma studies? | network |
 | Combinations | Which drugs are combined in the same arm in melanoma trials? | network |
 | Bipartite | Network of sponsors and drugs for NSCLC trials | two-sided network |
+| Histogram | What is the distribution of enrollment sizes for Phase 3 breast cancer trials? | histogram (fixed bins) |
+| Histogram | How long do pembrolizumab trials typically run? | histogram (duration bins) |
+| Country network | Which countries most often run melanoma trials together? | network |
 | Numeric | How does enrollment relate to study duration for Phase 3 breast cancer? | scatter (log enrollment) |
 | Clarify | "Show me the immunotherapy landscape" | 2–3 alternative plans |
 | Too broad | "Cancer trials by country" (123k studies) | counted narrowing options |
 | Unsupported | "Which drug has the best survival?" | explanation + alternative |
 
-Real, verified responses for eight of these are in [`examples/responses/`](examples/responses/),
-produced from [`examples/plans/`](examples/plans/) by `uv run python scripts/run_examples.py`.
+### Example runs
+
+Real requests sent through the HTTP API (Claude planner, live ClinicalTrials.gov, 2026-09-23 data),
+with the exact request and the complete JSON response, in [`examples/runs/`](examples/runs/).
+Regenerate with `uv run python scripts/run_examples.py`.
+
+| Run | Request | Chart |
+|---|---|---|
+| `01_trend_drug_field` | `{"query": "How has the number of trials for this drug changed over time?", "drug_name": "Pembrolizumab"}` | line |
+| `02_compare_phases` | `{"query": "Compare pembrolizumab and nivolumab trials across phases."}` | grouped bar |
+| `03_geography_fields` | `{"query": "Which countries have the most trials?", "condition": "lung cancer", "trial_phase": "Phase 3", "status": "recruiting"}` | choropleth-ready bar |
+| `04_drug_combination_network` | `{"query": "Which drugs are combined in the same arm in melanoma trials?"}` | network |
+| `05_sponsor_drug_network` | `{"query": "Show a network of sponsors and drugs for non-small cell lung cancer trials", "start_year": 2020}` | bipartite network |
+| `06_enrollment_histogram` | `{"query": "What is the distribution of enrollment sizes for Phase 3 breast cancer trials?"}` | histogram |
+| `07_enrollment_vs_duration_scatter` | `{"query": "How does enrollment relate to study duration for Phase 3 breast cancer trials?"}` | scatter |
 
 ## Output contract
 
@@ -285,7 +304,8 @@ Charts ship **already aggregated and ordered**; frontends never recompute. `sche
     "data": [
       {"country": "China", "iso3": "CHN", "study_count": 136,
        "evidence": {"total": 136, "sample": ["NCT01804686", "..."], "complete_inline": false,
-                    "ref": "/query/q_e0adeada732c24e5/evidence/r0"}}
+                    "ref": "/query/q_e0adeada732c24e5/evidence/r0"},
+       "citations": [ /* one per sample study, see "Deep citations" below */ ]}
     ],
     "geo": {"iso3_field": "iso3", "value_field": "study_count", "color_ramp": ["#cde2fb", "..."]},
     "vega_lite": { "...": "ready-to-render Vega-Lite v5 spec of the same data" }
@@ -307,21 +327,66 @@ Charts ship **already aggregated and ordered**; frontends never recompute. `sche
 }
 ```
 
-- **Networks** carry `nodes` (`id`, `label`, `group`, `study_count`, `evidence`) and `edges`
-  (`source`, `target`, `weight`, `evidence`) instead of `data`.
-- **Scatter** rows are one study each (`nct_id`, both measures, phase, study URL).
-- **Evidence pages** list `nct_id`, study URL, title and `fields_used`: the raw registry values
-  (by API field path) that put the study in that group, e.g. its location countries for a
-  country bar, or its registered intervention names and how each was resolved for a network edge.
+- **Chart types:** `bar`, `grouped_bar`, `histogram`, `line`, `choropleth_bar`, `network`,
+  `scatter`.
+- **Networks** carry `nodes` (`id`, `label`, `group`, `study_count`, `evidence`, `citations`)
+  and `edges` (`source`, `target`, `weight`, `evidence`, `citations`) instead of `data`.
+- **Scatter** rows are one study each (`nct_id`, both measures, phase, study URL), and each
+  carries a citation of its plotted values.
+- **Vega-Lite values** carry `_row`, the index of the matching `data` row, so a frontend can map
+  a clicked mark back to its evidence and citations.
 - **Colors** come from a fixed, colour-vision-deficiency-validated categorical order, assigned
   per entity (never by rank). A 9th series folds into "Other" (a real distinct-study union,
   computed in the engine). Networks and maps use only the 3 slots that stay distinguishable
   when any two marks can touch.
 
+## Deep citations
+
+Every visualized datum (bar, histogram bin, time bucket, scatter point, node, edge) carries
+`citations`: one per study in its evidence sample (up to 5; the complete list is behind
+`evidence.ref`, paginated, in the same format). Each citation gives the `nct_id` and **exact text
+excerpts** from that study's API record, each with the exact path where it appears, list index
+included. The excerpts support both *why the study is in this datum* and *why it is in this
+cohort*. Real example: the China bar of run `03_geography_fields`:
+
+```json
+{
+  "nct_id": "NCT01804686",
+  "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+  "url": "https://clinicaltrials.gov/study/NCT01804686",
+  "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+  "excerpt": "China",
+  "excerpts": [
+    {"field": "protocolSection.contactsLocationsModule.locations[52].country",
+     "text": "China", "supports": "site country: China"},
+    {"field": "protocolSection.conditionsModule.conditions", "text": null,
+     "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"},
+    {"field": "protocolSection.statusModule.overallStatus",
+     "text": "RECRUITING", "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"},
+    {"field": "protocolSection.designModule.phases[0]",
+     "text": "PHASE3", "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"}
+  ]
+}
+```
+
+- **Verbatim by construction.** Excerpts are read from the record exactly as the API returned it
+  (`Trial.record`), so `text` is always the value at `field`. Raw spellings are cited as
+  registered: a South Korea bar cites `"Korea, Republic of"`, and a pembrolizumab cohort cites
+  `"KEYTRUDA® (pembrolizumab)"` where that is what the study lists.
+- **Honest about gaps.** When a claim rests on an *absent* value ("Not Reported" phase) or on
+  ClinicalTrials.gov's search expansion rather than a verbatim match (above), `text` is `null`
+  and `supports` says so, instead of citing something unrelated.
+- **Checked three ways.** The response verifier rejects any citation of a non-contributor and any
+  excerpt that isn't verbatim at its path. Unit tests resolve every excerpt for every chart type
+  on real recorded studies. A live test re-downloads cited studies' full records from
+  ClinicalTrials.gov and confirms each excerpt at its exact path.
+- **Extensible.** Each registry dimension has a citer (`app/evidence/citations.py`); a test
+  fails if a new dimension is added without one.
+
 ## Verification and testing
 
 ```bash
-uv run pytest                      # 230 unit + integration tests, no network (~3 s)
+uv run pytest                      # 259 unit + integration tests, no network (~4 s)
 uv run pytest -m live tests/live   # live CT.gov oracle tests
 uv run pytest -m live tests/golden   # planner golden set (needs ANTHROPIC_API_KEY)
 uv run ruff check . && uv run mypy app
@@ -332,9 +397,11 @@ uv run ruff check . && uv run mypy app
 | Unit | Normalizer on 15 **real recorded studies** chosen by edge case (multi-phase, missing start date, repeated site countries, placebo arms, ™ names, ...), intervention-name resolution (merges and deliberate non-merges), countries, compiler and predicates, every validator rule, engine results on hand-computed cohorts, builder encodings, planner loop (tools, budget, repair, clarify, scrubbing), strict-schema compatibility |
 | Property (hypothesis) | For random cohorts: phase buckets partition the cohort; country counts equal distinct studies; edge weight ≤ both endpoint counts; output is identical under input shuffling |
 | Projection | Every example plan gives identical results on full and field-projected records (and the test fails if a needed field is dropped) |
-| Verifier | Each invariant is proven by an injected fault (wrong count, uncited study, filter violation, misordered rows, missing zero rows, self-loops, status/completeness mismatch, ...) |
+| Verifier | Each invariant is proven by an injected fault (wrong count, uncited study, filter violation, misordered rows, missing zero rows, self-loops, status/completeness mismatch, tampered citation excerpt, citation of a non-contributor, ...) |
+| Citations | Every excerpt resolves verbatim for every chart type on real recorded studies; raw-spelling, brand-name, absent-value and search-expansion cases; evidence pages match inline citations |
 | Integration | Real client + pipeline + FastAPI against an in-process fake CT.gov: paging, duplicates across pages, retries (503, 429 + `Retry-After`, non-JSON 200), no retry on 400, partial results, too-broad refusal, error codes, evidence paging, caching |
-| Live oracles | Demo plans run against the real API; results re-derived with **independent** Essie count queries, and cited studies re-fetched to check field-level evidence |
+| Live oracles | Demo plans run against the real API; results re-derived with **independent** Essie count queries; cited studies' full records re-downloaded to check every citation excerpt at its exact path |
+| Demo UI | Rendered in headless Chrome and click-tested (bar → citations panel → "load all" paging; network node → citations) |
 
 Live oracle results (2026-09-23 data snapshot): every checked number matched exactly.
 
@@ -389,6 +456,11 @@ pages); repeated plans are served from cache.
   and `meta.api_queries` URLs make every result reproducible.
 - The LLM planner needs an Anthropic (or OpenAI) key; without one, `LLM_MODE=fake` answers
   the example questions, and a `plan` can always be submitted directly.
+- Inline citations cover each datum's evidence sample (5 studies); the rest are one paginated
+  request away. Scatter points cite only their plotted values inline, to keep large scatters
+  under ~1.5 MB; their full citations are on the evidence endpoint.
+- The demo page loads Vega and d3 from a CDN, labels only the 30 largest network nodes, and
+  has no dark theme.
 
 ## Repository layout
 
@@ -403,10 +475,11 @@ app/
   normalize/           study JSON -> Trial (dates, countries, intervention names, labels)
   analysis/            engine + pure primitives
   viz/                 chart builder, titles, theme
-  evidence/            evidence registry and result cache
+  evidence/            deep citations, evidence registry, result cache
+  static/index.html    demo UI (served at /)
   verify/              response invariants
-examples/plans/        demo questions with hand-checked plans
-examples/responses/    verified live responses for those plans
+examples/runs/         real requests + complete JSON responses (Claude + live CT.gov)
+examples/plans/        hand-checked plans (offline planner, live oracle tests)
 scripts/               fixture capture, example runner
 tests/                 unit, integration (fake CT.gov), golden (LLM), live (oracles)
 PLAN.md                original design and implementation plan

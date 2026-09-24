@@ -1,0 +1,3758 @@
+{
+ "status": "ok",
+ "query_id": "q_00fe22698b85987d",
+ "query": "Which countries have the most trials?",
+ "plan": {
+  "version": "1",
+  "cohorts": [
+   {
+    "label": "Lung cancer (Phase 3, recruiting)",
+    "condition": "lung cancer",
+    "filters": {
+     "overall_status": [
+      "RECRUITING"
+     ],
+     "phase": [
+      "PHASE3"
+     ]
+    }
+   }
+  ],
+  "analysis": {
+   "kind": "aggregate",
+   "dimension": "country",
+   "top_k": 20,
+   "sort": {
+    "by": "count_desc"
+   }
+  },
+  "assumptions": [
+   "'Countries' = distinct site countries listed for each study; a multinational trial counts once per country.",
+   "Restricted to Phase 3, currently recruiting lung cancer trials.",
+   "Showing the top 20 countries by trial count.",
+   "Request field condition='lung cancer' applied to every cohort.",
+   "Request field trial_phase=[PHASE3] applied to every cohort.",
+   "Request field status=[RECRUITING] applied to every cohort."
+  ]
+ },
+ "visualization": {
+  "schema_version": "1.0",
+  "type": "choropleth_bar",
+  "title": "Lung cancer (Phase 3, recruiting) studies by country",
+  "subtitle": "Recruiting · Phase 3 (incl. multi-phase) · distinct studies (NCT IDs)",
+  "encoding": {
+   "x": {
+    "field": "study_count",
+    "type": "quantitative",
+    "title": "Studies"
+   },
+   "y": {
+    "field": "country",
+    "type": "nominal",
+    "title": "Country",
+    "sort": [
+     "China",
+     "United States",
+     "France",
+     "Spain",
+     "Italy",
+     "Japan",
+     "Australia",
+     "United Kingdom",
+     "Canada",
+     "Germany",
+     "Poland",
+     "South Korea",
+     "Belgium",
+     "Taiwan",
+     "Turkey",
+     "Brazil",
+     "Netherlands",
+     "Greece",
+     "Argentina",
+     "Romania"
+    ]
+   },
+   "tooltip": [
+    "country",
+    "study_count"
+   ]
+  },
+  "hints": {
+   "orientation": "horizontal",
+   "legend": false,
+   "value_labels": true
+  },
+  "palette": {
+   "Lung cancer (Phase 3, recruiting)": "#2a78d6"
+  },
+  "data": [
+   {
+    "country": "China",
+    "iso3": "CHN",
+    "study_count": 136,
+    "evidence": {
+     "total": 136,
+     "sample": [
+      "NCT01804686",
+      "NCT03755739",
+      "NCT04316364",
+      "NCT04322617",
+      "NCT04613596"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r0"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "China",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[52].country",
+        "text": "China",
+        "supports": "site country: China"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03755739",
+      "title": "Trans-Artery/Intra-Tumor Infusion of Checkpoint Inhibitors Plus Chemodrug for Immunotherapy of Advanced Solid Tumors",
+      "url": "https://clinicaltrials.gov/study/NCT03755739",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03755739",
+      "excerpt": "China",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "China",
+        "supports": "site country: China"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04316364",
+      "title": "A Trial of SHR-1316/Placebo in Combination With Chemotherapy in Patients With Resectable NSCLC",
+      "url": "https://clinicaltrials.gov/study/NCT04316364",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04316364",
+      "excerpt": "China",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "China",
+        "supports": "site country: China"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small-Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04322617",
+      "title": "Anlotinib Plus Immune Checkpoint Inhibitors for Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04322617",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04322617",
+      "excerpt": "China",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "China",
+        "supports": "site country: China"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "China",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[279].country",
+        "text": "China",
+        "supports": "site country: China"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "United States",
+    "iso3": "USA",
+    "study_count": 89,
+    "evidence": {
+     "total": 89,
+     "sample": [
+      "NCT01804686",
+      "NCT02468024",
+      "NCT03394365",
+      "NCT03851445",
+      "NCT04181060"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r1"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "United States",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "United States",
+        "supports": "site country: United States"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02468024",
+      "title": "JoLT-Ca Sublobar Resection (SR) Versus Stereotactic Ablative Radiotherapy (SAbR) for Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02468024",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02468024",
+      "excerpt": "United States",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "United States",
+        "supports": "site country: United States"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03394365",
+      "title": "A Phase 3 Study of Tabelecleucel for Participants With Epstein-Barr Virus-Associated Post-Transplant Lymphoproliferative Disease After Failure With Rituximab or Rituximab and Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT03394365",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03394365",
+      "excerpt": "United States",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "United States",
+        "supports": "site country: United States"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03851445",
+      "title": "Lung-MAP: A Master Screening Protocol for Previously-Treated Non-Small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT03851445",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03851445",
+      "excerpt": "United States",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "United States",
+        "supports": "site country: United States"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Previously Treated Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04181060",
+      "title": "Osimertinib With or Without Bevacizumab as Initial Treatment for Patients With EGFR-Mutant Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04181060",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04181060",
+      "excerpt": "United States",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "United States",
+        "supports": "site country: United States"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[3]",
+        "text": "Stage IIIB Lung Cancer AJCC v8",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "France",
+    "iso3": "FRA",
+    "study_count": 65,
+    "evidence": {
+     "total": 65,
+     "sample": [
+      "NCT01804686",
+      "NCT03394365",
+      "NCT04339218",
+      "NCT04613596",
+      "NCT04928846"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r2"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "France",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[69].country",
+        "text": "France",
+        "supports": "site country: France"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03394365",
+      "title": "A Phase 3 Study of Tabelecleucel for Participants With Epstein-Barr Virus-Associated Post-Transplant Lymphoproliferative Disease After Failure With Rituximab or Rituximab and Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT03394365",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03394365",
+      "excerpt": "France",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[52].country",
+        "text": "France",
+        "supports": "site country: France"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04339218",
+      "title": "Cryoablation in Combination (or Not) With Pembrolizumab and Pemetrexed-carboplatin in 1st-line Treatment for Patients With Metastatic Lung Adenocarcinoma",
+      "url": "https://clinicaltrials.gov/study/NCT04339218",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04339218",
+      "excerpt": "France",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "France",
+        "supports": "site country: France"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "France",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[452].country",
+        "text": "France",
+        "supports": "site country: France"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "France",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[157].country",
+        "text": "France",
+        "supports": "site country: France"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Spain",
+    "iso3": "ESP",
+    "study_count": 65,
+    "evidence": {
+     "total": 65,
+     "sample": [
+      "NCT01804686",
+      "NCT03394365",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05522660"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r3"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Spain",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[135].country",
+        "text": "Spain",
+        "supports": "site country: Spain"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03394365",
+      "title": "A Phase 3 Study of Tabelecleucel for Participants With Epstein-Barr Virus-Associated Post-Transplant Lymphoproliferative Disease After Failure With Rituximab or Rituximab and Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT03394365",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03394365",
+      "excerpt": "Spain",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[62].country",
+        "text": "Spain",
+        "supports": "site country: Spain"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Spain",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[702].country",
+        "text": "Spain",
+        "supports": "site country: Spain"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Spain",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[279].country",
+        "text": "Spain",
+        "supports": "site country: Spain"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05522660",
+      "title": "Immunotherapy or Targeted Therapy With or Without Stereotactic Radiosurgery for Patients With Brain Metastases From Melanoma or Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT05522660",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05522660",
+      "excerpt": "Spain",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[7].country",
+        "text": "Spain",
+        "supports": "site country: Spain"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Italy",
+    "iso3": "ITA",
+    "study_count": 61,
+    "evidence": {
+     "total": 61,
+     "sample": [
+      "NCT01804686",
+      "NCT03394365",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT04996017"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r4"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Italy",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[96].country",
+        "text": "Italy",
+        "supports": "site country: Italy"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03394365",
+      "title": "A Phase 3 Study of Tabelecleucel for Participants With Epstein-Barr Virus-Associated Post-Transplant Lymphoproliferative Disease After Failure With Rituximab or Rituximab and Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT03394365",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03394365",
+      "excerpt": "Italy",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[57].country",
+        "text": "Italy",
+        "supports": "site country: Italy"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Italy",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[569].country",
+        "text": "Italy",
+        "supports": "site country: Italy"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Italy",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[188].country",
+        "text": "Italy",
+        "supports": "site country: Italy"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04996017",
+      "title": "Atezolizumab Versus Placebo for the Adjuvant Treatment of Malignant Pleural Mesothelioma (Atezomeso)",
+      "url": "https://clinicaltrials.gov/study/NCT04996017",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04996017",
+      "excerpt": "Italy",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "Italy",
+        "supports": "site country: Italy"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Japan",
+    "iso3": "JPN",
+    "study_count": 58,
+    "evidence": {
+     "total": 58,
+     "sample": [
+      "NCT01804686",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05899608",
+      "NCT05920356"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r5"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Japan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[99].country",
+        "text": "Japan",
+        "supports": "site country: Japan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Japan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[592].country",
+        "text": "Japan",
+        "supports": "site country: Japan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Japan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[197].country",
+        "text": "Japan",
+        "supports": "site country: Japan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05899608",
+      "title": "Clinical Study of Ivonescimab for First-line Treatment of Metastatic NSCLC Patients",
+      "url": "https://clinicaltrials.gov/study/NCT05899608",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05899608",
+      "excerpt": "Japan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[179].country",
+        "text": "Japan",
+        "supports": "site country: Japan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Japan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[253].country",
+        "text": "Japan",
+        "supports": "site country: Japan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Australia",
+    "iso3": "AUS",
+    "study_count": 55,
+    "evidence": {
+     "total": 55,
+     "sample": [
+      "NCT01804686",
+      "NCT02468024",
+      "NCT03394365",
+      "NCT04613596",
+      "NCT04928846"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r6"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Australia",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[34].country",
+        "text": "Australia",
+        "supports": "site country: Australia"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02468024",
+      "title": "JoLT-Ca Sublobar Resection (SR) Versus Stereotactic Ablative Radiotherapy (SAbR) for Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02468024",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02468024",
+      "excerpt": "Australia",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[40].country",
+        "text": "Australia",
+        "supports": "site country: Australia"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03394365",
+      "title": "A Phase 3 Study of Tabelecleucel for Participants With Epstein-Barr Virus-Associated Post-Transplant Lymphoproliferative Disease After Failure With Rituximab or Rituximab and Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT03394365",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03394365",
+      "excerpt": "Australia",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[40].country",
+        "text": "Australia",
+        "supports": "site country: Australia"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Australia",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[234].country",
+        "text": "Australia",
+        "supports": "site country: Australia"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Australia",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[56].country",
+        "text": "Australia",
+        "supports": "site country: Australia"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "United Kingdom",
+    "iso3": "GBR",
+    "study_count": 55,
+    "evidence": {
+     "total": 55,
+     "sample": [
+      "NCT01804686",
+      "NCT02468024",
+      "NCT03394365",
+      "NCT04613596",
+      "NCT04928846"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r7"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "United Kingdom",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[159].country",
+        "text": "United Kingdom",
+        "supports": "site country: United Kingdom"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02468024",
+      "title": "JoLT-Ca Sublobar Resection (SR) Versus Stereotactic Ablative Radiotherapy (SAbR) for Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02468024",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02468024",
+      "excerpt": "United Kingdom",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[49].country",
+        "text": "United Kingdom",
+        "supports": "site country: United Kingdom"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03394365",
+      "title": "A Phase 3 Study of Tabelecleucel for Participants With Epstein-Barr Virus-Associated Post-Transplant Lymphoproliferative Disease After Failure With Rituximab or Rituximab and Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT03394365",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03394365",
+      "excerpt": "United Kingdom",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[68].country",
+        "text": "United Kingdom",
+        "supports": "site country: United Kingdom"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "United Kingdom",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[762].country",
+        "text": "United Kingdom",
+        "supports": "site country: United Kingdom"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "United Kingdom",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[311].country",
+        "text": "United Kingdom",
+        "supports": "site country: United Kingdom"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Canada",
+    "iso3": "CAN",
+    "study_count": 53,
+    "evidence": {
+     "total": 53,
+     "sample": [
+      "NCT01804686",
+      "NCT02468024",
+      "NCT03394365",
+      "NCT04613596",
+      "NCT04871412"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r8"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Canada",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[51].country",
+        "text": "Canada",
+        "supports": "site country: Canada"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02468024",
+      "title": "JoLT-Ca Sublobar Resection (SR) Versus Stereotactic Ablative Radiotherapy (SAbR) for Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02468024",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02468024",
+      "excerpt": "Canada",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[43].country",
+        "text": "Canada",
+        "supports": "site country: Canada"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03394365",
+      "title": "A Phase 3 Study of Tabelecleucel for Participants With Epstein-Barr Virus-Associated Post-Transplant Lymphoproliferative Disease After Failure With Rituximab or Rituximab and Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT03394365",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03394365",
+      "excerpt": "Canada",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[49].country",
+        "text": "Canada",
+        "supports": "site country: Canada"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Canada",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[270].country",
+        "text": "Canada",
+        "supports": "site country: Canada"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04871412",
+      "title": "The Thoracic Peri-Operative Integrative Surgical Care Evaluation Trial - Stage III",
+      "url": "https://clinicaltrials.gov/study/NCT04871412",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04871412",
+      "excerpt": "Canada",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "Canada",
+        "supports": "site country: Canada"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Germany",
+    "iso3": "DEU",
+    "study_count": 52,
+    "evidence": {
+     "total": 52,
+     "sample": [
+      "NCT01804686",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05899608",
+      "NCT05920356"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r9"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Germany",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[76].country",
+        "text": "Germany",
+        "supports": "site country: Germany"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Germany",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[477].country",
+        "text": "Germany",
+        "supports": "site country: Germany"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Germany",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[169].country",
+        "text": "Germany",
+        "supports": "site country: Germany"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05899608",
+      "title": "Clinical Study of Ivonescimab for First-line Treatment of Metastatic NSCLC Patients",
+      "url": "https://clinicaltrials.gov/study/NCT05899608",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05899608",
+      "excerpt": "Germany",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[142].country",
+        "text": "Germany",
+        "supports": "site country: Germany"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Germany",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[207].country",
+        "text": "Germany",
+        "supports": "site country: Germany"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Poland",
+    "iso3": "POL",
+    "study_count": 49,
+    "evidence": {
+     "total": 49,
+     "sample": [
+      "NCT01804686",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05899608",
+      "NCT05920356"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r10"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Poland",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[103].country",
+        "text": "Poland",
+        "supports": "site country: Poland"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Poland",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[655].country",
+        "text": "Poland",
+        "supports": "site country: Poland"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Poland",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[247].country",
+        "text": "Poland",
+        "supports": "site country: Poland"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05899608",
+      "title": "Clinical Study of Ivonescimab for First-line Treatment of Metastatic NSCLC Patients",
+      "url": "https://clinicaltrials.gov/study/NCT05899608",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05899608",
+      "excerpt": "Poland",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[208].country",
+        "text": "Poland",
+        "supports": "site country: Poland"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Poland",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[309].country",
+        "text": "Poland",
+        "supports": "site country: Poland"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "South Korea",
+    "iso3": "KOR",
+    "study_count": 49,
+    "evidence": {
+     "total": 49,
+     "sample": [
+      "NCT01804686",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05317858",
+      "NCT05920356"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r11"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "South Korea",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[133].country",
+        "text": "South Korea",
+        "supports": "site country: South Korea"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "South Korea",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[689].country",
+        "text": "South Korea",
+        "supports": "site country: South Korea"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "South Korea",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[269].country",
+        "text": "South Korea",
+        "supports": "site country: South Korea"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05317858",
+      "title": "Blood-brain Barrier (BBB) Opening Using Exablate Focused Ultrasound With Standard of Care Treatment of NSCLC Brain Mets",
+      "url": "https://clinicaltrials.gov/study/NCT05317858",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05317858",
+      "excerpt": "South Korea",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[11].country",
+        "text": "South Korea",
+        "supports": "site country: South Korea"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[1]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "South Korea",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[337].country",
+        "text": "South Korea",
+        "supports": "site country: South Korea"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Belgium",
+    "iso3": "BEL",
+    "study_count": 47,
+    "evidence": {
+     "total": 47,
+     "sample": [
+      "NCT01804686",
+      "NCT03394365",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05692999"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r12"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Belgium",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[42].country",
+        "text": "Belgium",
+        "supports": "site country: Belgium"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT03394365",
+      "title": "A Phase 3 Study of Tabelecleucel for Participants With Epstein-Barr Virus-Associated Post-Transplant Lymphoproliferative Disease After Failure With Rituximab or Rituximab and Chemotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT03394365",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT03394365",
+      "excerpt": "Belgium",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[47].country",
+        "text": "Belgium",
+        "supports": "site country: Belgium"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Belgium",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[248].country",
+        "text": "Belgium",
+        "supports": "site country: Belgium"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Belgium",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[68].country",
+        "text": "Belgium",
+        "supports": "site country: Belgium"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05692999",
+      "title": "Maintenance Pembrolizumab at Usual or Low doSE in Non-squamous Lung Cancer: a Non-inferiority Study",
+      "url": "https://clinicaltrials.gov/study/NCT05692999",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05692999",
+      "excerpt": "Belgium",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "Belgium",
+        "supports": "site country: Belgium"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Metastatic Non-squamous Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Taiwan",
+    "iso3": "TWN",
+    "study_count": 47,
+    "evidence": {
+     "total": 47,
+     "sample": [
+      "NCT01804686",
+      "NCT02448992",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05920356"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r13"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Taiwan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[146].country",
+        "text": "Taiwan",
+        "supports": "site country: Taiwan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT02448992",
+      "title": "Hippocampal-Sparing Prophylactic Cranial Irradiation in Pathologically Nodal Positive Non-Small-Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT02448992",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT02448992",
+      "excerpt": "Taiwan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[0].country",
+        "text": "Taiwan",
+        "supports": "site country: Taiwan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small-Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Taiwan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[730].country",
+        "text": "Taiwan",
+        "supports": "site country: Taiwan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Taiwan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[290].country",
+        "text": "Taiwan",
+        "supports": "site country: Taiwan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Taiwan",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[374].country",
+        "text": "Taiwan",
+        "supports": "site country: Taiwan"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Turkey",
+    "iso3": "TUR",
+    "study_count": 45,
+    "evidence": {
+     "total": 45,
+     "sample": [
+      "NCT01804686",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05899608",
+      "NCT05920356"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r14"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Turkey (Türkiye)",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[147].country",
+        "text": "Turkey (Türkiye)",
+        "supports": "site country: Turkey"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Turkey (Türkiye)",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[741].country",
+        "text": "Turkey (Türkiye)",
+        "supports": "site country: Turkey"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Turkey (Türkiye)",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[298].country",
+        "text": "Turkey (Türkiye)",
+        "supports": "site country: Turkey"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05899608",
+      "title": "Clinical Study of Ivonescimab for First-line Treatment of Metastatic NSCLC Patients",
+      "url": "https://clinicaltrials.gov/study/NCT05899608",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05899608",
+      "excerpt": "Turkey (Türkiye)",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[241].country",
+        "text": "Turkey (Türkiye)",
+        "supports": "site country: Turkey"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Turkey (Türkiye)",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[388].country",
+        "text": "Turkey (Türkiye)",
+        "supports": "site country: Turkey"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Brazil",
+    "iso3": "BRA",
+    "study_count": 43,
+    "evidence": {
+     "total": 43,
+     "sample": [
+      "NCT01804686",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05920356",
+      "NCT06119581"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r15"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Brazil",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[48].country",
+        "text": "Brazil",
+        "supports": "site country: Brazil"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Brazil",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[252].country",
+        "text": "Brazil",
+        "supports": "site country: Brazil"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Brazil",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[79].country",
+        "text": "Brazil",
+        "supports": "site country: Brazil"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Brazil",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[61].country",
+        "text": "Brazil",
+        "supports": "site country: Brazil"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT06119581",
+      "title": "A Study of First-Line Olomorasib (LY3537982) and Pembrolizumab With or Without Chemotherapy in Patients With Advanced KRAS G12C-Mutant Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT06119581",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06119581",
+      "excerpt": "Brazil",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[113].country",
+        "text": "Brazil",
+        "supports": "site country: Brazil"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "A Study of First-Line Olomorasib (LY3537982) and Pembrolizumab With or Without Chemotherapy in Patients With Advanced KRAS G12C-Mutant Non-small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Netherlands",
+    "iso3": "NLD",
+    "study_count": 42,
+    "evidence": {
+     "total": 42,
+     "sample": [
+      "NCT01804686",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05522660",
+      "NCT05920356"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r16"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Netherlands",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[102].country",
+        "text": "Netherlands",
+        "supports": "site country: Netherlands"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Netherlands",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[626].country",
+        "text": "Netherlands",
+        "supports": "site country: Netherlands"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Netherlands",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[242].country",
+        "text": "Netherlands",
+        "supports": "site country: Netherlands"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05522660",
+      "title": "Immunotherapy or Targeted Therapy With or Without Stereotactic Radiosurgery for Patients With Brain Metastases From Melanoma or Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT05522660",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05522660",
+      "excerpt": "Netherlands",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[6].country",
+        "text": "Netherlands",
+        "supports": "site country: Netherlands"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Netherlands",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[297].country",
+        "text": "Netherlands",
+        "supports": "site country: Netherlands"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Greece",
+    "iso3": "GRC",
+    "study_count": 39,
+    "evidence": {
+     "total": 39,
+     "sample": [
+      "NCT01804686",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05899608",
+      "NCT05920356"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r17"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Greece",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[85].country",
+        "text": "Greece",
+        "supports": "site country: Greece"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Greece",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[511].country",
+        "text": "Greece",
+        "supports": "site country: Greece"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Greece",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[179].country",
+        "text": "Greece",
+        "supports": "site country: Greece"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05899608",
+      "title": "Clinical Study of Ivonescimab for First-line Treatment of Metastatic NSCLC Patients",
+      "url": "https://clinicaltrials.gov/study/NCT05899608",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05899608",
+      "excerpt": "Greece",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[151].country",
+        "text": "Greece",
+        "supports": "site country: Greece"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Greece",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[212].country",
+        "text": "Greece",
+        "supports": "site country: Greece"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Argentina",
+    "iso3": "ARG",
+    "study_count": 35,
+    "evidence": {
+     "total": 35,
+     "sample": [
+      "NCT01804686",
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05920356",
+      "NCT06170788"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r18"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT01804686",
+      "title": "A Long-term Extension Study of PCI-32765 (Ibrutinib)",
+      "url": "https://clinicaltrials.gov/study/NCT01804686",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT01804686",
+      "excerpt": "Argentina",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[32].country",
+        "text": "Argentina",
+        "supports": "site country: Argentina"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions",
+        "text": null,
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)': matched by ClinicalTrials.gov's condition search (synonym expansion); 'lung cancer' is not verbatim here"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Argentina",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[220].country",
+        "text": "Argentina",
+        "supports": "site country: Argentina"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Argentina",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[50].country",
+        "text": "Argentina",
+        "supports": "site country: Argentina"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Argentina",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[27].country",
+        "text": "Argentina",
+        "supports": "site country: Argentina"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT06170788",
+      "title": "Sacituzumab Tirumotecan (MK-2870) in Combination With Pembrolizumab Versus Pembrolizumab Alone in Metastatic Non-small Cell Lung Cancer (NSCLC) With Programmed Cell Death Ligand 1 (PD-L1) Tumor Proportion Score (TPS) ≥ 50% (MK-2870-007)",
+      "url": "https://clinicaltrials.gov/study/NCT06170788",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06170788",
+      "excerpt": "Argentina",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[15].country",
+        "text": "Argentina",
+        "supports": "site country: Argentina"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "country": "Romania",
+    "iso3": "ROU",
+    "study_count": 32,
+    "evidence": {
+     "total": 32,
+     "sample": [
+      "NCT04613596",
+      "NCT04928846",
+      "NCT05920356",
+      "NCT06119581",
+      "NCT06203210"
+     ],
+     "complete_inline": false,
+     "ref": "/query/q_00fe22698b85987d/evidence/r19"
+    },
+    "citations": [
+     {
+      "nct_id": "NCT04613596",
+      "title": "Phase 2 Trial of Adagrasib Monotherapy and in Combination With Pembrolizumab and a Phase 3 Trial of Adagrasib in Combination in Patients With a KRAS G12C Mutation KRYSTAL-7",
+      "url": "https://clinicaltrials.gov/study/NCT04613596",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04613596",
+      "excerpt": "Romania",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[675].country",
+        "text": "Romania",
+        "supports": "site country: Romania"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Advanced Non-Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[1]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT04928846",
+      "title": "A Study to Assess Disease Activity and Adverse Events of Intravenous (IV) Telisotuzumab Vedotin Compared to IV Docetaxel in Adult Participants With Previously Treated Non-Squamous Non-Small Cell Lung Cancer (NSCLC)",
+      "url": "https://clinicaltrials.gov/study/NCT04928846",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT04928846",
+      "excerpt": "Romania",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[257].country",
+        "text": "Romania",
+        "supports": "site country: Romania"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT05920356",
+      "title": "A Study Evaluating Sotorasib Platinum Doublet Combination Versus Pembrolizumab Platinum Doublet Combination as a Front-Line Therapy in Participants With Stage IV or Advanced Stage IIIB/C Nonsquamous Non-Small Cell Lung Cancers (CodeBreaK 202)",
+      "url": "https://clinicaltrials.gov/study/NCT05920356",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT05920356",
+      "excerpt": "Romania",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[327].country",
+        "text": "Romania",
+        "supports": "site country: Romania"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Non-Small Cell Lung Cancer (NSCLC)",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT06119581",
+      "title": "A Study of First-Line Olomorasib (LY3537982) and Pembrolizumab With or Without Chemotherapy in Patients With Advanced KRAS G12C-Mutant Non-small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT06119581",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06119581",
+      "excerpt": "Romania",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[329].country",
+        "text": "Romania",
+        "supports": "site country: Romania"
+       },
+       {
+        "field": "protocolSection.identificationModule.briefTitle",
+        "text": "A Study of First-Line Olomorasib (LY3537982) and Pembrolizumab With or Without Chemotherapy in Patients With Advanced KRAS G12C-Mutant Non-small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     },
+     {
+      "nct_id": "NCT06203210",
+      "title": "A Study of Ifinatamab Deruxtecan Versus Treatment of Physician's Choice in Subjects With Relapsed Small Cell Lung Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT06203210",
+      "record_url": "https://clinicaltrials.gov/api/v2/studies/NCT06203210",
+      "excerpt": "Romania",
+      "excerpts": [
+       {
+        "field": "protocolSection.contactsLocationsModule.locations[181].country",
+        "text": "Romania",
+        "supports": "site country: Romania"
+       },
+       {
+        "field": "protocolSection.conditionsModule.conditions[0]",
+        "text": "Small Cell Lung Cancer",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (condition search 'lung cancer')"
+       },
+       {
+        "field": "protocolSection.statusModule.overallStatus",
+        "text": "RECRUITING",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (status filter)"
+       },
+       {
+        "field": "protocolSection.designModule.phases[0]",
+        "text": "PHASE3",
+        "supports": "cohort 'Lung cancer (Phase 3, recruiting)' (phase filter)"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "geo": {
+   "iso3_field": "iso3",
+   "name_field": "country",
+   "value_field": "study_count",
+   "color_ramp": [
+    "#cde2fb",
+    "#9ec5f4",
+    "#6da7ec",
+    "#3987e5",
+    "#256abf",
+    "#184f95",
+    "#0d366b"
+   ]
+  },
+  "vega_lite": {
+   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+   "title": {
+    "text": "Lung cancer (Phase 3, recruiting) studies by country",
+    "subtitle": "Recruiting · Phase 3 (incl. multi-phase) · distinct studies (NCT IDs)"
+   },
+   "width": "container",
+   "height": {
+    "step": 26
+   },
+   "data": {
+    "values": [
+     {
+      "country": "China",
+      "iso3": "CHN",
+      "study_count": 136,
+      "_row": 0
+     },
+     {
+      "country": "United States",
+      "iso3": "USA",
+      "study_count": 89,
+      "_row": 1
+     },
+     {
+      "country": "France",
+      "iso3": "FRA",
+      "study_count": 65,
+      "_row": 2
+     },
+     {
+      "country": "Spain",
+      "iso3": "ESP",
+      "study_count": 65,
+      "_row": 3
+     },
+     {
+      "country": "Italy",
+      "iso3": "ITA",
+      "study_count": 61,
+      "_row": 4
+     },
+     {
+      "country": "Japan",
+      "iso3": "JPN",
+      "study_count": 58,
+      "_row": 5
+     },
+     {
+      "country": "Australia",
+      "iso3": "AUS",
+      "study_count": 55,
+      "_row": 6
+     },
+     {
+      "country": "United Kingdom",
+      "iso3": "GBR",
+      "study_count": 55,
+      "_row": 7
+     },
+     {
+      "country": "Canada",
+      "iso3": "CAN",
+      "study_count": 53,
+      "_row": 8
+     },
+     {
+      "country": "Germany",
+      "iso3": "DEU",
+      "study_count": 52,
+      "_row": 9
+     },
+     {
+      "country": "Poland",
+      "iso3": "POL",
+      "study_count": 49,
+      "_row": 10
+     },
+     {
+      "country": "South Korea",
+      "iso3": "KOR",
+      "study_count": 49,
+      "_row": 11
+     },
+     {
+      "country": "Belgium",
+      "iso3": "BEL",
+      "study_count": 47,
+      "_row": 12
+     },
+     {
+      "country": "Taiwan",
+      "iso3": "TWN",
+      "study_count": 47,
+      "_row": 13
+     },
+     {
+      "country": "Turkey",
+      "iso3": "TUR",
+      "study_count": 45,
+      "_row": 14
+     },
+     {
+      "country": "Brazil",
+      "iso3": "BRA",
+      "study_count": 43,
+      "_row": 15
+     },
+     {
+      "country": "Netherlands",
+      "iso3": "NLD",
+      "study_count": 42,
+      "_row": 16
+     },
+     {
+      "country": "Greece",
+      "iso3": "GRC",
+      "study_count": 39,
+      "_row": 17
+     },
+     {
+      "country": "Argentina",
+      "iso3": "ARG",
+      "study_count": 35,
+      "_row": 18
+     },
+     {
+      "country": "Romania",
+      "iso3": "ROU",
+      "study_count": 32,
+      "_row": 19
+     }
+    ]
+   },
+   "layer": [
+    {
+     "mark": {
+      "type": "bar",
+      "cornerRadiusEnd": 4,
+      "color": "#2a78d6",
+      "size": 20
+     },
+     "encoding": {
+      "x": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "y": {
+       "field": "country",
+       "type": "nominal",
+       "title": "Country",
+       "sort": [
+        "China",
+        "United States",
+        "France",
+        "Spain",
+        "Italy",
+        "Japan",
+        "Australia",
+        "United Kingdom",
+        "Canada",
+        "Germany",
+        "Poland",
+        "South Korea",
+        "Belgium",
+        "Taiwan",
+        "Turkey",
+        "Brazil",
+        "Netherlands",
+        "Greece",
+        "Argentina",
+        "Romania"
+       ]
+      },
+      "tooltip": [
+       {
+        "field": "country",
+        "title": "Country"
+       },
+       {
+        "field": "study_count",
+        "title": "Studies",
+        "format": ","
+       }
+      ]
+     }
+    },
+    {
+     "mark": {
+      "type": "text",
+      "align": "left",
+      "baseline": "middle",
+      "dx": 4,
+      "dy": 0,
+      "color": "#52514e",
+      "fontSize": 11
+     },
+     "encoding": {
+      "x": {
+       "field": "study_count",
+       "type": "quantitative",
+       "title": "Studies",
+       "axis": {
+        "format": ",d",
+        "tickMinStep": 1
+       }
+      },
+      "y": {
+       "field": "country",
+       "type": "nominal",
+       "title": "Country",
+       "sort": [
+        "China",
+        "United States",
+        "France",
+        "Spain",
+        "Italy",
+        "Japan",
+        "Australia",
+        "United Kingdom",
+        "Canada",
+        "Germany",
+        "Poland",
+        "South Korea",
+        "Belgium",
+        "Taiwan",
+        "Turkey",
+        "Brazil",
+        "Netherlands",
+        "Greece",
+        "Argentina",
+        "Romania"
+       ]
+      },
+      "text": {
+       "field": "study_count",
+       "type": "quantitative",
+       "format": ","
+      }
+     }
+    }
+   ],
+   "config": {
+    "background": "#fcfcfb",
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "view": {
+     "stroke": null
+    },
+    "title": {
+     "color": "#0b0b0b",
+     "subtitleColor": "#52514e",
+     "anchor": "start",
+     "fontSize": 15,
+     "subtitleFontSize": 12
+    },
+    "axis": {
+     "gridColor": "#e1e0d9",
+     "gridWidth": 1,
+     "domainColor": "#c3c2b7",
+     "tickColor": "#c3c2b7",
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "labelFontSize": 11,
+     "titleFontWeight": "normal",
+     "labelLimit": 220
+    },
+    "legend": {
+     "labelColor": "#52514e",
+     "titleColor": "#52514e",
+     "orient": "top",
+     "labelLimit": 320
+    },
+    "range": {
+     "category": [
+      "#2a78d6",
+      "#eb6834",
+      "#1baf7a",
+      "#eda100",
+      "#e87ba4",
+      "#008300",
+      "#4a3aa7",
+      "#e34948"
+     ]
+    },
+    "line": {
+     "strokeWidth": 2,
+     "strokeCap": "round",
+     "strokeJoin": "round"
+    }
+   }
+  }
+ },
+ "meta": {
+  "source": "ClinicalTrials.gov API v2",
+  "api_version": "2.0.5",
+  "data_timestamp": "2026-09-23T09:00:05",
+  "retrieved_at": "2026-09-24T05:32:56+00:00",
+  "unit": "distinct studies (NCT IDs)",
+  "definitions": {
+   "condition_match": "Studies are matched with ClinicalTrials.gov's condition search, which includes its own synonym expansion (e.g. 'lung cancer' also matches 'NSCLC').",
+   "unit": "Each bar/point/edge counts distinct studies (NCT IDs), never sites or arms.",
+   "country": "Distinct site countries per study; a multinational study counts once in each of its countries.",
+   "multi_valued": "A study listing several country values counts once in each, so counts can sum to more than the number of studies."
+  },
+  "api_queries": [
+   {
+    "cohort": "Lung cancer (Phase 3, recruiting)",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.cond=lung+cancer&filter.overallStatus=RECRUITING&filter.advanced=AREA%5BPhase%5DPHASE3&fields=NCTId%2CBriefTitle%2CLocationCountry%2COverallStatus%2CPhase%2CCondition",
+    "total": 210,
+    "fetched": 210,
+    "pages": 1,
+    "complete": true
+   }
+  ],
+  "completeness": {
+   "complete": true
+  },
+  "studies_analyzed": 210,
+  "filters": {
+   "Lung cancer (Phase 3, recruiting)": {
+    "condition": "lung cancer",
+    "overall_status": [
+     "RECRUITING"
+    ],
+    "phase": [
+     "PHASE3"
+    ]
+   }
+  },
+  "request_fields": {
+   "condition": "lung cancer",
+   "trial_phase": [
+    "PHASE3"
+   ],
+   "status": [
+    "RECRUITING"
+   ]
+  },
+  "cohort_overlap": {},
+  "excluded": {},
+  "assumptions": [
+   "'Countries' = distinct site countries listed for each study; a multinational trial counts once per country.",
+   "Restricted to Phase 3, currently recruiting lung cancer trials.",
+   "Showing the top 20 countries by trial count.",
+   "Request field condition='lung cancer' applied to every cohort.",
+   "Request field trial_phase=[PHASE3] applied to every cohort.",
+   "Request field status=[RECRUITING] applied to every cohort.",
+   "A phase filter keeps studies whose registered phases include that phase, so multi-phase studies (e.g. Phase 2/3) are included in a Phase 3 filter.",
+   "'Recruiting' means overall status RECRUITING only; 'not yet recruiting' and 'enrolling by invitation' studies are not included."
+  ],
+  "warnings": [
+   "Showing the top 20 of 60 country values by study count."
+  ],
+  "llm": {
+   "model": "claude-opus-5",
+   "tool_calls": [
+    "validate_plan"
+   ],
+   "repaired": false
+  },
+  "timings_ms": {
+   "preflight": 230,
+   "fetch": 342,
+   "analyze": 13,
+   "verify": 2,
+   "total": 594
+  }
+ }
+}
