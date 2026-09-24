@@ -1,0 +1,1359 @@
+{
+ "combination_arm": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "armGroups": [
+     {
+      "interventionNames": [
+       "Procedure: Apheresis"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: IL-2",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: IL-2",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide",
+       "Biological: GCSF (Growth colony stimulating factor)"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: IL-2",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide",
+       "Biological: GCSF (Growth colony stimulating factor)"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: IL-2",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide",
+       "Biological: GCSF (Growth colony stimulating factor)"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: Montanide ISA-51",
+       "Drug: MART-1:26-35(27L)",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide",
+       "Biological: GCSF (Growth colony stimulating factor)"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: IL-2",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: gp100:209-217 (210M)",
+       "Drug: IL-2",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: IL-2",
+       "Drug: MART-1:26-35(27L)",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: IL-2",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide",
+       "Biological: GCSF (Growth colony stimulating factor)"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: IL-2",
+       "Drug: MART-1:26-35(27L)",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide",
+       "Biological: GCSF (Growth colony stimulating factor)"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: IL-2",
+       "Biological: Abl cells",
+       "Drug: Fludarabine",
+       "Drug: Cyclophosphamide",
+       "Biological: GCSF (Growth colony stimulating factor)"
+      ]
+     }
+    ],
+    "interventions": [
+     {
+      "name": "gp100:209-217 (210M)",
+      "type": "DRUG"
+     },
+     {
+      "name": "Montanide ISA-51",
+      "type": "DRUG"
+     },
+     {
+      "name": "IL-2",
+      "type": "DRUG"
+     },
+     {
+      "name": "MART-1:26-35(27L)",
+      "type": "DRUG"
+     },
+     {
+      "name": "Abl cells",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "Fludarabine",
+      "type": "DRUG"
+     },
+     {
+      "name": "Cyclophosphamide",
+      "type": "DRUG"
+     },
+     {
+      "name": "GCSF (Growth colony stimulating factor)",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "Apheresis",
+      "type": "PROCEDURE"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Melanoma",
+     "Neoplasm Metastasis"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 170,
+     "type": "ACTUAL"
+    },
+    "phases": [
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Lymphocyte Re-infusion During Immune Suppression to Treat Metastatic Melanoma",
+    "nctId": "NCT00001832"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "NIH",
+     "name": "National Cancer Institute (NCI)"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "primaryCompletionDateStruct": {
+     "date": "2010-05",
+     "type": "ACTUAL"
+    },
+    "startDateStruct": {
+     "date": "1999-08"
+    }
+   }
+  }
+ },
+ "dose_in_name": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "armGroups": [
+     {
+      "interventionNames": [
+       "Biological: Dacarbazine + Interferon alpha + Thymosin-alpha-1 1.6 mg"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Biological: Dacarbazine + Interferon alpha + Thymosin-alpha-1 3.2 mg"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Biological: Dacarbazine + Interferon alpha + Thymosin-alpha-1 6.4 mg"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Biological: Dacarbazine + Thymosin-alpha-1 3.2 mg"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: Dacarbazine + Interferon alpha"
+      ]
+     }
+    ],
+    "interventions": [
+     {
+      "name": "Dacarbazine + Interferon alpha + Thymosin-alpha-1 1.6 mg",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "Dacarbazine + Interferon alpha + Thymosin-alpha-1 3.2 mg",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "Dacarbazine + Interferon alpha + Thymosin-alpha-1 6.4 mg",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "Dacarbazine + Thymosin-alpha-1 3.2 mg",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "Dacarbazine + Interferon alpha",
+      "type": "DRUG"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Malignant Melanoma"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "France"
+     },
+     {
+      "country": "France"
+     },
+     {
+      "country": "France"
+     },
+     {
+      "country": "France"
+     },
+     {
+      "country": "France"
+     },
+     {
+      "country": "Germany"
+     },
+     {
+      "country": "Germany"
+     },
+     {
+      "country": "Germany"
+     },
+     {
+      "country": "Germany"
+     },
+     {
+      "country": "Germany"
+     },
+     {
+      "country": "Germany"
+     },
+     {
+      "country": "Germany"
+     },
+     {
+      "country": "Germany"
+     },
+     {
+      "country": "Hungary"
+     },
+     {
+      "country": "Hungary"
+     },
+     {
+      "country": "Hungary"
+     },
+     {
+      "country": "Hungary"
+     },
+     {
+      "country": "Hungary"
+     },
+     {
+      "country": "Hungary"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Italy"
+     },
+     {
+      "country": "Poland"
+     },
+     {
+      "country": "Poland"
+     },
+     {
+      "country": "Poland"
+     },
+     {
+      "country": "Poland"
+     },
+     {
+      "country": "Poland"
+     },
+     {
+      "country": "Poland"
+     },
+     {
+      "country": "Poland"
+     },
+     {
+      "country": "Poland"
+     },
+     {
+      "country": "Portugal"
+     },
+     {
+      "country": "Portugal"
+     },
+     {
+      "country": "Spain"
+     },
+     {
+      "country": "Spain"
+     },
+     {
+      "country": "Spain"
+     },
+     {
+      "country": "Spain"
+     },
+     {
+      "country": "Spain"
+     },
+     {
+      "country": "Spain"
+     },
+     {
+      "country": "Spain"
+     },
+     {
+      "country": "Spain"
+     },
+     {
+      "country": "Spain"
+     },
+     {
+      "country": "Switzerland"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 488,
+     "type": "ACTUAL"
+    },
+    "phases": [
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Thymosin Alpha 1, Interferon Alpha, or Both, in Combination With Dacarbazine in Patients With Malignant Melanoma",
+    "nctId": "NCT00911443"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "INDUSTRY",
+     "name": "sigma-tau i.f.r. S.p.A."
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "primaryCompletionDateStruct": {
+     "date": "2007-09",
+     "type": "ACTUAL"
+    },
+    "startDateStruct": {
+     "date": "2002-07"
+    }
+   }
+  }
+ },
+ "estimated_start": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "armGroups": [
+     {
+      "interventionNames": [
+       "Drug: Capecitabine"
+      ]
+     }
+    ],
+    "interventions": [
+     {
+      "name": "Capecitabine",
+      "type": "DRUG"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Breast Cancer"
+    ]
+   },
+   "contactsLocationsModule": {},
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 0,
+     "type": "ACTUAL"
+    },
+    "phases": [
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Correlation of Genomic Variation in Enzymes Responsible for Metabolism of Capecitabine With Drug Metabolism",
+    "nctId": "NCT00960544"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "OTHER",
+     "name": "M.D. Anderson Cancer Center"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "WITHDRAWN",
+    "primaryCompletionDateStruct": {
+     "date": "2021-01",
+     "type": "ESTIMATED"
+    },
+    "startDateStruct": {
+     "date": "2019-01",
+     "type": "ESTIMATED"
+    }
+   }
+  }
+ },
+ "missing_start": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "interventions": [
+     {
+      "name": "antineoplaston A10",
+      "type": "DRUG"
+     },
+     {
+      "name": "antineoplaston AS2-1",
+      "type": "DRUG"
+     },
+     {
+      "name": "alternative product therapy",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "biological therapy",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "biologically based therapies",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "cancer prevention intervention",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "complementary and alternative therapy",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "differentiation therapy",
+      "type": "PROCEDURE"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Stage IV Breast Cancer",
+     "Recurrent Breast Cancer"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 0,
+     "type": "ACTUAL"
+    },
+    "phases": [
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Antineoplaston Therapy in Treating Women With Advanced Breast Cancer",
+    "nctId": "NCT00003455"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "OTHER",
+     "name": "Burzynski Research Institute"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "WITHDRAWN"
+   }
+  }
+ },
+ "month_precision_start": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "interventions": [
+     {
+      "name": "melphalan",
+      "type": "DRUG"
+     },
+     {
+      "name": "tumor necrosis factor",
+      "type": "DRUG"
+     },
+     {
+      "name": "interferon-gamma",
+      "type": "DRUG"
+     },
+     {
+      "name": "hyperthermic isolated limb perfusion",
+      "type": "PROCEDURE"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Melanoma"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 122
+    },
+    "phases": [
+     "PHASE3"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "A Randomized Phase III Trial of Hyperthermic Isolated Limb Perfusion With Melphalan, Tumor Necrosis Factor, and Interferon-Gamma in Patients With Locally Advanced Extremity Melanoma",
+    "nctId": "NCT00001296"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "NIH",
+     "name": "National Cancer Institute (NCI)"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "startDateStruct": {
+     "date": "1992-02"
+    }
+   }
+  }
+ },
+ "multi_phase": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "interventions": [
+     {
+      "name": "aldesleukin",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "therapeutic tumor infiltrating lymphocytes",
+      "type": "BIOLOGICAL"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Melanoma (Skin)"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 20,
+     "type": "ESTIMATED"
+    },
+    "phases": [
+     "PHASE1",
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Biological Therapy in Treating Patients With Metastatic Melanoma",
+    "nctId": "NCT00002786"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "OTHER",
+     "name": "Fred Hutchinson Cancer Center"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "startDateStruct": {
+     "date": "1995-10"
+    }
+   }
+  }
+ },
+ "multinational": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "interventions": [
+     {
+      "name": "stereotactic radiosurgery",
+      "type": "RADIATION"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Kidney Cancer",
+     "Melanoma (Skin)",
+     "Metastatic Cancer",
+     "Ovarian Cancer",
+     "Sarcoma"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "Australia"
+     },
+     {
+      "country": "Peru"
+     },
+     {
+      "country": "Puerto Rico"
+     }
+    ]
+   },
+   "designModule": {
+    "phases": [
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Radiation Therapy in Treating Patients With Newly Diagnosed Brain Metastases From Kidney Cancer, Melanoma, or Sarcoma",
+    "nctId": "NCT00003308"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "NETWORK",
+     "name": "Eastern Cooperative Oncology Group"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "primaryCompletionDateStruct": {
+     "date": "2004-09",
+     "type": "ACTUAL"
+    },
+    "startDateStruct": {
+     "date": "1999-02-02",
+     "type": "ACTUAL"
+    }
+   }
+  }
+ },
+ "no_interventions": {
+  "protocolSection": {
+   "conditionsModule": {
+    "conditions": [
+     "Dermatitis",
+     "Nevus",
+     "Psoriasis"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 600
+    },
+    "studyType": "OBSERVATIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Assessment of Digital Imaging as a Tool for Diagnosing Psoriasis, Hand Rashes and Unusual Moles",
+    "nctId": "NCT00005781"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "NIH",
+     "name": "National Cancer Institute (NCI)"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "startDateStruct": {
+     "date": "2000-05"
+    }
+   }
+  }
+ },
+ "no_locations": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "armGroups": [
+     {
+      "interventionNames": [
+       "Drug: Gemcitabine hydrochloride"
+      ]
+     }
+    ],
+    "interventions": [
+     {
+      "name": "Gemcitabine hydrochloride",
+      "type": "DRUG"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Breast Cancer"
+    ]
+   },
+   "contactsLocationsModule": {},
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 0,
+     "type": "ACTUAL"
+    },
+    "phases": [
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Management of Metastatic Breast Cancer in Frail Patients",
+    "nctId": "NCT00005614"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "OTHER",
+     "name": "H. Lee Moffitt Cancer Center and Research Institute"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "WITHDRAWN",
+    "primaryCompletionDateStruct": {
+     "date": "2000-06",
+     "type": "ACTUAL"
+    },
+    "startDateStruct": {
+     "date": "1999-08"
+    }
+   }
+  }
+ },
+ "no_phase": {
+  "protocolSection": {
+   "conditionsModule": {
+    "conditions": [
+     "Dermatitis",
+     "Nevus",
+     "Psoriasis"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 600
+    },
+    "studyType": "OBSERVATIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Assessment of Digital Imaging as a Tool for Diagnosing Psoriasis, Hand Rashes and Unusual Moles",
+    "nctId": "NCT00005781"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "NIH",
+     "name": "National Cancer Institute (NCI)"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "startDateStruct": {
+     "date": "2000-05"
+    }
+   }
+  }
+ },
+ "observational": {
+  "protocolSection": {
+   "conditionsModule": {
+    "conditions": [
+     "Dermatitis",
+     "Nevus",
+     "Psoriasis"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 600
+    },
+    "studyType": "OBSERVATIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Assessment of Digital Imaging as a Tool for Diagnosing Psoriasis, Hand Rashes and Unusual Moles",
+    "nctId": "NCT00005781"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "NIH",
+     "name": "National Cancer Institute (NCI)"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "startDateStruct": {
+     "date": "2000-05"
+    }
+   }
+  }
+ },
+ "placebo_arm": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "armGroups": [
+     {
+      "interventionNames": [
+       "Drug: docetaxel",
+       "Other: placebo"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: Hypericum perforatum",
+       "Drug: docetaxel"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Drug: Hypericum perforatum",
+       "Drug: docetaxel"
+      ]
+     }
+    ],
+    "interventions": [
+     {
+      "name": "Hypericum perforatum",
+      "type": "DRUG"
+     },
+     {
+      "name": "docetaxel",
+      "type": "DRUG"
+     },
+     {
+      "name": "placebo",
+      "type": "OTHER"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Adult Solid Tumor",
+     "Breast Cancer",
+     "Head and Neck Cancer",
+     "Kidney and Urinary Cancer",
+     "Male Reproductive Cancer",
+     "Thorax and Respiratory Cancer"
+    ]
+   },
+   "contactsLocationsModule": {},
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 0,
+     "type": "ACTUAL"
+    },
+    "phases": [
+     "PHASE3"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Docetaxel and St. John's Wort in Treating Patients With Solid Tumors That Cannot Be Removed By Surgery",
+    "nctId": "NCT00041171"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "OTHER",
+     "name": "Alliance for Clinical Trials in Oncology"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "WITHDRAWN"
+   }
+  }
+ },
+ "repeated_site_country": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "interventions": [
+     {
+      "name": "aldesleukin",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "gp100 antigen",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "incomplete Freund's adjuvant",
+      "type": "BIOLOGICAL"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Melanoma (Skin)"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     },
+     {
+      "country": "United States"
+     }
+    ]
+   },
+   "designModule": {
+    "phases": [
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Vaccine Therapy With High-Dose Interleukin-2 in Treating Patients With Metastatic Melanoma",
+    "nctId": "NCT00003568"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "OTHER",
+     "name": "University of Illinois at Chicago"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "startDateStruct": {
+     "date": "1998-11"
+    }
+   }
+  }
+ },
+ "trademark_name": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "armGroups": [
+     {
+      "interventionNames": [
+       "Biological: NY-ESO-1 ISCOMATRIX®"
+      ]
+     },
+     {
+      "interventionNames": [
+       "Biological: ISCOMATRIX® adjuvant"
+      ]
+     }
+    ],
+    "interventions": [
+     {
+      "name": "NY-ESO-1 ISCOMATRIX®",
+      "type": "BIOLOGICAL"
+     },
+     {
+      "name": "ISCOMATRIX® adjuvant",
+      "type": "BIOLOGICAL"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Melanoma"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "Australia"
+     },
+     {
+      "country": "Australia"
+     },
+     {
+      "country": "Australia"
+     },
+     {
+      "country": "Australia"
+     },
+     {
+      "country": "Australia"
+     },
+     {
+      "country": "Australia"
+     },
+     {
+      "country": "New Zealand"
+     },
+     {
+      "country": "United Kingdom"
+     },
+     {
+      "country": "United Kingdom"
+     },
+     {
+      "country": "United Kingdom"
+     },
+     {
+      "country": "United Kingdom"
+     },
+     {
+      "country": "United Kingdom"
+     },
+     {
+      "country": "United Kingdom"
+     },
+     {
+      "country": "United Kingdom"
+     },
+     {
+      "country": "United Kingdom"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 111,
+     "type": "ACTUAL"
+    },
+    "phases": [
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Study of NY-ESO-1 ISCOMATRIX® in Patients With High-risk, Resected Melanoma",
+    "nctId": "NCT00199901"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "OTHER",
+     "name": "Ludwig Institute for Cancer Research"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "COMPLETED",
+    "primaryCompletionDateStruct": {
+     "date": "2008-12",
+     "type": "ACTUAL"
+    },
+    "startDateStruct": {
+     "date": "2005-09"
+    }
+   }
+  }
+ },
+ "zero_enrollment": {
+  "protocolSection": {
+   "armsInterventionsModule": {
+    "interventions": [
+     {
+      "name": "antineoplaston A10",
+      "type": "DRUG"
+     },
+     {
+      "name": "antineoplaston AS2-1",
+      "type": "DRUG"
+     },
+     {
+      "name": "alternative product therapy",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "biological therapy",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "biologically based therapies",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "cancer prevention intervention",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "complementary and alternative therapy",
+      "type": "PROCEDURE"
+     },
+     {
+      "name": "differentiation therapy",
+      "type": "PROCEDURE"
+     }
+    ]
+   },
+   "conditionsModule": {
+    "conditions": [
+     "Stage IV Breast Cancer",
+     "Recurrent Breast Cancer"
+    ]
+   },
+   "contactsLocationsModule": {
+    "locations": [
+     {
+      "country": "United States"
+     }
+    ]
+   },
+   "designModule": {
+    "enrollmentInfo": {
+     "count": 0,
+     "type": "ACTUAL"
+    },
+    "phases": [
+     "PHASE2"
+    ],
+    "studyType": "INTERVENTIONAL"
+   },
+   "identificationModule": {
+    "briefTitle": "Antineoplaston Therapy in Treating Women With Advanced Breast Cancer",
+    "nctId": "NCT00003455"
+   },
+   "sponsorCollaboratorsModule": {
+    "leadSponsor": {
+     "class": "OTHER",
+     "name": "Burzynski Research Institute"
+    }
+   },
+   "statusModule": {
+    "overallStatus": "WITHDRAWN"
+   }
+  }
+ }
+}
