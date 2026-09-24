@@ -1,7 +1,7 @@
 """Build the submission zip with a simple top level:
 
     README.md            the project README, links rewritten for this layout
-    <video>.mov          the demo video
+    demo/                the demo video and a text file linking to the live site
     code/                the runnable project (from git: committed files only, no .env)
     examples/            the example runs: one request and one response JSON per run
 
@@ -20,6 +20,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 VIDEO_NAME = "ctgov-viz-demo.mov"
+LIVE_DEMO_TXT = """ctgov-viz: live demo
+
+Try it:      https://ctgov-viz.onrender.com
+API docs:    https://ctgov-viz.onrender.com/docs
+Source code: https://github.com/rishit2121/ctgov-viz
+
+The site runs on Render's free tier. If nobody has used it for a while, the first page load can
+take up to a minute while the server wakes up. After that, each question takes about 10-20
+seconds, because every matching ClinicalTrials.gov study is downloaded and analyzed.
+
+To try it: type a question or click one of the example questions, then click any bar, point,
+network node or connection line to see the studies behind it and the exact record text that
+supports each number.
+"""
 
 # (pattern, replacement) applied to the top-level README, in order.
 README_REWRITES = [
@@ -30,8 +44,6 @@ README_REWRITES = [
     (r"`tests/`", "`code/tests/`"),
     (r"\]\(PLAN\.md\)", "](code/PLAN.md)"),
     (r"`PLAN\.md`", "`code/PLAN.md`"),
-    (r"`demo/ctgov-viz-demo\.mov`", f"`{VIDEO_NAME}`"),
-    (r"included in the submission zip", "included next to this README"),
     (r"git clone https://github\.com/rishit2121/ctgov-viz\.git\ncd ctgov-viz\n",
      "cd code   # or: git clone https://github.com/rishit2121/ctgov-viz.git && cd ctgov-viz\n"),
 ]
@@ -63,7 +75,9 @@ def build(video: Path, out: Path) -> None:
         (stage / "README.md").write_text(readme)
         (code / "README.md").write_text(CODE_README)  # pyproject needs a README next to it
 
-        shutil.copyfile(video, stage / VIDEO_NAME)
+        (stage / "demo").mkdir()
+        shutil.copyfile(video, stage / "demo" / VIDEO_NAME)
+        (stage / "demo" / "live-demo.txt").write_text(LIVE_DEMO_TXT)
 
         out.unlink(missing_ok=True)
         with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
