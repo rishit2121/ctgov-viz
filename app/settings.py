@@ -16,10 +16,15 @@ class Settings(BaseSettings):
     max_studies_per_cohort: int = 20_000
     request_deadline_s: float = 90.0
 
-    llm_mode: Literal["openai", "fake"] = "openai"
+    # Planner LLM. "anthropic" (default) or "openai" need the matching API key; "fake" answers
+    # only the example questions, offline.
+    llm_mode: Literal["anthropic", "openai", "fake"] = "anthropic"
+    llm_timeout_s: float = 120.0
+    anthropic_api_key: str | None = None
+    anthropic_model: str = "claude-opus-5"
+    anthropic_effort: Literal["low", "medium", "high", "xhigh", "max"] | None = None  # API default
     openai_api_key: str | None = None
     openai_model: str = "gpt-5-mini"
-    openai_timeout_s: float = 60.0
     openai_reasoning_effort: str | None = "low"
     planner_max_tool_calls: int = 4
 

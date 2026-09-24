@@ -40,8 +40,8 @@ Requires Python 3.12+ and [uv](https://docs.astral.sh/uv/).
 ```bash
 uv sync
 
-# Run with a real LLM (any question)
-export OPENAI_API_KEY=sk-...
+# Run with Claude as the planner (any question); the key can also go in .env
+export ANTHROPIC_API_KEY=sk-ant-...
 uv run uvicorn app.api.main:app --reload
 
 # ...or fully offline for the LLM (example questions only; data still comes live from CT.gov)
@@ -70,9 +70,11 @@ Configuration (environment variables or `.env`):
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `OPENAI_API_KEY` | – | Enables the LLM planner |
-| `OPENAI_MODEL` | `gpt-5-mini` | Planner model |
-| `LLM_MODE` | `openai` | `fake` = offline planner that answers `examples/plans` questions |
+| `LLM_MODE` | `anthropic` | Planner provider: `anthropic`, `openai`, or `fake` (offline; answers only `examples/plans` questions) |
+| `ANTHROPIC_API_KEY` | – | Enables the Claude planner |
+| `ANTHROPIC_MODEL` | `claude-opus-5` | Claude planner model |
+| `ANTHROPIC_EFFORT` | API default | Optional `low` … `max` effort for the planner |
+| `OPENAI_API_KEY` / `OPENAI_MODEL` | – / `gpt-5-mini` | Used when `LLM_MODE=openai` |
 | `MAX_STUDIES_PER_COHORT` | `20000` | Larger cohorts are refused with narrowing options, never sampled |
 | `REQUEST_DEADLINE_S` | `90` | Retrieval deadline per request |
 | `CTGOV_CONCURRENCY` | `3` | Parallel CT.gov requests (cohorts are fetched concurrently) |
@@ -133,7 +135,7 @@ client (HTTP) do I/O; the engine, builder and verifier are pure functions.
 | Contracts | `app/contracts/` | `QueryPlan`, `Trial`, `AnalysisResult`, `VisualizationSpec`, `QueryResponse` |
 | Field registry | `app/registry/fields.py` | Every analyzable dimension: legal operations, extractor, source paths, ordering, API fields. The single extension point. |
 | Validator / linter | `app/registry/` | Cross-field plan rules (reported all at once, for repair); code-generated disclosures |
-| Planner | `app/planner/` | Prompt, strict output schema, tools, bounded loop, repair, OpenAI adapter, offline planner |
+| Planner | `app/planner/` | Prompt, strict output schema, tools, bounded loop, repair, Claude and OpenAI adapters, offline planner |
 | Compiler | `app/ctgov/compiler.py` | Cohort → API parameters (pushdown), local predicate, search-text sanitization, field projection |
 | Client | `app/ctgov/client.py` | Full pagination, retries with backoff and `Retry-After`, honest completeness |
 | Normalizer | `app/normalize/` | Nested JSON → `Trial`: partial dates, per-study dedupe, countries → ISO3, intervention names |
@@ -155,7 +157,7 @@ with structured filters) and one **analysis**. It never sees or produces results
 | Control | How |
 |---|---|
 | Nowhere to put data | The output schema has only search terms, enums and analysis options: no counts, IDs or values |
-| Strict decoding | OpenAI structured outputs with a strict JSON schema; an LLM-facing *draft* schema (all fields required, no defaults) is converted into `QueryPlan` in code |
+| Strict decoding | Structured outputs with a strict JSON schema (Claude `output_config.format`, or OpenAI `response_format`) and strict tool inputs; an LLM-facing *draft* schema (all fields required, no defaults) is converted into `QueryPlan` in code |
 | Enums, not prose | Status, phase, study type, dimensions and measures are closed enums |
 | Registry-generated prompt | Dimensions and their legal operations are rendered from the same registry the validator uses, so they cannot disagree (tested) |
 | Grounding tools | `probe_cohort` returns how many studies a cohort matches, plus 3 titles, so the model can fix a zero-hit term or narrow a too-broad one. `validate_plan` lets it self-check. Both are read-only, capped at 4 calls, and then withdrawn |
@@ -165,10 +167,17 @@ with structured filters) and one **analysis**. It never sees or produces results
 | Count scrubbing | Model-written assumption sentences that restate a probed study count are dropped |
 | Verifier | Every cited NCT ID must be a fetched record that satisfies its cohort's filters |
 
+Provider: Claude (`claude-opus-5`) by default, through a small provider-neutral `LLMClient`
+interface (`app/planner/llm.py`); an OpenAI adapter is kept for `LLM_MODE=openai`. The Claude
+adapter echoes each reply's raw content back unchanged (Claude's adaptive-thinking blocks must
+survive the tool loop) and enables server-side refusal fallbacks (`fallbacks: "default"`), so a
+safety-classifier decline is retried on Anthropic's recommended model rather than failing.
+
 Evaluation: `tests/golden/questions.yaml` has 25 differently worded questions: all appendix
 query types, paraphrases, a misspelled drug, ambiguous wording, and out-of-scope questions.
 Each asserts *properties* of the plan (analysis kind, dimension, series, cohort terms,
-filters), not exact JSON. Run with `OPENAI_API_KEY=... uv run pytest -m live tests/golden`.
+filters), not exact JSON. Run with `uv run pytest -m live tests/golden` once
+`ANTHROPIC_API_KEY` is set.
 
 ## What the numbers mean
 
@@ -272,9 +281,9 @@ Charts ship **already aggregated and ordered**; frontends never recompute. `sche
 ## Verification and testing
 
 ```bash
-uv run pytest                      # 198 unit + integration tests, no network (~3 s)
+uv run pytest                      # 201 unit + integration tests, no network (~3 s)
 uv run pytest -m live tests/live   # live CT.gov oracle tests
-OPENAI_API_KEY=... uv run pytest -m live tests/golden   # planner golden set
+uv run pytest -m live tests/golden   # planner golden set (needs ANTHROPIC_API_KEY)
 uv run ruff check . && uv run mypy app
 ```
 
@@ -338,8 +347,8 @@ pages); repeated plans are served from cache.
 - "Active during year X" timelines are not implemented (start year only).
 - The evidence store and cache are in-memory; refs expire on restart. The response's plan
   and `meta.api_queries` URLs make every result reproducible.
-- The LLM planner needs an OpenAI key; without one, `LLM_MODE=fake` answers the example
-  questions and plans can always be submitted directly.
+- The LLM planner needs an Anthropic (or OpenAI) key; without one, `LLM_MODE=fake` answers
+  the example questions and plans can always be submitted directly.
 
 ## Repository layout
 
@@ -349,7 +358,7 @@ app/
   pipeline.py          orchestration
   contracts/           typed contracts between stages
   registry/            field registry, plan validator, disclosure linter
-  planner/             prompt, strict schema, tools, LLM loop, OpenAI adapter, offline planner
+  planner/             prompt, strict schema, tools, LLM loop, Claude + OpenAI adapters, offline
   ctgov/               API client and query compiler
   normalize/           study JSON -> Trial (dates, countries, intervention names, labels)
   analysis/            engine + pure primitives

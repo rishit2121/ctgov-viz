@@ -1,6 +1,6 @@
 """Golden planner evaluation against the real LLM and real ClinicalTrials.gov (``-m live``).
 
-    uv run pytest -m live tests/golden -q   (key from the environment or .env)
+    uv run pytest -m live tests/golden -q   (ANTHROPIC_API_KEY from the environment or .env)
 
 Each case checks properties of the produced plan (see questions.yaml). A summary accuracy line
 is printed at the end of the session.
@@ -23,11 +23,18 @@ from app.settings import Settings
 CASES: list[dict[str, Any]] = yaml.safe_load((Path(__file__).parent / "questions.yaml")
                                              .read_text())
 
+
+def _llm_configured() -> bool:
+    """Same lookup as the app: LLM_MODE plus its key, from the environment or .env."""
+    s = Settings()
+    return bool(s.anthropic_api_key if s.llm_mode == "anthropic" else
+                s.openai_api_key if s.llm_mode == "openai" else False)
+
+
 pytestmark = [
     pytest.mark.live,
-    # Same lookup as the app: environment variable or .env file.
-    pytest.mark.skipif(not Settings().openai_api_key,
-                       reason="needs OPENAI_API_KEY (environment or .env)"),
+    pytest.mark.skipif(not _llm_configured(), reason="needs ANTHROPIC_API_KEY (or LLM_MODE="
+                       "openai + OPENAI_API_KEY) in the environment or .env"),
 ]
 
 

@@ -6,16 +6,16 @@ pipeline re-retrieves and recomputes everything itself.
 
 from __future__ import annotations
 
-import json
 from typing import Any
 
-import openai
+from openai.lib._pydantic import to_strict_json_schema
 from pydantic import BaseModel, ConfigDict, ValidationError
 
 from app.contracts.plan import Cohort
 from app.ctgov.client import CTGovClient
 from app.ctgov.compiler import compile_cohort
 from app.ctgov.errors import CTGovError
+from app.planner.llm import ToolResult, ToolSpec
 from app.planner.schema import CohortDraft, PlanConversionError, PlanDraft, drop_nulls, to_plan
 from app.registry.validator import validate_plan
 
@@ -30,13 +30,11 @@ class ValidateArgs(BaseModel):
     plan: PlanDraft
 
 
-TOOL_SPECS: list[dict[str, Any]] = [
-    dict(openai.pydantic_function_tool(
-        ProbeArgs, name="probe_cohort",
-        description="Count the ClinicalTrials.gov studies a cohort matches and show 3 titles.")),
-    dict(openai.pydantic_function_tool(
-        ValidateArgs, name="validate_plan",
-        description="Check a draft plan; returns a list of problems to fix (empty = valid).")),
+TOOL_SPECS: list[ToolSpec] = [
+    ToolSpec("probe_cohort", "Count the ClinicalTrials.gov studies a cohort matches and show "
+             "3 titles.", to_strict_json_schema(ProbeArgs)),
+    ToolSpec("validate_plan", "Check a draft plan; returns a list of problems to fix (empty = "
+             "valid).", to_strict_json_schema(ValidateArgs)),
 ]
 
 
@@ -87,5 +85,5 @@ class Tools:
         return {"valid": not errors, "errors": errors}
 
 
-def tool_message(call_id: str, payload: dict[str, Any]) -> dict[str, Any]:
-    return {"role": "tool", "tool_call_id": call_id, "content": json.dumps(payload)}
+def tool_result(call_id: str, payload: dict[str, Any]) -> ToolResult:
+    return ToolResult(call_id, payload)

@@ -2,7 +2,7 @@
 
     1. The model sees a registry-generated prompt and must answer in the strict PlannerOutput
        schema. It may first call read-only tools (probe_cohort, validate_plan), at most
-       ``planner_max_tool_calls`` times; after that tools are withdrawn and it must answer.
+       ``planner_max_tool_calls`` times; after that tool calls are disabled and it must answer.
     2. The answer is converted and validated in code. If invalid, the model gets exactly one
        repair turn with the full error list. Still invalid -> ``plan_invalid`` (never a guess).
     3. Assumption sentences that repeat a probed study count are dropped: counts only ever come
@@ -21,10 +21,17 @@ from app.contracts.plan import QueryPlan
 from app.contracts.response import Clarification, ClarificationOption, LLMInfo
 from app.ctgov.client import CTGovClient
 from app.planner.base import PlannerError, PlannerResult, QuestionPlanner
-from app.planner.llm import LLMClient, Message, OpenAIChatLLM
+from app.planner.llm import (
+    AnthropicLLM,
+    LLMClient,
+    Message,
+    OpenAIChatLLM,
+    ToolResult,
+    UserMessage,
+)
 from app.planner.prompt import system_prompt
 from app.planner.schema import PlanConversionError, PlanDraft, PlannerOutput, to_plan
-from app.planner.tools import TOOL_SPECS, Tools, tool_message
+from app.planner.tools import TOOL_SPECS, Tools
 from app.registry.validator import validate_plan
 from app.settings import Settings
 
@@ -42,27 +49,24 @@ class LLMPlanner:
     async def plan(self, question: str) -> PlannerResult:
         tools = Tools(self.client, self.max_studies)
         info = LLMInfo(model=self.llm.model)
-        messages: list[Message] = [
-            {"role": "system", "content": system_prompt()},
-            {"role": "user", "content": question},
-        ]
+        system = system_prompt()
+        messages: list[Message] = [UserMessage(question)]
         repaired = False
         while True:
             budget_left = self.max_tool_calls - len(info.tool_calls)
-            reply = await self.llm.complete(messages, TOOL_SPECS if budget_left > 0 else [],
-                                            OUTPUT_SCHEMA)
+            reply = await self.llm.complete(system, messages, TOOL_SPECS, OUTPUT_SCHEMA,
+                                            allow_tools=budget_left > 0)
+            messages.append(reply)
             if reply.tool_calls:
-                messages.append({"role": "assistant", "content": reply.content, "tool_calls": [
-                    {"id": c.id, "type": "function",
-                     "function": {"name": c.name, "arguments": c.arguments}}
-                    for c in reply.tool_calls]})
+                results: list[ToolResult] = []
                 for call in reply.tool_calls:
                     if len(info.tool_calls) >= self.max_tool_calls:
                         payload: dict[str, Any] = {"error": "tool budget exhausted; answer now"}
                     else:
                         info.tool_calls.append(call.name)
                         payload = await tools.run(call.name, call.arguments)
-                    messages.append(tool_message(call.id, payload))
+                    results.append(ToolResult(call.id, payload))
+                messages.append(results)
                 continue
 
             errors, result = self._interpret(reply.content, info, tools.probe_totals)
@@ -73,10 +77,9 @@ class LLMPlanner:
                 raise PlannerError("plan_invalid", "Could not turn the question into a valid "
                                    "query plan.", errors)
             repaired = True
-            messages.append({"role": "assistant", "content": reply.content or ""})
-            messages.append({"role": "user", "content": (
+            messages.append(UserMessage(
                 "That output is not valid. Fix every problem below and answer again:\n- "
-                + "\n- ".join(errors))})
+                + "\n- ".join(errors)))
 
     # ------------------------------------------------------------------ interpretation
 
@@ -140,12 +143,20 @@ def _scrub(assumptions: list[str], probe_totals: set[int]) -> list[str]:
 
 
 def make_planner(settings: Settings, client: CTGovClient) -> QuestionPlanner | None:
+    """Pick the planner from ``LLM_MODE``: anthropic (default), openai, or fake (offline)."""
+    llm: LLMClient
     if settings.llm_mode == "fake":
         from app.planner.offline import ExamplePlanner
 
         return ExamplePlanner()
-    if not settings.openai_api_key:
-        return None
-    llm = OpenAIChatLLM(settings.openai_api_key, settings.openai_model, settings.openai_timeout_s,
-                        settings.openai_reasoning_effort)
+    if settings.llm_mode == "anthropic":
+        if not settings.anthropic_api_key:
+            return None
+        llm = AnthropicLLM(settings.anthropic_api_key, settings.anthropic_model,
+                           settings.llm_timeout_s, settings.anthropic_effort)
+    else:
+        if not settings.openai_api_key:
+            return None
+        llm = OpenAIChatLLM(settings.openai_api_key, settings.openai_model,
+                            settings.llm_timeout_s, settings.openai_reasoning_effort)
     return LLMPlanner(llm, client, settings)

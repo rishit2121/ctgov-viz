@@ -10,9 +10,17 @@ import pytest
 from pydantic import BaseModel
 
 from app.planner.base import PlannerError
-from app.planner.llm import LLMReply, ScriptedLLM, ToolCall
+from app.planner.llm import (
+    AnthropicLLM,
+    LLMReply,
+    OpenAIChatLLM,
+    ScriptedLLM,
+    ToolCall,
+    ToolResult,
+    UserMessage,
+)
 from app.planner.offline import ExamplePlanner
-from app.planner.planner import OUTPUT_SCHEMA, LLMPlanner
+from app.planner.planner import OUTPUT_SCHEMA, LLMPlanner, make_planner
 from app.planner.prompt import EXAMPLES, system_prompt
 from app.planner.schema import CohortDraft, PlannerOutput, to_plan
 from app.registry.fields import REGISTRY
@@ -83,9 +91,7 @@ async def test_direct_plan() -> None:
     assert result.kind == "plan" and result.plan is not None
     assert result.plan.analysis.dimension is not None
     assert result.llm.tool_calls == [] and not result.llm.repaired
-    system, user = llm.calls[0][0][:2]
-    assert system["role"] == "system" and user == {"role": "user",
-                                                   "content": "Melanoma trials by phase?"}
+    assert llm.calls[0][0] == [UserMessage("Melanoma trials by phase?")]
 
 
 async def test_probe_tool_result_is_fed_back() -> None:
@@ -93,10 +99,9 @@ async def test_probe_tool_result_is_fed_back() -> None:
                       answer({"decision": "plan", "plan": PHASE_PLAN})], studies=3)
     result = await p.plan("q")
     assert result.llm.tool_calls == ["probe_cohort"]
-    tool_msg = llm.calls[1][0][-1]
-    assert tool_msg["role"] == "tool" and tool_msg["tool_call_id"] == "c1"
-    payload = json.loads(tool_msg["content"])
-    assert payload["matches"] == 3 and len(payload["sample_titles"]) == 3
+    (result_msg,) = llm.calls[1][0][-1]  # the tool results of the previous turn
+    assert result_msg.call_id == "c1"
+    assert result_msg.payload["matches"] == 3 and len(result_msg.payload["sample_titles"]) == 3
 
 
 async def test_probe_reports_zero_and_too_broad() -> None:
@@ -104,7 +109,7 @@ async def test_probe_reports_zero_and_too_broad() -> None:
                       answer({"decision": "plan", "plan": PHASE_PLAN})],
                      studies=5, max_studies_per_cohort=4)
     await p.plan("q")
-    msgs = [json.loads(m["content"]) for m in llm.calls[1][0] if m["role"] == "tool"]
+    msgs = [r.payload for r in llm.calls[1][0][-1]]
     assert msgs[0]["matches"] == 0 and "No matches" in msgs[0]["hint"]
     assert msgs[1]["matches"] == 5 and "Too broad" in msgs[1]["hint"]
 
@@ -116,9 +121,8 @@ async def test_tool_budget_is_enforced() -> None:
                      planner_max_tool_calls=4)
     result = await p.plan("q")
     assert len(result.llm.tool_calls) == 4
-    last_tool = json.loads(llm.calls[2][0][-1]["content"])
-    assert "budget exhausted" in last_tool["error"]
-    assert llm.calls[2][1] == []  # tools withdrawn once the budget is spent
+    assert "budget exhausted" in llm.calls[2][0][-1][-1].payload["error"]
+    assert [allowed for _, allowed in llm.calls] == [True, True, False]  # then answer-only
 
 
 async def test_validate_plan_tool() -> None:
@@ -128,7 +132,7 @@ async def test_validate_plan_tool() -> None:
                                                json.dumps({"plan": draft}))]),
                       answer({"decision": "plan", "plan": PHASE_PLAN})])
     await p.plan("q")
-    payload = json.loads(llm.calls[1][0][-1]["content"])
+    payload = llm.calls[1][0][-1][0].payload
     assert payload["valid"] is False and any("exactly one" in e for e in payload["errors"])
 
 
@@ -143,7 +147,8 @@ async def test_invalid_plan_gets_one_repair_turn() -> None:
     result = await p.plan("q")
     assert result.kind == "plan" and result.llm.repaired
     feedback = llm.calls[1][0][-1]
-    assert feedback["role"] == "user" and "requires at least two cohorts" in feedback["content"]
+    assert isinstance(feedback, UserMessage)
+    assert "requires at least two cohorts" in feedback.text
 
 
 async def test_second_failure_raises_plan_invalid() -> None:
@@ -233,3 +238,45 @@ async def test_offline_planner_answers_only_examples() -> None:
     assert known.kind == "plan" and known.plan is not None
     assert known.plan.analysis.time is not None
     assert (await offline.plan("Something else entirely")).kind == "unsupported"
+
+
+# ------------------------------------------------------------------ provider adapters
+
+
+CONVERSATION = [
+    UserMessage("q"),
+    LLMReply(content=None, tool_calls=[ToolCall("t1", "probe_cohort", "{}"),
+                                       ToolCall("t2", "validate_plan", "{}")],
+             raw=[{"type": "thinking", "thinking": "", "signature": "sig"},
+                  {"type": "tool_use", "id": "t1", "name": "probe_cohort", "input": {}},
+                  {"type": "tool_use", "id": "t2", "name": "validate_plan", "input": {}}]),
+    [ToolResult("t1", {"matches": 3}), ToolResult("t2", {"error": "invalid arguments"})],
+]
+
+
+def test_anthropic_wire_format_echoes_raw_content_and_groups_results() -> None:
+    wire = AnthropicLLM.to_wire(CONVERSATION)
+    assert wire[0] == {"role": "user", "content": "q"}
+    assert wire[1] == {"role": "assistant", "content": CONVERSATION[1].raw}  # thinking kept
+    assert wire[2]["role"] == "user" and len(wire[2]["content"]) == 2  # one message, all results
+    first, second = wire[2]["content"]
+    assert first == {"type": "tool_result", "tool_use_id": "t1",
+                     "content": '{"matches": 3}', "is_error": False}
+    assert second["is_error"] is True
+
+
+def test_openai_wire_format() -> None:
+    wire = OpenAIChatLLM.to_wire("sys", CONVERSATION)
+    assert wire[0] == {"role": "system", "content": "sys"}
+    assert wire[2]["tool_calls"][1]["function"]["name"] == "validate_plan"
+    assert [m["tool_call_id"] for m in wire[3:]] == ["t1", "t2"]
+
+
+def test_planner_provider_selection() -> None:
+    client = FakeCTGov([]).client()
+    assert make_planner(Settings(llm_mode="anthropic", anthropic_api_key=None), client) is None
+    claude = make_planner(Settings(llm_mode="anthropic", anthropic_api_key="k"), client)
+    assert isinstance(claude, LLMPlanner) and claude.llm.model == "claude-opus-5"
+    gpt = make_planner(Settings(llm_mode="openai", openai_api_key="k"), client)
+    assert isinstance(gpt, LLMPlanner) and gpt.llm.model == "gpt-5-mini"
+    assert isinstance(make_planner(Settings(llm_mode="fake"), client), ExamplePlanner)
