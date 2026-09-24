@@ -95,7 +95,7 @@ class Pipeline:
         qid = query_id(plan, version.get("dataTimestamp"))
         if cached := self.cache.get(qid):
             response = QueryResponse.model_validate(cached[0])
-            response.question = question or response.question
+            response.query = question or response.query
             return response
 
         fields = fields_for(plan)
@@ -201,7 +201,12 @@ class Pipeline:
             cohort=r.label, url=r.query.url(base), total=r.total,
             fetched=len(r.fetch.studies) if r.fetch else 0, pages=r.fetch.pages if r.fetch else 0,
             complete=r.fetch.complete if r.fetch else r.total == 0) for r in runs]
+        filters = {c.label: {k: v for k, v in {
+            **c.model_dump(mode="json", include={"condition", "intervention", "term", "sponsor"}),
+            **c.filters.model_dump(mode="json")}.items() if v not in (None, [])}
+            for c in plan.cohorts}
         return Meta(
+            filters=filters,
             api_version=version.get("apiVersion"), data_timestamp=version.get("dataTimestamp"),
             retrieved_at=datetime.now(UTC).isoformat(timespec="seconds"),
             api_queries=queries,
@@ -238,18 +243,18 @@ class Pipeline:
         bundle = EvidenceBundle(qid, titles, self.settings.evidence_sample_size)
         if result.is_empty:
             return QueryResponse(
-                status="empty", query_id=qid, question=question, plan=plan, meta=meta,
+                status="empty", query_id=qid, query=question, plan=plan, meta=meta,
                 message="Studies matched the search, but none had a value for the requested "
                         "breakdown (see meta.excluded)."), bundle
         spec = build(plan, result, bundle)
         status = "ok" if meta.completeness.complete else "partial"
-        return QueryResponse(status=status, query_id=qid, question=question, plan=plan,
+        return QueryResponse(status=status, query_id=qid, query=question, plan=plan,
                              visualization=spec, meta=meta), bundle
 
     def _no_matches(self, plan: QueryPlan, qid: str, question: str | None, llm: LLMInfo | None,
                     runs: Sequence[CohortRun], version: dict[str, str]) -> QueryResponse:
         return QueryResponse(
-            status="empty", query_id=qid, question=question, plan=plan,
+            status="empty", query_id=qid, query=question, plan=plan,
             meta=self._meta(plan, runs, llm, version),
             message="No ClinicalTrials.gov studies match this query. Check the spelling of "
                     "search terms or remove a filter (the exact API queries are in "
@@ -273,7 +278,7 @@ class Pipeline:
         meta = self._meta(plan, too_broad, llm, version)
         meta.completeness = Completeness(complete=False, reason="not retrieved: too broad")
         return QueryResponse(
-            status="needs_clarification", query_id=qid, question=question, plan=plan, meta=meta,
+            status="needs_clarification", query_id=qid, query=question, plan=plan, meta=meta,
             message=f"{names} exceeds the {cap:,}-study limit for a complete analysis.",
             clarification=Clarification(
                 question="This question matches too many studies to analyze completely. "

@@ -1,6 +1,6 @@
 """HTTP API. Thin: request parsing, routing, and error mapping only.
 
-    POST /query                         question or plan -> verified visualization response
+    POST /query                         query (+ optional structured fields) -> verified chart
     GET  /query/{query_id}              a previously computed response (while cached)
     GET  /query/{query_id}/evidence/{item_id}?page=&page_size=
                                         complete, paginated contributors for one datum
@@ -22,18 +22,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.contracts.plan import Measure, QueryPlan
-from app.contracts.response import (
-    ErrorResponse,
-    EvidencePage,
-    Meta,
-    QueryRequest,
-    QueryResponse,
-)
+from app.contracts.request import QueryRequest
+from app.contracts.response import ErrorResponse, EvidencePage, Meta, QueryResponse
 from app.ctgov.client import CTGovClient
 from app.evidence.store import ResultCache
 from app.pipeline import Pipeline, PipelineError
-from app.planner.base import PlannerError, QuestionPlanner
+from app.planner.base import PlannerError, PlannerResult, QuestionPlanner
 from app.registry.fields import REGISTRY
+from app.registry.request_fields import RequestFieldConflict, apply_request_fields, constraints_text
 from app.settings import Settings, get_settings
 
 log = logging.getLogger(__name__)
@@ -78,6 +74,10 @@ def create_app(
         status = 503 if e.code == "llm_unavailable" else 422
         return _error(status, e.code, e.message, e.detail)
 
+    @app.exception_handler(RequestFieldConflict)
+    async def _field_conflict(_: Request, e: RequestFieldConflict) -> JSONResponse:
+        return _error(422, "conflicting_fields", str(e))
+
     @app.exception_handler(RequestValidationError)
     async def _invalid_request(_: Request, e: RequestValidationError) -> JSONResponse:
         detail = [{"loc": list(err.get("loc", [])), "msg": err.get("msg")} for err in e.errors()]
@@ -93,21 +93,31 @@ def create_app(
                          503: {"model": ErrorResponse}, 504: {"model": ErrorResponse}})
     async def query(req: QueryRequest, request: Request) -> QueryResponse:
         pipeline: Pipeline = request.app.state.pipeline
-        if req.plan is not None:
-            return await pipeline.run_plan(req.plan)
-        assert req.question is not None
-        planner: QuestionPlanner | None = request.app.state.planner
-        if planner is None:
-            raise PlannerError("llm_unavailable", "No LLM is configured; submit a `plan` "
-                               "instead or set OPENAI_API_KEY / LLM_MODE.")
-        planned = await planner.plan(req.question)
+        if req.plan is not None:  # advanced: skip interpretation
+            planned = PlannerResult(kind="plan", llm=None, plan=req.plan)
+        else:
+            planner: QuestionPlanner | None = request.app.state.planner
+            if planner is None:
+                raise PlannerError("llm_unavailable", "No LLM is configured; set "
+                                   "ANTHROPIC_API_KEY (or LLM_MODE), or submit a `plan`.")
+            planned = await planner.plan(req.query, constraints_text(req))
+
         if planned.kind == "plan":
             assert planned.plan is not None
-            return await pipeline.run_plan(planned.plan, question=req.question, llm=planned.llm)
-        return QueryResponse(
-            status="needs_clarification" if planned.kind == "clarify" else "unsupported",
-            question=req.question, clarification=planned.clarification,
-            message=planned.message, meta=Meta(llm=planned.llm))
+            response = await pipeline.run_plan(apply_request_fields(planned.plan, req),
+                                               question=req.query, llm=planned.llm)
+        else:
+            clarification = planned.clarification
+            if clarification is not None:  # options must honour the request fields too
+                clarification = clarification.model_copy(update={"options": [
+                    o.model_copy(update={"plan": apply_request_fields(o.plan, req)})
+                    for o in clarification.options]})
+            response = QueryResponse(
+                status="needs_clarification" if planned.kind == "clarify" else "unsupported",
+                query=req.query, clarification=clarification, message=planned.message,
+                meta=Meta(llm=planned.llm))
+        response.meta.request_fields = req.structured_fields()
+        return response
 
     @app.get("/query/{query_id}", response_model=QueryResponse,
              response_model_exclude_none=True, responses={404: {"model": ErrorResponse}})

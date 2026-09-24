@@ -27,12 +27,12 @@ class ExamplePlanner:
             spec = json.loads(path.read_text())
             self.plans[_key(spec["question"])] = QueryPlan.model_validate(spec["plan"])
 
-    async def plan(self, question: str) -> PlannerResult:
+    async def plan(self, question: str, constraints: str | None = None) -> PlannerResult:
         info = LLMInfo(model="offline-examples")
         plan = self.plans.get(_key(question))
         if plan is None:
             return PlannerResult(
                 kind="unsupported", llm=info,
                 message="Offline mode (LLM_MODE=fake) only answers the example questions in "
-                        "examples/plans. Configure OPENAI_API_KEY for arbitrary questions.")
+                        "examples/plans. Configure ANTHROPIC_API_KEY for arbitrary questions.")
         return PlannerResult(kind="plan", llm=info, plan=plan.model_copy(deep=True))

@@ -55,11 +55,12 @@ class LLMPlanner:
         self.max_tool_calls = settings.planner_max_tool_calls
         self.max_studies = settings.max_studies_per_cohort
 
-    async def plan(self, question: str) -> PlannerResult:
+    async def plan(self, question: str, constraints: str | None = None) -> PlannerResult:
         tools = Tools(self.client, self.max_studies)
         info = LLMInfo(model=self.llm.model)
         system = system_prompt()
-        messages: list[Message] = [UserMessage(question)]
+        messages: list[Message] = [
+            UserMessage(f"{question}\n\n{constraints}" if constraints else question)]
         repaired = False
         # research turns + one answer + one repair, with slack for batched calls
         for _ in range(self.max_tool_calls + 3):

@@ -48,22 +48,19 @@ uv run uvicorn app.api.main:app --reload
 LLM_MODE=fake uv run uvicorn app.api.main:app --reload
 ```
 
+Then open **http://localhost:8000/docs** to try every endpoint interactively, or:
+
 ```bash
 curl -s localhost:8000/query -H 'content-type: application/json' \
-  -d '{"question": "Compare pembrolizumab and nivolumab trials across phases."}'
+  -d '{"query": "Compare pembrolizumab and nivolumab trials across phases."}'
+
+# optional structured fields constrain the question
+curl -s localhost:8000/query -H 'content-type: application/json' \
+  -d '{"query": "How has the number of trials for this drug changed over time?",
+       "drug_name": "Pembrolizumab"}'
 
 # follow any evidence ref from the response
 curl -s 'localhost:8000/query/<query_id>/evidence/r3?page=1&page_size=50'
-```
-
-A plan can also be submitted directly, skipping the LLM (this is how clarification options
-are re-submitted):
-
-```bash
-curl -s localhost:8000/query -H 'content-type: application/json' -d @- <<'EOF'
-{"plan": {"cohorts": [{"label": "Melanoma", "condition": "melanoma"}],
-          "analysis": {"kind": "aggregate", "dimension": "phase"}}}
-EOF
 ```
 
 Configuration (environment variables or `.env`):
@@ -85,12 +82,48 @@ Configuration (environment variables or `.env`):
 
 | Route | Purpose |
 |---|---|
-| `POST /query` | `{"question": ...}` or `{"plan": ...}` → `QueryResponse` |
+| `POST /query` | `QueryRequest` (below) → `QueryResponse` |
 | `GET /query/{query_id}` | A previously computed response (while cached) |
 | `GET /query/{query_id}/evidence/{item_id}?page=&page_size=` | Every contributing study for one datum, with the source field values used |
 | `GET /capabilities` | Supported analysis kinds, dimensions and measures (generated from the field registry) |
 | `GET /schema` | JSON Schemas for `QueryRequest`, `QueryPlan`, `QueryResponse`, `EvidencePage`, `ErrorResponse` |
 | `GET /health` | Liveness, CT.gov reachability and data timestamp, LLM availability |
+
+### Request schema (`POST /query`)
+
+Only `query` is required. The optional fields are **hard constraints**: the planner is told
+about them, and after planning they are applied in code to every cohort. An explicit field
+always wins over the model's reading of the question, and each application is recorded in
+`meta.assumptions`. Unknown fields are rejected.
+
+| Field | Type | Required | Validation / accepted values | Effect |
+|---|---|---|---|---|
+| `query` | string | **yes** | 1–1000 chars | The natural-language question |
+| `drug_name` | string | no | ≤ 200 chars; blank = not supplied | Intervention search (CT.gov expands brands/codes) |
+| `condition` | string | no | ≤ 200 chars | Condition/disease search |
+| `sponsor` | string | no | ≤ 200 chars | Sponsor/collaborator search |
+| `country` | string | no | ≤ 100 chars, full English name | Studies with ≥ 1 site in that country |
+| `trial_phase` | string or list of strings | no | `"Phase 3"`, `"Phase 2/3"`, `"PHASE3"`, `"3"`, `"Early Phase 1"`, `"NA"` | Studies whose phases include any of them |
+| `status` | string or list of strings | no | `"recruiting"`, `"completed"`, `"Active, not recruiting"`, … (any CT.gov overall status) | Studies with any of these statuses |
+| `start_year` | integer | no | 1900–2100, ≤ `end_year` | Studies starting in or after this year (also the trend window) |
+| `end_year` | integer | no | 1900–2100 | Studies starting in or before this year |
+| `plan` | `QueryPlan` | no | see `GET /schema` | Advanced: run this plan instead of interpreting `query` (used to re-submit a clarification option) |
+
+```json
+{"query": "Which countries have the most trials?",
+ "condition": "lung cancer", "trial_phase": "Phase 3", "status": "recruiting"}
+```
+
+If a field would merge a comparison the question asks for (e.g. "compare pembrolizumab and
+nivolumab" with `drug_name` set), the request fails with `422 conflicting_fields` rather than
+silently dropping one side.
+
+### Response
+
+`QueryResponse` has `status`, `query_id`, `query`, `plan` (the validated plan that ran),
+`visualization` (see [Output contract](#output-contract)), `clarification`, `message`, and
+`meta`. `meta.filters` shows the effective search terms and filters per cohort, and
+`meta.request_fields` echoes the structured fields that were supplied.
 
 `QueryResponse.status` is always one of:
 
@@ -103,7 +136,8 @@ Configuration (environment variables or `.env`):
 | `unsupported` | 200 | Outside registration data (e.g. efficacy); suggests an answerable alternative |
 
 Errors use `{"status": "error", "code", "message", "detail"}` with stable codes:
-`invalid_request` / `plan_invalid` (422), `upstream_rejected` / `upstream_unavailable` (502),
+`invalid_request` / `plan_invalid` / `conflicting_fields` (422), `upstream_rejected` /
+`upstream_unavailable` (502),
 `llm_unavailable` (503), `upstream_timeout` (504), `verification_failed` (500).
 
 ## Architecture
@@ -235,6 +269,7 @@ Charts ship **already aggregated and ordered**; frontends never recompute. `sche
 {
   "status": "ok",
   "query_id": "q_e0adeada732c24e5",          // deterministic: plan + CT.gov data timestamp
+  "query": "Which countries have the most recruiting Phase 3 lung cancer trials?",
   "visualization": {
     "type": "choropleth_bar",
     "title": "Lung cancer studies by country",
@@ -261,6 +296,8 @@ Charts ship **already aggregated and ordered**; frontends never recompute. `sche
                      "total": 210, "fetched": 210, "pages": 1, "complete": true}],
     "completeness": {"complete": true},
     "studies_analyzed": 210,
+    "filters": {"Lung cancer": {"condition": "lung cancer", "overall_status": ["RECRUITING"],
+                                "phase": ["PHASE3"]}},
     "definitions": {"country": "Distinct site countries per study; ...", "unit": "..."},
     "assumptions": ["A phase filter keeps studies whose registered phases include that phase, ..."],
     "warnings": ["Showing the top 20 of 60 country values by study count."],
@@ -284,7 +321,7 @@ Charts ship **already aggregated and ordered**; frontends never recompute. `sche
 ## Verification and testing
 
 ```bash
-uv run pytest                      # 204 unit + integration tests, no network (~3 s)
+uv run pytest                      # 230 unit + integration tests, no network (~3 s)
 uv run pytest -m live tests/live   # live CT.gov oracle tests
 uv run pytest -m live tests/golden   # planner golden set (needs ANTHROPIC_API_KEY)
 uv run ruff check . && uv run mypy app
@@ -351,7 +388,7 @@ pages); repeated plans are served from cache.
 - The evidence store and cache are in-memory; refs expire on restart. The response's plan
   and `meta.api_queries` URLs make every result reproducible.
 - The LLM planner needs an Anthropic (or OpenAI) key; without one, `LLM_MODE=fake` answers
-  the example questions and plans can always be submitted directly.
+  the example questions, and a `plan` can always be submitted directly.
 
 ## Repository layout
 

@@ -12,7 +12,7 @@ from app.contracts.response import Clarification, LLMInfo
 @dataclass
 class PlannerResult:
     kind: Literal["plan", "clarify", "unsupported"]
-    llm: LLMInfo
+    llm: LLMInfo | None  # None when a plan was submitted directly
     plan: QueryPlan | None = None
     clarification: Clarification | None = None
     message: str | None = None
@@ -27,4 +27,6 @@ class PlannerError(Exception):
 
 
 class QuestionPlanner(Protocol):
-    async def plan(self, question: str) -> PlannerResult: ...
+    async def plan(self, question: str, constraints: str | None = None) -> PlannerResult:
+        """``constraints`` describes the request's structured fields, if any."""
+        ...

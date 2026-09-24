@@ -27,6 +27,10 @@ def validate_plan(plan: QueryPlan) -> list[str]:
     labels = [c.label for c in plan.cohorts]
     if len(set(labels)) != len(labels):
         errors.append("cohort labels must be unique")
+    searches = [c.model_dump_json(exclude={"label"}) for c in plan.cohorts]
+    if len(set(searches)) != len(searches):
+        errors.append("two cohorts have identical searches and filters, so a comparison "
+                      "between them would be meaningless")
 
     for c in plan.cohorts:
         has_search = any([c.condition, c.intervention, c.term, c.sponsor])

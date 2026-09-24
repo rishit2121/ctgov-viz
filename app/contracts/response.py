@@ -1,29 +1,15 @@
-"""Request/response envelopes for the public HTTP API."""
+"""Response envelopes for the public HTTP API (the request is in ``app.contracts.request``)."""
 
 from __future__ import annotations
 
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field
 
 from app.contracts.plan import QueryPlan
 from app.contracts.viz import VisualizationSpec
 
 Status = Literal["ok", "partial", "empty", "needs_clarification", "unsupported", "error"]
-
-
-class QueryRequest(BaseModel):
-    question: str | None = Field(None, max_length=1000)
-    plan: QueryPlan | None = Field(
-        None,
-        description="Execute this plan directly and skip the LLM (e.g. a clarification option).",
-    )
-
-    @model_validator(mode="after")
-    def _one_input(self) -> QueryRequest:
-        if (self.question is None) == (self.plan is None):
-            raise ValueError("provide exactly one of `question` or `plan`")
-        return self
 
 
 class ClarificationOption(BaseModel):
@@ -67,6 +53,11 @@ class Meta(BaseModel):
     api_queries: list[ApiQuery] = Field(default_factory=list)
     completeness: Completeness = Field(default_factory=lambda: Completeness(complete=True))
     studies_analyzed: int = 0
+    filters: dict[str, dict[str, Any]] = Field(
+        default_factory=dict,
+        description="Effective search terms and filters per cohort (after request fields).")
+    request_fields: dict[str, Any] = Field(
+        default_factory=dict, description="Optional structured fields supplied with the request.")
     cohort_overlap: dict[str, int] = Field(default_factory=dict)
     excluded: dict[str, int] = Field(default_factory=dict)
     assumptions: list[str] = Field(default_factory=list)
@@ -78,7 +69,7 @@ class Meta(BaseModel):
 class QueryResponse(BaseModel):
     status: Status
     query_id: str | None = None
-    question: str | None = None
+    query: str | None = Field(None, description="The request's natural-language query.")
     plan: QueryPlan | None = None
     visualization: VisualizationSpec | None = None
     clarification: Clarification | None = None

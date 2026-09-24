@@ -39,9 +39,11 @@ class ScriptedPlanner:
     def __init__(self, result: PlannerResult):
         self.result = result
         self.questions: list[str] = []
+        self.constraints: list[str | None] = []
 
-    async def plan(self, question: str) -> PlannerResult:
+    async def plan(self, question: str, constraints: str | None = None) -> PlannerResult:
         self.questions.append(question)
+        self.constraints.append(constraints)
         return self.result
 
 
@@ -65,7 +67,7 @@ def api(fake: FakeCTGov) -> Iterator[TestClient]:
 
 
 def test_plan_to_verified_chart_with_evidence(api: TestClient) -> None:
-    r = api.post("/query", json={"plan": phase_plan()})
+    r = api.post("/query", json={"query": "q", "plan": phase_plan()})
     assert r.status_code == 200, r.text
     body = r.json()
     assert body["status"] == "ok"
@@ -86,7 +88,7 @@ def test_plan_to_verified_chart_with_evidence(api: TestClient) -> None:
     assert page["items"][0]["fields_used"]["designModule.phases"] == ["PHASE3"]
     assert page["items"][0]["url"] == "https://clinicaltrials.gov/study/NCT00000002"
 
-    again = api.post("/query", json={"plan": phase_plan()}).json()
+    again = api.post("/query", json={"query": "q", "plan": phase_plan()}).json()
     assert again["query_id"] == body["query_id"]
     assert api.get(f"/query/{body['query_id']}").json()["query_id"] == body["query_id"]
 
@@ -95,7 +97,7 @@ def test_comparison_reports_cohort_overlap(api: TestClient) -> None:
     plan = {"cohorts": [{"label": "Pembrolizumab", "intervention": "pembrolizumab"},
                         {"label": "Nivolumab", "intervention": "nivolumab"}],
             "analysis": {"kind": "aggregate", "dimension": "phase", "series_by": "cohort"}}
-    body = api.post("/query", json={"plan": plan}).json()
+    body = api.post("/query", json={"query": "q", "plan": plan}).json()
     assert body["status"] == "ok"
     # the fake API does substring search, so "Keytruda" is not found by "pembrolizumab"
     assert body["meta"]["cohort_overlap"] == {"Pembrolizumab ∩ Nivolumab": 0}
@@ -103,7 +105,8 @@ def test_comparison_reports_cohort_overlap(api: TestClient) -> None:
 
 
 def test_structured_filters_are_reverified_locally(api: TestClient) -> None:
-    body = api.post("/query", json={"plan": phase_plan(filters={"phase": ["PHASE3"]})}).json()
+    plan = phase_plan(filters={"phase": ["PHASE3"]})
+    body = api.post("/query", json={"query": "q", "plan": plan}).json()
     # fake API ignores filter.advanced; the pipeline drops non-Phase-3 studies itself
     assert body["meta"]["excluded"]["failed_local_filter"] == 2
     assert {d["phase"] for d in body["visualization"]["data"]} == {"Phase 2/3", "Phase 3"}
@@ -114,7 +117,7 @@ def test_network_endpoint_shapes(api: TestClient) -> None:
     plan = {"cohorts": [{"label": "Melanoma", "condition": "melanoma"}],
             "analysis": {"kind": "cooccurrence",
                          "pair": {"left": "intervention", "right": "intervention"}}}
-    viz = api.post("/query", json={"plan": plan}).json()["visualization"]
+    viz = api.post("/query", json={"query": "q", "plan": plan}).json()["visualization"]
     assert viz["type"] == "network"
     edges = {(e["source"], e["target"]): e["weight"] for e in viz["edges"]}
     assert edges == {("intervention:nivolumab", "intervention:pembrolizumab"): 1,
@@ -125,7 +128,7 @@ def test_network_endpoint_shapes(api: TestClient) -> None:
 
 
 def test_zero_matches_is_empty_not_an_error(api: TestClient) -> None:
-    body = api.post("/query", json={"plan": {
+    body = api.post("/query", json={"query": "q", "plan": {
         "cohorts": [{"label": "X", "condition": "no such disease"}],
         "analysis": {"kind": "aggregate", "dimension": "phase"}}}).json()
     assert body["status"] == "empty"
@@ -137,7 +140,7 @@ def test_too_broad_cohort_asks_to_narrow(fake: FakeCTGov) -> None:
     # 4 melanoma studies, 3 recruiting; the fake ignores filter.advanced, so only the
     # status narrowing reduces its count below the cap
     with make_client(fake, max_studies_per_cohort=3) as api:
-        body = api.post("/query", json={"plan": phase_plan()}).json()
+        body = api.post("/query", json={"query": "q", "plan": phase_plan()}).json()
     assert body["status"] == "needs_clarification"
     assert "exceeds the 3-study limit" in body["message"]
     options = body["clarification"]["options"]
@@ -148,7 +151,7 @@ def test_too_broad_cohort_asks_to_narrow(fake: FakeCTGov) -> None:
 def test_failed_later_page_gives_partial_status(fake: FakeCTGov) -> None:
     fake.fail_page("2")
     with make_client(fake) as api:
-        body = api.post("/query", json={"plan": phase_plan()}).json()
+        body = api.post("/query", json={"query": "q", "plan": phase_plan()}).json()
     assert body["status"] == "partial"
     assert not body["meta"]["completeness"]["complete"]
     assert "page 2 failed" in body["meta"]["completeness"]["reason"]
@@ -163,30 +166,32 @@ def test_upstream_errors_map_to_clear_codes(fake: FakeCTGov, status: int, code: 
                                             http: int) -> None:
     fake.fail_all_studies(status)
     with make_client(fake) as api:
-        r = api.post("/query", json={"plan": phase_plan()})
+        r = api.post("/query", json={"query": "q", "plan": phase_plan()})
     assert r.status_code == http
     assert r.json()["code"] == code
 
 
 def test_invalid_plans_and_requests(api: TestClient) -> None:
-    r = api.post("/query", json={"plan": {"cohorts": [{"label": "A", "condition": "a"}],
-                                          "analysis": {"kind": "aggregate"}}})
+    bad = {"cohorts": [{"label": "A", "condition": "a"}], "analysis": {"kind": "aggregate"}}
+    r = api.post("/query", json={"query": "q", "plan": bad})
     assert r.status_code == 422 and r.json()["code"] == "plan_invalid"
     assert any("exactly one" in e for e in r.json()["detail"])
-    r = api.post("/query", json={"question": "x", "plan": phase_plan()})
+    r = api.post("/query", json={"question": "x", "plan": phase_plan()})  # `query` missing
     assert r.status_code == 422 and r.json()["code"] == "invalid_request"
-    r = api.post("/query", json={"plan": {**phase_plan(), "counts": [1]}})
+    r = api.post("/query", json={"query": "x", "trial_phase": "Phase 9"})
+    assert r.status_code == 422 and "trial_phase" in str(r.json()["detail"])
+    r = api.post("/query", json={"query": "q", "plan": {**phase_plan(), "counts": [1]}})
     assert r.status_code == 422
 
 
 def test_question_without_llm(api: TestClient) -> None:
-    r = api.post("/query", json={"question": "How are melanoma trials distributed by phase?"})
+    r = api.post("/query", json={"query": "How are melanoma trials distributed by phase?"})
     assert r.status_code == 503 and r.json()["code"] == "llm_unavailable"
 
 
 def test_expired_and_unknown_evidence(api: TestClient) -> None:
     assert api.get("/query/q_missing/evidence/r0").json()["code"] == "query_not_found"
-    qid = api.post("/query", json={"plan": phase_plan()}).json()["query_id"]
+    qid = api.post("/query", json={"query": "q", "plan": phase_plan()}).json()["query_id"]
     assert api.get(f"/query/{qid}/evidence/r999").json()["code"] == "evidence_not_found"
 
 
@@ -198,9 +203,9 @@ def test_question_goes_through_planner(fake: FakeCTGov) -> None:
     planner = ScriptedPlanner(PlannerResult(kind="plan", llm=llm,
                                             plan=QueryPlan.model_validate(phase_plan())))
     with make_client(fake, planner=planner) as api:
-        body = api.post("/query", json={"question": "Melanoma trials by phase?"}).json()
+        body = api.post("/query", json={"query": "Melanoma trials by phase?"}).json()
     assert body["status"] == "ok"
-    assert body["question"] == "Melanoma trials by phase?"
+    assert body["query"] == "Melanoma trials by phase?"
     assert body["meta"]["llm"]["tool_calls"] == ["probe_cohort"]
 
 
@@ -211,7 +216,7 @@ def test_planner_clarification_is_passed_through(fake: FakeCTGov) -> None:
         kind="clarify", llm=LLMInfo(model="scripted"),
         clarification=Clarification(question="Which date?", options=[option])))
     with make_client(fake, planner=planner) as api:
-        body = api.post("/query", json={"question": "Melanoma trials in 2020"}).json()
+        body = api.post("/query", json={"query": "Melanoma trials in 2020"}).json()
     assert body["status"] == "needs_clarification"
     assert body["clarification"]["options"][0]["plan"]["analysis"]["dimension"] == "phase"
 
@@ -226,3 +231,37 @@ def test_capabilities_schema_health(api: TestClient) -> None:
     assert {"QueryRequest", "QueryPlan", "QueryResponse"} <= set(schemas)
     health = api.get("/health").json()
     assert health["ctgov"]["reachable"] and health["llm"] is False
+
+
+# ------------------------------------------------------------------ structured request fields
+
+
+def test_structured_fields_constrain_the_plan(fake: FakeCTGov) -> None:
+    llm = LLMInfo(model="scripted")
+    planner = ScriptedPlanner(PlannerResult(kind="plan", llm=llm, plan=QueryPlan.model_validate(
+        {"cohorts": [{"label": "Trials", "condition": "cancer"}],
+         "analysis": {"kind": "aggregate", "dimension": "phase"}})))
+    with make_client(fake, planner=planner) as api:
+        body = api.post("/query", json={"query": "How are these trials distributed by phase?",
+                                        "condition": "Melanoma", "status": "recruiting"}).json()
+    assert body["status"] == "ok"
+    # the planner was told, and the fields were enforced regardless of its reading
+    assert "condition=Melanoma" in (planner.constraints[0] or "")
+    assert body["plan"]["cohorts"][0]["condition"] == "Melanoma"
+    assert body["meta"]["filters"] == {"Trials": {"condition": "Melanoma",
+                                                  "overall_status": ["RECRUITING"]}}
+    assert body["meta"]["request_fields"] == {"condition": "Melanoma",
+                                              "status": ["RECRUITING"]}
+    assert any("replacing the interpreted condition" in a for a in body["meta"]["assumptions"])
+    assert sum(d["study_count"] for d in body["visualization"]["data"]) == 3  # recruiting melanoma
+
+
+def test_field_that_collapses_a_comparison_is_rejected(fake: FakeCTGov) -> None:
+    plan = QueryPlan.model_validate({
+        "cohorts": [{"label": "Pembrolizumab", "intervention": "pembrolizumab"},
+                    {"label": "Nivolumab", "intervention": "nivolumab"}],
+        "analysis": {"kind": "aggregate", "dimension": "phase", "series_by": "cohort"}})
+    planner = ScriptedPlanner(PlannerResult(kind="plan", llm=LLMInfo(model="s"), plan=plan))
+    with make_client(fake, planner=planner) as api:
+        r = api.post("/query", json={"query": "Compare them by phase", "drug_name": "Keytruda"})
+    assert r.status_code == 422 and r.json()["code"] == "conflicting_fields"
