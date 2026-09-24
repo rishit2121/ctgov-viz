@@ -115,7 +115,7 @@ def test_country_canonicalization(raw: str, name: str, iso3: str | None) -> None
     ("phases", "bucket"),
     [((), "Not Reported"), (("PHASE3",), "Phase 3"), (("PHASE1", "PHASE2"), "Phase 1/2"),
      (("PHASE2", "PHASE3"), "Phase 2/3"), (("EARLY_PHASE1",), "Early Phase 1"),
-     (("NA",), "Not Applicable")],
+     (("NA",), "Not Applicable"), (("EARLY_PHASE1", "PHASE1"), "Early Phase 1 / Phase 1")],
 )
 def test_phase_bucket(phases: tuple[str, ...], bucket: str) -> None:
     assert phase_bucket(phases) == bucket

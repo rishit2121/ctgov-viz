@@ -243,3 +243,16 @@ def test_scatter_drops_studies_missing_a_measure() -> None:
                   "y_measure": "enrollment"}), {"Cohort": trials})
     assert [(p.nct_id, p.x, p.y) for p in r.points] == [("NCT01", 6, 40), ("NCT02", 24, 100)]
     assert r.excluded == {"missing_or_invalid_measure": 2}
+
+
+def test_series_beyond_color_slots_fold_into_other() -> None:
+    statuses = ["RECRUITING", "COMPLETED", "TERMINATED", "WITHDRAWN", "SUSPENDED", "UNKNOWN",
+                "NOT_YET_RECRUITING", "ACTIVE_NOT_RECRUITING", "ENROLLING_BY_INVITATION"]
+    trials = [trial(f"NCT{i:02}{j}", status=s, phases=["PHASE2"])
+              for i, s in enumerate(statuses) for j in range(len(statuses) - i)]
+    r = run(plan({"kind": "aggregate", "dimension": "phase", "series_by": "overall_status"}),
+            {"Cohort": trials})
+    assert len(r.series_order) == 8 and r.series_order[-1] == "Other"
+    other = next(row for row in r.rows if row.values["overall_status"] == "Other")
+    assert other.count == 2 + 1  # the two smallest statuses, distinct studies
+    assert any("grouped into 'Other'" in w for w in r.warnings)

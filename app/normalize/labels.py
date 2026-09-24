@@ -31,10 +31,12 @@ def phase_bucket(phases: tuple[str, ...]) -> str:
     """Single display bucket for a study's phase list."""
     if not phases:
         return PHASE_NOT_REPORTED
-    if len(phases) == 1:
-        return PHASE_LABELS.get(phases[0], phases[0])
-    numbers = [PHASE_LABELS.get(p, p).removeprefix("Phase ") for p in phases]
-    return "Phase " + "/".join(numbers)
+    labels = [PHASE_LABELS.get(p, p) for p in phases]
+    if len(labels) == 1:
+        return labels[0]
+    if all(lab.startswith("Phase ") for lab in labels):  # CT.gov's own style: "Phase 2/3"
+        return "Phase " + "/".join(lab.removeprefix("Phase ") for lab in labels)
+    return " / ".join(labels)  # unusual combinations, e.g. "Early Phase 1 / Phase 1"
 
 
 STATUS_LABELS = {

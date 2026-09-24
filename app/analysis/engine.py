@@ -32,6 +32,8 @@ from .ops import (
 
 CohortTrials = Mapping[str, Sequence[Trial]]
 MAX_SCATTER_POINTS = 5000
+MAX_SERIES = 8  # categorical color slots; the tail folds into "Other" rather than a 9th hue
+OTHER_KEY, OTHER_LABEL = "\x00other", "Other"
 COHORT_PATH = "cohort_query"  # evidence key recording which cohort query returned the study
 
 DEF_UNIT = "Each bar/point/edge counts distinct studies (NCT IDs), never sites or arms."
@@ -52,6 +54,32 @@ def run(plan: QueryPlan, cohort_trials: CohortTrials, today: date | None = None)
 
 
 # --------------------------------------------------------------------------- aggregate
+
+
+def _fold_series[C](
+    rows: dict[tuple[str, C], Row], series_keys: list[str], labels: LabelResolver,
+    title: str, warnings: list[str],
+) -> list[str]:
+    """Keep the ``MAX_SERIES - 1`` largest series; merge the rest into one "Other" series.
+
+    "Other" counts distinct studies across the folded series (a study in two folded series
+    counts once), so it is a real distinct count, not a sum.
+    """
+    if len(series_keys) <= MAX_SERIES:
+        return series_keys
+    members: dict[str, set[str]] = {s: set() for s in series_keys}
+    for (s, _), row in rows.items():
+        members[s].update(row.contributors)
+    ranked = sorted(series_keys, key=lambda s: (-len(members[s]), labels[s].casefold()))
+    keep = set(ranked[: MAX_SERIES - 1])
+    for (s, c), row in list(rows.items()):
+        if s not in keep:
+            rows.setdefault((OTHER_KEY, c), Row(values={})).contributors.update(row.contributors)
+    labels.add(OTHER_KEY, OTHER_LABEL)
+    folded = len(series_keys) - len(keep)
+    warnings.append(f"The {folded} smallest {title.lower()} series are grouped into "
+                    f"'{OTHER_LABEL}'.")
+    return [s for s in series_keys if s in keep] + [OTHER_KEY]
 
 
 def _series_values(
@@ -125,6 +153,7 @@ def _categorical(plan: QueryPlan, cohort_trials: CohortTrials) -> AnalysisResult
         s_labels = {s: series_labels[s] for s in s_totals}
         s_how = "domain" if sdef.order == "domain" else "count_desc"
         series_keys = order_categories(s_totals, s_labels, s_how, sdef.domain_order)
+        series_keys = _fold_series(rows, series_keys, series_labels, sdef.title, result.warnings)
     else:
         series_keys = [""]
 
@@ -199,6 +228,8 @@ def _temporal(plan: QueryPlan, cohort_trials: CohortTrials, today: date) -> Anal
 
     result = AnalysisResult(shape="temporal_series" if series_field else "temporal",
                             x_field="start_year", x_label="Start year", series_field=series_field)
+    if sdef is not None:
+        series_keys = _fold_series(rows, series_keys, series_labels, sdef.title, result.warnings)
     for s_key in series_keys:
         for y in years:
             row = rows.get((s_key, y)) or Row(values={})  # zero-filled gap years
@@ -338,7 +369,7 @@ def _scatter(a: Analysis, trials: Sequence[Trial]) -> AnalysisResult:
         result.points.append(Point(nct_id=t.nct_id, x=x, y=y, attrs={
             "enrollment_type": t.enrollment_type or "UNKNOWN",
             "phase": phase_bucket(t.phases),
-        }))
+        }, evidence=contributor(t, (paths.P_START, paths.P_PCD, paths.P_ENROLLMENT))))
     if missing:
         result.excluded["missing_or_invalid_measure"] = missing
     if len(result.points) > MAX_SCATTER_POINTS:

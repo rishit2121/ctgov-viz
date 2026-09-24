@@ -59,6 +59,7 @@ class Point:
     x: float
     y: float
     attrs: dict[str, Any] = field(default_factory=dict)
+    evidence: Contributor | None = None  # source values the two measures were derived from
 
 
 @dataclass(slots=True)
