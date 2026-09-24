@@ -38,7 +38,7 @@ supports each number.
 # (pattern, replacement) applied to the top-level README, in order.
 README_REWRITES = [
     (r"\]\(docs/", "](code/docs/"),
-    (r"\]\(examples/runs/\)", "](examples/)"),
+    (r"\]\(examples/runs/", "](examples/"),  # the folder and links to single example files
     (r"`examples/runs/`", "`examples/`"),
     (r"`examples/plans/`", "`code/examples/plans/`"),
     (r"`tests/`", "`code/tests/`"),
